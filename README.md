@@ -38,11 +38,9 @@ GodsOfDeceit
   │     │
   │     └── ThirdParty (private repo, includes UE4 marketplace assets)
   │
-  │
   ├── Plugins (public repo)
   │     │
-  │     └── UFSM (Private repo, UE4 marketplace plugin)
-  │
+  │     └── UFSM (private repo, UE4 marketplace plugin)
   │
   └── ThirdParty (public repo)
 ```
