@@ -6,3 +6,7 @@
 	path = Plugins
 	url = git@gitlab.com:Khavaran67/GodsOfDeceit_Plugins.git
 	branch = master
+[submodule "ThirdParty"]
+	path = ThirdParty
+	url = git@gitlab.com:Khavaran67/GodsOfDeceit_ThirdParty.git
+	branch = master
