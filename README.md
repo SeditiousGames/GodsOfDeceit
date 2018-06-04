@@ -30,9 +30,7 @@ git clone --recursive --jobs 16 git@gitlab.com:Khavaran67/GodsOfDeceit.git
 
 ## Submodule Structure
 
-```
 GodsOfDeceit
-  │
   │
   ├── Content (public repo)
   │     │
@@ -43,7 +41,6 @@ GodsOfDeceit
   │     └── UFSM (private repo, UE4 marketplace plugin)
   │
   └── ThirdParty (public repo)
-```
 
 # License
 
