@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{28BB7532-2A02-1703-0001-0072ABE5D533}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "GodsOfDeceit",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
