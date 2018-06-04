@@ -1,0 +1,4 @@
+[submodule "Content"]
+	path = Content
+	url = git@gitlab.com:Khavaran67/GodsOfDeceit_Content.git
+	branch = master
