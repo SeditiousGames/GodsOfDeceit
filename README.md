@@ -44,6 +44,22 @@ GodsOfDeceit
   └── ThirdParty (public repo)
 ```
 
+## Supported Platforms
+
+Intended target platforms for Gods of Deceit are as follows:
+
+* Microsoft Windows 32-bit
+* Microsoft Windows 64-bit
+* Any 64-bit GNU/Linux distro
+
+Theoretically, it's possible to run Gods of Deceit on the following platforms:
+
+* macOS: Sorry, I don't have any Mac. The only barrier to build it for macOS is the third-party dependencies. If someone with a Mac builds those dependecies -- which is not hard at all -- and modify the build system a bit, it shoud be build and run on any Mac without source code modification. A guide on how to build those dependecies for GNU/Linux resides inside ThirdParty/docs which should be a good starting point for a macOS build.
+
+* Android: In addition to cross-compiling the dependencies (I've done this for Android before and it's not that much complex to figure it out; refer to what I said about macOS), at least the input system requires a rewrite to make it work on Android.
+
+* iOS: Same as Android.
+
 # License
 
 MIT License
