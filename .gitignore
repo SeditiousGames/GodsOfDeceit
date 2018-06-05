@@ -98,3 +98,6 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# BFG Repo-Cleaner
+Scripts/bfg.jar
