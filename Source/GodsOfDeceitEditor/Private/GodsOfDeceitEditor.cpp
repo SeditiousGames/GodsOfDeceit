@@ -35,6 +35,6 @@
 
 
 #include "GodsOfDeceitEditor.h"
-#include "GodsOfDeceitModule.h"
+#include "GodsOfDeceitEditorModule.h"
 
 IMPLEMENT_GAME_MODULE(FGodsOfDeceitEditorModule, GodsOfDeceitEditor);
