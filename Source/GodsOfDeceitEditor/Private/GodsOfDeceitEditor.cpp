@@ -30,27 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * Target file for GodsOfDeceitEditor.
+ * Main file which registers editor module
  */
 
 
-using UnrealBuildTool;
-using System.Collections.Generic;
+#include "GodsOfDeceitEditor.h"
+#include "GodsOfDeceitModule.h"
 
-public class GodsOfDeceitEditorTarget : TargetRules
-{
-    public GodsOfDeceitEditorTarget(TargetInfo Target) : base(Target)
-    {
-        this.Type = TargetType.Editor;
-
-        this.ExtraModuleNames.AddRange(
-            new string[] {
-                "GodsOfDeceit",
-                "GodsOfDeceitEditor"
-            });
-
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
-    }
-}
+IMPLEMENT_GAME_MODULE(FGodsOfDeceitEditorModule, GodsOfDeceitEditor);

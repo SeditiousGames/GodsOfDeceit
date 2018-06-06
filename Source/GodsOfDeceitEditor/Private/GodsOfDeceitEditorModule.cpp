@@ -30,27 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Target file for GodsOfDeceitEditor.
+ * Editor module implementation entry/exit point.
  */
 
 
-using UnrealBuildTool;
-using System.Collections.Generic;
+#include "GodsOfDeceitEditorModule.h"
+#include "GodsOfDeceitEditor.h"
 
-public class GodsOfDeceitEditorTarget : TargetRules
+#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+
+void FGodsOfDeceitEditorModule::StartupModule()
 {
-    public GodsOfDeceitEditorTarget(TargetInfo Target) : base(Target)
-    {
-        this.Type = TargetType.Editor;
-
-        this.ExtraModuleNames.AddRange(
-            new string[] {
-                "GodsOfDeceit",
-                "GodsOfDeceitEditor"
-            });
-
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
-    }
+    Super::StartupModule();
 }
+
+void FGodsOfDeceitEditorModule::PreUnloadCallback()
+{
+    Super::PreUnloadCallback();
+}
+void FGodsOfDeceitEditorModule::PostLoadCallback()
+{
+    Super::PostLoadCallback();
+}
+
+void FGodsOfDeceitEditorModule::ShutdownModule()
+{
+    Super::ShutdownModule();
+}
+
+#undef LOCTEXT_NAMESPACE

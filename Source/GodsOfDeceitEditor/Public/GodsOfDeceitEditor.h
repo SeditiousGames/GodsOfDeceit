@@ -30,27 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * Target file for GodsOfDeceitEditor.
+ * Generic header that has been intended to be included from all other class
+ * implementations
  */
 
 
-using UnrealBuildTool;
-using System.Collections.Generic;
+#pragma once
 
-public class GodsOfDeceitEditorTarget : TargetRules
-{
-    public GodsOfDeceitEditorTarget(TargetInfo Target) : base(Target)
-    {
-        this.Type = TargetType.Editor;
-
-        this.ExtraModuleNames.AddRange(
-            new string[] {
-                "GodsOfDeceit",
-                "GodsOfDeceitEditor"
-            });
-
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
-    }
-}
+#include <CoreMinimal.h>

@@ -30,27 +30,39 @@
  *
  * @section DESCRIPTION
  *
- * Target file for GodsOfDeceitEditor.
+ * Build script for GodsOfDeceitEditor target.
  */
 
 
 using UnrealBuildTool;
-using System.Collections.Generic;
 
-public class GodsOfDeceitEditorTarget : TargetRules
+public class GodsOfDeceitEditor : ModuleRules
 {
-    public GodsOfDeceitEditorTarget(TargetInfo Target) : base(Target)
+    public GodsOfDeceitEditor(ReadOnlyTargetRules Target) : base(Target)
     {
-        this.Type = TargetType.Editor;
+        this.PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        this.ExtraModuleNames.AddRange(
+        this.PublicDependencyModuleNames.AddRange(
             new string[] {
-                "GodsOfDeceit",
-                "GodsOfDeceitEditor"
+                "Core",
+                "CoreUObject",
+                "Engine",
+                "GodsOfDeceit"
             });
 
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
+        this.PrivateDependencyModuleNames.AddRange(
+            new string[] {
+                "AssetTools",
+                "UnrealEd"
+            });
+
+        this.PrivateIncludePathModuleNames.AddRange(
+            new string[] {
+                "AssetTools",
+                "UnrealEd"
+            });
+
+        this.bUseRTTI = true;
+        this.bEnableExceptions = true;
     }
 }
