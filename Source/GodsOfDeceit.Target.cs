@@ -33,13 +33,14 @@
  * Target file for GodsOfDeceit.
  */
 
+
 using UnrealBuildTool;
 using System.Collections.Generic;
 
 public class GodsOfDeceitTarget : TargetRules
 {
-	public GodsOfDeceitTarget(TargetInfo Target) : base(Target)
-	{
+    public GodsOfDeceitTarget(TargetInfo Target) : base(Target)
+    {
         this.Type = TargetType.Game;
 
         this.ExtraModuleNames.AddRange(

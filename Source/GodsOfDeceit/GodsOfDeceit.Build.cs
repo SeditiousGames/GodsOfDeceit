@@ -33,6 +33,7 @@
  * Build script for GodsOfDeceit target.
  */
 
+
 using UnrealBuildTool;
 
 public class GodsOfDeceit : ModuleRules
