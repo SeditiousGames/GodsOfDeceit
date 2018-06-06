@@ -37,9 +37,9 @@ using UnrealBuildTool;
 
 public class GodsOfDeceit : ModuleRules
 {
-	public GodsOfDeceit(ReadOnlyTargetRules Target) : base(Target)
-	{
-		this.PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public GodsOfDeceit(ReadOnlyTargetRules Target) : base(Target)
+    {
+        this.PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
         this.PublicDependencyModuleNames.AddRange(
             new string[] {
@@ -52,5 +52,5 @@ public class GodsOfDeceit : ModuleRules
         this.PrivateDependencyModuleNames.AddRange(
             new string[] {
             });
-	}
+    }
 }

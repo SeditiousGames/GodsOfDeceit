@@ -12,9 +12,5 @@
 UCLASS()
 class GODSOFDECEIT_API AGodsOfDeceitGameModeBase : public AGameModeBase
 {
-	GENERATED_BODY()
-	
-	
-	
-	
+    GENERATED_BODY()
 };
