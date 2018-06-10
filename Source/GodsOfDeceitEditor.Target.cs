@@ -51,6 +51,5 @@ public class GodsOfDeceitEditorTarget : TargetRules
 
         this.bEnforceIWYU = true;
         this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
     }
 }
