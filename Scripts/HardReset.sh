@@ -30,22 +30,27 @@ function cleanUp()
     fi
 
     echo "Running ==>  git reset --hard"
+    echo ""
     git reset --hard
     echo ""
 
     echo "Running ==>  git submodule foreach --recursive git reset --hard"
+    echo ""
     git submodule foreach --recursive git reset --hard
     echo ""
 
     echo "Running ==>  git clean -dfx"
+    echo ""
     git clean -dfx
     echo ""
 
     echo "Running ==>  git submodule foreach --recursive git clean -dfx"
+    echo ""
     git submodule foreach --recursive git clean -dfx
     echo ""
 
     echo "Running ==>  git submodule update --init --recursive"
+    echo ""
     git submodule update --init --recursive
     echo ""
 
