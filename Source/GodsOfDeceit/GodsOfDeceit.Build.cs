@@ -234,14 +234,14 @@ public class GDefinitions
 
     private void AddPublicDefinition(string Definition)
     {
-        Utils.Log.Info("Defining '{0}' as a public definition...", Definition);
+        Utils.Log.Info("Defining public definition '{0}'...", Definition);
 
         Utils.Module.PublicDefinitions.Add(Definition);
     }
 
     private void AddPrivateDefinition(string Definition)
     {
-        Utils.Log.Info("Defining '{0}' as a private definition...", Definition);
+        Utils.Log.Info("Defining private definition '{0}'...", Definition);
 
         Utils.Module.PrivateDefinitions.Add(Definition);
     }
@@ -295,28 +295,28 @@ public class GEngineModules
 
     private void AddPublicIncludePathModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' as a public include path module...", Plugin);
+        Utils.Log.Info("Adding public include path module '{0}'...", Plugin);
 
         Utils.Module.PublicIncludePathModuleNames.Add(Plugin);
     }
 
     private void AddPublicDependencyModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' as a public dependency module...", Plugin);
+        Utils.Log.Info("Adding public dependency module '{0}'...", Plugin);
 
         Utils.Module.PublicDependencyModuleNames.Add(Plugin);
     }
 
     private void AddPrivateIncludePathModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' as a private include path module...", Plugin);
+        Utils.Log.Info("Adding private include path module '{0}'...", Plugin);
 
         Utils.Module.PrivateIncludePathModuleNames.Add(Plugin);
     }
 
     private void AddPrivateDependencyModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' as a private dependency module...", Plugin);
+        Utils.Log.Info("Adding private dependency module '{0}'...", Plugin);
 
         Utils.Module.PrivateDependencyModuleNames.Add(Plugin);
     }
@@ -373,7 +373,7 @@ public class GLog
             EmptyLine();
         }
 
-        Info("Setting up '{0}' target...", Utils.Module.Target.Name);
+        Info("Setting up target '{0}'...", Utils.Module.Target.Name);
         EmptyLine();
 
         Info("Target build configuration is '{0}'.", Utils.Module.Target.Configuration);
@@ -382,7 +382,7 @@ public class GLog
 
     public void Stop()
     {
-        Info("Finished setting up '{0}' target.", Utils.Module.Target.Name);
+        Info("Finished setting up target '{0}'.", Utils.Module.Target.Name);
         EmptyLine();
     }
 
@@ -574,14 +574,14 @@ public class GPlugins
 
     private void AddPublicDependencyModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' third-party plugin as a public dependency module...", Plugin);
+        Utils.Log.Info("Adding public dependency module '{0}'...", Plugin);
 
         Utils.Module.PublicDependencyModuleNames.Add(Plugin);
     }
 
     private void AddPrivateDependencyModuleName(string Plugin)
     {
-        Utils.Log.Info("Adding '{0}' third-party plugin as a private dependency module...", Plugin);
+        Utils.Log.Info("Adding private dependency module '{0}'...", Plugin);
 
         Utils.Module.PrivateDependencyModuleNames.Add(Plugin);
     }
@@ -781,21 +781,21 @@ public class GThirdParty
 
     private void AddPublicAdditionalLibrary(string Library)
     {
-        Utils.Log.Info("Adding '{0}' third-party library as a public additional library for linking...", Library);
+        Utils.Log.Info("Adding public additional library '{0}'...", Library);
 
         Utils.Module.PublicAdditionalLibraries.Add(Library);
     }
 
     private void AddPublicLibraryPath(string Path)
     {
-        Utils.Log.Info("Adding '{0}' as a public library search path for linking...", Path);
+        Utils.Log.Info("Adding public library Path '{0}'...", Path);
 
         Utils.Module.PublicLibraryPaths.Add(Path);
     }
 
     private void AddPublicSystemIncludePath(string Path)
     {
-        Utils.Log.Info("Adding '{0}' as a public system include search path...", Path);
+        Utils.Log.Info("Adding public system include path '{0}'...", Path);
 
         Utils.Module.PublicSystemIncludePaths.Add(Path);
     }
