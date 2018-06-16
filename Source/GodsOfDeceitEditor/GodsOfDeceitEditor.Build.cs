@@ -73,9 +73,7 @@ public class GodsOfDeceitEditor : ModuleRules
 
     private void SetBuildConfiguration()
     {
-        bool bX64 = Utils.BuildPlatform.IsX64();
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
-        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
         Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
