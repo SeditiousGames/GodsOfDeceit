@@ -37,6 +37,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnrealBuildTool;
 
 public class GodsOfDeceit : ModuleRules
@@ -613,23 +614,25 @@ public class GThirdParty
         AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
         AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
-        string librarySearchPattern = string.Empty;
+        DirectoryInfo DI = new DirectoryInfo(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
-            librarySearchPattern = "libboost_*.a";
+            FileInfo[] Libraries = DI.GetFiles("libboost_*.a", SearchOption.TopDirectoryOnly);
+
+            foreach (FileInfo Library in Libraries)
+            {
+                AddPublicAdditionalLibrary(Regex.Replace(Library.Name, "^lib|.a$", string.Empty));
+            }
         }
         else if (bWindowsBuild)
         {
-            librarySearchPattern = "libboost_*.lib";
-        }
+            FileInfo[] Libraries = DI.GetFiles("libboost_*.lib", SearchOption.TopDirectoryOnly);
 
-        DirectoryInfo di = new DirectoryInfo(Utils.Path.ThirdPartyLibraryLinkPath);
-        FileInfo[] libraries = di.GetFiles(librarySearchPattern, SearchOption.TopDirectoryOnly);
-
-        foreach (FileInfo library in libraries)
-        {
-            AddPublicAdditionalLibrary(library.Name);
+            foreach (FileInfo Library in Libraries)
+            {
+                AddPublicAdditionalLibrary(Library.Name);
+            }
         }
     }
 
@@ -663,8 +666,8 @@ public class GThirdParty
 
         if (bLinuxBuild)
         {
-            AddPublicAdditionalLibrary("libcppdb.a");
-            AddPublicAdditionalLibrary("libcppdb_sqlite3.a");
+            AddPublicAdditionalLibrary("cppdb");
+            AddPublicAdditionalLibrary("cppdb_sqlite3");
         }
         else if (bWindowsBuild)
         {
@@ -701,7 +704,7 @@ public class GThirdParty
 
         if (bLinuxBuild)
         {
-            AddPublicAdditionalLibrary("libcryptopp.a");
+            AddPublicAdditionalLibrary("cryptopp");
         }
         else if (bWindowsBuild)
         {
@@ -731,11 +734,11 @@ public class GThirdParty
         {
             if (bDebugBuild)
             {
-                AddPublicAdditionalLibrary("libfmtd.a");
+                AddPublicAdditionalLibrary("fmtd");
             }
             else
             {
-                AddPublicAdditionalLibrary("libfmt.a");
+                AddPublicAdditionalLibrary("fmt");
             }
         }
         else if (bWindowsBuild)
@@ -764,7 +767,7 @@ public class GThirdParty
 
         if (bLinuxBuild)
         {
-            AddPublicAdditionalLibrary("libsqlite3.a");
+            AddPublicAdditionalLibrary("sqlite3");
         }
         else if (bWindowsBuild)
         {
