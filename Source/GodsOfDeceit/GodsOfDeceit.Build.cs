@@ -41,19 +41,20 @@ using UnrealBuildTool;
 
 public class GodsOfDeceit : ModuleRules
 {
+    public GUtils Utils;
+
     public GodsOfDeceit(ReadOnlyTargetRules Target) : base(Target)
     {
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        Utils = new GUtils(this);
+        Utils.BuildPlatform = new GBuildPlatform(Utils);
+        Utils.Definitions = new GDefinitions(Utils);
+        Utils.EngineModules = new GEngineModules(Utils);
+        Utils.Log = new GLog(Utils);
+        Utils.Path = new GPath(Utils);
+        Utils.Plugins = new GPlugins(Utils);
+        Utils.ThirdParty = new GThirdParty(Utils);
 
-        GBuildPlatform.Initialize(Target);
-        GDefinitions.Initialize(PublicDefinitions, PrivateDefinitions);
-        GEngineModules.Initialize(PublicDependencyModuleNames, PrivateDependencyModuleNames);
-        GLog.Initialize(Target);
-        GPath.Initialize(ModuleDirectory);
-        GPlugins.Initialize(PublicDependencyModuleNames, PrivateDependencyModuleNames);
-        GThirdParty.Initialize(PublicSystemIncludePaths, PublicLibraryPaths, PublicAdditionalLibraries);
-
-        GLog.Start();
+        Utils.Log.Start();
 
         SetBuildConfiguration();
         AddEngineModules();
@@ -61,255 +62,328 @@ public class GodsOfDeceit : ModuleRules
         AddDefinitions();
         AddThirdPartyLibraries();
 
-        GLog.Stop();
+        Utils.Log.Stop();
     }
 
     private void AddDefinitions()
     {
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
         {
-            GDefinitions.DefinePublicly("_UNICODE");
-            GDefinitions.DefinePublicly("UNICODE");
-            GDefinitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
+            Utils.Definitions.DefinePublicly("_UNICODE");
+            Utils.Definitions.DefinePublicly("UNICODE");
+            Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
-        GLog.EmptyLine();
+        Utils.Log.EmptyLine();
     }
 
     private void AddEngineModules()
     {
-        GEngineModules.AddCore();
-        GEngineModules.AddCoreUObject();
-        GEngineModules.AddEngine();
-        GEngineModules.AddInputCore();
+        Utils.EngineModules.AddCore();
+        Utils.EngineModules.AddCoreUObject();
+        Utils.EngineModules.AddEngine();
+        Utils.EngineModules.AddInputCore();
 
-        GLog.EmptyLine();
+        Utils.Log.EmptyLine();
     }
 
     private void AddPlugins()
     {
-        GPlugins.AddUFSM();
-        GPlugins.AddVlcMedia();
+        Utils.Plugins.AddUFSM();
+        Utils.Plugins.AddVlcMedia();
 
-        GLog.EmptyLine();
+        Utils.Log.EmptyLine();
     }
 
     private void AddThirdPartyLibraries()
     {
-        GThirdParty.AddBoost();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddBoost();
+        Utils.Log.EmptyLine();
 
-        GThirdParty.AddCereal();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddCereal();
+        Utils.Log.EmptyLine();
 
-        GThirdParty.AddCppDB();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddCppDB();
+        Utils.Log.EmptyLine();
 
-        GThirdParty.AddCryptoPP();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddCryptoPP();
+        Utils.Log.EmptyLine();
 
-        GThirdParty.AddFMT();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddFMT();
+        Utils.Log.EmptyLine();
 
-        GThirdParty.AddSQLite3();
-        GLog.EmptyLine();
+        Utils.ThirdParty.AddSQLite3();
+        Utils.Log.EmptyLine();
     }
 
     private void SetBuildConfiguration()
     {
-        bool bX64 = GBuildPlatform.IsX64();
-        bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-        bool bShippingBuild = GBuildPlatform.IsShippingBuild();
+        bool bX64 = Utils.BuildPlatform.IsX64();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
+
+        Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        Utils.Log.Info("Enabling run-time type identification...");
+        this.bUseRTTI = true;
+
+        Utils.Log.Info("Enabling exception handling...");
+        this.bEnableExceptions = true;
 
         if (bX64 && !bShippingBuild)
         {
-            GLog.Info("Enabling AVX instructions...");
+            Utils.Log.Info("Enabling AVX instructions...");
             this.bUseAVX = true;
         }
 
-        GLog.Info("Enabling run-time type identification...");
-        this.bUseRTTI = true;
-
-        GLog.Info("Enabling exception handling...");
-        this.bEnableExceptions = true;
-
-        GLog.Info("Enabling warnings for shadowed variables...");
+        Utils.Log.Info("Enabling warnings for shadowed variables...");
         this.bEnableShadowVariableWarnings = true;
 
-        GLog.Info("Enabling warnings for using undefined identifiers in #if expressions...");
+        Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
         this.bEnableUndefinedIdentifierWarnings = true;
 
         if (bDebugBuild)
         {
-            GLog.Info("Enabling non-unity builds...");
+            Utils.Log.Info("Enabling non-unity builds...");
             this.bFasterWithoutUnity = true;
 
-            GLog.Info("Turning code optimization off for debugging purpose...");
+            Utils.Log.Info("Turning code optimization off for debugging purpose...");
             this.OptimizeCode = CodeOptimization.Never;
         }
         else
         {
-            GLog.Info("Enabling unity builds...");
+            Utils.Log.Info("Enabling unity builds...");
             this.bFasterWithoutUnity = false;
         }
 
-        GLog.EmptyLine();
+        Utils.Log.EmptyLine();
     }
 }
 
-static public class GBuildPlatform
+public class GBuildPlatform
 {
-    static private ReadOnlyTargetRules Target;
+    private GUtils Utils;
 
-    static public void Initialize(ReadOnlyTargetRules Target)
+    public GBuildPlatform(GUtils Utils)
     {
-        GBuildPlatform.Target = Target;
+        this.Utils = Utils;
     }
 
-    static public bool IsX64()
+    public bool IsX64()
     {
-        return (Target.Platform == UnrealTargetPlatform.Linux
-            || Target.Platform == UnrealTargetPlatform.Win64);
+        return (Utils.Module.Target.Platform == UnrealTargetPlatform.Linux || Utils.Module.Target.Platform == UnrealTargetPlatform.Win64);
     }
 
-    static public bool IsX86()
+    public bool IsX86()
     {
-        return (Target.Platform == UnrealTargetPlatform.Win32);
+        return (Utils.Module.Target.Platform == UnrealTargetPlatform.Win32);
     }
 
-    static public bool IsDevelopmentBuild()
+    public bool IsDevelopmentBuild()
     {
-        return (Target.Configuration == UnrealTargetConfiguration.Development);
+        return (Utils.Module.Target.Configuration == UnrealTargetConfiguration.Development);
     }
 
-    static public bool IsDebugBuild()
+    public bool IsDebugBuild()
     {
-        return (Target.Configuration == UnrealTargetConfiguration.Debug
-            || Target.Configuration == UnrealTargetConfiguration.DebugGame);
+        return (Utils.Module.Target.Configuration == UnrealTargetConfiguration.Debug || Utils.Module.Target.Configuration == UnrealTargetConfiguration.DebugGame);
     }
 
-    static public bool IsLinuxBuild()
+    public bool IsLinuxBuild()
     {
-        return (Target.Platform == UnrealTargetPlatform.Linux);
+        return (Utils.Module.Target.Platform == UnrealTargetPlatform.Linux);
     }
 
-    static public bool IsShippingBuild()
+    public bool IsShippingBuild()
     {
-        return (Target.Configuration == UnrealTargetConfiguration.Shipping);
+        return (Utils.Module.Target.Configuration == UnrealTargetConfiguration.Shipping);
     }
 
-    static public bool IsTestBuild()
+    public bool IsTestBuild()
     {
-        return (Target.Configuration == UnrealTargetConfiguration.Test);
+        return (Utils.Module.Target.Configuration == UnrealTargetConfiguration.Test);
     }
 
-    static public bool IsWindowsBuild()
+    public bool IsWindowsBuild()
     {
-        return (Target.Platform == UnrealTargetPlatform.Win32
-            || Target.Platform == UnrealTargetPlatform.Win64);
+        return (Utils.Module.Target.Platform == UnrealTargetPlatform.Win32 || Utils.Module.Target.Platform == UnrealTargetPlatform.Win64);
     }
 }
 
-static public class GDefinitions
+public class GDefinitions
 {
-    static private List<string> PublicDefinitions;
-    static private List<string> PrivateDefinitions;
+    private GUtils Utils;
 
-    static public void Initialize(List<string> PublicDefinitions, List<string> PrivateDefinitions)
+    public GDefinitions(GUtils Utils)
     {
-        GDefinitions.PublicDefinitions = PublicDefinitions;
-        GDefinitions.PrivateDefinitions = PrivateDefinitions;
+        this.Utils = Utils;
     }
 
-    static public void DefinePublicly(string Definition)
+    public void DefinePublicly(string Definition)
     {
         AddPublicDefinition(Definition);
     }
 
-    static public void DefinePrivately(string Definition)
+    public void DefinePrivately(string Definition)
     {
         AddPrivateDefinition(Definition);
     }
 
-    static private void AddPublicDefinition(string Definition)
+    private void AddPublicDefinition(string Definition)
     {
-        GLog.Info("Defining '{0}' as a public definition...", Definition);
+        Utils.Log.Info("Defining '{0}' as a public definition...", Definition);
 
-        PublicDefinitions.Add(Definition);
+        Utils.Module.PublicDefinitions.Add(Definition);
     }
 
-    static private void AddPrivateDefinition(string Definition)
+    private void AddPrivateDefinition(string Definition)
     {
-        GLog.Info("Defining '{0}' as a private definition...", Definition);
+        Utils.Log.Info("Defining '{0}' as a private definition...", Definition);
 
-        PrivateDefinitions.Add(Definition);
+        Utils.Module.PrivateDefinitions.Add(Definition);
     }
 }
 
-static public class GLog
+public class GEngineModules
 {
-    static private ReadOnlyTargetRules Target;
+    private GUtils Utils;
 
-    static public void Initialize(ReadOnlyTargetRules Target)
+    public GEngineModules(GUtils Utils)
     {
-        GLog.Target = Target;
+        this.Utils = Utils;
     }
 
-    static public void EmptyLine()
+    public void AddAssetTools()
+    {
+        AddPrivateDependencyModuleName("AssetTools");
+        AddPrivateIncludePathModuleName("AssetTools");
+    }
+
+    public void AddCore()
+    {
+        AddPublicDependencyModuleName("Core");
+    }
+
+    public void AddCoreUObject()
+    {
+        AddPublicDependencyModuleName("CoreUObject");
+    }
+
+    public void AddEngine()
+    {
+        AddPublicDependencyModuleName("Engine");
+    }
+
+    public void AddGodsOfDeceit()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceit");
+    }
+
+    public void AddInputCore()
+    {
+        AddPublicDependencyModuleName("InputCore");
+    }
+
+    public void AddUnrealEd()
+    {
+        AddPrivateDependencyModuleName("UnrealEd");
+        AddPrivateIncludePathModuleName("UnrealEd");
+    }
+
+    private void AddPublicIncludePathModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding '{0}' as a public include path module...", Plugin);
+
+        Utils.Module.PublicIncludePathModuleNames.Add(Plugin);
+    }
+
+    private void AddPublicDependencyModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding '{0}' as a public dependency module...", Plugin);
+
+        Utils.Module.PublicDependencyModuleNames.Add(Plugin);
+    }
+
+    private void AddPrivateIncludePathModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding '{0}' as a private include path module...", Plugin);
+
+        Utils.Module.PrivateIncludePathModuleNames.Add(Plugin);
+    }
+
+    private void AddPrivateDependencyModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding '{0}' as a private dependency module...", Plugin);
+
+        Utils.Module.PrivateDependencyModuleNames.Add(Plugin);
+    }
+}
+
+public class GLog
+{
+    private GUtils Utils;
+
+    public GLog(GUtils Utils)
+    {
+        this.Utils = Utils;
+    }
+
+    public void EmptyLine()
     {
         Console.WriteLine();
     }
 
-    static public void Debug(string Format, params object[] Args)
+    public void Debug(string Format, params object[] Args)
     {
         Log("DEBUG", Format, Args);
     }
 
-    static public void Error(string Format, params object[] Args)
+    public void Error(string Format, params object[] Args)
     {
         Log("ERROR", Format, Args);
     }
 
-    static public void Fatal(string Format, params object[] Args)
+    public void Fatal(string Format, params object[] Args)
     {
         Log("FATAL", Format, Args);
     }
 
-    static public void Info(string Format, params object[] Args)
+    public void Info(string Format, params object[] Args)
     {
         Log("INFO", Format, Args);
     }
 
-    static public void Trace(string Format, params object[] Args)
+    public void Trace(string Format, params object[] Args)
     {
         Log("TRACE", Format, Args);
     }
 
-    static public void Warning(string Format, params object[] Args)
+    public void Warning(string Format, params object[] Args)
     {
         Log("WARNING", Format, Args);
     }
 
-    static public void Start()
+    public void Start()
     {
         EmptyLine();
         EmptyLine();
-        Info("Setting up '{0}' target...", Target.Name);
+        Info("Setting up '{0}' target...", Utils.Module.Target.Name);
         EmptyLine();
 
-        Info("Target build configuration is '{0}'.", Target.Configuration);
+        Info("Target build configuration is '{0}'.", Utils.Module.Target.Configuration);
         EmptyLine();
     }
 
-    static public void Stop()
+    public void Stop()
     {
-        Info("Finished setting up '{0}' target.", Target.Name);
+        Info("Finished setting up '{0}' target.", Utils.Module.Target.Name);
         EmptyLine();
     }
 
-    static private void Log(string Type, string Format, params object[] Args)
+    private void Log(string Type, string Format, params object[] Args)
     {
         DateTime LocalDate = DateTime.Now;
 
@@ -317,63 +391,24 @@ static public class GLog
     }
 }
 
-static public class GEngineModules
+public class GPath
 {
-    private static List<string> PublicDependencyModuleNames;
-    private static List<string> PrivateDependencyModuleNames;
+    private GUtils Utils;
 
-    static public void Initialize(List<string> PublicDependencyModuleNames, List<string> PrivateDependencyModuleNames)
+    public GPath(GUtils Utils)
     {
-        GEngineModules.PublicDependencyModuleNames = PublicDependencyModuleNames;
-        GEngineModules.PrivateDependencyModuleNames = PrivateDependencyModuleNames;
+        this.Utils = Utils;
     }
 
-    static public void AddCore()
-    {
-        AddPublicDependencyModuleName("Core");
-    }
-
-    static public void AddCoreUObject()
-    {
-        AddPublicDependencyModuleName("CoreUObject");
-    }
-
-    static public void AddEngine()
-    {
-        AddPublicDependencyModuleName("Engine");
-    }
-
-    static public void AddInputCore()
-    {
-        AddPublicDependencyModuleName("InputCore");
-    }
-
-    static private void AddPublicDependencyModuleName(string Plugin)
-    {
-        GLog.Info("Adding '{0}' as a public dependency module...", Plugin);
-
-        PublicDependencyModuleNames.Add(Plugin);
-    }
-
-    static private void AddPrivateDependencyModuleName(string Plugin)
-    {
-        GLog.Info("Adding '{0}' as a private dependency module...", Plugin);
-
-        PrivateDependencyModuleNames.Add(Plugin);
-    }
-}
-
-static public class GPath
-{
-    static public string ModulePath
+    public string ModulePath
     {
         get
         {
-            return ModuleDirectory;
+            return Utils.Module.ModuleDirectory;
         }
     }
 
-    static public string ProjectPath
+    public string ProjectPath
     {
         get
         {
@@ -381,7 +416,7 @@ static public class GPath
         }
     }
 
-    static public string GitDirectoryPath
+    public string GitDirectoryPath
     {
         get
         {
@@ -389,7 +424,7 @@ static public class GPath
         }
     }
 
-    static public string PluginsPath
+    public string PluginsPath
     {
         get
         {
@@ -397,15 +432,15 @@ static public class GPath
         }
     }
 
-    static public string ThirdPartyPath
+    public string ThirdPartyPath
     {
         get
         {
-            return Path.GetFullPath(Path.Combine(ModuleDirectory, "..", "..", "ThirdParty"));
+            return Path.GetFullPath(Path.Combine(ModulePath, "..", "..", "ThirdParty"));
         }
     }
 
-    static public string ThirdPartyIncludePath
+    public string ThirdPartyIncludePath
     {
         get
         {
@@ -413,7 +448,7 @@ static public class GPath
         }
     }
 
-    static public string LinuxThirdPartyDebugLibraryPath
+    public string LinuxThirdPartyDebugLibraryPath
     {
         get
         {
@@ -421,7 +456,7 @@ static public class GPath
         }
     }
 
-    static public string LinuxThirdPartyReleaseLibraryPath
+    public string LinuxThirdPartyReleaseLibraryPath
     {
         get
         {
@@ -429,7 +464,7 @@ static public class GPath
         }
     }
 
-    static public string Win32ThirdPartyDebugLibraryPath
+    public string Win32ThirdPartyDebugLibraryPath
     {
         get
         {
@@ -437,7 +472,7 @@ static public class GPath
         }
     }
 
-    static public string Win32ThirdPartyReleaseLibraryPath
+    public string Win32ThirdPartyReleaseLibraryPath
     {
         get
         {
@@ -445,7 +480,7 @@ static public class GPath
         }
     }
 
-    static public string Win64ThirdPartyDebugLibraryPath
+    public string Win64ThirdPartyDebugLibraryPath
     {
         get
         {
@@ -453,7 +488,7 @@ static public class GPath
         }
     }
 
-    static public string Win64ThirdPartyReleaseLibraryPath
+    public string Win64ThirdPartyReleaseLibraryPath
     {
         get
         {
@@ -461,25 +496,25 @@ static public class GPath
         }
     }
 
-    static public string ThirdPartyLibraryLinkPath
+    public string ThirdPartyLibraryLinkPath
     {
         get
         {
-            bool bX64 = GBuildPlatform.IsX64();
-            bool bX86 = GBuildPlatform.IsX86();
-            bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-            bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-            bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+            bool bX64 = Utils.BuildPlatform.IsX64();
+            bool bX86 = Utils.BuildPlatform.IsX86();
+            bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+            bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+            bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
             if (bLinuxBuild)
             {
                 if (bDebugBuild)
                 {
-                    return GPath.LinuxThirdPartyDebugLibraryPath;
+                    return Utils.Path.LinuxThirdPartyDebugLibraryPath;
                 }
                 else
                 {
-                    return GPath.LinuxThirdPartyReleaseLibraryPath;
+                    return Utils.Path.LinuxThirdPartyReleaseLibraryPath;
                 }
             }
 
@@ -489,11 +524,11 @@ static public class GPath
                 {
                     if (bDebugBuild)
                     {
-                        return GPath.Win32ThirdPartyDebugLibraryPath;
+                        return Utils.Path.Win32ThirdPartyDebugLibraryPath;
                     }
                     else
                     {
-                        return GPath.Win32ThirdPartyReleaseLibraryPath;
+                        return Utils.Path.Win32ThirdPartyReleaseLibraryPath;
                     }
                 }
 
@@ -501,11 +536,11 @@ static public class GPath
                 {
                     if (bDebugBuild)
                     {
-                        return GPath.Win64ThirdPartyDebugLibraryPath;
+                        return Utils.Path.Win64ThirdPartyDebugLibraryPath;
                     }
                     else
                     {
-                        return GPath.Win64ThirdPartyReleaseLibraryPath;
+                        return Utils.Path.Win64ThirdPartyReleaseLibraryPath;
                     }
                 }
             }
@@ -513,80 +548,67 @@ static public class GPath
             return string.Empty;
         }
     }
-
-    static private string ModuleDirectory;
-
-    static public void Initialize(string ModuleDirectory)
-    {
-        GPath.ModuleDirectory = ModuleDirectory;
-    }
 }
 
-static public class GPlugins
+public class GPlugins
 {
-    private static List<string> PublicDependencyModuleNames;
-    private static List<string> PrivateDependencyModuleNames;
+    private GUtils Utils;
 
-    static public void Initialize(List<string> PublicDependencyModuleNames, List<string> PrivateDependencyModuleNames)
+    public GPlugins(GUtils Utils)
     {
-        GPlugins.PublicDependencyModuleNames = PublicDependencyModuleNames;
-        GPlugins.PrivateDependencyModuleNames = PrivateDependencyModuleNames;
+        this.Utils = Utils;
     }
 
-    static public void AddUFSM()
+    public void AddUFSM()
     {
         AddPrivateDependencyModuleName("UFSM");
     }
 
-    static public void AddVlcMedia()
+    public void AddVlcMedia()
     {
         AddPrivateDependencyModuleName("VlcMedia");
     }
 
-    static private void AddPublicDependencyModuleName(string Plugin)
+    private void AddPublicDependencyModuleName(string Plugin)
     {
-        GLog.Info("Adding '{0}' third-party plugin as a public dependency module...", Plugin);
+        Utils.Log.Info("Adding '{0}' third-party plugin as a public dependency module...", Plugin);
 
-        PublicDependencyModuleNames.Add(Plugin);
+        Utils.Module.PublicDependencyModuleNames.Add(Plugin);
     }
 
-    static private void AddPrivateDependencyModuleName(string Plugin)
+    private void AddPrivateDependencyModuleName(string Plugin)
     {
-        GLog.Info("Adding '{0}' third-party plugin as a private dependency module...", Plugin);
+        Utils.Log.Info("Adding '{0}' third-party plugin as a private dependency module...", Plugin);
 
-        PrivateDependencyModuleNames.Add(Plugin);
+        Utils.Module.PrivateDependencyModuleNames.Add(Plugin);
     }
 }
 
-static public class GThirdParty
+public class GThirdParty
 {
-    static private List<string> PublicAdditionalLibraries;
-    static private List<string> PublicLibraryPaths;
-    static private List<string> PublicSystemIncludePaths;
+    private GUtils Utils;
 
-    static public void Initialize(List<string> PublicSystemIncludePaths, List<string> PublicLibraryPaths, List<string> PublicAdditionalLibraries)
+    public GThirdParty(GUtils Utils)
     {
-        GThirdParty.PublicSystemIncludePaths = PublicSystemIncludePaths;
-        GThirdParty.PublicLibraryPaths = PublicLibraryPaths;
-        GThirdParty.PublicAdditionalLibraries = PublicAdditionalLibraries;
+        this.Utils = Utils;
     }
 
-    static public void AddBoost()
+    public void AddBoost()
     {
-        GLog.Info("Adding third-party library: 'Boost C++ Libraries'");
+        Utils.Log.Info("Adding third-party library: 'Boost C++ Libraries'");
 
-        bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
         {
-            GDefinitions.DefinePublicly("BOOST_DISABLE_ABI_HEADERS");
+            Utils.Definitions.DefinePublicly("BOOST_DISABLE_ABI_HEADERS");
         }
 
-        GDefinitions.DefinePublicly("BOOST_UUID_USE_SSE41");
+        Utils.Definitions.DefinePublicly("BOOST_UUID_USE_SSE41");
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
-        AddPublicLibraryPath(GPath.ThirdPartyLibraryLinkPath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
+        AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
         string librarySearchPattern = string.Empty;
 
@@ -599,7 +621,7 @@ static public class GThirdParty
             librarySearchPattern = "libboost_*.lib";
         }
 
-        DirectoryInfo di = new DirectoryInfo(GPath.ThirdPartyLibraryLinkPath);
+        DirectoryInfo di = new DirectoryInfo(Utils.Path.ThirdPartyLibraryLinkPath);
         FileInfo[] libraries = di.GetFiles(librarySearchPattern, SearchOption.TopDirectoryOnly);
 
         foreach (FileInfo library in libraries)
@@ -608,33 +630,33 @@ static public class GThirdParty
         }
     }
 
-    static public void AddCereal()
+    public void AddCereal()
     {
-        GLog.Info("Adding third-party library: 'cereal: A C++11 library for serialization...'");
+        Utils.Log.Info("Adding third-party library: 'cereal: A C++11 library for serialization...'");
 
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         /// NOTE
         /// Workaround for Windows/MSVC conflicting macros 'min/max'
         /// used by cereal
         if (bWindowsBuild)
         {
-            GDefinitions.DefinePublicly("NOMINMAX");
+            Utils.Definitions.DefinePublicly("NOMINMAX");
         }
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
     }
 
-    static public void AddCppDB()
+    public void AddCppDB()
     {
-        GLog.Info("Adding third-party library: 'CppDB: SQL Connectivity Library...'");
+        Utils.Log.Info("Adding third-party library: 'CppDB: SQL Connectivity Library...'");
 
-        bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-        bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
-        AddPublicLibraryPath(GPath.ThirdPartyLibraryLinkPath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
+        AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
@@ -656,23 +678,23 @@ static public class GThirdParty
         }
     }
 
-    static public void AddCryptoPP()
+    public void AddCryptoPP()
     {
-        GLog.Info("Adding third-party library: 'Crypto++: A free C++ class library of cryptographic schemes'...");
+        Utils.Log.Info("Adding third-party library: 'Crypto++: A free C++ class library of cryptographic schemes'...");
 
-        bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-        bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         /// NOTE
         /// Prior to v5.0.0 LLVM/Clang won't be able to handle SSE2
         if (bLinuxBuild)
         {
-            GDefinitions.DefinePublicly("CRYPTOPP_DISABLE_ASM");
+            Utils.Definitions.DefinePublicly("CRYPTOPP_DISABLE_ASM");
         }
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
-        AddPublicLibraryPath(GPath.ThirdPartyLibraryLinkPath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
+        AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
@@ -691,16 +713,16 @@ static public class GThirdParty
         }
     }
 
-    static public void AddFMT()
+    public void AddFMT()
     {
-        GLog.Info("Adding third-party library: 'fmt: A modern formatting library'...");
+        Utils.Log.Info("Adding third-party library: 'fmt: A modern formatting library'...");
 
-        bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-        bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
-        AddPublicLibraryPath(GPath.ThirdPartyLibraryLinkPath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
+        AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
@@ -726,16 +748,16 @@ static public class GThirdParty
         }
     }
 
-    static public void AddSQLite3()
+    public void AddSQLite3()
     {
-        GLog.Info("Adding third-party library: 'SQLite 3: A self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine'...");
+        Utils.Log.Info("Adding third-party library: 'SQLite 3: A self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine'...");
 
-        bool bDebugBuild = GBuildPlatform.IsDebugBuild();
-        bool bLinuxBuild = GBuildPlatform.IsLinuxBuild();
-        bool bWindowsBuild = GBuildPlatform.IsWindowsBuild();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
-        AddPublicSystemIncludePath(GPath.ThirdPartyIncludePath);
-        AddPublicLibraryPath(GPath.ThirdPartyLibraryLinkPath);
+        AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
+        AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
@@ -754,24 +776,42 @@ static public class GThirdParty
         }
     }
 
-    static private void AddPublicAdditionalLibrary(string Library)
+    private void AddPublicAdditionalLibrary(string Library)
     {
-        GLog.Info("Adding '{0}' third-party static library as a public additional library for linking...", Library);
+        Utils.Log.Info("Adding '{0}' third-party library as a public additional library for linking...", Library);
 
-        PublicAdditionalLibraries.Add(Library);
+        Utils.Module.PublicAdditionalLibraries.Add(Library);
     }
 
-    static private void AddPublicLibraryPath(string Path)
+    private void AddPublicLibraryPath(string Path)
     {
-        GLog.Info("Adding '{0}' as a public library search path for linking...", Path);
+        Utils.Log.Info("Adding '{0}' as a public library search path for linking...", Path);
 
-        PublicLibraryPaths.Add(Path);
+        Utils.Module.PublicLibraryPaths.Add(Path);
     }
 
-    static private void AddPublicSystemIncludePath(string Path)
+    private void AddPublicSystemIncludePath(string Path)
     {
-        GLog.Info("Adding '{0}' as a public system include search path...", Path);
+        Utils.Log.Info("Adding '{0}' as a public system include search path...", Path);
 
-        PublicSystemIncludePaths.Add(Path);
+        Utils.Module.PublicSystemIncludePaths.Add(Path);
+    }
+}
+
+public class GUtils : Object
+{
+    public GBuildPlatform BuildPlatform;
+    public GDefinitions Definitions;
+    public GEngineModules EngineModules;
+    public GLog Log;
+    public GPath Path;
+    public GPlugins Plugins;
+    public GThirdParty ThirdParty;
+
+    public ModuleRules Module;
+
+    public GUtils(ModuleRules Module)
+    {
+        this.Module = Module;
     }
 }

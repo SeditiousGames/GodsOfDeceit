@@ -55,7 +55,5 @@ public class GodsOfDeceitTarget : TargetRules
         bForceEnableExceptions = true;
         bUseUnityBuild = true;
         bForceUnityBuild = true;
-
-        //GlobalDefinitions.Add()
     }
 }

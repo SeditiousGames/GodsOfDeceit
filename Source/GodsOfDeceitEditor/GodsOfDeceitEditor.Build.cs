@@ -38,31 +38,77 @@ using UnrealBuildTool;
 
 public class GodsOfDeceitEditor : ModuleRules
 {
+    public GUtils Utils;
+
     public GodsOfDeceitEditor(ReadOnlyTargetRules Target) : base(Target)
     {
+        Utils = new GUtils(this);
+        Utils.BuildPlatform = new GBuildPlatform(Utils);
+        Utils.Definitions = new GDefinitions(Utils);
+        Utils.EngineModules = new GEngineModules(Utils);
+        Utils.Log = new GLog(Utils);
+        Utils.Path = new GPath(Utils);
+        Utils.Plugins = new GPlugins(Utils);
+        Utils.ThirdParty = new GThirdParty(Utils);
+
+        Utils.Log.Start();
+
+        SetBuildConfiguration();
+        AddEngineModules();
+
+        Utils.Log.Stop();
+    }
+
+    private void AddEngineModules()
+    {
+        Utils.EngineModules.AddAssetTools();
+        Utils.EngineModules.AddCore();
+        Utils.EngineModules.AddCoreUObject();
+        Utils.EngineModules.AddEngine();
+        Utils.EngineModules.AddGodsOfDeceit();
+        Utils.EngineModules.AddUnrealEd();
+
+        Utils.Log.EmptyLine();
+    }
+
+    private void SetBuildConfiguration()
+    {
+        bool bX64 = Utils.BuildPlatform.IsX64();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
+
+        Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(
-            new string[] {
-                "Core",
-                "CoreUObject",
-                "Engine",
-                "GodsOfDeceit"
-            });
+        Utils.Log.Info("Enabling run-time type identification...");
+        this.bUseRTTI = true;
 
-        PrivateDependencyModuleNames.AddRange(
-            new string[] {
-                "AssetTools",
-                "UnrealEd"
-            });
+        Utils.Log.Info("Enabling exception handling...");
+        this.bEnableExceptions = true;
 
-        PrivateIncludePathModuleNames.AddRange(
-            new string[] {
-                "AssetTools",
-                "UnrealEd"
-            });
+        Utils.Log.Info("Enabling AVX instructions...");
+        this.bUseAVX = true;
 
-        bUseRTTI = true;
-        bEnableExceptions = true;
+        Utils.Log.Info("Enabling warnings for shadowed variables...");
+        this.bEnableShadowVariableWarnings = true;
+
+        Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
+        this.bEnableUndefinedIdentifierWarnings = true;
+
+        if (bDebugBuild)
+        {
+            Utils.Log.Info("Enabling non-unity builds...");
+            this.bFasterWithoutUnity = true;
+
+            Utils.Log.Info("Turning code optimization off for debugging purpose...");
+            this.OptimizeCode = CodeOptimization.Never;
+        }
+        else
+        {
+            Utils.Log.Info("Enabling unity builds...");
+            this.bFasterWithoutUnity = false;
+        }
+
+        Utils.Log.EmptyLine();
     }
 }
