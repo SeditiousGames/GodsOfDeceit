@@ -25,12 +25,12 @@
 
 
 PROJECT_NAME="GodsOfDeceit"
-MAKEOPTS="-j17"
-ANDROID_CLI="/opt/bin/android-cli.sh"
+ENGINE_DIRECTORY="/opt/UnrealEngine"
 PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-BUILD_DIRECTORY="${PROJECT_DIRECTORY}/build"
-MAKE_ARGUMENTS="${PROJECT_NAME}Editor ${MAKEOPTS}"
+PROJECT_FILE="${PROJECT_DIRECTORY}/${PROJECT_NAME}.uproject"
+GENERATE_PROJECT_FILES_ARGS="-project=\"${PROJECT_FILE}\" -makefile -game -engine"
+ANDROID_CLI="${PROJECT_DIRECTORY}/Scripts/android-cli.sh"
 
-cd "${BUILD_DIRECTORY}" \
+cd "${ENGINE_DIRECTORY}" \
     && source "${ANDROID_CLI}" \
-    && make ${MAKE_ARGUMENTS} 
+    && ./GenerateProjectFiles.sh ${GENERATE_PROJECT_FILES_ARGS}

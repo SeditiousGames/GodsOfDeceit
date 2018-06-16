@@ -25,11 +25,15 @@
 
 
 PROJECT_NAME="GodsOfDeceit"
-ANDROID_CLI="/opt/bin/android-cli.sh"
+ENGINE_DIRECTORY="/opt/UnrealEngine"
 PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-BUILD_DIRECTORY="${PROJECT_DIRECTORY}/build"
-MAKE_ARGUMENTS="${PROJECT_NAME}Editor ARGS=\"-clean\""
+PROJECT_FILE="${PROJECT_DIRECTORY}/${PROJECT_NAME}.uproject"
+UE4_EDITOR_WORKING_DIRECTORY="${ENGINE_DIRECTORY}/Engine/Binaries/Linux/"
+UE4_EDITOR_EXECUTABLE="${UE4_EDITOR_WORKING_DIRECTORY}/UE4Editor"
+UE4_EDITOR_COMMAND_LINE_ARGUMENTS="\"${PROJECT_FILE}\" -opengl4"
+LD_LIBRARY_PATH="${ENGINE_DIRECTORY}/Engine/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Experimental/AlembicImporter/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Editor/CryptoKeys/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Media/ImgMedia/Binaries/Linux"
+ANDROID_CLI="${PROJECT_DIRECTORY}/Scripts/android-cli.sh"
 
-cd "${BUILD_DIRECTORY}" \
+cd "${UE4_EDITOR_WORKING_DIRECTORY}" \
     && source "${ANDROID_CLI}" \
-    && make ${MAKE_ARGUMENTS}
+    && ${UE4_EDITOR_EXECUTABLE} ${UE4_EDITOR_COMMAND_LINE_ARGUMENTS}
