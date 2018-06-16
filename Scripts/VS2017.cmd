@@ -23,7 +23,7 @@ REM  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FRO
 REM  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 REM  SOFTWARE.
 
-title "Gods of Deceit's Visual Studio 2017 solution generator"
+title "Gods of Deceit's Visual Studio 2017 Solution"
 
 set PROJECT_NAME=GodsOfDeceit
 
@@ -61,7 +61,9 @@ set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\build-tools;%PATH%
 set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\platform-tools;%PATH%
 set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\tools;%PATH%
 
-set UE4_PATH=%OPT_PATH%\UnrealEngine
+set VS_PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE
+
+set TIMEOUT=%windir%\System32\timeout.exe
 
 echo.
 echo %LANG% & echo %MM_CHARSET% & echo %LC_ALL%
@@ -78,9 +80,9 @@ echo %NDKROOT%
 echo %NVPACK_NDK_TOOL_VERSION%
 echo %NVPACK_NDK_VERSION%
 echo.
-echo %UE4_PATH%
+echo %VS_PATH%
 echo.
 
-call "%UE4_PATH%\GenerateProjectFiles.bat" "%~dp0..\%PROJECT_NAME%.uproject" -vs2017 -game -engine
+cd "%~dp0.." && start "" "%VS_PATH%\devenv.exe" "%~dp0..\%PROJECT_NAME%.sln"
 
-%comspec% /k
+%TIMEOUT% /T 8

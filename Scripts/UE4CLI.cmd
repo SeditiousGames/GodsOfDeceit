@@ -23,9 +23,7 @@ REM  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FRO
 REM  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 REM  SOFTWARE.
 
-title "Gods of Deceit's Visual Studio 2017 solution generator"
-
-set PROJECT_NAME=GodsOfDeceit
+title "Gods of Deceit's Unreal Engine 4 CLI"
 
 cd %~dp0
 
@@ -80,7 +78,5 @@ echo %NVPACK_NDK_VERSION%
 echo.
 echo %UE4_PATH%
 echo.
-
-call "%UE4_PATH%\GenerateProjectFiles.bat" "%~dp0..\%PROJECT_NAME%.uproject" -vs2017 -game -engine
 
 %comspec% /k
