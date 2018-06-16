@@ -34,25 +34,28 @@
  */
 
 
-using UnrealBuildTool;
+using System;
 using System.Collections.Generic;
+using UnrealBuildTool;
 
 public class GodsOfDeceitTarget : TargetRules
 {
     public GodsOfDeceitTarget(TargetInfo Target) : base(Target)
     {
-        this.Type = TargetType.Game;
+        Type = TargetType.Game;
 
-        this.ExtraModuleNames.AddRange(
+        ExtraModuleNames.AddRange(
             new string[] {
                 "GodsOfDeceit"
             });
 
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
-        this.bForceEnableRTTI = true;
-        this.bForceEnableExceptions = true;
-        this.bUseUnityBuild = true;
-        this.bForceUnityBuild = true;
+        bEnforceIWYU = true;
+        bCompileLeanAndMeanUE = true;
+        bForceEnableRTTI = true;
+        bForceEnableExceptions = true;
+        bUseUnityBuild = true;
+        bForceUnityBuild = true;
+
+        //GlobalDefinitions.Add()
     }
 }

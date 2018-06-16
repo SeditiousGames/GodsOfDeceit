@@ -34,22 +34,22 @@
  */
 
 
-using UnrealBuildTool;
 using System.Collections.Generic;
+using UnrealBuildTool;
 
 public class GodsOfDeceitEditorTarget : TargetRules
 {
     public GodsOfDeceitEditorTarget(TargetInfo Target) : base(Target)
     {
-        this.Type = TargetType.Editor;
+        Type = TargetType.Editor;
 
-        this.ExtraModuleNames.AddRange(
+        ExtraModuleNames.AddRange(
             new string[] {
                 "GodsOfDeceit",
                 "GodsOfDeceitEditor"
             });
 
-        this.bEnforceIWYU = true;
-        this.bCompileLeanAndMeanUE = true;
+        bEnforceIWYU = true;
+        bCompileLeanAndMeanUE = true;
     }
 }

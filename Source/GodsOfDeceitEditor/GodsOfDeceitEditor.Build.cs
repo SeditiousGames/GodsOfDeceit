@@ -40,9 +40,9 @@ public class GodsOfDeceitEditor : ModuleRules
 {
     public GodsOfDeceitEditor(ReadOnlyTargetRules Target) : base(Target)
     {
-        this.PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        this.PublicDependencyModuleNames.AddRange(
+        PublicDependencyModuleNames.AddRange(
             new string[] {
                 "Core",
                 "CoreUObject",
@@ -50,19 +50,19 @@ public class GodsOfDeceitEditor : ModuleRules
                 "GodsOfDeceit"
             });
 
-        this.PrivateDependencyModuleNames.AddRange(
+        PrivateDependencyModuleNames.AddRange(
             new string[] {
                 "AssetTools",
                 "UnrealEd"
             });
 
-        this.PrivateIncludePathModuleNames.AddRange(
+        PrivateIncludePathModuleNames.AddRange(
             new string[] {
                 "AssetTools",
                 "UnrealEd"
             });
 
-        this.bUseRTTI = true;
-        this.bEnableExceptions = true;
+        bUseRTTI = true;
+        bEnableExceptions = true;
     }
 }
