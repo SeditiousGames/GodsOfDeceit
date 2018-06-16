@@ -74,9 +74,9 @@ public class GodsOfDeceit : ModuleRules
             Utils.Definitions.DefinePublicly("_UNICODE");
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
-        }
 
-        Utils.Log.EmptyLine();
+            Utils.Log.EmptyLine();
+        }
     }
 
     private void AddEngineModules()
@@ -368,8 +368,11 @@ public class GLog
 
     public void Start()
     {
-        EmptyLine();
-        EmptyLine();
+        if (!Utils.Module.Target.Name.Contains("Editor")) {
+            EmptyLine();
+            EmptyLine();
+        }
+
         Info("Setting up '{0}' target...", Utils.Module.Target.Name);
         EmptyLine();
 
