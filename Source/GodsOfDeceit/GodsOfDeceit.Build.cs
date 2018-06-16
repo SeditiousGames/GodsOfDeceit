@@ -599,8 +599,6 @@ public class GThirdParty
 
     public void AddBoost()
     {
-        Utils.Log.Info("Adding third-party library: 'Boost C++ Libraries'");
-
         bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
@@ -638,8 +636,6 @@ public class GThirdParty
 
     public void AddCereal()
     {
-        Utils.Log.Info("Adding third-party library: 'cereal: A C++11 library for serialization...'");
-
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         /// NOTE
@@ -655,8 +651,6 @@ public class GThirdParty
 
     public void AddCppDB()
     {
-        Utils.Log.Info("Adding third-party library: 'CppDB: SQL Connectivity Library...'");
-
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
@@ -686,8 +680,6 @@ public class GThirdParty
 
     public void AddCryptoPP()
     {
-        Utils.Log.Info("Adding third-party library: 'Crypto++: A free C++ class library of cryptographic schemes'...");
-
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
@@ -721,8 +713,6 @@ public class GThirdParty
 
     public void AddFMT()
     {
-        Utils.Log.Info("Adding third-party library: 'fmt: A modern formatting library'...");
-
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
@@ -756,8 +746,6 @@ public class GThirdParty
 
     public void AddSQLite3()
     {
-        Utils.Log.Info("Adding third-party library: 'SQLite 3: A self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine'...");
-
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
