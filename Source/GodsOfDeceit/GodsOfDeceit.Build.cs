@@ -612,24 +612,31 @@ public class GThirdParty
         AddPublicSystemIncludePath(Utils.Path.ThirdPartyIncludePath);
         AddPublicLibraryPath(Utils.Path.ThirdPartyLibraryLinkPath);
 
-        DirectoryInfo DI = new DirectoryInfo(Utils.Path.ThirdPartyLibraryLinkPath);
+        DirectoryInfo LibrariesDirectoryInfo = new DirectoryInfo(Utils.Path.ThirdPartyLibraryLinkPath);
 
         if (bLinuxBuild)
         {
-            FileInfo[] Libraries = DI.GetFiles("libboost_*.a", SearchOption.TopDirectoryOnly);
+            FileInfo[] LibrariesFileInfo = LibrariesDirectoryInfo.GetFiles("libboost_*.a", SearchOption.TopDirectoryOnly);
 
-            foreach (FileInfo Library in Libraries)
+            foreach (FileInfo LibraryFileInfo in LibrariesFileInfo)
             {
-                AddPublicAdditionalLibrary(Regex.Replace(Library.Name, "^lib|.a$", string.Empty));
+                Regex LibraryRegex = new Regex("(^lib)(.*)(\\.a$)");
+                Match LibraryMatch = LibraryRegex.Match(LibraryFileInfo.Name);
+
+                if (LibraryMatch.Success) {
+                    string LibraryName = LibraryMatch.Groups[2].Value;
+
+                    AddPublicAdditionalLibrary(LibraryName);
+                }
             }
         }
         else if (bWindowsBuild)
         {
-            FileInfo[] Libraries = DI.GetFiles("libboost_*.lib", SearchOption.TopDirectoryOnly);
+            FileInfo[] LibrariesFileInfo = LibrariesDirectoryInfo.GetFiles("libboost_*.lib", SearchOption.TopDirectoryOnly);
 
-            foreach (FileInfo Library in Libraries)
+            foreach (FileInfo LibraryFileInfo in LibrariesFileInfo)
             {
-                AddPublicAdditionalLibrary(Library.Name);
+                AddPublicAdditionalLibrary(LibraryFileInfo.Name);
             }
         }
     }
