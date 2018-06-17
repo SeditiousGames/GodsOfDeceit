@@ -693,6 +693,7 @@ public class GThirdParty
 
         /// NOTE
         /// Prior to v5.0.0 LLVM/Clang won't be able to handle SSE2
+        /// v6.0.0 still does not support ssse3
         if (bLinuxBuild)
         {
             Utils.Definitions.DefinePublicly("CRYPTOPP_DISABLE_ASM");
