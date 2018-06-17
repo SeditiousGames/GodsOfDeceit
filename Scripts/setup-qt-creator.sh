@@ -49,6 +49,6 @@ echo "Projects > Build & Run > Run > Run > Working directory ==> ${ENGINE_DIRECT
 echo
 
 echo "Projects > Build & Run > Run > Run Environment > Variable ==> LD_LIBRARY_PATH"
-echo "Projects > Build & Run > Run > Run Environment > Value ==> /opt/UnrealEngine/Engine/Binaries/Linux/:/opt/UnrealEngine/Engine/Plugins/Experimental/AlembicImporter/Binaries/Linux/:/opt/UnrealEngine/Engine/Plugins/Editor/CryptoKeys/Binaries/Linux/:/opt/UnrealEngine/Engine/Plugins/Media/ImgMedia/Binaries/Linux"
+echo "Projects > Build & Run > Run > Run Environment > Value ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Experimental/AlembicImporter/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Editor/CryptoKeys/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Media/ImgMedia/Binaries/Linux/"
 
 echo
