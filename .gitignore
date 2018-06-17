@@ -101,3 +101,7 @@ DerivedDataCache/*
 
 # BFG Repo-Cleaner
 Scripts/bfg.jar
+
+# VlcMedia Linux Builds
+protobuf/*
+vlc/*
