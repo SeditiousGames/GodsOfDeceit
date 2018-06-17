@@ -49,11 +49,13 @@ public class GodsOfDeceitEditorTarget : TargetRules
                 "GodsOfDeceitEditor"
             });
 
-        BuildEnvironment = TargetBuildEnvironment.Unique;
+        BuildEnvironment = TargetBuildEnvironment.Shared;
 
         bEnforceIWYU = true;
         bCompileLeanAndMeanUE = true;
-        bForceEnableRTTI = true;
-        bForceEnableExceptions = true;
+        bForceEnableRTTI = false;
+        bForceEnableExceptions = false;
+        bUseUnityBuild = true;
+        bForceUnityBuild = true;
     }
 }

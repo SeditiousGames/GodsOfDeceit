@@ -78,11 +78,11 @@ public class GodsOfDeceitEditor : ModuleRules
         Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        Utils.Log.Info("Enabling run-time type identification...");
-        this.bUseRTTI = true;
+        Utils.Log.Info("Disabling run-time type identification...");
+        this.bUseRTTI = false;
 
-        Utils.Log.Info("Enabling exception handling...");
-        this.bEnableExceptions = true;
+        Utils.Log.Info("Disabling exception handling...");
+        this.bEnableExceptions = false;
 
         Utils.Log.Info("Enabling AVX instructions...");
         this.bUseAVX = true;
