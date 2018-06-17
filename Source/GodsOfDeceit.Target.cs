@@ -49,6 +49,8 @@ public class GodsOfDeceitTarget : TargetRules
                 "GodsOfDeceit"
             });
 
+        BuildEnvironment = TargetBuildEnvironment.Unique;
+
         bEnforceIWYU = true;
         bCompileLeanAndMeanUE = true;
         bForceEnableRTTI = true;

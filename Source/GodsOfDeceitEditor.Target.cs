@@ -49,7 +49,11 @@ public class GodsOfDeceitEditorTarget : TargetRules
                 "GodsOfDeceitEditor"
             });
 
+        BuildEnvironment = TargetBuildEnvironment.Unique;
+
         bEnforceIWYU = true;
         bCompileLeanAndMeanUE = true;
+        bForceEnableRTTI = true;
+        bForceEnableExceptions = true;
     }
 }
