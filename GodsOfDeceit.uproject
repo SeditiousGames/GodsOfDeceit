@@ -8,6 +8,15 @@
 			"Name": "GodsOfDeceit",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "GodsOfDeceitEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"GodsOfDeceitEditor": [
+				"Linux",
+				"Windows"
+			]
 		}
 	],
 	"Plugins": [
