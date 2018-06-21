@@ -103,5 +103,5 @@ DerivedDataCache/*
 Scripts/bfg.jar
 
 # VlcMedia Linux Builds
-protobuf/*
-vlc/*
+protobuf/
+vlc/
