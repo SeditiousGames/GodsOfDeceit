@@ -159,6 +159,29 @@
 		{
 			"Name": "XCodeSourceCodeAccess",
 			"Enabled": false
+		},
+		{
+			"Name": "WmfMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "ImgMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "MagicLeapMedia",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Lumin"
+			]
+		},
+		{
+			"Name": "LinearTimecode",
+			"Enabled": false
+		},
+		{
+			"Name": "WindowsMoviePlayer",
+			"Enabled": false
 		}
 	]
 }
