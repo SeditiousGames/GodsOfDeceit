@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers platform layer module
+ * Main file which registers the platform layer module.
  */
 
 

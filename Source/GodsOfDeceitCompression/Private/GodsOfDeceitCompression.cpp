@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers compression module
+ * Main file which registers the compression module.
  */
 
 

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers loading screen module
+ * Main file which registers the loading screen module.
  */
 
 

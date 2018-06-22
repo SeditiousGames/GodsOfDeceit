@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers persistent data module
+ * Main file which registers the persistent data module.
  */
 
 

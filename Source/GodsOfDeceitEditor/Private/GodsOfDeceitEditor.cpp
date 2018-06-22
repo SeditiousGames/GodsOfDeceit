@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers editor module
+ * Main file which registers the editor module.
  */
 
 

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers cryptography module
+ * Main file which registers the cryptography module.
  */
 
 

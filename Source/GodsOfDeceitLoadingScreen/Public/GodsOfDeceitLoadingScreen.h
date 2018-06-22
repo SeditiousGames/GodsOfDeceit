@@ -31,7 +31,7 @@
  * @section DESCRIPTION
  *
  * Generic header that has been intended to be included from all other class
- * implementations
+ * implementations.
  */
 
 
