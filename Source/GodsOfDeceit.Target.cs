@@ -47,8 +47,8 @@ public class GodsOfDeceitTarget : TargetRules
         ExtraModuleNames.AddRange(
             new string[] {
                 "GodsOfDeceit",
-                "GodsOfDeceitLoadingCompression",
-                "GodsOfDeceitLoadingCrypto",
+                "GodsOfDeceitCompression",
+                "GodsOfDeceitCrypto",
                 "GodsOfDeceitLoadingScreen",
                 "GodsOfDeceitPersistentData",
                 "GodsOfDeceitPlatform"
