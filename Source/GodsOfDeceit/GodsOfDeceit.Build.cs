@@ -46,24 +46,30 @@ public class GodsOfDeceit : ModuleRules
 
     public GodsOfDeceit(ReadOnlyTargetRules Target) : base(Target)
     {
-        Utils = new GUtils(this);
+        InitializeUtils();
+
+        Utils.Log.Start();
+
+        SetupBuildConfiguration();
+        AddEngineModules();
+        AddGameModules();
+        AddPlugins();
+        AddDefinitions();
+
+        Utils.Log.Stop();
+    }
+
+    private void InitializeUtils()
+    {
+        Utils = new GUtils(this, "GodsOfDeceit");
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
+        Utils.GameModules = new GGameModules(Utils);
         Utils.Log = new GLog(Utils);
         Utils.Path = new GPath(Utils);
         Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
-
-        Utils.Log.Start();
-
-        SetBuildConfiguration();
-        AddEngineModules();
-        AddPlugins();
-        AddDefinitions();
-        AddThirdPartyLibraries();
-
-        Utils.Log.Stop();
     }
 
     private void AddDefinitions()
@@ -82,6 +88,8 @@ public class GodsOfDeceit : ModuleRules
 
     private void AddEngineModules()
     {
+        Utils.Log.Info("Adding required engine modules for '{0}'...", Utils.ModuleName);
+
         Utils.EngineModules.AddCore();
         Utils.EngineModules.AddCoreUObject();
         Utils.EngineModules.AddEngine();
@@ -90,37 +98,33 @@ public class GodsOfDeceit : ModuleRules
         Utils.Log.EmptyLine();
     }
 
+    private void AddGameModules()
+    {
+        Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
+
+        Utils.GameModules.AddCompression();
+        Utils.GameModules.AddCrypto();
+        Utils.GameModules.AddLoadingScreen();
+        Utils.GameModules.AddPersistentData();
+        Utils.GameModules.AddPlatform();
+
+        Utils.Log.EmptyLine();
+    }
+
     private void AddPlugins()
     {
+        Utils.Log.Info("Setting up required plugins for '{0}'...", Utils.ModuleName);
+
         Utils.Plugins.AddUFSM();
         Utils.Plugins.AddVlcMedia();
 
         Utils.Log.EmptyLine();
     }
 
-    private void AddThirdPartyLibraries()
+    private void SetupBuildConfiguration()
     {
-        Utils.ThirdParty.AddBoost();
-        Utils.Log.EmptyLine();
+        Utils.Log.Info("Setting up build configuration for '{0}'...", Utils.ModuleName);
 
-        Utils.ThirdParty.AddCereal();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
-        Utils.Log.EmptyLine();
-    }
-
-    private void SetBuildConfiguration()
-    {
         bool bX64 = Utils.BuildPlatform.IsX64();
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
@@ -278,20 +282,98 @@ public class GEngineModules
         AddPublicDependencyModuleName("Engine");
     }
 
-    public void AddGodsOfDeceit()
-    {
-        AddPublicDependencyModuleName("GodsOfDeceit");
-    }
-
     public void AddInputCore()
     {
         AddPublicDependencyModuleName("InputCore");
+    }
+
+    public void AddSlate()
+    {
+        AddPrivateDependencyModuleName("Slate");
+    }
+
+    public void AddSlateCore()
+    {
+        AddPrivateDependencyModuleName("SlateCore");
     }
 
     public void AddUnrealEd()
     {
         AddPrivateDependencyModuleName("UnrealEd");
         AddPrivateIncludePathModuleName("UnrealEd");
+    }
+
+    private void AddPublicIncludePathModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding public include path module '{0}'...", Plugin);
+
+        Utils.Module.PublicIncludePathModuleNames.Add(Plugin);
+    }
+
+    private void AddPublicDependencyModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding public dependency module '{0}'...", Plugin);
+
+        Utils.Module.PublicDependencyModuleNames.Add(Plugin);
+    }
+
+    private void AddPrivateIncludePathModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding private include path module '{0}'...", Plugin);
+
+        Utils.Module.PrivateIncludePathModuleNames.Add(Plugin);
+    }
+
+    private void AddPrivateDependencyModuleName(string Plugin)
+    {
+        Utils.Log.Info("Adding private dependency module '{0}'...", Plugin);
+
+        Utils.Module.PrivateDependencyModuleNames.Add(Plugin);
+    }
+}
+
+public class GGameModules
+{
+    private GUtils Utils;
+
+    public GGameModules(GUtils Utils)
+    {
+        this.Utils = Utils;
+    }
+
+    public void AddCompression()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitCompression");
+    }
+
+    public void AddCrypto()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitCrypto");
+    }
+
+    public void AddGodsOfDeceit()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceit");
+    }
+
+    public void AddEditor()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitEditor");
+    }
+
+    public void AddLoadingScreen()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitLoadingScreen");
+    }
+
+    public void AddPersistentData()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitPersistentData");
+    }
+
+    public void AddPlatform()
+    {
+        AddPublicDependencyModuleName("GodsOfDeceitPlatform");
     }
 
     private void AddPublicIncludePathModuleName(string Plugin)
@@ -369,12 +451,12 @@ public class GLog
 
     public void Start()
     {
-        if (!Utils.Module.Target.Name.Contains("Editor")) {
+        if (Utils.ModuleName == "GodsOfDeceit") {
             EmptyLine();
             EmptyLine();
         }
 
-        Info("Setting up target '{0}'...", Utils.Module.Target.Name);
+        Info("Setting up module '{0}'...", Utils.ModuleName);
         EmptyLine();
 
         Info("Target build configuration is '{0}'.", Utils.Module.Target.Configuration);
@@ -383,7 +465,7 @@ public class GLog
 
     public void Stop()
     {
-        Info("Finished setting up target '{0}'.", Utils.Module.Target.Name);
+        Info("Finished setting up module '{0}'.", Utils.ModuleName);
         EmptyLine();
     }
 
@@ -805,15 +887,18 @@ public class GUtils : Object
     public GBuildPlatform BuildPlatform;
     public GDefinitions Definitions;
     public GEngineModules EngineModules;
+    public GGameModules GameModules;
     public GLog Log;
     public GPath Path;
     public GPlugins Plugins;
     public GThirdParty ThirdParty;
 
     public ModuleRules Module;
+    public string ModuleName;
 
-    public GUtils(ModuleRules Module)
+    public GUtils(ModuleRules Module, string ModuleName)
     {
         this.Module = Module;
+        this.ModuleName = ModuleName;
     }
 }

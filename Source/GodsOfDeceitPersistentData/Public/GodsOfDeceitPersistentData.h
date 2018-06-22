@@ -30,22 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Generic header that has been intended to be included from all other class
+ * implementations
  */
 
 
 #pragma once
 
-#include <Modules/ModuleInterface.h>
-
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
-
-class FGodsOfDeceitEditorModule : public IModuleInterface {
-public:
-    virtual void StartupModule() override;
-    virtual void PreUnloadCallback() override;
-    virtual void PostLoadCallback() override;
-    virtual void ShutdownModule() override;
-};
-
-#undef LOCTEXT_NAMESPACE
+#include <CoreMinimal.h>

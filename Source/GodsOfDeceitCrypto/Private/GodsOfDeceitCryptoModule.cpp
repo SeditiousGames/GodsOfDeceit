@@ -30,22 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Cryptography module implementation entry/exit point.
  */
 
 
-#pragma once
+#include "GodsOfDeceitCryptoModule.h"
+#include "GodsOfDeceitCrypto.h"
 
-#include <Modules/ModuleInterface.h>
+#define LOCTEXT_NAMESPACE "GodsOfDeceitCrypto"
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+void FGodsOfDeceitCryptoModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
-public:
-    virtual void StartupModule() override;
-    virtual void PreUnloadCallback() override;
-    virtual void PostLoadCallback() override;
-    virtual void ShutdownModule() override;
-};
+void FGodsOfDeceitCryptoModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitCryptoModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
+
+void FGodsOfDeceitCryptoModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
 
 #undef LOCTEXT_NAMESPACE

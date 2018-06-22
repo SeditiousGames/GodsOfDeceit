@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Platform layer module implementation entry/exit point.
  */
 
 
@@ -38,9 +38,9 @@
 
 #include <Modules/ModuleInterface.h>
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+#define LOCTEXT_NAMESPACE "GodsOfDeceitPlatform"
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
+class FGodsOfDeceitPlatformModule : public IModuleInterface {
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;

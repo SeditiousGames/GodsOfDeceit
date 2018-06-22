@@ -30,22 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Persistent data module implementation entry/exit point.
  */
 
 
-#pragma once
+#include "GodsOfDeceitPersistentDataModule.h"
+#include "GodsOfDeceitPersistentData.h"
 
-#include <Modules/ModuleInterface.h>
+#define LOCTEXT_NAMESPACE "GodsOfDeceitPersistentData"
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+void FGodsOfDeceitPersistentDataModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
-public:
-    virtual void StartupModule() override;
-    virtual void PreUnloadCallback() override;
-    virtual void PostLoadCallback() override;
-    virtual void ShutdownModule() override;
-};
+void FGodsOfDeceitPersistentDataModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitPersistentDataModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
+
+void FGodsOfDeceitPersistentDataModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
 
 #undef LOCTEXT_NAMESPACE

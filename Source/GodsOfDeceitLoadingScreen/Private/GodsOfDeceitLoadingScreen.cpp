@@ -30,22 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Main file which registers loading screen module
  */
 
 
-#pragma once
+#include "GodsOfDeceitLoadingScreen.h"
+#include "GodsOfDeceitLoadingScreenModule.h"
 
-#include <Modules/ModuleInterface.h>
-
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
-
-class FGodsOfDeceitEditorModule : public IModuleInterface {
-public:
-    virtual void StartupModule() override;
-    virtual void PreUnloadCallback() override;
-    virtual void PostLoadCallback() override;
-    virtual void ShutdownModule() override;
-};
-
-#undef LOCTEXT_NAMESPACE
+IMPLEMENT_GAME_MODULE(FGodsOfDeceitLoadingScreenModule, GodsOfDeceitLoadingScreen);

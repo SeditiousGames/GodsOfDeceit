@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Cryptography module implementation entry/exit point.
  */
 
 
@@ -38,9 +38,9 @@
 
 #include <Modules/ModuleInterface.h>
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+#define LOCTEXT_NAMESPACE "GodsOfDeceitCrypto"
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
+class FGodsOfDeceitCryptoModule : public IModuleInterface {
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;

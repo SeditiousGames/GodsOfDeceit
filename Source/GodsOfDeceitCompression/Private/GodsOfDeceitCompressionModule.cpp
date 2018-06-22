@@ -30,22 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Compression module implementation entry/exit point.
  */
 
 
-#pragma once
+#include "GodsOfDeceitCompressionModule.h"
+#include "GodsOfDeceitCompression.h"
 
-#include <Modules/ModuleInterface.h>
+#define LOCTEXT_NAMESPACE "GodsOfDeceitCompression"
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+void FGodsOfDeceitCompressionModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
-public:
-    virtual void StartupModule() override;
-    virtual void PreUnloadCallback() override;
-    virtual void PostLoadCallback() override;
-    virtual void ShutdownModule() override;
-};
+void FGodsOfDeceitCompressionModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitCompressionModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
+
+void FGodsOfDeceitCompressionModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
 
 #undef LOCTEXT_NAMESPACE

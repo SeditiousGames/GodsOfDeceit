@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitEditor target.
+ * Build script for GodsOfDeceitCompression target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitEditor : ModuleRules
+public class GodsOfDeceitCompression : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitEditor(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitCompression(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -49,13 +49,15 @@ public class GodsOfDeceitEditor : ModuleRules
         SetupBuildConfiguration();
         AddEngineModules();
         AddGameModules();
+        AddDefinitions();
+        AddThirdPartyLibraries();
 
         Utils.Log.Stop();
     }
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitEditor");
+        Utils = new GUtils(this, "GodsOfDeceitCompression");
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
@@ -66,15 +68,25 @@ public class GodsOfDeceitEditor : ModuleRules
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 
+    private void AddDefinitions()
+    {
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
+
+        if (bWindowsBuild)
+        {
+            Utils.Definitions.DefinePublicly("_UNICODE");
+            Utils.Definitions.DefinePublicly("UNICODE");
+            Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
+
+            Utils.Log.EmptyLine();
+        }
+    }
+
     private void AddEngineModules()
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddAssetTools();
         Utils.EngineModules.AddCore();
-        Utils.EngineModules.AddCoreUObject();
-        Utils.EngineModules.AddEngine();
-        Utils.EngineModules.AddUnrealEd();
 
         Utils.Log.EmptyLine();
     }
@@ -83,8 +95,17 @@ public class GodsOfDeceitEditor : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddGodsOfDeceit();
+        Utils.GameModules.AddPlatform();
 
+        Utils.Log.EmptyLine();
+    }
+
+    private void AddThirdPartyLibraries()
+    {
+        Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
+        Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
     }
 
@@ -92,19 +113,24 @@ public class GodsOfDeceitEditor : ModuleRules
     {
         Utils.Log.Info("Setting up build configuration for '{0}'...", Utils.ModuleName);
 
+        bool bX64 = Utils.BuildPlatform.IsX64();
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
         Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        Utils.Log.Info("Disabling run-time type identification...");
-        this.bUseRTTI = false;
+        Utils.Log.Info("Enabling run-time type identification...");
+        this.bUseRTTI = true;
 
-        Utils.Log.Info("Disabling exception handling...");
-        this.bEnableExceptions = false;
+        Utils.Log.Info("Enabling exception handling...");
+        this.bEnableExceptions = true;
 
-        Utils.Log.Info("Enabling AVX instructions...");
-        this.bUseAVX = true;
+        if (bX64 && !bShippingBuild)
+        {
+            Utils.Log.Info("Enabling AVX instructions...");
+            this.bUseAVX = true;
+        }
 
         Utils.Log.Info("Enabling warnings for shadowed variables...");
         this.bEnableShadowVariableWarnings = true;

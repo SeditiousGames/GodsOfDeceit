@@ -41,21 +41,21 @@
 
 void FGodsOfDeceitEditorModule::StartupModule()
 {
-	IModuleInterface::StartupModule();
+    IModuleInterface::StartupModule();
 }
 
 void FGodsOfDeceitEditorModule::PreUnloadCallback()
 {
-	IModuleInterface::PreUnloadCallback();
+    IModuleInterface::PreUnloadCallback();
 }
 void FGodsOfDeceitEditorModule::PostLoadCallback()
 {
-	IModuleInterface::PostLoadCallback();
+    IModuleInterface::PostLoadCallback();
 }
 
 void FGodsOfDeceitEditorModule::ShutdownModule()
 {
-	IModuleInterface::ShutdownModule();
+    IModuleInterface::ShutdownModule();
 }
 
 #undef LOCTEXT_NAMESPACE

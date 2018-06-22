@@ -8,12 +8,43 @@
 			"Name": "GodsOfDeceit",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+			"GodsOfDeceit": [
+				"Linux",
+				"Windows"
+			]
 		},
 		{
 			"Name": "GodsOfDeceitEditor",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit",
 			"GodsOfDeceitEditor": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitLoadingScreen",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+			"GodsOfDeceitLoadingScreen": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitPersistentData",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+			"GodsOfDeceitPersistentData": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitPlatform",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+			"GodsOfDeceitPlatform": [
 				"Linux",
 				"Windows"
 			]

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Editor module implementation entry/exit point.
+ * Persistent data module implementation entry/exit point.
  */
 
 
@@ -38,9 +38,9 @@
 
 #include <Modules/ModuleInterface.h>
 
-#define LOCTEXT_NAMESPACE "GodsOfDeceitEditor"
+#define LOCTEXT_NAMESPACE "GodsOfDeceitPersistentData"
 
-class FGodsOfDeceitEditorModule : public IModuleInterface {
+class FGodsOfDeceitPersistentDataModule : public IModuleInterface {
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;
