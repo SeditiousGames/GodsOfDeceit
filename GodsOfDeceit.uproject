@@ -14,6 +14,24 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitCompression",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+			"GodsOfDeceitCompression": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitCrypto",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+			"GodsOfDeceitCrypto": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitEditor",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit",
