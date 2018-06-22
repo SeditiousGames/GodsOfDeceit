@@ -70,11 +70,11 @@ public class GodsOfDeceitEditor : ModuleRules
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddAssetTools();
-        Utils.EngineModules.AddCore();
-        Utils.EngineModules.AddCoreUObject();
-        Utils.EngineModules.AddEngine();
-        Utils.EngineModules.AddUnrealEd();
+        Utils.EngineModules.AddAssetTools(false);
+        Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCoreUObject(true);
+        Utils.EngineModules.AddEngine(true);
+        Utils.EngineModules.AddUnrealEd(false);
 
         Utils.Log.EmptyLine();
     }
@@ -83,7 +83,7 @@ public class GodsOfDeceitEditor : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddGodsOfDeceit();
+        Utils.GameModules.AddGodsOfDeceit(true);
 
         Utils.Log.EmptyLine();
     }

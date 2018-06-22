@@ -84,11 +84,11 @@ public class GodsOfDeceitLoadingScreen : ModuleRules
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddCore();
-        Utils.EngineModules.AddCoreUObject();
-        Utils.EngineModules.AddInputCore();
-        Utils.EngineModules.AddSlate();
-        Utils.EngineModules.AddSlateCore();
+        Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCoreUObject(true);
+        Utils.EngineModules.AddInputCore(true);
+        Utils.EngineModules.AddSlate(true);
+        Utils.EngineModules.AddSlateCore(true);
 
         Utils.Log.EmptyLine();
     }

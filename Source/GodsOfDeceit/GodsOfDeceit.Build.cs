@@ -90,10 +90,10 @@ public class GodsOfDeceit : ModuleRules
     {
         Utils.Log.Info("Adding required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddCore();
-        Utils.EngineModules.AddCoreUObject();
-        Utils.EngineModules.AddEngine();
-        Utils.EngineModules.AddInputCore();
+        Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCoreUObject(true);
+        Utils.EngineModules.AddEngine(true);
+        Utils.EngineModules.AddInputCore(false);
 
         Utils.Log.EmptyLine();
     }
@@ -102,11 +102,11 @@ public class GodsOfDeceit : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddCompression();
-        Utils.GameModules.AddCrypto();
-        Utils.GameModules.AddLoadingScreen();
-        Utils.GameModules.AddPersistentData();
-        Utils.GameModules.AddPlatform();
+        Utils.GameModules.AddCompression(false);
+        Utils.GameModules.AddCrypto(false);
+        Utils.GameModules.AddLoadingScreen(false);
+        Utils.GameModules.AddPersistentData(false);
+        Utils.GameModules.AddPlatform(false);
 
         Utils.Log.EmptyLine();
     }
@@ -261,46 +261,104 @@ public class GEngineModules
         this.Utils = Utils;
     }
 
-    public void AddAssetTools()
+    public void AddAssetTools(bool bPublic)
     {
-        AddPrivateDependencyModuleName("AssetTools");
-        AddPrivateIncludePathModuleName("AssetTools");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("AssetTools");
+            AddPublicIncludePathModuleName("AssetTools");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("AssetTools");
+            AddPrivateIncludePathModuleName("AssetTools");
+        }
     }
 
-    public void AddCore()
+    public void AddCore(bool bPublic)
     {
-        AddPublicDependencyModuleName("Core");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("Core");
+        }
+        else
+        {
+            AddPublicDependencyModuleName("Core");
+        }
     }
 
-    public void AddCoreUObject()
+    public void AddCoreUObject(bool bPublic)
     {
-        AddPublicDependencyModuleName("CoreUObject");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("CoreUObject");
+        }
+        else
+        {
+            AddPublicDependencyModuleName("CoreUObject");
+        }
     }
 
-    public void AddEngine()
+    public void AddEngine(bool bPublic)
     {
-        AddPublicDependencyModuleName("Engine");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("Engine");
+        }
+        else
+        {
+            AddPublicDependencyModuleName("Engine");
+        }
     }
 
-    public void AddInputCore()
+    public void AddInputCore(bool bPublic)
     {
-        AddPublicDependencyModuleName("InputCore");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("InputCore");
+        }
+        else
+        {
+            AddPublicDependencyModuleName("InputCore");
+        }
     }
 
-    public void AddSlate()
+    public void AddSlate(bool bPublic)
     {
-        AddPrivateDependencyModuleName("Slate");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("Slate");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("Slate");
+        }
+        }
+
+    public void AddSlateCore(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("SlateCore");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("SlateCore");
+        }
     }
 
-    public void AddSlateCore()
+    public void AddUnrealEd(bool bPublic)
     {
-        AddPrivateDependencyModuleName("SlateCore");
-    }
-
-    public void AddUnrealEd()
-    {
-        AddPrivateDependencyModuleName("UnrealEd");
-        AddPrivateIncludePathModuleName("UnrealEd");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("UnrealEd");
+            AddPublicIncludePathModuleName("UnrealEd");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("UnrealEd");
+            AddPrivateIncludePathModuleName("UnrealEd");
+        }
     }
 
     private void AddPublicIncludePathModuleName(string Plugin)
@@ -341,39 +399,88 @@ public class GGameModules
         this.Utils = Utils;
     }
 
-    public void AddCompression()
+    public void AddCompression(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitCompression");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitCompression");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitCompression");
+        }
     }
 
-    public void AddCrypto()
+    public void AddCrypto(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitCrypto");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitCrypto");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitCrypto");
+        }
     }
 
-    public void AddGodsOfDeceit()
+    public void AddGodsOfDeceit(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceit");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceit");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceit");
+        }
     }
 
-    public void AddEditor()
+    public void AddEditor(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitEditor");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitEditor");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitEditor");
+        }
     }
 
-    public void AddLoadingScreen()
+    public void AddLoadingScreen(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitLoadingScreen");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitLoadingScreen");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitLoadingScreen");
+        }
     }
 
-    public void AddPersistentData()
+    public void AddPersistentData(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitPersistentData");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitPersistentData");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitPersistentData");
+        }
     }
 
-    public void AddPlatform()
+    public void AddPlatform(bool bPublic)
     {
-        AddPublicDependencyModuleName("GodsOfDeceitPlatform");
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitPlatform");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitPlatform");
+        }
     }
 
     private void AddPublicIncludePathModuleName(string Plugin)

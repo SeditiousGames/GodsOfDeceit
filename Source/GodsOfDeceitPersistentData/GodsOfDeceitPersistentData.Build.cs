@@ -86,7 +86,7 @@ public class GodsOfDeceitPersistentData : ModuleRules
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddCore();
+        Utils.EngineModules.AddCore(true);
 
         Utils.Log.EmptyLine();
     }
@@ -95,7 +95,7 @@ public class GodsOfDeceitPersistentData : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddPlatform();
+        Utils.GameModules.AddPlatform(true);
 
         Utils.Log.EmptyLine();
     }
