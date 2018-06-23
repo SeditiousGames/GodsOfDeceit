@@ -37,18 +37,8 @@ echo "Projects > Build & Run > Build > Build Steps > Clean Steps > Make argument
 
 echo
 
-echo "Projects > Build & Run > Build > Build Environment > Variable ==> LD_LIBRARY_PATH"
-echo "Projects > Build & Run > Build > Build Environment > Value ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/"
-
-echo
-
 echo "Projects > Build & Run > Run > Run > Executable ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/UE4Editor"
 echo "Projects > Build & Run > Run > Run > Command line arguments ==> \"${PROJECT_FILE}\" -opengl4 -debug"
 echo "Projects > Build & Run > Run > Run > Working directory ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/"
-
-echo
-
-echo "Projects > Build & Run > Run > Run Environment > Variable ==> LD_LIBRARY_PATH"
-echo "Projects > Build & Run > Run > Run Environment > Value ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Experimental/AlembicImporter/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Editor/CryptoKeys/Binaries/Linux/:${ENGINE_DIRECTORY}/Engine/Plugins/Media/ImgMedia/Binaries/Linux/:${PROJECT_DIRECTORY}/Plugins/UFSM/Binaries/Linux/:${PROJECT_DIRECTORY}/Plugins/VlcMedia/Binaries/Linux/:${PROJECT_DIRECTORY}/Binaries/Linux"
 
 echo
