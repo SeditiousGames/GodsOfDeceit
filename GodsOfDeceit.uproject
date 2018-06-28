@@ -7,7 +7,7 @@
 		{
 			"Name": "GodsOfDeceit",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
 			"GodsOfDeceit": [
 				"Linux",
 				"Windows"
@@ -16,7 +16,7 @@
 		{
 			"Name": "GodsOfDeceitCompression",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitCompression": [
 				"Linux",
 				"Windows"
@@ -25,7 +25,7 @@
 		{
 			"Name": "GodsOfDeceitCrypto",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitCrypto": [
 				"Linux",
 				"Windows"
@@ -43,7 +43,7 @@
 		{
 			"Name": "GodsOfDeceitLoadingScreen",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreLoadingScreen",
 			"GodsOfDeceitLoadingScreen": [
 				"Linux",
 				"Windows"
@@ -52,7 +52,7 @@
 		{
 			"Name": "GodsOfDeceitPersistentData",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitPersistentData": [
 				"Linux",
 				"Windows"
@@ -61,7 +61,7 @@
 		{
 			"Name": "GodsOfDeceitPlatform",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitPlatform": [
 				"Linux",
 				"Windows"
