@@ -138,7 +138,7 @@ public class GodsOfDeceitPlatform : ModuleRules
         this.bEnableShadowVariableWarnings = true;
 
         Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
-        this.bEnableUndefinedIdentifierWarnings = true;
+        this.bEnableUndefinedIdentifierWarnings = false;
 
         if (bDebugBuild)
         {
