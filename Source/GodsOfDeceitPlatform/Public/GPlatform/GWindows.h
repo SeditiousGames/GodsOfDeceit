@@ -43,9 +43,13 @@
 
 #include <GPlatform/Hacks/GUndef_TEXT.h>
 
+THIRD_PARTY_INCLUDES_START
+
 #include <Shlobj.h>
 #include <Windows.h>
 #include <Winuser.h>
+
+THIRD_PARTY_INCLUDES_END
 
 #undef CopyFile
 #undef CreateDirectory

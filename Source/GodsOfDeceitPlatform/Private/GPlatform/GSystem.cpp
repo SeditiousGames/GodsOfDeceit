@@ -40,13 +40,23 @@
 #include <Misc/AssertionMacros.h>
 
 #include <GPlatform/Hacks/GUndef_check.h>
+
+THIRD_PARTY_INCLUDES_START
+
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
+
+THIRD_PARTY_INCLUDES_END
+
 #include <GPlatform/Hacks/GRestore_check.h>
 
+THIRD_PARTY_INCLUDES_START
+
 #include <fmt/format.h>
+
+THIRD_PARTY_INCLUDES_END
 
 #include <GPlatform/GWindows.h>
 

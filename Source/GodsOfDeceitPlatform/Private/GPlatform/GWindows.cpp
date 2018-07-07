@@ -36,4 +36,5 @@
  * included where it is required.
  */
 
+
 #include <GPlatform/GWindows.h>
