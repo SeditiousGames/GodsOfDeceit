@@ -30,9 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A hack to undef conflicting macro definition 'TEXT' -- between Unreal Engine
- * 4 and Microsoft Windows, in order to be restored later on.
+ * Main file which registers the persistent data module.
  */
 
 
-#include <GPlatform/Hacks/GUndef_TEXT.h>
+#include "GodsOfDeceitHacks.h"
+#include "GodsOfDeceitHacksModule.h"
+
+IMPLEMENT_GAME_MODULE(FGodsOfDeceitHacksModule, GodsOfDeceitHacks);

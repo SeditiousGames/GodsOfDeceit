@@ -39,7 +39,7 @@
 #include <Containers/StringConv.h>
 #include <Misc/AssertionMacros.h>
 
-#include <GPlatform/Hacks/GUndef_check.h>
+#include <GHacks/GUndef_check.h>
 
 THIRD_PARTY_INCLUDES_START
 
@@ -50,7 +50,7 @@ THIRD_PARTY_INCLUDES_START
 
 THIRD_PARTY_INCLUDES_END
 
-#include <GPlatform/Hacks/GRestore_check.h>
+#include <GHacks/GRestore_check.h>
 
 THIRD_PARTY_INCLUDES_START
 

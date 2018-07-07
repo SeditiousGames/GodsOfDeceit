@@ -30,40 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Due to conflicting macro definitions between Unreal Engine 4, Microsoft
- * Windows, and included third-party libraries, Windows headers should not be
- * included directely. Instead of including those headers this file must be
- * included where it is required.
+ * Persistent data module implementation entry/exit point.
  */
 
 
-#pragma once
+#include "GodsOfDeceitHacksModule.h"
+#include "GodsOfDeceitHacks.h"
 
-#if defined ( _WIN32 ) || defined ( _WIN64 )
+#define LOCTEXT_NAMESPACE "GodsOfDeceitHacks"
 
-#include <GHacks/GUndef_TEXT.h>
+void FGodsOfDeceitHacksModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
 
-THIRD_PARTY_INCLUDES_START
+void FGodsOfDeceitHacksModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitHacksModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
 
-#include <Shlobj.h>
-#include <Windows.h>
-#include <Winuser.h>
+void FGodsOfDeceitHacksModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
 
-THIRD_PARTY_INCLUDES_END
-
-#undef CopyFile
-#undef CreateDirectory
-#undef DeleteFile
-#undef DrawText
-#undef GetObject
-#undef InterlockedAdd
-#undef InterlockedDecrement
-#undef InterlockedExchange
-#undef InterlockedIncrement
-#undef MoveFile
-#undef TEXT
-#undef UpdateResource
-
-#include <GHacks/GRestore_TEXT.h>
-
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+#undef LOCTEXT_NAMESPACE

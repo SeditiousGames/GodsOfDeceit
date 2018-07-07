@@ -30,9 +30,22 @@
  *
  * @section DESCRIPTION
  *
- * A hack to restore conflicting macro definition 'TEXT' -- between Unreal
- * Engine 4 and Microsoft Windows -- after being undefed.
+ * Persistent data module implementation entry/exit point.
  */
 
 
-#include <GPlatform/Hacks/GRestore_TEXT.h>
+#pragma once
+
+#include <Modules/ModuleInterface.h>
+
+#define LOCTEXT_NAMESPACE "GodsOfDeceitHacks"
+
+class FGodsOfDeceitHacksModule : public IModuleInterface {
+public:
+    virtual void StartupModule() override;
+    virtual void PreUnloadCallback() override;
+    virtual void PostLoadCallback() override;
+    virtual void ShutdownModule() override;
+};
+
+#undef LOCTEXT_NAMESPACE

@@ -30,10 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A hack to restore conflicting macro definition 'check' -- between Unreal
- * Engine 4, Boost C++ libraries, and CppDB SQL connectivity library -- after
- * being undefed.
+ * Generic header that has been intended to be included from all other class
+ * implementations.
  */
 
 
-#include <GPlatform/Hacks/GRestore_check.h>
+#pragma once
+
+#include <CoreMinimal.h>

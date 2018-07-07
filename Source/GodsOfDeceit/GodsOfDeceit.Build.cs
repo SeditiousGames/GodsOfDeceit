@@ -447,6 +447,18 @@ public class GGameModules
         }
     }
 
+    public void AddHacks(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitHacks");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitHacks");
+        }
+    }
+
     public void AddLoadingScreen(bool bPublic)
     {
         if (bPublic)

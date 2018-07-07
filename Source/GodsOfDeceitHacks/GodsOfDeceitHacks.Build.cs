@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitPlatform target.
+ * Build script for GodsOfDeceitHacks target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitPlatform : ModuleRules
+public class GodsOfDeceitHacks : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitPlatform(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitHacks(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -48,7 +48,6 @@ public class GodsOfDeceitPlatform : ModuleRules
 
         SetupBuildConfiguration();
         AddEngineModules();
-        AddGameModules();
         AddDefinitions();
         AddThirdPartyLibraries();
 
@@ -57,7 +56,7 @@ public class GodsOfDeceitPlatform : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitPlatform");
+        Utils = new GUtils(this, "GodsOfDeceitHacks");
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
@@ -91,15 +90,6 @@ public class GodsOfDeceitPlatform : ModuleRules
         Utils.Log.EmptyLine();
     }
 
-    private void AddGameModules()
-    {
-        Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
-
-        Utils.GameModules.AddHacks(true);
-
-        Utils.Log.EmptyLine();
-    }
-
     private void AddThirdPartyLibraries()
     {
         Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
@@ -108,16 +98,10 @@ public class GodsOfDeceitPlatform : ModuleRules
         Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
 
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
+        Utils.ThirdParty.AddCereal();
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 
@@ -148,7 +132,7 @@ public class GodsOfDeceitPlatform : ModuleRules
         this.bEnableShadowVariableWarnings = true;
 
         Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
-        this.bEnableUndefinedIdentifierWarnings = false;
+        this.bEnableUndefinedIdentifierWarnings = true;
 
         if (bDebugBuild)
         {

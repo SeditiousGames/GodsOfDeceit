@@ -30,40 +30,9 @@
  *
  * @section DESCRIPTION
  *
- * Due to conflicting macro definitions between Unreal Engine 4, Microsoft
- * Windows, and included third-party libraries, Windows headers should not be
- * included directely. Instead of including those headers this file must be
- * included where it is required.
+ * A hack to restore conflicting macro definition 'TEXT' -- between Unreal
+ * Engine 4 and Microsoft Windows -- after being undefed.
  */
 
 
-#pragma once
-
-#if defined ( _WIN32 ) || defined ( _WIN64 )
-
-#include <GHacks/GUndef_TEXT.h>
-
-THIRD_PARTY_INCLUDES_START
-
-#include <Shlobj.h>
-#include <Windows.h>
-#include <Winuser.h>
-
-THIRD_PARTY_INCLUDES_END
-
-#undef CopyFile
-#undef CreateDirectory
-#undef DeleteFile
-#undef DrawText
-#undef GetObject
-#undef InterlockedAdd
-#undef InterlockedDecrement
-#undef InterlockedExchange
-#undef InterlockedIncrement
-#undef MoveFile
-#undef TEXT
-#undef UpdateResource
-
 #include <GHacks/GRestore_TEXT.h>
-
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */

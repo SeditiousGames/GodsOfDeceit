@@ -41,6 +41,15 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitHacks",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitLoadingScreen",
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
