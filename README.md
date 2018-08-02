@@ -39,7 +39,9 @@ GodsOfDeceit
   │
   ├── Plugins (public repo)
   │     │
-  │     └── UFSM (private repo, UE4 marketplace plugin)
+  │     │── UFSM (private repo, UE4 marketplace plugin)
+  │     │
+  │     └── VlcMedia (public repo)
   │
   └── ThirdParty (public repo)
 ```
