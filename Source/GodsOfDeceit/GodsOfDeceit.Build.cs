@@ -806,6 +806,11 @@ public class GThirdParty
         if (bWindowsBuild)
         {
             Utils.Definitions.DefinePublicly("BOOST_DISABLE_ABI_HEADERS");
+
+            /// NOTE
+            /// Make Boost.WinAPI target Windows 7, where possible
+            /// https://msdn.microsoft.com/en-us/library/6sehtctf.aspx
+            Utils.Definitions.DefinePublicly("BOOST_USE_WINAPI_VERSION=0x0601");
         }
 
         Utils.Definitions.DefinePublicly("BOOST_UUID_USE_SSE41");
