@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitPersistentDataImpl target.
+ * Build script for GodsOfDeceitLog target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitPersistentDataImpl : ModuleRules
+public class GodsOfDeceitLog : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitPersistentDataImpl(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitLog(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -48,7 +48,6 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
 
         SetupBuildConfiguration();
         AddEngineModules();
-        AddGameModules();
         AddDefinitions();
         AddThirdPartyLibraries();
 
@@ -57,7 +56,7 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitPersistentDataImpl");
+        Utils = new GUtils(this, "GodsOfDeceitLog");
         Utils.BuildConfiguration = new GBuildConfiguration(Utils);
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
@@ -71,6 +70,7 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
 
     private void AddDefinitions()
     {
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
@@ -78,6 +78,11 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
             Utils.Definitions.DefinePublicly("_UNICODE");
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
+        }
+
+        if (!bShippingBuild)
+        {
+            Utils.Definitions.DefinePublicly("GOD_LOGGING");
         }
 
         Utils.Log.EmptyLine();
@@ -88,15 +93,8 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
         Utils.EngineModules.AddCore(true);
-
-        Utils.Log.EmptyLine();
-    }
-
-    private void AddGameModules()
-    {
-        Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
-
-        Utils.GameModules.AddHacks(true);
+        Utils.EngineModules.AddCoreUObject(true);
+        Utils.EngineModules.AddEngine(true);
 
         Utils.Log.EmptyLine();
     }
@@ -109,16 +107,10 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
         Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
 
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
+        Utils.ThirdParty.AddCereal();
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 
@@ -131,8 +123,8 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
         bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
         Utils.BuildConfiguration.SetPCHUsage(PCHUsageMode.UseExplicitOrSharedPCHs);
-        Utils.BuildConfiguration.SetUseRTTI(true);
-        Utils.BuildConfiguration.SetEnableExceptions(true);
+        Utils.BuildConfiguration.SetUseRTTI(false);
+        Utils.BuildConfiguration.SetEnableExceptions(false);
         Utils.BuildConfiguration.SetUseAVX(bX64 && !bShippingBuild);
         Utils.BuildConfiguration.SetEnableShadowVariableWarnings(true);
         Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);

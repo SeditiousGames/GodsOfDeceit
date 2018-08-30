@@ -78,9 +78,9 @@ public class GodsOfDeceitCompressionImpl : ModuleRules
             Utils.Definitions.DefinePublicly("_UNICODE");
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
-
-            Utils.Log.EmptyLine();
         }
+
+        Utils.Log.EmptyLine();
     }
 
     private void AddEngineModules()

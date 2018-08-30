@@ -75,6 +75,7 @@ public class GodsOfDeceit : ModuleRules
 
     private void AddDefinitions()
     {
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
@@ -82,9 +83,14 @@ public class GodsOfDeceit : ModuleRules
             Utils.Definitions.DefinePublicly("_UNICODE");
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
-
-            Utils.Log.EmptyLine();
         }
+
+        if (!bShippingBuild)
+        {
+            Utils.Definitions.DefinePublicly("GOD_LOGGING");
+        }
+
+        Utils.Log.EmptyLine();
     }
 
     private void AddEngineModules()
@@ -106,6 +112,7 @@ public class GodsOfDeceit : ModuleRules
         Utils.GameModules.AddCompression(false);
         Utils.GameModules.AddCrypto(false);
         Utils.GameModules.AddLoadingScreen(false);
+        Utils.GameModules.AddLog(false);
         Utils.GameModules.AddPersistentData(false);
         Utils.GameModules.AddPlatform(false);
 
@@ -648,6 +655,18 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitLoadingScreen");
+        }
+    }
+
+    public void AddLog(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitLog");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitLog");
         }
     }
 

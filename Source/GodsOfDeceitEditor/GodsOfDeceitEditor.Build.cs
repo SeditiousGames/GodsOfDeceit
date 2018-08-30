@@ -67,6 +67,26 @@ public class GodsOfDeceitEditor : ModuleRules
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 
+    private void AddDefinitions()
+    {
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
+
+        if (bWindowsBuild)
+        {
+            Utils.Definitions.DefinePublicly("_UNICODE");
+            Utils.Definitions.DefinePublicly("UNICODE");
+            Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
+        }
+
+        if (!bShippingBuild)
+        {
+            Utils.Definitions.DefinePublicly("GOD_LOGGING");
+        }
+
+        Utils.Log.EmptyLine();
+    }
+
     private void AddEngineModules()
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);

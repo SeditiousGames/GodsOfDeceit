@@ -71,6 +71,7 @@ public class GodsOfDeceitPlatform : ModuleRules
 
     private void AddDefinitions()
     {
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
@@ -78,9 +79,14 @@ public class GodsOfDeceitPlatform : ModuleRules
             Utils.Definitions.DefinePublicly("_UNICODE");
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
-
-            Utils.Log.EmptyLine();
         }
+
+        if (!bShippingBuild)
+        {
+            Utils.Definitions.DefinePublicly("GOD_LOGGING");
+        }
+
+        Utils.Log.EmptyLine();
     }
 
     private void AddEngineModules()
