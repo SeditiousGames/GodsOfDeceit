@@ -821,159 +821,84 @@ public class GLog
 
 public class GPath
 {
-    private GUtils Utils;
+    public string ModulePath { get; }
+    public string ProjectPath { get; }
+    public string GitDirectoryPath { get; }
+    public string PluginsPath { get; }
+    public string ThirdPartyPath { get; }
+    public string ThirdPartyIncludePath { get; }
+    public string LinuxThirdPartyDebugLibraryPath { get; }
+    public string LinuxThirdPartyReleaseLibraryPath { get; }
+    public string Win32ThirdPartyDebugLibraryPath { get; }
+    public string Win32ThirdPartyReleaseLibraryPath { get; }
+    public string Win64ThirdPartyDebugLibraryPath { get; }
+    public string Win64ThirdPartyReleaseLibraryPath { get; }
+    public string ThirdPartyLibraryLinkPath { get; }
 
     public GPath(GUtils Utils)
     {
-        this.Utils = Utils;
-    }
+        bool bX64 = Utils.BuildPlatform.IsX64();
+        bool bX86 = Utils.BuildPlatform.IsX86();
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
-    public string ModulePath
-    {
-        get
+        ModulePath = Utils.Module.ModuleDirectory;
+        ProjectPath = Directory.GetParent(ModulePath).ToString();
+        GitDirectoryPath = Path.GetFullPath(Path.Combine(ProjectPath, "..", ".git"));
+        PluginsPath = Path.GetFullPath(Path.Combine(ModulePath, "..", "..", "Plugins"));
+        ThirdPartyPath = Path.GetFullPath(Path.Combine(ModulePath, "..", "..", "ThirdParty"));
+        ThirdPartyIncludePath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "include"));
+        LinuxThirdPartyDebugLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "linux", "debug"));
+        LinuxThirdPartyReleaseLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "linux", "release"));
+        Win32ThirdPartyDebugLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win32", "debug"));
+        Win32ThirdPartyReleaseLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win32", "release"));
+        Win64ThirdPartyDebugLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win64", "debug"));
+        Win64ThirdPartyReleaseLibraryPath = Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win64", "release"));
+        
+        if (bLinuxBuild)
         {
-            return Utils.Module.ModuleDirectory;
+            if (bDebugBuild)
+            {
+                ThirdPartyLibraryLinkPath = LinuxThirdPartyDebugLibraryPath;
+            }
+            else
+            {
+                ThirdPartyLibraryLinkPath = LinuxThirdPartyReleaseLibraryPath;
+            }
         }
-    }
-
-    public string ProjectPath
-    {
-        get
+        else if (bWindowsBuild)
         {
-            return Directory.GetParent(ModulePath).ToString();
-        }
-    }
-
-    public string GitDirectoryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ProjectPath, "..", ".git"));
-        }
-    }
-
-    public string PluginsPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ModulePath, "..", "..", "Plugins"));
-        }
-    }
-
-    public string ThirdPartyPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ModulePath, "..", "..", "ThirdParty"));
-        }
-    }
-
-    public string ThirdPartyIncludePath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "include"));
-        }
-    }
-
-    public string LinuxThirdPartyDebugLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "linux", "debug"));
-        }
-    }
-
-    public string LinuxThirdPartyReleaseLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "linux", "release"));
-        }
-    }
-
-    public string Win32ThirdPartyDebugLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win32", "debug"));
-        }
-    }
-
-    public string Win32ThirdPartyReleaseLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win32", "release"));
-        }
-    }
-
-    public string Win64ThirdPartyDebugLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win64", "debug"));
-        }
-    }
-
-    public string Win64ThirdPartyReleaseLibraryPath
-    {
-        get
-        {
-            return Path.GetFullPath(Path.Combine(ThirdPartyPath, "lib", "win64", "release"));
-        }
-    }
-
-    public string ThirdPartyLibraryLinkPath
-    {
-        get
-        {
-            bool bX64 = Utils.BuildPlatform.IsX64();
-            bool bX86 = Utils.BuildPlatform.IsX86();
-            bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
-            bool bLinuxBuild = Utils.BuildPlatform.IsLinuxBuild();
-            bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
-
-            if (bLinuxBuild)
+            if (bX64)
             {
                 if (bDebugBuild)
                 {
-                    return Utils.Path.LinuxThirdPartyDebugLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win32ThirdPartyDebugLibraryPath;
                 }
                 else
                 {
-                    return Utils.Path.LinuxThirdPartyReleaseLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win32ThirdPartyReleaseLibraryPath;
                 }
             }
-
-            if (bWindowsBuild)
+            else if (bX86)
             {
-                if (bX64)
+                if (bDebugBuild)
                 {
-                    if (bDebugBuild)
-                    {
-                        return Utils.Path.Win32ThirdPartyDebugLibraryPath;
-                    }
-                    else
-                    {
-                        return Utils.Path.Win32ThirdPartyReleaseLibraryPath;
-                    }
+                    ThirdPartyLibraryLinkPath = Win64ThirdPartyDebugLibraryPath;
                 }
-
-                if (bX86)
+                else
                 {
-                    if (bDebugBuild)
-                    {
-                        return Utils.Path.Win64ThirdPartyDebugLibraryPath;
-                    }
-                    else
-                    {
-                        return Utils.Path.Win64ThirdPartyReleaseLibraryPath;
-                    }
+                    ThirdPartyLibraryLinkPath = Win64ThirdPartyReleaseLibraryPath;
                 }
             }
-
-            return string.Empty;
+            else
+            {
+                ThirdPartyLibraryLinkPath = string.Empty;
+            }
+        }
+        else
+        {
+            ThirdPartyLibraryLinkPath = string.Empty;
         }
     }
 }
