@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers the persistent data module.
+ * Main file which registers the hacks module.
  */
 
 

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Persistent data module implementation entry/exit point.
+ * Hacks module implementation entry/exit point.
  */
 
 
