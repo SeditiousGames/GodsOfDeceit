@@ -411,6 +411,18 @@ public class GGameModules
         }
     }
 
+    public void AddCompressionImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitCompressionImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitCompressionImpl");
+        }
+    }
+
     public void AddCrypto(bool bPublic)
     {
         if (bPublic)
@@ -420,6 +432,18 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitCrypto");
+        }
+    }
+
+    public void AddCryptoImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitCryptoImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitCryptoImpl");
         }
     }
 
@@ -483,6 +507,18 @@ public class GGameModules
         }
     }
 
+    public void AddPersistentDataImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitPersistentDataImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitPersistentDataImpl");
+        }
+    }
+
     public void AddPlatform(bool bPublic)
     {
         if (bPublic)
@@ -492,6 +528,18 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitPlatform");
+        }
+    }
+
+    public void AddPlatformImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitPlatformImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitPlatformImpl");
         }
     }
 

@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitHacks target.
+ * Build script for GodsOfDeceitPersistentDataImpl target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitHacks : ModuleRules
+public class GodsOfDeceitPersistentDataImpl : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitHacks(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitPersistentDataImpl(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -48,6 +48,7 @@ public class GodsOfDeceitHacks : ModuleRules
 
         SetupBuildConfiguration();
         AddEngineModules();
+        AddGameModules();
         AddDefinitions();
         AddThirdPartyLibraries();
 
@@ -56,7 +57,7 @@ public class GodsOfDeceitHacks : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitHacks");
+        Utils = new GUtils(this, "GodsOfDeceitPersistentDataImpl");
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
@@ -90,6 +91,15 @@ public class GodsOfDeceitHacks : ModuleRules
         Utils.Log.EmptyLine();
     }
 
+    private void AddGameModules()
+    {
+        Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
+
+        Utils.GameModules.AddHacks(true);
+
+        Utils.Log.EmptyLine();
+    }
+
     private void AddThirdPartyLibraries()
     {
         Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
@@ -98,10 +108,16 @@ public class GodsOfDeceitHacks : ModuleRules
         Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
 
-        Utils.ThirdParty.AddCereal();
+        Utils.ThirdParty.AddCppDB();
+        Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddCryptoPP();
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddFMT();
+        Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 
@@ -117,10 +133,10 @@ public class GodsOfDeceitHacks : ModuleRules
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
         Utils.Log.Info("Enabling run-time type identification...");
-        this.bUseRTTI = false;
+        this.bUseRTTI = true;
 
         Utils.Log.Info("Enabling exception handling...");
-        this.bEnableExceptions = false;
+        this.bEnableExceptions = true;
 
         if (bX64 && !bShippingBuild)
         {
@@ -132,7 +148,7 @@ public class GodsOfDeceitHacks : ModuleRules
         this.bEnableShadowVariableWarnings = true;
 
         Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
-        this.bEnableUndefinedIdentifierWarnings = true;
+        this.bEnableUndefinedIdentifierWarnings = false;
 
         if (bDebugBuild)
         {

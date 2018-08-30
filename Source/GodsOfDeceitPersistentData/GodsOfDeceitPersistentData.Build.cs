@@ -127,10 +127,10 @@ public class GodsOfDeceitPersistentData : ModuleRules
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
         Utils.Log.Info("Enabling run-time type identification...");
-        this.bUseRTTI = true;
+        this.bUseRTTI = false;
 
         Utils.Log.Info("Enabling exception handling...");
-        this.bEnableExceptions = true;
+        this.bEnableExceptions = false;
 
         if (bX64 && !bShippingBuild)
         {
