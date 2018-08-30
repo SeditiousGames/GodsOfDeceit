@@ -57,14 +57,18 @@ public class GodsOfDeceitCrypto : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitCrypto");
-        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
+        Utils = new GUtils(this, "GodsOfDeceit");
+
+        /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
+        Utils.Path = new GPath(Utils);
+        Utils.Log = new GLog(Utils);
+
+        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
+        Utils.BuildInfo = new GBuildInfo(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
-        Utils.Log = new GLog(Utils);
-        Utils.Path = new GPath(Utils);
         Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }

@@ -62,13 +62,17 @@ public class GodsOfDeceit : ModuleRules
     private void InitializeUtils()
     {
         Utils = new GUtils(this, "GodsOfDeceit");
-        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
+
+        /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
+        Utils.Path = new GPath(Utils);
+        Utils.Log = new GLog(Utils);
+
+        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
+        Utils.BuildInfo = new GBuildInfo(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
-        Utils.Log = new GLog(Utils);
-        Utils.Path = new GPath(Utils);
         Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }
@@ -1154,9 +1158,156 @@ public class GThirdParty
     }
 }
 
+public class GBuildInfo
+{
+    public string Company { get; }
+    public string Name { get; }
+    public string InternalName { get; }
+    public string Description { get; }
+    public int VersionMajor { get; }
+    public int VersionMinor { get; }
+    public int VersionPatch { get; }
+    public string Branch { get; }
+    public string ShorRevisionHash { get; }
+    public string Revision { get; }
+    public string BuildHost { get; }
+
+    private GUtils Utils;
+    
+    public GBuildInfo(GUtils Utils)
+    {
+        this.Utils = Utils;
+
+        Company = "Khavaran67";
+        Name = "Gods of Deceit";
+        InternalName = "GOD";
+        Description = "A first-person shooter game written and developed in C++ and Unreal Engine 4.";
+        VersionMajor = 0;
+        VersionMinor = 0;
+        VersionPatch = 1;
+        Branch = GetBranch();
+        ShorRevisionHash = GetShorRevisionHash();
+
+        if (!string.IsNullOrEmpty(Branch) && !string.IsNullOrEmpty(ShorRevisionHash))
+        {
+            Revision = String.Format("{0}-{1}", Branch, ShorRevisionHash);
+        }
+        else if (!string.IsNullOrEmpty(Branch))
+        {
+            Revision = Branch;
+        }
+        else if (!string.IsNullOrEmpty(ShorRevisionHash))
+        {
+            Revision = ShorRevisionHash;
+        }
+        else
+        {
+            Revision = String.Empty;
+        }
+
+        BuildHost = System.Net.Dns.GetHostName();
+    }
+
+    private string GetBranch()
+    {
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
+
+        try
+        {
+            System.Diagnostics.Process Process = new System.Diagnostics.Process();
+            Process.StartInfo.FileName = bWindowsBuild ? "git.exe" : "git";
+            Process.StartInfo.Arguments = "rev-parse --abbrev-ref HEAD";
+            Process.StartInfo.UseShellExecute = false;
+            Process.StartInfo.RedirectStandardOutput = true;
+            Process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            Process.StartInfo.CreateNoWindow = true;
+            Process.StartInfo.WorkingDirectory = Utils.Path.ProjectPath;
+            Process.Start();
+
+            string Branch = Process.StandardOutput.ReadToEnd().Trim();
+            Process.WaitForExit();
+
+            return Branch;
+        }
+
+        catch (System.ObjectDisposedException ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.InvalidOperationException ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.ComponentModel.Win32Exception ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.Exception ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        Utils.Log.Warning("Warning: cannot get branch name through git executable; setting branch name to an empty string!");
+
+        return string.Empty;
+    }
+
+    private string GetShorRevisionHash()
+    {
+        bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
+
+        try {
+            System.Diagnostics.Process Process = new System.Diagnostics.Process();
+            Process.StartInfo.FileName = bWindowsBuild ? "git.exe" : "git";
+            Process.StartInfo.Arguments = String.Format(
+                        "--git-dir=\"{0}\" --work-tree=\"{1}\" describe --always",
+                        Utils.Path.GitDirectoryPath, Utils.Path.ProjectPath);
+            Process.StartInfo.UseShellExecute = false;
+            Process.StartInfo.RedirectStandardOutput = true;
+            Process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            Process.StartInfo.CreateNoWindow = true;
+            Process.StartInfo.WorkingDirectory = Utils.Path.ProjectPath;
+            Process.Start();
+
+            string RevisionHash = Process.StandardOutput.ReadToEnd().Trim();
+            Process.WaitForExit();
+
+            return RevisionHash;
+        }
+
+        catch (System.ObjectDisposedException ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.InvalidOperationException ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.ComponentModel.Win32Exception ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        catch (System.Exception ex)
+        {
+            Utils.Log.Error(ex.Message);
+        }
+
+        Utils.Log.Warning("Warning: cannot get revision number name through git executable; setting revision number to an empty string!");
+
+        return string.Empty;
+    }
+}
+
 public class GUtils : Object
 {
     public GBuildConfiguration BuildConfiguration;
+    public GBuildInfo BuildInfo;
     public GBuildPlatform BuildPlatform;
     public GDefinitions Definitions;
     public GEngineModules EngineModules;
