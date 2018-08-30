@@ -62,6 +62,7 @@ public class GodsOfDeceit : ModuleRules
     private void InitializeUtils()
     {
         Utils = new GUtils(this, "GodsOfDeceit");
+        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
@@ -129,42 +130,197 @@ public class GodsOfDeceit : ModuleRules
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
-        Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        Utils.BuildConfiguration.SetPCHUsage(PCHUsageMode.UseExplicitOrSharedPCHs);
+        Utils.BuildConfiguration.SetUseRTTI(false);
+        Utils.BuildConfiguration.SetEnableExceptions(false);
+        Utils.BuildConfiguration.SetUseAVX(bX64 && !bShippingBuild);
+        Utils.BuildConfiguration.SetEnableShadowVariableWarnings(true);
+        Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);
+        Utils.BuildConfiguration.SetFasterWithoutUnity(bDebugBuild);
+        Utils.BuildConfiguration.SetOptimizeCode(bDebugBuild ? CodeOptimization.Never : CodeOptimization.Always);
 
-        Utils.Log.Info("Disabling run-time type identification...");
-        this.bUseRTTI = false;
+        Utils.Log.EmptyLine();
 
-        Utils.Log.Info("Disabling exception handling...");
-        this.bEnableExceptions = false;
+        Utils.Log.EmptyLine();
+    }
+}
 
-        if (bX64 && !bShippingBuild)
+public class GBuildConfiguration
+{
+    private GUtils Utils;
+
+    public GBuildConfiguration(GUtils Utils)
+    {
+        this.Utils = Utils;
+    }
+
+    public void SetEnableExceptions(bool bEnableExceptions)
+    {
+        Utils.Module.bEnableExceptions = bEnableExceptions;
+
+        if (bEnableExceptions)
         {
-            Utils.Log.Info("Enabling AVX instructions...");
-            this.bUseAVX = true;
+            Utils.Log.Info("Enabling exception handling...");
         }
-
-        Utils.Log.Info("Enabling warnings for shadowed variables...");
-        this.bEnableShadowVariableWarnings = true;
-
-        Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
-        this.bEnableUndefinedIdentifierWarnings = true;
-
-        if (bDebugBuild)
+        else
         {
-            Utils.Log.Info("Enabling non-unity builds...");
-            this.bFasterWithoutUnity = true;
+            Utils.Log.Info("Disabling exception handling...");
+        }
+    }
 
-            Utils.Log.Info("Turning code optimization off for debugging purpose...");
-            this.OptimizeCode = CodeOptimization.Never;
+    public void SetEnableShadowVariableWarnings(bool bEnableShadowVariableWarnings)
+    {
+        Utils.Module.bEnableShadowVariableWarnings = bEnableShadowVariableWarnings;
+
+        if (bEnableShadowVariableWarnings)
+        {
+            Utils.Log.Info("Enabling warnings for shadowed variables...");
+        }
+        else
+        {
+            Utils.Log.Info("Disabling warnings for shadowed variables...");
+        }
+    }
+
+    public void SetEnableUndefinedIdentifierWarnings(bool bEnableUndefinedIdentifierWarnings)
+    {
+        Utils.Module.bEnableUndefinedIdentifierWarnings = bEnableUndefinedIdentifierWarnings;
+
+        if (bEnableUndefinedIdentifierWarnings)
+        {
+            Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
+        }
+        else
+        {
+            Utils.Log.Info("Disabling warnings for using undefined identifiers in #if expressions...");
+        }
+    }
+
+    public void SetFasterWithoutUnity(bool bFasterWithoutUnity)
+    {
+        Utils.Module.bFasterWithoutUnity = bFasterWithoutUnity;
+
+        if (bFasterWithoutUnity)
+        {
+            Utils.Log.Info("Enabling non-unity builds.....");
         }
         else
         {
             Utils.Log.Info("Enabling unity builds...");
-            this.bFasterWithoutUnity = false;
         }
+    }
 
-        Utils.Log.EmptyLine();
+    public void SetOptimizeCode(ModuleRules.CodeOptimization OptimizeCode)
+    {
+        bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
+
+        Utils.Module.OptimizeCode = OptimizeCode;
+
+        switch (OptimizeCode)
+        {
+            case ModuleRules.CodeOptimization.Never:
+                Utils.Log.Info("Disabling code optimization...");
+                break;
+
+            case ModuleRules.CodeOptimization.InNonDebugBuilds:
+                if (bDebugBuild)
+                {
+                    Utils.Log.Info("Debug build detected; disabling code optimization...");
+                }
+                else
+                {
+                    Utils.Log.Info("Non-debug build detected; enabling code optimization...");
+                }
+                break;
+
+            case ModuleRules.CodeOptimization.InShippingBuildsOnly:
+                if (bShippingBuild)
+                {
+                    Utils.Log.Info("Shipping build detected; enabling code optimization...");
+                }
+                else
+                {
+                    Utils.Log.Info("Non-shipping build detected; disabling code optimization...");
+                }
+                break;
+
+            case ModuleRules.CodeOptimization.Always:
+                Utils.Log.Info("Enabling code optimization...");
+                break;
+
+            case ModuleRules.CodeOptimization.Default:
+                if (bDebugBuild)
+                {
+                    Utils.Log.Info("Debug build detected; disabling code optimization for game modules...");
+                }
+                else
+                {
+                    Utils.Log.Info("Non-debug build detected; enabling code optimization for game modules...");
+                }
+                break;
+
+            default:
+                Utils.Log.Warning("Unknown code optimization settings: '{0}'!", OptimizeCode.ToString());
+                break;
+        }
+    }
+
+    public void SetPCHUsage(ModuleRules.PCHUsageMode PCHUsage)
+    {
+        Utils.Module.PCHUsage = PCHUsage;
+
+        switch (PCHUsage)
+        {
+            case ModuleRules.PCHUsageMode.Default:
+                Utils.Log.Info("Enabling shared PCH usage for engine modules only...");
+                Utils.Log.Info("Disabling shared PCH usage for game modules...");
+                break;
+
+            case ModuleRules.PCHUsageMode.NoSharedPCHs:
+                Utils.Log.Info("Disabling shared PCH usage...");
+                break;
+
+            case ModuleRules.PCHUsageMode.UseSharedPCHs:
+                Utils.Log.Info("Enabling shared PCH usage...");
+                break;
+
+            case ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs:
+                Utils.Log.Info("Enabling explicit or shared PCH usage...");
+                break;
+
+            default:
+                Utils.Log.Warning("Unknown PCH usage mode: '{0}'!", PCHUsage.ToString());
+                break;
+        }
+    }
+
+    public void SetUseAVX(bool bUseAVX)
+    {
+        Utils.Module.bUseAVX = bUseAVX;
+
+        if (bUseAVX)
+        {
+            Utils.Log.Info("Enabling AVX instructions...");
+        }
+        else
+        {
+            Utils.Log.Info("Disabling AVX instructions...");
+        }
+    }
+
+    public void SetUseRTTI(bool bUseRTTI)
+    {
+        Utils.Module.bUseRTTI = bUseRTTI;
+
+        if (bUseRTTI)
+        {
+            Utils.Log.Info("Enabling run-time type identification...");
+        }
+        else
+        {
+            Utils.Log.Info("Disabling run-time type identification...");
+        }
     }
 }
 
@@ -1056,6 +1212,7 @@ public class GThirdParty
 
 public class GUtils : Object
 {
+    public GBuildConfiguration BuildConfiguration;
     public GBuildPlatform BuildPlatform;
     public GDefinitions Definitions;
     public GEngineModules EngineModules;

@@ -58,6 +58,7 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
     private void InitializeUtils()
     {
         Utils = new GUtils(this, "GodsOfDeceitCryptoImpl");
+        Utils.BuildConfiguration = new GBuildConfiguration(Utils);
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
@@ -129,40 +130,14 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
         bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
-        Utils.Log.Info("Enabling explicit or shared PCH usage mode...");
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-
-        Utils.Log.Info("Enabling run-time type identification...");
-        this.bUseRTTI = true;
-
-        Utils.Log.Info("Enabling exception handling...");
-        this.bEnableExceptions = true;
-
-        if (bX64 && !bShippingBuild)
-        {
-            Utils.Log.Info("Enabling AVX instructions...");
-            this.bUseAVX = true;
-        }
-
-        Utils.Log.Info("Enabling warnings for shadowed variables...");
-        this.bEnableShadowVariableWarnings = true;
-
-        Utils.Log.Info("Enabling warnings for using undefined identifiers in #if expressions...");
-        this.bEnableUndefinedIdentifierWarnings = false;
-
-        if (bDebugBuild)
-        {
-            Utils.Log.Info("Enabling non-unity builds...");
-            this.bFasterWithoutUnity = true;
-
-            Utils.Log.Info("Turning code optimization off for debugging purpose...");
-            this.OptimizeCode = CodeOptimization.Never;
-        }
-        else
-        {
-            Utils.Log.Info("Enabling unity builds...");
-            this.bFasterWithoutUnity = false;
-        }
+        Utils.BuildConfiguration.SetPCHUsage(PCHUsageMode.UseExplicitOrSharedPCHs);
+        Utils.BuildConfiguration.SetUseRTTI(true);
+        Utils.BuildConfiguration.SetEnableExceptions(true);
+        Utils.BuildConfiguration.SetUseAVX(bX64 && !bShippingBuild);
+        Utils.BuildConfiguration.SetEnableShadowVariableWarnings(true);
+        Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);
+        Utils.BuildConfiguration.SetFasterWithoutUnity(bDebugBuild);
+        Utils.BuildConfiguration.SetOptimizeCode(bDebugBuild ? CodeOptimization.Never : CodeOptimization.Always);
 
         Utils.Log.EmptyLine();
     }
