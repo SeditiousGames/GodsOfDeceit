@@ -58,7 +58,7 @@ public class GodsOfDeceitLog : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceit");
+        Utils = new GUtils(this, "GodsOfDeceitLog");
 
         /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
