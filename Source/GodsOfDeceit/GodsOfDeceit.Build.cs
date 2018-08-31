@@ -1241,19 +1241,19 @@ public class GBuildInfo
     {
         Utils.Log.Info("Build information for module: '{0}'", Utils.ModuleName);
 
-        Utils.Log.Info("Company Name: '{0}'", Company);
-        Utils.Log.Info("Product Name: '{0}'", Name);
-        Utils.Log.Info("Internal Product Name: '{0}'", InternalName);
-        Utils.Log.Info("Product Description: '{0}'", Description);
-        Utils.Log.Info("Copyright: {0}", Copyright);
-        Utils.Log.Info("Product Major Version: '{0}'", VersionMajor);
-        Utils.Log.Info("Product Minor Version: '{0}'", VersionMinor);
-        Utils.Log.Info("Product Patch Version: '{0}'", VersionPatch);
-        Utils.Log.Info("Branch: '{0}'", Branch);
-        Utils.Log.Info("Short Revision Hash: '{0}'", ShortRevisionHash);
-        Utils.Log.Info("Version: '{0}'", this.Version);
-        Utils.Log.Info("Revision: '{0}'", Revision);
-        Utils.Log.Info("Build Host: '{0}'", BuildHost);
+        Utils.Log.Info("Company Name: {0}", Company);
+        Utils.Log.Info("Product Name: {0}", Name);
+        Utils.Log.Info("Product Internal Name: {0}", InternalName);
+        Utils.Log.Info("Product Description: {0}", Description);
+        Utils.Log.Info("Copyright Notice: {0}", Copyright);
+        Utils.Log.Info("Product Major Version: {0}", VersionMajor);
+        Utils.Log.Info("Product Minor Version: {0}", VersionMinor);
+        Utils.Log.Info("Product Patch Version: {0}", VersionPatch);
+        Utils.Log.Info("Branch Name: {0}", Branch);
+        Utils.Log.Info("Short Revision Hash: {0}", ShortRevisionHash);
+        Utils.Log.Info("Version: {0}", this.Version);
+        Utils.Log.Info("Revision: {0}", Revision);
+        Utils.Log.Info("Build Host: {0}", BuildHost);
 
         Utils.Log.EmptyLine();
     }
