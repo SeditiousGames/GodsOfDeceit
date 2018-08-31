@@ -86,6 +86,37 @@ public class GodsOfDeceitVersionImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_COMPANY_NAME=\"{0}\"",
+                        Utils.BuildInfo.Company));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_NAME=\"{0}\"",
+                        Utils.BuildInfo.Name));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME=\"{0}\"",
+                        Utils.BuildInfo.InternalName));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_DESCRIPTION=\"{0}\"",
+                        Utils.BuildInfo.Description));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION={0}",
+                        Utils.BuildInfo.VersionMajor));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_MINOR_VERSION={0}",
+                        Utils.BuildInfo.VersionMinor));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_PATCH_VERSION={0}",
+                        Utils.BuildInfo.VersionPatch));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_BRANCH_NAME=\"{0}\"",
+                        Utils.BuildInfo.Branch));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH=\"{0}\"",
+                        Utils.BuildInfo.ShortRevisionHash));
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_BUILD_INFO_PRODUCT_BUILD_HOST=\"{0}\"",
+                        Utils.BuildInfo.BuildHost));
+
         Utils.Log.EmptyLine();
     }
 
@@ -94,6 +125,7 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
         Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCoreUObject(true);
 
         Utils.Log.EmptyLine();
     }
