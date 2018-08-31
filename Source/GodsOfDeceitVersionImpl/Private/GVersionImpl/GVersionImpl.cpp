@@ -118,6 +118,12 @@ const TCHAR* GetProductBuildTime()
     return GBuildInfo::GetProductBuildTime();
 }
 
+const bool GetProductBuildInfoAsJson(
+        TCHAR* Out_Json, const bool bPretty)
+{
+    return GBuildInfo::ToJson(Out_Json, bPretty);
+}
+
 #ifdef __cplusplus
 }
 #endif  /* __cplusplus */

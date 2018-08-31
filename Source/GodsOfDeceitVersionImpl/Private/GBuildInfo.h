@@ -40,10 +40,14 @@
 #include <cstdio>
 #include <ctime>
 
-#include <boost/preprocessor/stringize.hpp>
-
 #include <Containers/StringConv.h>
 #include <Containers/UnrealString.h>
+
+#include <GHacks/GUndef_check.h>
+THIRD_PARTY_INCLUDES_START
+#include <boost/preprocessor/stringize.hpp>
+THIRD_PARTY_INCLUDES_END
+#include <GHacks/GRestore_check.h>
 
 class GBuildInfo
 {
@@ -84,7 +88,7 @@ public:
     {
         static FString ProductCopyrightNotice;
 
-        if (ProductCopyrightNotice == TEXT(""))
+        if (ProductCopyrightNotice.IsEmpty())
         {
             int Year;
             char Month[3];
@@ -195,5 +199,16 @@ public:
                     StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_BUILD_HOST).Get());
 
         return *ProductBuildHost;
+    }
+
+    static bool ToJson(TCHAR*& Out_Json, const bool bPretty = false);
+
+    static FORCEINLINE TCHAR* ToJson(const bool bPretty = false)
+    {
+        TCHAR* Json = nullptr;
+
+        (void)ToJson(Json, bPretty);
+
+        return Json;
     }
 };

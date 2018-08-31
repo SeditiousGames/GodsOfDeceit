@@ -78,8 +78,8 @@ DLLEXPORT const TCHAR* GetProductBuildHost();
 DLLEXPORT const TCHAR* GetProductBuildDate();
 DLLEXPORT const TCHAR* GetProductBuildTime();
 
-//DLLEXPORT const bool GetProductBuildInfoAsJson(
-//        const TCHAR *Out_Json, const bool bPretty);
+DLLEXPORT const bool GetProductBuildInfoAsJson(
+        TCHAR* Out_Json, const bool bPretty);
 
 #else
 
@@ -99,8 +99,8 @@ DLLIMPORT const TCHAR* GetProductBuildHost();
 DLLIMPORT const TCHAR* GetProductBuildDate();
 DLLIMPORT const TCHAR* GetProductBuildTime();
 
-//DLLIMPORT const bool GetProductBuildInfoAsJson(
-//        const TCHAR *Out_Json, const bool bPretty);
+DLLIMPORT const bool GetProductBuildInfoAsJson(
+        TCHAR* Out_Json, const bool bPretty);
 
 #endif  /* defined ( GOD_BUILDING_IMPL ) */
 

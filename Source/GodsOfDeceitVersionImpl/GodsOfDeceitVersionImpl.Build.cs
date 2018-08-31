@@ -135,6 +135,7 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
         Utils.GameModules.AddHacks(true);
+        Utils.GameModules.AddPlatform(true);
 
         Utils.Log.EmptyLine();
     }
