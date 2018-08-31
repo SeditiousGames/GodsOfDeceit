@@ -121,6 +121,7 @@ public class GodsOfDeceit : ModuleRules
         Utils.GameModules.AddLog(false);
         Utils.GameModules.AddPersistentData(false);
         Utils.GameModules.AddPlatform(false);
+        Utils.GameModules.AddVersion(false);
 
         Utils.Log.EmptyLine();
     }
@@ -719,6 +720,30 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitPlatformImpl");
+        }
+    }
+
+    public void AddVersion(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitVersion");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitVersion");
+        }
+    }
+
+    public void AddVersionImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitVersionImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitVersionImpl");
         }
     }
 
