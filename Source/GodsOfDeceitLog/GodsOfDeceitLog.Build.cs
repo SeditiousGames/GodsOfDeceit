@@ -51,6 +51,8 @@ public class GodsOfDeceitLog : ModuleRules
         AddDefinitions();
         AddThirdPartyLibraries();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 

@@ -52,6 +52,8 @@ public class GodsOfDeceitCompressionImpl : ModuleRules
         AddDefinitions();
         AddThirdPartyLibraries();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 

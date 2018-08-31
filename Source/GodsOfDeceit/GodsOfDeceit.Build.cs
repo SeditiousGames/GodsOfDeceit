@@ -56,6 +56,8 @@ public class GodsOfDeceit : ModuleRules
         AddPlugins();
         AddDefinitions();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 
@@ -149,8 +151,6 @@ public class GodsOfDeceit : ModuleRules
         Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);
         Utils.BuildConfiguration.SetFasterWithoutUnity(bDebugBuild);
         Utils.BuildConfiguration.SetOptimizeCode(bDebugBuild ? CodeOptimization.Never : CodeOptimization.Always);
-
-        Utils.Log.EmptyLine();
 
         Utils.Log.EmptyLine();
     }
@@ -1168,7 +1168,8 @@ public class GBuildInfo
     public int VersionMinor { get; }
     public int VersionPatch { get; }
     public string Branch { get; }
-    public string ShorRevisionHash { get; }
+    public string ShortRevisionHash { get; }
+    public string Version { get; }
     public string Revision { get; }
     public string BuildHost { get; }
 
@@ -1186,19 +1187,20 @@ public class GBuildInfo
         VersionMinor = 0;
         VersionPatch = 1;
         Branch = GetBranch();
-        ShorRevisionHash = GetShorRevisionHash();
+        ShortRevisionHash = GetShortRevisionHash();
+        this.Version = String.Format("{0}.{1}.{2}", VersionMajor, VersionMinor, VersionPatch);
 
-        if (!string.IsNullOrEmpty(Branch) && !string.IsNullOrEmpty(ShorRevisionHash))
+        if (!string.IsNullOrEmpty(Branch) && !string.IsNullOrEmpty(ShortRevisionHash))
         {
-            Revision = String.Format("{0}-{1}", Branch, ShorRevisionHash);
+            Revision = String.Format("{0}-{1}", Branch, ShortRevisionHash);
         }
         else if (!string.IsNullOrEmpty(Branch))
         {
             Revision = Branch;
         }
-        else if (!string.IsNullOrEmpty(ShorRevisionHash))
+        else if (!string.IsNullOrEmpty(ShortRevisionHash))
         {
-            Revision = ShorRevisionHash;
+            Revision = ShortRevisionHash;
         }
         else
         {
@@ -1206,6 +1208,26 @@ public class GBuildInfo
         }
 
         BuildHost = System.Net.Dns.GetHostName();
+    }
+
+    public void Print()
+    {
+        Utils.Log.Info("Build information for module: '{0}'", Utils.ModuleName);
+
+        Utils.Log.Info("Company Name: '{0}'", Company);
+        Utils.Log.Info("Product Name: '{0}'", Name);
+        Utils.Log.Info("Internal Product Name: '{0}'", InternalName);
+        Utils.Log.Info("Product Description: '{0}'", Description);
+        Utils.Log.Info("Product Major Version: '{0}'", VersionMajor);
+        Utils.Log.Info("Product Minor Version: '{0}'", VersionMinor);
+        Utils.Log.Info("Product Patch Version: '{0}'", VersionPatch);
+        Utils.Log.Info("Branch: '{0}'", Branch);
+        Utils.Log.Info("Short Revision Hash: '{0}'", ShortRevisionHash);
+        Utils.Log.Info("Version: '{0}'", this.Version);
+        Utils.Log.Info("Revision: '{0}'", Revision);
+        Utils.Log.Info("Build Host: '{0}'", BuildHost);
+
+        Utils.Log.EmptyLine();
     }
 
     private string GetBranch()
@@ -1255,7 +1277,7 @@ public class GBuildInfo
         return string.Empty;
     }
 
-    private string GetShorRevisionHash()
+    private string GetShortRevisionHash()
     {
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 

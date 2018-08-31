@@ -50,6 +50,8 @@ public class GodsOfDeceitLoadingScreen : ModuleRules
         AddEngineModules();
         AddDefinitions();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 

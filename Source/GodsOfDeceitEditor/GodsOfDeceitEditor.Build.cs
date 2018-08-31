@@ -50,6 +50,8 @@ public class GodsOfDeceitEditor : ModuleRules
         AddEngineModules();
         AddGameModules();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 

@@ -52,6 +52,8 @@ public class GodsOfDeceitCrypto : ModuleRules
         AddDefinitions();
         AddThirdPartyLibraries();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 

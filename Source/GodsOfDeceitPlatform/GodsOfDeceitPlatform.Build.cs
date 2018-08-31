@@ -52,6 +52,8 @@ public class GodsOfDeceitPlatform : ModuleRules
         AddDefinitions();
         AddThirdPartyLibraries();
 
+        Utils.BuildInfo.Print();
+
         Utils.Log.Stop();
     }
 
