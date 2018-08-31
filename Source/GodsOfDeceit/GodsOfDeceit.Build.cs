@@ -1164,6 +1164,7 @@ public class GBuildInfo
     public string Name { get; }
     public string InternalName { get; }
     public string Description { get; }
+    public string Copyright { get; }
     public int VersionMajor { get; }
     public int VersionMinor { get; }
     public int VersionPatch { get; }
@@ -1179,10 +1180,11 @@ public class GBuildInfo
     {
         this.Utils = Utils;
 
-        Company = "Khavaran67";
+        Company = "Khavaran67 & Mohammad S. Babaei";
         Name = "Gods of Deceit";
         InternalName = "GOD";
         Description = "A first-person shooter game written and developed in C++ and Unreal Engine 4.";
+        Copyright = String.Format("(C) {0} {1}. All Rights Reserved.", DateTime.Now.Year.ToString(), Company);
         VersionMajor = 0;
         VersionMinor = 0;
         VersionPatch = 1;
@@ -1218,6 +1220,7 @@ public class GBuildInfo
         Utils.Log.Info("Product Name: '{0}'", Name);
         Utils.Log.Info("Internal Product Name: '{0}'", InternalName);
         Utils.Log.Info("Product Description: '{0}'", Description);
+        Utils.Log.Info("Copyright: {0}", Copyright);
         Utils.Log.Info("Product Major Version: '{0}'", VersionMajor);
         Utils.Log.Info("Product Minor Version: '{0}'", VersionMinor);
         Utils.Log.Info("Product Patch Version: '{0}'", VersionPatch);
