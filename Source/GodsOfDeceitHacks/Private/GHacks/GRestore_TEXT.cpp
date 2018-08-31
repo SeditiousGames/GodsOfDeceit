@@ -35,4 +35,4 @@
  */
 
 
-#include <GHacks/GRestore_TEXT.h>
+#include "GRestore_TEXT.h"

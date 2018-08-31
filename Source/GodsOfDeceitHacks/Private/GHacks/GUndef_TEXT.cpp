@@ -35,4 +35,4 @@
  */
 
 
-#include <GHacks/GUndef_TEXT.h>
+#include "GUndef_TEXT.h"

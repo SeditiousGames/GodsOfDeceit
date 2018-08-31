@@ -34,7 +34,7 @@
  */
 
 
-#include <GPlatform/GSystem.h>
+#include "GSystem.h"
 
 #include <Containers/StringConv.h>
 #include <Misc/AssertionMacros.h>

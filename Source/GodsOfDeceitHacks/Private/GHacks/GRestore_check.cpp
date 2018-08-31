@@ -36,4 +36,4 @@
  */
 
 
-#include <GHacks/GRestore_check.h>
+#include "GRestore_check.h"

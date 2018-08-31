@@ -34,7 +34,7 @@
  */
 
 
-#include <GLog/GLog.h>
+#include "GLog.h"
 
 #include <Containers/Map.h>
 #include <Engine/Engine.h>
