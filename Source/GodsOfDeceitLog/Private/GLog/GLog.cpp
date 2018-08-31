@@ -40,7 +40,6 @@
 #include <Engine/Engine.h>
 #include <Logging/LogMacros.h>
 
-
 DEFINE_LOG_CATEGORY ( Log_AI )
 DEFINE_LOG_CATEGORY ( Log_Animation )
 DEFINE_LOG_CATEGORY ( Log_Blueprints )
@@ -51,9 +50,7 @@ DEFINE_LOG_CATEGORY ( Log_Player )
 DEFINE_LOG_CATEGORY ( Log_SQL )
 DEFINE_LOG_CATEGORY ( Log_Weapon )
 
-
 static constexpr float ON_SCREEN_LOG_DURATION = 8.0f;
-
 
 struct GLogCore::StaticImpl
 {

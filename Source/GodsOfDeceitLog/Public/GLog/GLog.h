@@ -52,7 +52,6 @@
 #include <UObject/NameTypes.h>
 #include <UObject/ObjectMacros.h>
 
-
 DECLARE_LOG_CATEGORY_EXTERN ( Log_AI, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_Animation, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_Blueprints, All, All );
@@ -62,7 +61,6 @@ DECLARE_LOG_CATEGORY_EXTERN ( Log_Input, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_Player, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_SQL, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_Weapon, All, All );
-
 
 static constexpr uint64 GLOG_KEY_INFINITE = static_cast<uint64>(-1);
 static constexpr uint64 GLOG_KEY_AI = static_cast<uint64>(-1);  /* For the time being, due to a bug in 4.19+ any value other than -1 won't work */
@@ -74,7 +72,6 @@ static constexpr uint64 GLOG_KEY_INPUT = static_cast<uint64>(-1);  /* For the ti
 static constexpr uint64 GLOG_KEY_PLAYER = static_cast<uint64>(-1);  /* For the time being, due to a bug in 4.19+ any value other than -1 won't work */
 static constexpr uint64 GLOG_KEY_SQL = static_cast<uint64>(-1);  /* For the time being, due to a bug in 4.19+ any value other than -1 won't work */
 static constexpr uint64 GLOG_KEY_WEAPON = static_cast<uint64>(-1);  /* For the time being, due to a bug in 4.19+ any value other than -1 won't work */
-
 
 template<typename TYPE>
 struct GLogString
@@ -553,7 +550,6 @@ struct GLogString<std::wstring>
     }
 };
 
-
 class GLogCore
 {
 public:
@@ -654,7 +650,6 @@ public:
     }
 };
 
-
 /* Generic */
 
 #define GLOG_FATAL( Key, ... )  \
@@ -680,7 +675,6 @@ public:
 
 #define GLOG( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Generic, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
-
 
 /* AI */
 
@@ -708,7 +702,6 @@ public:
 #define GLOG_AI( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::AI, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
-
 /* Animatoin */
 
 #define GLOG_ANIMATION_FATAL( Key, ... )  \
@@ -734,7 +727,6 @@ public:
 
 #define GLOG_ANIMATION( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Animation, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
-
 
 /* Blueprints */
 
@@ -762,7 +754,6 @@ public:
 #define GLOG_BLUEPRINTS( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Blueprints, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
-
 /* Editor */
 
 #define GLOG_EDITOR_FATAL( Key, ... )  \
@@ -788,7 +779,6 @@ public:
 
 #define GLOG_EDITOR( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Editor, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
-
 
 /* Input */
 
@@ -816,7 +806,6 @@ public:
 #define GLOG_INPUT( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Input, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
-
 /* SQL */
 
 #define GLOG_SQL_FATAL( Key, ... )  \
@@ -842,7 +831,6 @@ public:
 
 #define GLOG_SQL( ... )  \
     (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::SQL, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
-
 
 /* Weapon */
 
