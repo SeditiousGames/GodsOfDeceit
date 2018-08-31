@@ -60,7 +60,7 @@ extern "C"
 {
 #endif  /* __cplusplus */
 
-#if defined ( GOD_BUILDING_IMPL )
+#if defined ( GOD_BUILDING_VERSION_IMPL_MODULE )
 
 DLLEXPORT const TCHAR* GetProductCompanyName();
 DLLEXPORT const TCHAR* GetProductName();
@@ -102,7 +102,7 @@ DLLIMPORT const TCHAR* GetProductBuildTime();
 DLLIMPORT const bool GetProductBuildInfoAsJson(
         TCHAR* Out_Json, const bool bPretty);
 
-#endif  /* defined ( GOD_BUILDING_IMPL ) */
+#endif  /* defined ( GOD_BUILDING_VERSION_IMPL_MODULE ) */
 
 #ifdef __cplusplus
 }

@@ -86,6 +86,8 @@ public class GodsOfDeceitVersionImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_VERSION_IMPL_MODULE");
+
         Utils.Definitions.DefinePublicly(
                 string.Format("GOD_BUILD_INFO_PRODUCT_COMPANY_NAME=\"{0}\"",
                         Utils.BuildInfo.Company));
