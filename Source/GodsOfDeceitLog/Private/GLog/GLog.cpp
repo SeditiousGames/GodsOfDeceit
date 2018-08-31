@@ -58,7 +58,8 @@ static constexpr float ON_SCREEN_LOG_DURATION = 8.0f;
 struct GLogCore::StaticImpl
 {
 public:
-    struct VerbosityMapper {
+    struct VerbosityMapper
+    {
         FString Tag;
         FColor Color;
 
@@ -92,16 +93,17 @@ std::unique_ptr<GLogCore::StaticImpl, GLogCore::StaticImplDeleter> GLogCore::SPi
         new GLogCore::StaticImpl{}, GLogCore::SPimplDeleter);
 
 GLogCore::GLogCore(const EVerbosity& Verbosity,
-           const ECategory& Category,
-           const uint64 Key,
-           const std::string& File,
-           const std::string& Function,
-           const int32 Line)
+                   const ECategory& Category,
+                   const uint64 Key,
+                   const std::string& File,
+                   const std::string& Function,
+                   const int32 Line)
     : Pimpl(std::unique_ptr<Impl, ImplDeleter>(new Impl{}, PimplDeleter)),
       bAnyEntries(false)
 {
 #if defined ( GOD_LOGGING )
-    if (!SPimpl->bInitialized) {
+    if (!SPimpl->bInitialized)
+    {
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::Fatal,
                     StaticImpl::VerbosityMapper(TEXT("FATAL"), FColor::White));
@@ -153,303 +155,460 @@ GLogCore::~GLogCore()
                                           Buffer.GetCharArray().GetData()));
 
     /// Generic
-    if (Category == ECategory::Generic) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Generic)
+    {
+        switch(Verbosity)
+        {
+
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Generic, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_Generic, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_Generic, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_Generic, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_Generic, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_Generic, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_Generic, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// AI
-    if (Category == ECategory::AI) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::AI)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_AI, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_AI, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_AI, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_AI, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_AI, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_AI, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_AI, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// Animation
-    if (Category == ECategory::Animation) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Animation)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Animation, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_Animation, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_Animation, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_Animation, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_Animation, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_Animation, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_Animation, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// Blueprints
-    if (Category == ECategory::Blueprints) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Blueprints)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Blueprints, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Error: {
-            UE_LOG(Log_Blueprints, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Fatal: {
-            UE_LOG(Log_Blueprints, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Log: {
-            UE_LOG(Log_Blueprints, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Verbose: {
-            UE_LOG(Log_Blueprints, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::VeryVerbose: {
-            UE_LOG(Log_Blueprints, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Warning: {
-            UE_LOG(Log_Blueprints, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
         }
+            break;
+
+        case EVerbosity::Error:
+        {
+            UE_LOG(Log_Blueprints, Error, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Fatal:
+        {
+            UE_LOG(Log_Blueprints, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Log:
+        {
+            UE_LOG(Log_Blueprints, Log, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Verbose:
+        {
+            UE_LOG(Log_Blueprints, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::VeryVerbose:
+        {
+            UE_LOG(Log_Blueprints, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Warning:
+        {
+            UE_LOG(Log_Blueprints, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+        }
+
     }
 
     /// Editor
-    if (Category == ECategory::Editor) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Editor)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Editor, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Error: {
-            UE_LOG(Log_Editor, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Fatal: {
-            UE_LOG(Log_Editor, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Log: {
-            UE_LOG(Log_Editor, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Verbose: {
-            UE_LOG(Log_Editor, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::VeryVerbose: {
-            UE_LOG(Log_Editor, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
-
-        case EVerbosity::Warning: {
-            UE_LOG(Log_Editor, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
         }
+            break;
+
+        case EVerbosity::Error:
+        {
+            UE_LOG(Log_Editor, Error, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Fatal:
+        {
+            UE_LOG(Log_Editor, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Log:
+        {
+            UE_LOG(Log_Editor, Log, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Verbose:
+        {
+            UE_LOG(Log_Editor, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::VeryVerbose:
+        {
+            UE_LOG(Log_Editor, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+
+        case EVerbosity::Warning:
+        {
+            UE_LOG(Log_Editor, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+        }
+            break;
+        }
+
     }
 
     /// Input
-    if (Category == ECategory::Input) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Input)
+    {
+        switch(Verbosity)
+        {
+
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Input, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_Input, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_Input, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_Input, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_Input, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_Input, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_Input, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// Player
-    if (Category == ECategory::Player) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Player)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Player, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_Player, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_Player, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_Player, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_Player, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_Player, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_Player, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// SQL
-    if (Category == ECategory::SQL) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::SQL)
+    {
+        switch(Verbosity)
+        {
+
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_SQL, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_SQL, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_SQL, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_SQL, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_SQL, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_SQL, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_SQL, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
     /// Weapon
-    if (Category == ECategory::Weapon) {
-        switch(Verbosity) {
-        case EVerbosity::Display: {
+    if (Category == ECategory::Weapon)
+    {
+        switch(Verbosity)
+        {
+        case EVerbosity::Display:
+        {
             UE_LOG(Log_Weapon, Display, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Error: {
+        case EVerbosity::Error:
+        {
             UE_LOG(Log_Weapon, Error, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Fatal: {
+        case EVerbosity::Fatal:
+        {
             UE_LOG(Log_Weapon, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Log: {
+        case EVerbosity::Log:
+        {
             UE_LOG(Log_Weapon, Log, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Verbose: {
+        case EVerbosity::Verbose:
+        {
             UE_LOG(Log_Weapon, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::VeryVerbose: {
+        case EVerbosity::VeryVerbose:
+        {
             UE_LOG(Log_Weapon, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
 
-        case EVerbosity::Warning: {
+        case EVerbosity::Warning:
+        {
             UE_LOG(Log_Weapon, Warning, TEXT("%s"), Message.GetCharArray().GetData());
-        } break;
+        }
+            break;
+
         }
     }
 
-    if (GEngine) {
+    if (GEngine)
+    {
         const FString OnScreenMessage(FString::Printf(TEXT("[%s %s %s] %s"),
                                                       Tag.GetCharArray().GetData(),
                                                       Pimpl->Function.GetCharArray().GetData(),

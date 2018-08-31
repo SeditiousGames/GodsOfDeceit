@@ -77,7 +77,8 @@ static constexpr uint64 GLOG_KEY_WEAPON = static_cast<uint64>(-1);  /* For the t
 
 
 template<typename TYPE>
-struct GLogString {
+struct GLogString
+{
     TYPE T1;
     FString T2;
     static_assert(std::is_same<decltype(T1), decltype(T2)>::value,
@@ -85,7 +86,8 @@ struct GLogString {
 };
 
 template<typename TYPE, size_t LENGTH>
-struct GLogString<TYPE[LENGTH]> {
+struct GLogString<TYPE[LENGTH]>
+{
     TYPE T1;
     FString T2;
     static_assert(std::is_same<decltype(T1), decltype(T2)>::value,
@@ -93,7 +95,8 @@ struct GLogString<TYPE[LENGTH]> {
 };
 
 template <>
-struct GLogString<const AActor*> {
+struct GLogString<const AActor*>
+{
     static void Format(const AActor* Actor, FString& Out_String)
     {
         checkf(Actor, TEXT("FATAL: cannot log NULL actor object!"));
@@ -103,7 +106,8 @@ struct GLogString<const AActor*> {
 };
 
 template <>
-struct GLogString<AActor*> {
+struct GLogString<AActor*>
+{
     static void Format(const AActor* Actor, FString& Out_String)
     {
         checkf(Actor, TEXT("FATAL: cannot log NULL actor object!"));
@@ -113,7 +117,8 @@ struct GLogString<AActor*> {
 };
 
 template <>
-struct GLogString<const bool> {
+struct GLogString<const bool>
+{
     static void Format(const bool Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), (Value ? TEXT("True") : TEXT("False")));
@@ -121,7 +126,8 @@ struct GLogString<const bool> {
 };
 
 template <>
-struct GLogString<bool> {
+struct GLogString<bool>
+{
     static void Format(const bool Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), (Value ? TEXT("True") : TEXT("False")));
@@ -129,7 +135,8 @@ struct GLogString<bool> {
 };
 
 template< std::size_t LENGTH>
-struct GLogString<const char[LENGTH]> {
+struct GLogString<const char[LENGTH]>
+{
     static void Format(const char* Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value).Get());
@@ -137,7 +144,8 @@ struct GLogString<const char[LENGTH]> {
 };
 
 template< std::size_t LENGTH>
-struct GLogString<char[LENGTH]> {
+struct GLogString<char[LENGTH]>
+{
     static void Format(const char* Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value).Get());
@@ -145,7 +153,8 @@ struct GLogString<char[LENGTH]> {
 };
 
 template <>
-struct GLogString<const char*> {
+struct GLogString<const char*>
+{
     static void Format(const char* Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value).Get());
@@ -153,7 +162,8 @@ struct GLogString<const char*> {
 };
 
 template <>
-struct GLogString<char*> {
+struct GLogString<char*>
+{
     static void Format(const char* Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value).Get());
@@ -161,7 +171,8 @@ struct GLogString<char*> {
 };
 
 template <>
-struct GLogString<const double> {
+struct GLogString<const double>
+{
     static void Format(const double Value, FString& Out_String)
     {
         char Buffer[100];
@@ -174,7 +185,8 @@ struct GLogString<const double> {
 };
 
 template <>
-struct GLogString<double> {
+struct GLogString<double>
+{
     static void Format(const double Value, FString& Out_String)
     {
         char Buffer[100];
@@ -187,7 +199,8 @@ struct GLogString<double> {
 };
 
 template <>
-struct GLogString<const float> {
+struct GLogString<const float>
+{
     static void Format(const float Value, FString& Out_String)
     {
         Out_String = FString::SanitizeFloat(Value, 1);
@@ -203,7 +216,8 @@ struct GLogString<float> {
 };
 
 template <>
-struct GLogString<const FName> {
+struct GLogString<const FName>
+{
     static void Format(const FName& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -211,7 +225,8 @@ struct GLogString<const FName> {
 };
 
 template <>
-struct GLogString<FName> {
+struct GLogString<FName>
+{
     static void Format(const FName& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -219,7 +234,8 @@ struct GLogString<FName> {
 };
 
 template <>
-struct GLogString<const FRotator> {
+struct GLogString<const FRotator>
+{
     static void Format(const FRotator& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -227,7 +243,8 @@ struct GLogString<const FRotator> {
 };
 
 template <>
-struct GLogString<FRotator> {
+struct GLogString<FRotator>
+{
     static void Format(const FRotator& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -235,7 +252,8 @@ struct GLogString<FRotator> {
 };
 
 template <>
-struct GLogString<const FString> {
+struct GLogString<const FString>
+{
     static void Format(const FString& Value, FString& Out_String)
     {
         Out_String = Value;
@@ -243,7 +261,8 @@ struct GLogString<const FString> {
 };
 
 template <>
-struct GLogString<FString> {
+struct GLogString<FString>
+{
     static void Format(const FString& Value, FString& Out_String)
     {
         Out_String = Value;
@@ -251,7 +270,8 @@ struct GLogString<FString> {
 };
 
 template <>
-struct GLogString<const FVector> {
+struct GLogString<const FVector>
+{
     static void Format(const FVector& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -259,7 +279,8 @@ struct GLogString<const FVector> {
 };
 
 template <>
-struct GLogString<FVector> {
+struct GLogString<FVector>
+{
     static void Format(const FVector& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.ToString().GetCharArray().GetData());
@@ -267,7 +288,8 @@ struct GLogString<FVector> {
 };
 
 template <>
-struct GLogString<const int8> {
+struct GLogString<const int8>
+{
     static void Format(const int8 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -275,7 +297,8 @@ struct GLogString<const int8> {
 };
 
 template <>
-struct GLogString<int8> {
+struct GLogString<int8>
+{
     static void Format(const int8 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -283,7 +306,8 @@ struct GLogString<int8> {
 };
 
 template <>
-struct GLogString<const int16> {
+struct GLogString<const int16>
+{
     static void Format(const int16 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -291,7 +315,8 @@ struct GLogString<const int16> {
 };
 
 template <>
-struct GLogString<int16> {
+struct GLogString<int16>
+{
     static void Format(const int16 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -299,7 +324,8 @@ struct GLogString<int16> {
 };
 
 template <>
-struct GLogString<const int32> {
+struct GLogString<const int32>
+{
     static void Format(const int32 Value, FString& Out_String)
     {
         Out_String = FString::FromInt(Value);
@@ -307,7 +333,8 @@ struct GLogString<const int32> {
 };
 
 template <>
-struct GLogString<int32> {
+struct GLogString<int32>
+{
     static void Format(const int32 Value, FString& Out_String)
     {
         Out_String = FString::FromInt(Value);
@@ -315,7 +342,8 @@ struct GLogString<int32> {
 };
 
 template <>
-struct GLogString<const int64> {
+struct GLogString<const int64>
+{
     static void Format(const int64 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -323,7 +351,8 @@ struct GLogString<const int64> {
 };
 
 template <>
-struct GLogString<int64> {
+struct GLogString<int64>
+{
     static void Format(const int64 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -331,7 +360,8 @@ struct GLogString<int64> {
 };
 
 template <>
-struct GLogString<const long double> {
+struct GLogString<const long double>
+{
     static void Format(const long double Value, FString& Out_String)
     {
         char Buffer[100];
@@ -344,7 +374,8 @@ struct GLogString<const long double> {
 };
 
 template <>
-struct GLogString<long double> {
+struct GLogString<long double>
+{
     static void Format(const long double Value, FString& Out_String)
     {
         char Buffer[100];
@@ -358,7 +389,8 @@ struct GLogString<long double> {
 
 #if defined ( __linux__ )
 template <>
-struct GLogString<const std::size_t> {
+struct GLogString<const std::size_t>
+{
     static void Format(const std::size_t Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -368,7 +400,8 @@ struct GLogString<const std::size_t> {
 
 #if defined ( __linux__ )
 template <>
-struct GLogString<std::size_t> {
+struct GLogString<std::size_t>
+{
     static void Format(const std::size_t Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -377,7 +410,8 @@ struct GLogString<std::size_t> {
 #endif  /* defined ( __linux__ ) */
 
 template <>
-struct GLogString<const uint8> {
+struct GLogString<const uint8>
+{
     static void Format(const int8 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -385,7 +419,8 @@ struct GLogString<const uint8> {
 };
 
 template <>
-struct GLogString<uint8> {
+struct GLogString<uint8>
+{
     static void Format(const int8 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -393,7 +428,8 @@ struct GLogString<uint8> {
 };
 
 template <>
-struct GLogString<const uint16> {
+struct GLogString<const uint16>
+{
     static void Format(const int16 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -401,7 +437,8 @@ struct GLogString<const uint16> {
 };
 
 template <>
-struct GLogString<uint16> {
+struct GLogString<uint16>
+{
     static void Format(const int16 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -409,7 +446,8 @@ struct GLogString<uint16> {
 };
 
 template <>
-struct GLogString<const uint32> {
+struct GLogString<const uint32>
+{
     static void Format(const int32 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -417,7 +455,8 @@ struct GLogString<const uint32> {
 };
 
 template <>
-struct GLogString<uint32> {
+struct GLogString<uint32>
+{
     static void Format(const int32 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -425,7 +464,8 @@ struct GLogString<uint32> {
 };
 
 template <>
-struct GLogString<const uint64> {
+struct GLogString<const uint64>
+{
     static void Format(const int64 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -433,7 +473,8 @@ struct GLogString<const uint64> {
 };
 
 template <>
-struct GLogString<uint64> {
+struct GLogString<uint64>
+{
     static void Format(const int64 Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%d"), Value);
@@ -441,7 +482,8 @@ struct GLogString<uint64> {
 };
 
 template <>
-struct GLogString<const std::string> {
+struct GLogString<const std::string>
+{
     static void Format(const std::string& Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value.c_str()).Get());
@@ -449,7 +491,8 @@ struct GLogString<const std::string> {
 };
 
 template <>
-struct GLogString<std::string> {
+struct GLogString<std::string>
+{
     static void Format(const std::string& Value, FString& Out_String)
     {
         Out_String = FString(StringCast<TCHAR>(Value.c_str()).Get());
@@ -457,7 +500,8 @@ struct GLogString<std::string> {
 };
 
 template<std::size_t LENGTH>
-struct GLogString<const wchar_t[LENGTH]> {
+struct GLogString<const wchar_t[LENGTH]>
+{
     static void Format(const wchar_t* Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value);
@@ -465,7 +509,8 @@ struct GLogString<const wchar_t[LENGTH]> {
 };
 
 template<std::size_t LENGTH>
-struct GLogString<wchar_t[LENGTH]> {
+struct GLogString<wchar_t[LENGTH]>
+{
     static void Format(const wchar_t* Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value);
@@ -473,7 +518,8 @@ struct GLogString<wchar_t[LENGTH]> {
 };
 
 template <>
-struct GLogString<const wchar_t*> {
+struct GLogString<const wchar_t*>
+{
     static void Format(const wchar_t* Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value);
@@ -481,7 +527,8 @@ struct GLogString<const wchar_t*> {
 };
 
 template <>
-struct GLogString<wchar_t*> {
+struct GLogString<wchar_t*>
+{
     static void Format(const wchar_t* Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value);
@@ -489,7 +536,8 @@ struct GLogString<wchar_t*> {
 };
 
 template <>
-struct GLogString<const std::wstring> {
+struct GLogString<const std::wstring>
+{
     static void Format(const std::wstring& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.c_str());
@@ -497,7 +545,8 @@ struct GLogString<const std::wstring> {
 };
 
 template <>
-struct GLogString<std::wstring> {
+struct GLogString<std::wstring>
+{
     static void Format(const std::wstring& Value, FString& Out_String)
     {
         Out_String = FString::Printf(TEXT("%s"), Value.c_str());
@@ -505,9 +554,11 @@ struct GLogString<std::wstring> {
 };
 
 
-class GLogCore {
+class GLogCore
+{
 public:
-    enum class EVerbosity : uint8 {
+    enum class EVerbosity : uint8
+    {
         /** Always prints s fatal error to console (and log file) and crashes (even if logging is disabled) */
         Fatal,
 
@@ -542,7 +593,8 @@ public:
         VeryVerbose,
     };
 
-    enum class ECategory {
+    enum class ECategory
+    {
         AI,
         Animation,
         Blueprints,
