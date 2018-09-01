@@ -37,13 +37,15 @@
 
 #pragma once
 
+#ifndef __cplusplus
 //// NOTE
 /// Defines a C++ like static_assert
 #include <cassert>
+#endif  /* __cplusplus */
 
 //// NOTE
 /// Contains __bool_true_false_are_defined macro that can be used to check if
-/// boolean type is supported.
+/// boolean type is supported by the compiler.
 #include <cstdbool>
 
 #include <HAL/Platform.h>
@@ -56,6 +58,9 @@ static_assert(__bool_true_false_are_defined,
               "Error: bool, true, and false are not defined!");
 
 #ifdef __cplusplus
+/// NOTE
+/// If C++ is used convert it to C in order to prevent C++'s name mangling of
+/// method names.
 extern "C"
 {
 #endif  /* __cplusplus */
