@@ -32,6 +32,10 @@ BUILD_TARGET="${PROJECT_NAME}Editor"
 
 echo
 
+echo "Projects > Build & Run > Build > General > Shadow build ==> [ ]"
+
+echo
+
 echo "Projects > Build & Run > Build > Build Steps > Make > Make arguments ==> ${BUILD_TARGET}"
 echo "Projects > Build & Run > Build > Build Steps > Clean Steps > Make arguments ==> ${BUILD_TARGET} ARGS=\"-clean\""
 
