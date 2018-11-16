@@ -5,6 +5,7 @@
 *.VC.db
 
 # Qt Creator
+.qmake.stash
 *.autosave
 *.pro.user
 *.pro.user.*
