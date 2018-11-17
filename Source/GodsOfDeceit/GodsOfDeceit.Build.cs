@@ -1205,7 +1205,7 @@ public class GBuildInfo
     {
         this.Utils = Utils;
 
-        Company = "Khavaran67 & Mohammad S. Babaei";
+        Company = "Khavaran67 and Mohammad S. Babaei";
         Name = "Gods of Deceit";
         InternalName = "GOD";
         Description = "A first-person shooter game written and developed in C++ and Unreal Engine 4.";
