@@ -191,12 +191,12 @@ FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory directory)
             pathString = pathString.LeftChop(pathString.Len() - 2);
         }
 
-        pathString += GSystem::GetDirectorySeparatorChar()
-                + FString(UTF8_TO_TCHAR(G_WINDOWS_MY_GAMES_DIRECTORY_NAME))
-                + GSystem::GetDirectorySeparatorChar()
-                + GVersionInfo::CompanyName()
-                + GSystem::GetDirectorySeparatorChar()
-                + GVersionInfo::ProductName();
+//        pathString += GSystem::GetDirectorySeparatorChar()
+//                + FString(UTF8_TO_TCHAR(G_WINDOWS_MY_GAMES_DIRECTORY_NAME))
+//                + GSystem::GetDirectorySeparatorChar()
+//                + GVersionInfo::CompanyName()
+//                + GSystem::GetDirectorySeparatorChar()
+//                + GVersionInfo::ProductName();
 #endif  /* defined ( __linux__ ) */
     } break;
 
