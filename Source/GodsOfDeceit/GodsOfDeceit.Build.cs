@@ -902,22 +902,22 @@ public class GPath
             {
                 if (bDebugBuild)
                 {
-                    ThirdPartyLibraryLinkPath = Win32ThirdPartyDebugLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win64ThirdPartyDebugLibraryPath;
                 }
                 else
                 {
-                    ThirdPartyLibraryLinkPath = Win32ThirdPartyReleaseLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win64ThirdPartyReleaseLibraryPath;
                 }
             }
             else if (bX86)
             {
                 if (bDebugBuild)
                 {
-                    ThirdPartyLibraryLinkPath = Win64ThirdPartyDebugLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win32ThirdPartyDebugLibraryPath;
                 }
                 else
                 {
-                    ThirdPartyLibraryLinkPath = Win64ThirdPartyReleaseLibraryPath;
+                    ThirdPartyLibraryLinkPath = Win32ThirdPartyReleaseLibraryPath;
                 }
             }
             else
