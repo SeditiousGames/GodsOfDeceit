@@ -50,7 +50,6 @@ public class GodsOfDeceitPlatform : ModuleRules
         AddEngineModules();
         AddGameModules();
         AddDefinitions();
-        AddThirdPartyLibraries();
 
         Utils.BuildInfo.Print();
 
@@ -72,7 +71,6 @@ public class GodsOfDeceitPlatform : ModuleRules
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
         Utils.Plugins = new GPlugins(Utils);
-        Utils.ThirdParty = new GThirdParty(Utils);
     }
 
     private void AddDefinitions()
@@ -110,27 +108,6 @@ public class GodsOfDeceitPlatform : ModuleRules
 
         Utils.GameModules.AddHacks(true);
 
-        Utils.Log.EmptyLine();
-    }
-
-    private void AddThirdPartyLibraries()
-    {
-        Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddBoost();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 
