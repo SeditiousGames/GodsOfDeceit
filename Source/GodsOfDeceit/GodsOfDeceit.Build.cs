@@ -1093,11 +1093,11 @@ public class GThirdParty
         {
             if (bDebugBuild)
             {
-                AddPublicAdditionalLibrary("libcryptoppd.lib");
+                AddPublicAdditionalLibrary("cryptlibd.lib");
             }
             else
             {
-                AddPublicAdditionalLibrary("libcryptopp.lib");
+                AddPublicAdditionalLibrary("cryptlib.lib");
             }
         }
     }
@@ -1126,11 +1126,11 @@ public class GThirdParty
         {
             if (bDebugBuild)
             {
-                AddPublicAdditionalLibrary("libfmtd.lib");
+                AddPublicAdditionalLibrary("fmtd.lib");
             }
             else
             {
-                AddPublicAdditionalLibrary("libfmt.lib");
+                AddPublicAdditionalLibrary("fmt.lib");
             }
         }
     }
@@ -1152,11 +1152,11 @@ public class GThirdParty
         {
             if (bDebugBuild)
             {
-                AddPublicAdditionalLibrary("libsqlite3d.lib");
+                AddPublicAdditionalLibrary("sqlite3d.lib");
             }
             else
             {
-                AddPublicAdditionalLibrary("libsqlite3.lib");
+                AddPublicAdditionalLibrary("sqlite3.lib");
             }
         }
     }
