@@ -850,19 +850,19 @@ public class GLog
 
 public class GPath
 {
-    public string ModulePath { get; }
-    public string ProjectPath { get; }
-    public string GitDirectoryPath { get; }
-    public string PluginsPath { get; }
-    public string ThirdPartyPath { get; }
-    public string ThirdPartyIncludePath { get; }
-    public string LinuxThirdPartyDebugLibraryPath { get; }
-    public string LinuxThirdPartyReleaseLibraryPath { get; }
-    public string Win32ThirdPartyDebugLibraryPath { get; }
-    public string Win32ThirdPartyReleaseLibraryPath { get; }
-    public string Win64ThirdPartyDebugLibraryPath { get; }
-    public string Win64ThirdPartyReleaseLibraryPath { get; }
-    public string ThirdPartyLibraryLinkPath { get; }
+    public string ModulePath { get; private set; }
+    public string ProjectPath { get; private set; }
+    public string GitDirectoryPath { get; private set; }
+    public string PluginsPath { get; private set; }
+    public string ThirdPartyPath { get; private set; }
+    public string ThirdPartyIncludePath { get; private set; }
+    public string LinuxThirdPartyDebugLibraryPath { get; private set; }
+    public string LinuxThirdPartyReleaseLibraryPath { get; private set; }
+    public string Win32ThirdPartyDebugLibraryPath { get; private set; }
+    public string Win32ThirdPartyReleaseLibraryPath { get; private set; }
+    public string Win64ThirdPartyDebugLibraryPath { get; private set; }
+    public string Win64ThirdPartyReleaseLibraryPath { get; private set; }
+    public string ThirdPartyLibraryLinkPath { get; private set; }
 
     public GPath(GUtils Utils)
     {
@@ -1185,19 +1185,19 @@ public class GThirdParty
 
 public class GBuildInfo
 {
-    public string Company { get; }
-    public string Name { get; }
-    public string InternalName { get; }
-    public string Description { get; }
-    public string Copyright { get; }
-    public int VersionMajor { get; }
-    public int VersionMinor { get; }
-    public int VersionPatch { get; }
-    public string Branch { get; }
-    public string ShortRevisionHash { get; }
-    public string Version { get; }
-    public string Revision { get; }
-    public string BuildHost { get; }
+    public string Company { get; private set; }
+    public string Name { get; private set; }
+    public string InternalName { get; private set; }
+    public string Description { get; private set; }
+    public string Copyright { get; private set; }
+    public int VersionMajor { get; private set; }
+    public int VersionMinor { get; private set; }
+    public int VersionPatch { get; private set; }
+    public string Branch { get; private set; }
+    public string ShortRevisionHash { get; private set; }
+    public string Version { get; private set; }
+    public string Revision { get; private set; }
+    public string BuildHost { get; private set; }
 
     private GUtils Utils;
     
