@@ -121,6 +121,7 @@ public class GodsOfDeceit : ModuleRules
         Utils.GameModules.AddLog(false);
         Utils.GameModules.AddPersistentData(false);
         Utils.GameModules.AddPlatform(false);
+        Utils.GameModules.AddTypes(false);
         Utils.GameModules.AddVersion(false);
 
         Utils.Log.EmptyLine();
