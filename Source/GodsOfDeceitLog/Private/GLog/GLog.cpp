@@ -109,19 +109,23 @@ GLogCore::GLogCore(const EVerbosity& Verbosity,
                     StaticImpl::VerbosityMapper(TEXT("ERROR"), FColor::Red));
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::Warning,
-                    StaticImpl::VerbosityMapper(TEXT("WARNING"), FColor::Yellow));
+                    StaticImpl::VerbosityMapper(TEXT("WARNING"),
+                                                FColor::Yellow));
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::Display,
-                    StaticImpl::VerbosityMapper(TEXT("DISPLAY"), FColor::Green));
+                    StaticImpl::VerbosityMapper(TEXT("DISPLAY"),
+                                                FColor::Green));
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::Log,
                     StaticImpl::VerbosityMapper(TEXT("LOG"), FColor::Silver));
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::Verbose,
-                    StaticImpl::VerbosityMapper(TEXT("VERBOSE"), FColor::Purple));
+                    StaticImpl::VerbosityMapper(TEXT("VERBOSE"),
+                                                FColor::Purple));
         SPimpl->VerbosityMap.Add(
                     GLogCore::EVerbosity::VeryVerbose,
-                    StaticImpl::VerbosityMapper(TEXT("VERY_VERBOSE"), FColor::Magenta));
+                    StaticImpl::VerbosityMapper(TEXT("VERY_VERBOSE"),
+                                                FColor::Magenta));
 
         SPimpl->bInitialized = true;
     }
@@ -140,16 +144,18 @@ GLogCore::~GLogCore()
 #if defined ( GOD_LOGGING )
     const EVerbosity& Verbosity = Pimpl->Verbosity;
     const ECategory& Category = Pimpl->Category;
-    const StaticImpl::VerbosityMapper& VerbosityMapper = SPimpl->VerbosityMap[Verbosity];
+    const StaticImpl::VerbosityMapper& VerbosityMapper =
+            SPimpl->VerbosityMap[Verbosity];
     const FString &Tag = VerbosityMapper.Tag;
     const FColor &Color = VerbosityMapper.Color;
 
-    const FString Message(FString::Printf(TEXT("[%s %s %s %s] %s"),
-                                          Tag.GetCharArray().GetData(),
-                                          Pimpl->File.GetCharArray().GetData(),
-                                          Pimpl->Function.GetCharArray().GetData(),
-                                          Pimpl->Line.GetCharArray().GetData(),
-                                          Buffer.GetCharArray().GetData()));
+    const FString Message(FString::Printf(
+                              TEXT("[%s %s %s %s] %s"),
+                              Tag.GetCharArray().GetData(),
+                              Pimpl->File.GetCharArray().GetData(),
+                              Pimpl->Function.GetCharArray().GetData(),
+                              Pimpl->Line.GetCharArray().GetData(),
+                              Buffer.GetCharArray().GetData()));
 
     /// Generic
     if (Category == ECategory::Generic)
@@ -159,43 +165,50 @@ GLogCore::~GLogCore()
 
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Generic, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Generic, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Generic, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Generic, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Generic, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Generic, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Generic, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Generic, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -209,43 +222,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_AI, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_AI, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_AI, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_AI, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_AI, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_AI, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_AI, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_AI, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -259,43 +279,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Animation, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Animation, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Animation, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Animation, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Animation, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Animation, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Animation, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Animation, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -309,43 +336,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Blueprints, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Blueprints, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Blueprints, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Blueprints, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Blueprints, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Blueprints, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Blueprints, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Blueprints, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
         }
@@ -359,43 +393,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Editor, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Editor, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Editor, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Editor, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Editor, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Editor, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Editor, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Editor, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
         }
@@ -410,43 +451,50 @@ GLogCore::~GLogCore()
 
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Input, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Input, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Input, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Input, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Input, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Input, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Input, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Input, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -460,43 +508,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Player, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Player, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Player, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Player, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Player, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Player, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Player, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Player, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -511,43 +566,50 @@ GLogCore::~GLogCore()
 
         case EVerbosity::Display:
         {
-            UE_LOG(Log_SQL, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_SQL, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_SQL, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_SQL, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_SQL, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_SQL, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_SQL, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_SQL, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -561,43 +623,50 @@ GLogCore::~GLogCore()
         {
         case EVerbosity::Display:
         {
-            UE_LOG(Log_Weapon, Display, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Display, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Error:
         {
-            UE_LOG(Log_Weapon, Error, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Error, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Fatal:
         {
-            UE_LOG(Log_Weapon, Fatal, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Fatal, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Log:
         {
-            UE_LOG(Log_Weapon, Log, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Log, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Verbose:
         {
-            UE_LOG(Log_Weapon, Verbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Verbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::VeryVerbose:
         {
-            UE_LOG(Log_Weapon, VeryVerbose, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, VeryVerbose, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
         case EVerbosity::Warning:
         {
-            UE_LOG(Log_Weapon, Warning, TEXT("%s"), Message.GetCharArray().GetData());
+            UE_LOG(Log_Weapon, Warning, TEXT("%s"),
+                   Message.GetCharArray().GetData());
         }
             break;
 
@@ -606,13 +675,15 @@ GLogCore::~GLogCore()
 
     if (GEngine)
     {
-        const FString OnScreenMessage(FString::Printf(TEXT("[%s %s %s] %s"),
-                                                      Tag.GetCharArray().GetData(),
-                                                      Pimpl->Function.GetCharArray().GetData(),
-                                                      Pimpl->Line.GetCharArray().GetData(),
-                                                      Buffer.GetCharArray().GetData()));
+        const FString OnScreenMessage(
+                    FString::Printf(TEXT("[%s %s %s] %s"),
+                                    Tag.GetCharArray().GetData(),
+                                    Pimpl->Function.GetCharArray().GetData(),
+                                    Pimpl->Line.GetCharArray().GetData(),
+                                    Buffer.GetCharArray().GetData()));
 
-        GEngine->AddOnScreenDebugMessage(Pimpl->Key, ON_SCREEN_LOG_DURATION, Color, OnScreenMessage);
+        GEngine->AddOnScreenDebugMessage(Pimpl->Key, ON_SCREEN_LOG_DURATION,
+                                         Color, OnScreenMessage);
     }
 
 #endif  /* defined ( GOD_LOGGING ) */
