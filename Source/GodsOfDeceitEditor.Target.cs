@@ -50,7 +50,7 @@ public class GodsOfDeceitEditorTarget : TargetRules
                 "GodsOfDeceitCompressionImpl",
                 "GodsOfDeceitCrypto",
                 "GodsOfDeceitCryptoImpl",
-                "GodsOfDeceitEditor"
+                "GodsOfDeceitEditor",
                 "GodsOfDeceitHacks",
                 "GodsOfDeceitInterop",
                 "GodsOfDeceitLoadingScreen",
