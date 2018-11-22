@@ -34,5 +34,89 @@
  */
 
 
-#include "GodsOfDeceitGameModeBase.h"
+#include "GGameMode.h"
 #include "GodsOfDeceit.h"
+
+#include <GLog/GLog.h>
+#include <GPlatform/GSystem.h>
+#include <GTypes/GPlatformTypes.h>
+#include <GTypes/GVersionTypes.h>
+#include <GVersion/GBuildInfo.h>
+
+AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+
+}
+
+void AGGameMode::BeginPlay()
+{
+    Super::BeginPlay();
+
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductBranchName"),
+                 GBuildInfo::GetProductBranchName());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductBuildDate"),
+                 GBuildInfo::GetProductBuildDate());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductBuildHost"),
+                 GBuildInfo::GetProductBuildHost());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductBuildTime"),
+                 GBuildInfo::GetProductBuildTime());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductCompanyName"),
+                 GBuildInfo::GetProductCompanyName());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductCopyrightHolder"),
+                 GBuildInfo::GetProductCopyrightHolder());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductCopyrightNotice"),
+                 GBuildInfo::GetProductCopyrightNotice());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductDescription"),
+                 GBuildInfo::GetProductDescription());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductInternalName"),
+                 GBuildInfo::GetProductInternalName());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductName"),
+                 GBuildInfo::GetProductName());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductRevision"),
+                 GBuildInfo::GetProductRevision());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductShortRevisionHash"),
+                 GBuildInfo::GetProductShortRevisionHash());
+    GLOG_WARNING(GLOG_KEY_INFINITE,
+                 TEXT("GetProductVersion"),
+                 GBuildInfo::GetProductVersion());
+
+    GLOG_WARNING(GLOG_KEY_GENERIC, GBuildInfo::ToJson(true));
+
+    FGProductVersionNumbers ProductVersionNumbers(
+                GBuildInfo::GetProductVersionNumbers());
+    GLOG_WARNING(GLOG_KEY_EDITOR,
+                 ProductVersionNumbers.Major,
+                 ProductVersionNumbers.Minor,
+                 ProductVersionNumbers.Patch);
+
+    GLOG_WARNING(GLOG_KEY_SQL, GSystem::GetDirectorySeparatorChar());
+    GLOG_WARNING(GLOG_KEY_INPUT, GSystem::GetExecutablePath());
+    GLOG_WARNING(GLOG_KEY_ANIMATION, GSystem::GetCurrentPath());
+    GLOG_WARNING(GLOG_KEY_BLUEPRINTS,
+                 GSystem::GetSystemDirectoryPath(
+                     EGSystemDirectory::UserDesktop),
+                 GSystem::GetSystemDirectoryPath(
+                     EGSystemDirectory::UserDocuments),
+                 GSystem::GetSystemDirectoryPath(
+                     EGSystemDirectory::UserGameData),
+                 GSystem::GetSystemDirectoryPath(
+                     EGSystemDirectory::UserHome));
+}
+
+void AGGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+}

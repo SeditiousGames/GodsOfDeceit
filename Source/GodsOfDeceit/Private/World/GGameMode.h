@@ -37,11 +37,15 @@
 #pragma once
 
 #include <CoreMinimal.h>
-#include <GameFramework/GameModeBase.h>
-#include "GodsOfDeceitGameModeBase.generated.h"
+#include <GameFramework/GameMode.h>
+#include "GGameMode.generated.h"
 
 UCLASS()
-class GODSOFDECEIT_API AGodsOfDeceitGameModeBase : public AGameModeBase
+class GODSOFDECEIT_API AGGameMode : public AGameMode
 {
-    GENERATED_BODY()
+    GENERATED_UCLASS_BODY()
+
+protected:
+    virtual void BeginPlay();
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason);
 };
