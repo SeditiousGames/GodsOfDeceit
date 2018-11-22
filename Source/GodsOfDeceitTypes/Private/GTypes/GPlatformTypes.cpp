@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file
  * @author  Mohammad S. Babaei <info@babaei.net>
  * @version 0.1.0
@@ -30,52 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * Provides an abstraction layer on top of platform-specific API.
+ * A place to define platform modules enumerations.
  */
 
 
-#include "GSystem.h"
-
-#include <GInterop/GIC_EGSystemDirectory.h>
-#include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
-
-FString GSystem::GetDirectorySeparatorChar()
-{
-    GIC_FString InteropContainer;
-
-    System_GetDirectorySeparatorChar(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetExecutablePath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetExecutablePath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetCurrentPath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetCurrentPath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetSystemDirectoryPath(
-        const EGSystemDirectory Directory)
-{
-    GIC_EGSystemDirectory DirectoryInteropContainer;
-    DirectoryInteropContainer.Directory = Directory;
-
-    GIC_FString PathInteropContainer;
-
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
-
-    return PathInteropContainer.String;
-}
+#include "GPlatformTypes.h"

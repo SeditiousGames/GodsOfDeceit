@@ -44,47 +44,56 @@
 #include <Containers/UnrealString.h>
 
 #include <GHacks/GUndef_check.h>
+
 THIRD_PARTY_INCLUDES_START
+
 #include <boost/preprocessor/stringize.hpp>
+
 THIRD_PARTY_INCLUDES_END
+
 #include <GHacks/GRestore_check.h>
 
-class GBuildInfo
+#include <GTypes/GVersionTypes.h>
+
+class GBuildInfoImpl
 {
 public:
-    static FORCEINLINE const TCHAR* GetProductCompanyName()
+    static FORCEINLINE const FString& GetProductCompanyName()
     {
         static const FString ProductCompanyName(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get());
 
-        return *ProductCompanyName;
+        return ProductCompanyName;
     }
 
-    static FORCEINLINE const TCHAR* GetProductName()
+    static FORCEINLINE const FString& GetProductName()
     {
         static const FString ProductName(
                     StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_NAME).Get());
 
-        return *ProductName;
+        return ProductName;
     }
 
-    static FORCEINLINE const TCHAR* GetProductInternalName()
+    static FORCEINLINE const FString& GetProductInternalName()
     {
         static const FString ProductInternalName(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME).Get());
 
-        return *ProductInternalName;
+        return ProductInternalName;
     }
 
-    static FORCEINLINE const TCHAR* GetProductDescription()
+    static FORCEINLINE const FString& GetProductDescription()
     {
         static const FString ProductDescription(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_DESCRIPTION).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_DESCRIPTION).Get());
 
-        return *ProductDescription;
+        return ProductDescription;
     }
 
-    static FORCEINLINE const TCHAR* GetProductCopyrightNotice()
+    static FORCEINLINE const FString& GetProductCopyrightNotice()
     {
         static FString ProductCopyrightNotice;
 
@@ -95,11 +104,12 @@ public:
             int Day;
 
 #if !defined ( _WIN32 ) && !defined ( _WIN64 )
-            sscanf(StringCast<ANSICHAR>(GBuildInfo::GetProductBuildDate()).Get(),
+            sscanf(StringCast<ANSICHAR>(
+                       *GBuildInfoImpl::GetProductBuildDate()).Get(),
                    "%s %d %d",
                    Month, &Day, &Year);
 #else
-            sscanf_s(StringCast<ANSICHAR>(GBuildInfo::GetProductBuildDate()).Get(),
+            sscanf_s(StringCast<ANSICHAR>(GBuildInfoImpl::GetProductBuildDate()).Get(),
                      "%s %d %d",
                      Month, static_cast<unsigned int>(sizeof(Month)),
                      &Day, &Year);
@@ -108,54 +118,45 @@ public:
             ProductCopyrightNotice = FString::Printf(
                         TEXT("(C) %d %s. All Rights Reserved."),
                         Year,
-                        StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get()
+                        StringCast<TCHAR>(
+                            GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get()
                         );
         }
 
-        return *ProductCopyrightNotice;
+        return ProductCopyrightNotice;
     }
 
-    static FORCEINLINE const uint8 GetProductMajorVersion()
+    static FORCEINLINE const FGProductVersionNumbers& GetProductVersionNumbers()
     {
-        static const uint8 ProductMajorVersion =
-                static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION);
+        static const FGProductVersionNumbers ProductVersionNumbers =
+        {
+            static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION),
+            static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MINOR_VERSION),
+            static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_PATCH_VERSION)
+        };
 
-        return ProductMajorVersion;
+        return ProductVersionNumbers;
     }
 
-    static FORCEINLINE const uint8 GetProductMinorVersion()
-    {
-        static const uint8 ProductMinorVersion =
-                    static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MINOR_VERSION);
-
-        return ProductMinorVersion;
-    }
-
-    static FORCEINLINE const uint8 GetProductPatchVersion()
-    {
-        static const uint8 ProductPatchVersion =
-                    static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_PATCH_VERSION);
-
-        return ProductPatchVersion;
-    }
-
-    static FORCEINLINE const TCHAR* GetProductBranchName()
+    static FORCEINLINE const FString& GetProductBranchName()
     {
         static const FString ProductBranchName(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_BRANCH_NAME).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_BRANCH_NAME).Get());
 
-        return *ProductBranchName;
+        return ProductBranchName;
     }
 
-    static FORCEINLINE const TCHAR* GetProductShortRevisionHash()
+    static FORCEINLINE const FString& GetProductShortRevisionHash()
     {
         static const FString ProductShortRevisionHash(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH).Get());
 
-        return *ProductShortRevisionHash;
+        return ProductShortRevisionHash;
     }
 
-    static FORCEINLINE const TCHAR* GetProductVersion()
+    static FORCEINLINE const FString& GetProductVersion()
     {
         static const FString ProductVersion(
                     StringCast<TCHAR>(
@@ -163,12 +164,13 @@ public:
                         "."
                         BOOST_PP_STRINGIZE(GOD_BUILD_INFO_PRODUCT_MINOR_VERSION)
                         "."
-                        BOOST_PP_STRINGIZE(GOD_BUILD_INFO_PRODUCT_PATCH_VERSION)).Get());
+                        BOOST_PP_STRINGIZE(GOD_BUILD_INFO_PRODUCT_PATCH_VERSION)
+                        ).Get());
 
-        return *ProductVersion;
+        return ProductVersion;
     }
 
-    static FORCEINLINE const TCHAR* GetProductRevision()
+    static FORCEINLINE const FString& GetProductRevision()
     {
         static const FString ProductRevision(
                     StringCast<TCHAR>(
@@ -176,36 +178,39 @@ public:
                         "-"
                         GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH).Get());
 
-        return *ProductRevision;
+        return ProductRevision;
     }
 
-    static FORCEINLINE const TCHAR* GetProductBuildDate()
+    static FORCEINLINE const FString& GetProductBuildDate()
     {
-        static const FString ProductBuildDate(StringCast<TCHAR>(__DATE__).Get());
+        static const FString ProductBuildDate(
+                    StringCast<TCHAR>(__DATE__).Get());
 
-        return *ProductBuildDate;
+        return ProductBuildDate;
     }
 
-    static FORCEINLINE const TCHAR* GetProductBuildTime()
+    static FORCEINLINE const FString& GetProductBuildTime()
     {
-        static const FString ProductBuildTime(StringCast<TCHAR>(__TIME__).Get());
+        static const FString ProductBuildTime(
+                    StringCast<TCHAR>(__TIME__).Get());
 
-        return *ProductBuildTime;
+        return ProductBuildTime;
     }
 
-    static FORCEINLINE const TCHAR* GetProductBuildHost()
+    static FORCEINLINE const FString& GetProductBuildHost()
     {
         static const FString ProductBuildHost(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_BUILD_HOST).Get());
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_BUILD_HOST).Get());
 
-        return *ProductBuildHost;
+        return ProductBuildHost;
     }
 
-    static bool ToJson(TCHAR*& Out_Json, const bool bPretty = false);
+    static bool ToJson(FString& Out_Json, const bool bPretty = false);
 
-    static FORCEINLINE TCHAR* ToJson(const bool bPretty = false)
+    static FORCEINLINE FString ToJson(const bool bPretty = false)
     {
-        TCHAR* Json = nullptr;
+        FString Json;
 
         (void)ToJson(Json, bPretty);
 

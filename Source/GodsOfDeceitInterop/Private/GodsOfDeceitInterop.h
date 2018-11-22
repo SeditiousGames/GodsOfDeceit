@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file
  * @author  Mohammad S. Babaei <info@babaei.net>
  * @version 0.1.0
@@ -30,8 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A place to define system-related enumerations.
+ * Generic header that has been intended to be included from all other class
+ * implementations.
  */
 
 
-#include "GSystemTypes.h"
+#pragma once
+
+#include <CoreMinimal.h>

@@ -30,52 +30,39 @@
  *
  * @section DESCRIPTION
  *
- * Provides an abstraction layer on top of platform-specific API.
+ * Provides a thin C-compatible wrapper around the platform module's low-level
+ * implementation.
  */
 
 
-#include "GSystem.h"
+#include "GPlatformImpl.h"
 
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
 
-FString GSystem::GetDirectorySeparatorChar()
+#include "GSystemImpl.h"
+
+void System_GetDirectorySeparatorChar(void* Out_Char)
 {
-    GIC_FString InteropContainer;
-
-    System_GetDirectorySeparatorChar(&InteropContainer);
-
-    return InteropContainer.String;
+    static_cast<GIC_FString*>(Out_Char)->String =
+            GSystemImpl::GetDirectorySeparatorChar();
 }
 
-FString GSystem::GetExecutablePath()
+void System_GetExecutablePath(void* Out_Path)
 {
-    GIC_FString InteropContainer;
-
-    System_GetExecutablePath(&InteropContainer);
-
-    return InteropContainer.String;
+    static_cast<GIC_FString*>(Out_Path)->String =
+            GSystemImpl::GetExecutablePath();
 }
 
-FString GSystem::GetCurrentPath()
+void System_GetCurrentPath(void* Out_Path)
 {
-    GIC_FString InteropContainer;
-
-    System_GetCurrentPath(&InteropContainer);
-
-    return InteropContainer.String;
+    static_cast<GIC_FString*>(Out_Path)->String =
+            GSystemImpl::GetCurrentPath();
 }
 
-FString GSystem::GetSystemDirectoryPath(
-        const EGSystemDirectory Directory)
+void System_GetSystemDirectoryPath(void* Directory, void* Out_Path)
 {
-    GIC_EGSystemDirectory DirectoryInteropContainer;
-    DirectoryInteropContainer.Directory = Directory;
-
-    GIC_FString PathInteropContainer;
-
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
-
-    return PathInteropContainer.String;
+    static_cast<GIC_FString*>(Out_Path)->String =
+            GSystemImpl::GetSystemDirectoryPath(
+                static_cast<GIC_EGSystemDirectory*>(Directory)->Directory);
 }

@@ -71,7 +71,6 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
-        Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 
@@ -85,6 +84,8 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
             Utils.Definitions.DefinePublicly("UNICODE");
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
+
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_PLATFORM_IMPL_MODULE");
 
         Utils.Log.EmptyLine();
     }
@@ -103,6 +104,9 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
         Utils.GameModules.AddHacks(true);
+        Utils.GameModules.AddInterop(true);
+        Utils.GameModules.AddTypes(true);
+        Utils.GameModules.AddVersionImpl(true);
 
         Utils.Log.EmptyLine();
     }
@@ -115,16 +119,7 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
         Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
 
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
-        Utils.Log.EmptyLine();
-
         Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 

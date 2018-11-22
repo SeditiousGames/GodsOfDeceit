@@ -30,52 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * Provides an abstraction layer on top of platform-specific API.
+ * Due to conflicting macro definitions between Unreal Engine 4, Microsoft
+ * Windows, and included third-party libraries, Windows headers should not be
+ * included directely. Instead of including those headers this file must be
+ * included where it is required.
  */
 
 
-#include "GSystem.h"
-
-#include <GInterop/GIC_EGSystemDirectory.h>
-#include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
-
-FString GSystem::GetDirectorySeparatorChar()
-{
-    GIC_FString InteropContainer;
-
-    System_GetDirectorySeparatorChar(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetExecutablePath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetExecutablePath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetCurrentPath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetCurrentPath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetSystemDirectoryPath(
-        const EGSystemDirectory Directory)
-{
-    GIC_EGSystemDirectory DirectoryInteropContainer;
-    DirectoryInteropContainer.Directory = Directory;
-
-    GIC_FString PathInteropContainer;
-
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
-
-    return PathInteropContainer.String;
-}
+#include "GInclude_Windows.h"

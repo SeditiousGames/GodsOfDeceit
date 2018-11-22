@@ -30,100 +30,97 @@
  *
  * @section DESCRIPTION
  *
- * Provides a C-compatible wrapper around the version module's low-level
+ * Provides a thin C-compatible wrapper around the version module's low-level
  * implementation.
  */
 
 
 #include "GVersionImpl.h"
-#include "GBuildInfo.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif  /* __cplusplus */
+#include <GInterop/GIC_FString.h>
 
-const TCHAR* GetProductCompanyName()
+#include "GBuildInfoImpl.h"
+
+void BuildInfo_GetProductCompanyName(void* Out_Name)
 {
-    return GBuildInfo::GetProductCompanyName();
+    static_cast<GIC_FString*>(Out_Name)->String =
+            GBuildInfoImpl::GetProductCompanyName();
 }
 
-const TCHAR* GetProductName()
+void BuildInfo_GetProductName(void* Out_Name)
 {
-    return GBuildInfo::GetProductName();
+    static_cast<GIC_FString*>(Out_Name)->String =
+            GBuildInfoImpl::GetProductName();
 }
 
-const TCHAR* GetProductInternalName()
+void BuildInfo_GetProductInternalName(void* Out_Name)
 {
-    return GBuildInfo::GetProductInternalName();
+    static_cast<GIC_FString*>(Out_Name)->String =
+            GBuildInfoImpl::GetProductInternalName();
 }
 
-const TCHAR* GetProductDescription()
+void BuildInfo_GetProductDescription(void* Out_Description)
 {
-    return GBuildInfo::GetProductDescription();
+    static_cast<GIC_FString*>(Out_Description)->String =
+            GBuildInfoImpl::GetProductDescription();
 }
 
-const TCHAR* GetProductCopyrightNotice()
+void BuildInfo_GetProductCopyrightNotice(void* Out_Notice)
 {
-    return GBuildInfo::GetProductCopyrightNotice();
+    static_cast<GIC_FString*>(Out_Notice)->String =
+            GBuildInfoImpl::GetProductCopyrightNotice();
 }
 
-const uint8 GetProductMajorVersion()
+void BuildInfo_GetProductVersionNumbers(
+        FGProductVersionNumbers* Out_Numbers)
 {
-    return GBuildInfo::GetProductMajorVersion();
+    *Out_Numbers = GBuildInfoImpl::GetProductVersionNumbers();
 }
 
-const uint8 GetProductMinorVersion()
+void BuildInfo_GetProductBranchName(void* Out_Name)
 {
-    return GBuildInfo::GetProductMajorVersion();
+    static_cast<GIC_FString*>(Out_Name)->String =
+            GBuildInfoImpl::GetProductBranchName();
 }
 
-const uint8 GetProductPatchVersion()
+void BuildInfo_GetProductShortRevisionHash(void* Out_Hash)
 {
-    return GBuildInfo::GetProductPatchVersion();
+    static_cast<GIC_FString*>(Out_Hash)->String =
+            GBuildInfoImpl::GetProductShortRevisionHash();
 }
 
-const TCHAR* GetProductBranchName()
+void BuildInfo_GetProductVersion(void* Out_Version)
 {
-    return GBuildInfo::GetProductBranchName();
+    static_cast<GIC_FString*>(Out_Version)->String =
+            GBuildInfoImpl::GetProductVersion();
 }
 
-const TCHAR* GetProductShortRevisionHash()
+void BuildInfo_GetProductRevision(void* Out_Revision)
 {
-    return GBuildInfo::GetProductShortRevisionHash();
+    static_cast<GIC_FString*>(Out_Revision)->String =
+            GBuildInfoImpl::GetProductRevision();
 }
 
-const TCHAR* GetProductVersion()
+void BuildInfo_GetProductBuildHost(void* Out_Host)
 {
-    return GBuildInfo::GetProductVersion();
+    static_cast<GIC_FString*>(Out_Host)->String =
+            GBuildInfoImpl::GetProductBuildHost();
 }
 
-const TCHAR* GetProductRevision()
+void BuildInfo_GetProductBuildDate(void* Out_Date)
 {
-    return GBuildInfo::GetProductRevision();
+    static_cast<GIC_FString*>(Out_Date)->String =
+            GBuildInfoImpl::GetProductBuildDate();
 }
 
-const TCHAR* GetProductBuildHost()
+void BuildInfo_GetProductBuildTime(void* Out_Time)
 {
-    return GBuildInfo::GetProductBuildHost();
+    static_cast<GIC_FString*>(Out_Time)->String =
+            GBuildInfoImpl::GetProductBuildTime();
 }
 
-const TCHAR* GetProductBuildDate()
+bool BuildInfo_GetProductBuildInfoAsJson(void* Out_Json, const bool bPretty)
 {
-    return GBuildInfo::GetProductBuildDate();
+    return GBuildInfoImpl::ToJson(static_cast<GIC_FString*>(Out_Json)->String,
+                                  bPretty);
 }
-
-const TCHAR* GetProductBuildTime()
-{
-    return GBuildInfo::GetProductBuildTime();
-}
-
-const bool GetProductBuildInfoAsJson(
-        TCHAR* Out_Json, const bool bPretty)
-{
-    return GBuildInfo::ToJson(Out_Json, bPretty);
-}
-
-#ifdef __cplusplus
-}
-#endif  /* __cplusplus */

@@ -70,7 +70,6 @@ public class GodsOfDeceitPlatform : ModuleRules
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
-        Utils.Plugins = new GPlugins(Utils);
     }
 
     private void AddDefinitions()
@@ -106,7 +105,9 @@ public class GodsOfDeceitPlatform : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddHacks(true);
+        Utils.GameModules.AddInterop(true);
+        Utils.GameModules.AddPlatformImpl(true);
+        Utils.GameModules.AddTypes(true);
 
         Utils.Log.EmptyLine();
     }

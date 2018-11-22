@@ -30,52 +30,22 @@
  *
  * @section DESCRIPTION
  *
- * Provides an abstraction layer on top of platform-specific API.
+ * Types module implementation entry/exit point.
  */
 
 
-#include "GSystem.h"
+#pragma once
 
-#include <GInterop/GIC_EGSystemDirectory.h>
-#include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
+#include <Modules/ModuleInterface.h>
 
-FString GSystem::GetDirectorySeparatorChar()
-{
-    GIC_FString InteropContainer;
+#define LOCTEXT_NAMESPACE "GodsOfDeceitTypes"
 
-    System_GetDirectorySeparatorChar(&InteropContainer);
+class FGodsOfDeceitTypesModule : public IModuleInterface {
+public:
+    virtual void StartupModule() override;
+    virtual void PreUnloadCallback() override;
+    virtual void PostLoadCallback() override;
+    virtual void ShutdownModule() override;
+};
 
-    return InteropContainer.String;
-}
-
-FString GSystem::GetExecutablePath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetExecutablePath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetCurrentPath()
-{
-    GIC_FString InteropContainer;
-
-    System_GetCurrentPath(&InteropContainer);
-
-    return InteropContainer.String;
-}
-
-FString GSystem::GetSystemDirectoryPath(
-        const EGSystemDirectory Directory)
-{
-    GIC_EGSystemDirectory DirectoryInteropContainer;
-    DirectoryInteropContainer.Directory = Directory;
-
-    GIC_FString PathInteropContainer;
-
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
-
-    return PathInteropContainer.String;
-}
+#undef LOCTEXT_NAMESPACE

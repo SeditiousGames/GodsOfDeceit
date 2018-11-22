@@ -44,8 +44,8 @@
 
 #include <Containers/StringConv.h>
 #include <Containers/UnrealString.h>
+#include <CoreTypes.h>
 #include <GameFramework/Actor.h>
-#include <HAL/Platform.h>
 #include <Logging/LogVerbosity.h>
 #include <Math/Rotator.h>
 #include <Math/Vector.h>

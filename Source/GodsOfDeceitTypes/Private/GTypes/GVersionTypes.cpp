@@ -30,11 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * Due to conflicting macro definitions between Unreal Engine 4, Microsoft
- * Windows, and included third-party libraries, Windows headers should not be
- * included directely. Instead of including those headers this file must be
- * included where it is required.
+ * A place to define version modules enumerations.
  */
 
 
-#include "GWindows.h"
+#include "GVersionTypes.h"

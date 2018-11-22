@@ -651,6 +651,18 @@ public class GGameModules
         }
     }
 
+    public void AddInterop(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitInterop");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitInterop");
+        }
+    }
+
     public void AddLoadingScreen(bool bPublic)
     {
         if (bPublic)
@@ -720,6 +732,18 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitPlatformImpl");
+        }
+    }
+
+    public void AddTypes(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitTypes");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitTypes");
         }
     }
 

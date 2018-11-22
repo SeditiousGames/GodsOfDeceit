@@ -30,17 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * A place to define system-related enumerations.
+ * Types module implementation entry/exit point.
  */
 
 
-#pragma once
+#include "GodsOfDeceitTypesModule.h"
+#include "GodsOfDeceitTypes.h"
 
-#include <HAL/Platform.h>
+#define LOCTEXT_NAMESPACE "GodsOfDeceitTypes"
 
-enum class EGSystemDirectory : uint8 {
-    UserDesktop,
-    UserDocuments,
-    UserGameData,
-    UserHome
-};
+void FGodsOfDeceitTypesModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
+
+void FGodsOfDeceitTypesModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitTypesModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
+
+void FGodsOfDeceitTypesModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
+
+#undef LOCTEXT_NAMESPACE

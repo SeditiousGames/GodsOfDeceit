@@ -30,52 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * Provides an abstraction layer on top of platform-specific API.
+ * Interoperability module implementation entry/exit point.
  */
 
 
-#include "GSystem.h"
+#include "GodsOfDeceitInteropModule.h"
+#include "GodsOfDeceitInterop.h"
 
-#include <GInterop/GIC_EGSystemDirectory.h>
-#include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
+#define LOCTEXT_NAMESPACE "GodsOfDeceitInterop"
 
-FString GSystem::GetDirectorySeparatorChar()
+void FGodsOfDeceitInteropModule::StartupModule()
 {
-    GIC_FString InteropContainer;
-
-    System_GetDirectorySeparatorChar(&InteropContainer);
-
-    return InteropContainer.String;
+    IModuleInterface::StartupModule();
 }
 
-FString GSystem::GetExecutablePath()
+void FGodsOfDeceitInteropModule::PreUnloadCallback()
 {
-    GIC_FString InteropContainer;
-
-    System_GetExecutablePath(&InteropContainer);
-
-    return InteropContainer.String;
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitInteropModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
 }
 
-FString GSystem::GetCurrentPath()
+void FGodsOfDeceitInteropModule::ShutdownModule()
 {
-    GIC_FString InteropContainer;
-
-    System_GetCurrentPath(&InteropContainer);
-
-    return InteropContainer.String;
+    IModuleInterface::ShutdownModule();
 }
 
-FString GSystem::GetSystemDirectoryPath(
-        const EGSystemDirectory Directory)
-{
-    GIC_EGSystemDirectory DirectoryInteropContainer;
-    DirectoryInteropContainer.Directory = Directory;
-
-    GIC_FString PathInteropContainer;
-
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
-
-    return PathInteropContainer.String;
-}
+#undef LOCTEXT_NAMESPACE

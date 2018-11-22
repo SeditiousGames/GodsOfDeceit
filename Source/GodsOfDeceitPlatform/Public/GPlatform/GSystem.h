@@ -38,23 +38,13 @@
 
 #include <Containers/UnrealString.h>
 
-#include <GPlatform/GSystemTypes.h>
+#include <GTypes/GPlatformTypes.h>
 
 class GSystem
 {
 public:
-    static FORCEINLINE const FString& GetDirectorySeparatorChar()
-    {
-#if defined ( _WIN32 ) || defined ( _WIN64 )
-        static const FString character(TEXT("\\"));
-#else
-        static const FString character(TEXT("/"));
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-
-        return character;
-    }
-
+    static FString GetDirectorySeparatorChar();
     static FString GetExecutablePath();
     static FString GetCurrentPath();
-    static FString GetSystemDirectoryPath(const EGSystemDirectory directory);
+    static FString GetSystemDirectoryPath(const EGSystemDirectory Directory);
 };

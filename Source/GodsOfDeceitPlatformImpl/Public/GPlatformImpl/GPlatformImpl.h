@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Provides a thin C-compatible wrapper around the version module's low-level
+ * Provides a thin C-compatible wrapper around the platform module's low-level
  * implementation.
  */
 
@@ -56,8 +56,6 @@
 
 #include <CoreTypes.h>
 
-#include <GTypes/GVersionTypes.h>
-
 /// NOTE
 /// Check at compile time whether the C compiler has support for bool, true,
 /// and false macros.
@@ -72,47 +70,21 @@ extern "C"
 {
 #endif  /* __cplusplus */
 
-#if defined ( GOD_BUILDING_VERSION_IMPL_MODULE )
+#if defined ( GOD_BUILDING_PLATFORM_IMPL_MODULE )
 
-DLLEXPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductInternalName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductDescription(void* Out_Description);
-DLLEXPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
-DLLEXPORT void BuildInfo_GetProductVersionNumbers(
-        FGProductVersionNumbers* Out_Numbers);
-DLLEXPORT void BuildInfo_GetProductBranchName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductShortRevisionHash(void* Out_Hash);
-DLLEXPORT void BuildInfo_GetProductVersion(void* Out_Version);
-DLLEXPORT void BuildInfo_GetProductRevision(void* Out_Revision);
-DLLEXPORT void BuildInfo_GetProductBuildHost(void* Out_Host);
-DLLEXPORT void BuildInfo_GetProductBuildDate(void* Out_Date);
-DLLEXPORT void BuildInfo_GetProductBuildTime(void* Out_Time);
-
-DLLEXPORT bool BuildInfo_GetProductBuildInfoAsJson(
-        void* Out_Json, const bool bPretty);
+DLLEXPORT void System_GetDirectorySeparatorChar(void* Out_Char);
+DLLEXPORT void System_GetExecutablePath(void* Out_Path);
+DLLEXPORT void System_GetCurrentPath(void* Out_Path);
+DLLEXPORT void System_GetSystemDirectoryPath(void* Directory, void* Out_Path);
 
 #else
 
-DLLIMPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductInternalName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductDescription(void* Out_Description);
-DLLIMPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
-DLLIMPORT void BuildInfo_GetProductVersionNumbers(
-        FGProductVersionNumbers* Out_Numbers);
-DLLIMPORT void BuildInfo_GetProductBranchName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductShortRevisionHash(void* Out_Hash);
-DLLIMPORT void BuildInfo_GetProductVersion(void* Out_Version);
-DLLIMPORT void BuildInfo_GetProductRevision(void* Out_Revision);
-DLLIMPORT void BuildInfo_GetProductBuildHost(void* Out_Host);
-DLLIMPORT void BuildInfo_GetProductBuildDate(void* Out_Date);
-DLLIMPORT void BuildInfo_GetProductBuildTime(void* Out_Time);
+DLLIMPORT void System_GetDirectorySeparatorChar(void* Out_Char);
+DLLIMPORT void System_GetExecutablePath(void* Out_Path);
+DLLIMPORT void System_GetCurrentPath(void* Out_Path);
+DLLIMPORT void System_GetSystemDirectoryPath(void* Directory, void* Out_Path);
 
-DLLIMPORT bool BuildInfo_GetProductBuildInfoAsJson(
-        void* Out_Json, const bool bPretty);
-
-#endif  /* defined ( GOD_BUILDING_VERSION_IMPL_MODULE ) */
+#endif  /* defined ( GOD_BUILDING_PLATFORM_IMPL_MODULE ) */
 
 #ifdef __cplusplus
 }

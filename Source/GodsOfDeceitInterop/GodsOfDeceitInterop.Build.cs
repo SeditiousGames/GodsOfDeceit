@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitVersionImpl target.
+ * Build script for GodsOfDeceitInterop target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitVersionImpl : ModuleRules
+public class GodsOfDeceitInterop : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitVersionImpl(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitInterop(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -59,7 +59,7 @@ public class GodsOfDeceitVersionImpl : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitVersionImpl");
+        Utils = new GUtils(this, "GodsOfDeceitInterop");
 
         /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
@@ -71,11 +71,13 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
+        Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 
     private void AddDefinitions()
     {
+        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
         bool bWindowsBuild = Utils.BuildPlatform.IsWindowsBuild();
 
         if (bWindowsBuild)
@@ -85,38 +87,10 @@ public class GodsOfDeceitVersionImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
-        Utils.Definitions.DefinePublicly("GOD_BUILDING_VERSION_IMPL_MODULE");
-
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_COMPANY_NAME=\"{0}\"",
-                        Utils.BuildInfo.Company));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_NAME=\"{0}\"",
-                        Utils.BuildInfo.Name));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME=\"{0}\"",
-                        Utils.BuildInfo.InternalName));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_DESCRIPTION=\"{0}\"",
-                        Utils.BuildInfo.Description));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION={0}",
-                        Utils.BuildInfo.VersionMajor));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_MINOR_VERSION={0}",
-                        Utils.BuildInfo.VersionMinor));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_PATCH_VERSION={0}",
-                        Utils.BuildInfo.VersionPatch));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_BRANCH_NAME=\"{0}\"",
-                        Utils.BuildInfo.Branch));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH=\"{0}\"",
-                        Utils.BuildInfo.ShortRevisionHash));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_BUILD_HOST=\"{0}\"",
-                        Utils.BuildInfo.BuildHost));
+        if (!bShippingBuild)
+        {
+            Utils.Definitions.DefinePublicly("GOD_LOGGING");
+        }
 
         Utils.Log.EmptyLine();
     }
@@ -126,7 +100,6 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
         Utils.EngineModules.AddCore(true);
-        Utils.EngineModules.AddCoreUObject(true);
 
         Utils.Log.EmptyLine();
     }
@@ -135,8 +108,6 @@ public class GodsOfDeceitVersionImpl : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddHacks(true);
-        Utils.GameModules.AddInterop(true);
         Utils.GameModules.AddTypes(true);
 
         Utils.Log.EmptyLine();
@@ -152,6 +123,9 @@ public class GodsOfDeceitVersionImpl : ModuleRules
 
         Utils.ThirdParty.AddCereal();
         Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddFMT();
+        Utils.Log.EmptyLine();
     }
 
     private void SetupBuildConfiguration()
@@ -163,8 +137,8 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
         Utils.BuildConfiguration.SetPCHUsage(PCHUsageMode.UseExplicitOrSharedPCHs);
-        Utils.BuildConfiguration.SetUseRTTI(true);
-        Utils.BuildConfiguration.SetEnableExceptions(true);
+        Utils.BuildConfiguration.SetUseRTTI(false);
+        Utils.BuildConfiguration.SetEnableExceptions(false);
         Utils.BuildConfiguration.SetUseAVX(bX64 && !bShippingBuild);
         Utils.BuildConfiguration.SetEnableShadowVariableWarnings(true);
         Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);
