@@ -236,7 +236,7 @@ struct GLogString<const float>
 {
     static void Format(const float Value, FString& Out_String)
     {
-        Out_String = FString::SanitizeFloat(Value, 1);
+        Out_String = FString::SanitizeFloat(static_cast<double>(Value), 1);
     }
 };
 
@@ -244,7 +244,7 @@ template <>
 struct GLogString<float> {
     static void Format(const float Value, FString& Out_String)
     {
-        Out_String = FString::SanitizeFloat(Value, 1);
+        Out_String = FString::SanitizeFloat(static_cast<double>(Value), 1);
     }
 };
 
