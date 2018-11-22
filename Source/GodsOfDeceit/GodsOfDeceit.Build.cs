@@ -1214,7 +1214,8 @@ public class GBuildInfo
     public string Name { get; private set; }
     public string InternalName { get; private set; }
     public string Description { get; private set; }
-    public string Copyright { get; private set; }
+    public string CopyrightHolder { get; private set; }
+    public string CopyrightNotice { get; private set; }
     public int VersionMajor { get; private set; }
     public int VersionMinor { get; private set; }
     public int VersionPatch { get; private set; }
@@ -1230,17 +1231,18 @@ public class GBuildInfo
     {
         this.Utils = Utils;
 
-        Company = "Khavaran67 and Mohammad S. Babaei";
+        Company = "Khavaran67";
         Name = "Gods of Deceit";
         InternalName = "GOD";
         Description = "A first-person shooter game written and developed in C++ and Unreal Engine 4.";
-        Copyright = String.Format("(C) {0} {1}. All Rights Reserved.", DateTime.Now.Year.ToString(), Company);
+        CopyrightHolder = "Khavaran67 and Mohammad S. Babaei";
+        CopyrightNotice = String.Format("(C) {0} {1}. All Rights Reserved.", DateTime.Now.Year.ToString(), CopyrightHolder);
         VersionMajor = 0;
         VersionMinor = 0;
         VersionPatch = 1;
         Branch = GetBranch();
         ShortRevisionHash = GetShortRevisionHash();
-        this.Version = String.Format("{0}.{1}.{2}", VersionMajor, VersionMinor, VersionPatch);
+        Version = String.Format("{0}.{1}.{2}", VersionMajor, VersionMinor, VersionPatch);
 
         if (!string.IsNullOrEmpty(Branch) && !string.IsNullOrEmpty(ShortRevisionHash))
         {
@@ -1270,7 +1272,7 @@ public class GBuildInfo
         Utils.Log.Info("Product Name: {0}", Name);
         Utils.Log.Info("Product Internal Name: {0}", InternalName);
         Utils.Log.Info("Product Description: {0}", Description);
-        Utils.Log.Info("Copyright Notice: {0}", Copyright);
+        Utils.Log.Info("Copyright Notice: {0}", CopyrightNotice);
         Utils.Log.Info("Product Major Version: {0}", VersionMajor);
         Utils.Log.Info("Product Minor Version: {0}", VersionMinor);
         Utils.Log.Info("Product Patch Version: {0}", VersionPatch);

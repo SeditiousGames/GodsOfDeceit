@@ -97,9 +97,12 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Definitions.DefinePublicly(
                 string.Format("GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME=\"{0}\"",
                         Utils.BuildInfo.InternalName));
-        Utils.Definitions.DefinePublicly(
-                string.Format("GOD_BUILD_INFO_PRODUCT_DESCRIPTION=\"{0}\"",
-                        Utils.BuildInfo.Description));
+    Utils.Definitions.DefinePublicly(
+            string.Format("GOD_BUILD_INFO_PRODUCT_DESCRIPTION=\"{0}\"",
+                    Utils.BuildInfo.Description));
+    Utils.Definitions.DefinePublicly(
+            string.Format("GOD_BUILD_INFO_PRODUCT_COPYRIGHT_HOLDER=\"{0}\"",
+                    Utils.BuildInfo.CopyrightHolder));
         Utils.Definitions.DefinePublicly(
                 string.Format("GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION={0}",
                         Utils.BuildInfo.VersionMajor));
