@@ -65,6 +65,12 @@ void BuildInfo_GetProductDescription(void* Out_Description)
             GBuildInfoImpl::GetProductDescription();
 }
 
+void BuildInfo_GetProductCopyrightHolder(void* Out_Notice)
+{
+    static_cast<GIC_FString*>(Out_Notice)->String =
+            GBuildInfoImpl::GetProductCopyrightHolder();
+}
+
 void BuildInfo_GetProductCopyrightNotice(void* Out_Notice)
 {
     static_cast<GIC_FString*>(Out_Notice)->String =

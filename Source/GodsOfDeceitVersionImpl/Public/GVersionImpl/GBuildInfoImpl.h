@@ -93,6 +93,15 @@ public:
         return ProductDescription;
     }
 
+    static FORCEINLINE const FString& GetProductCopyrightHolder()
+    {
+        static const FString ProductCopyrightHolder(
+                    StringCast<TCHAR>(
+                        GOD_BUILD_INFO_PRODUCT_COPYRIGHT_HOLDER).Get());
+
+        return ProductCopyrightHolder;
+    }
+
     static FORCEINLINE const FString& GetProductCopyrightNotice()
     {
         static FString ProductCopyrightNotice;
@@ -119,7 +128,7 @@ public:
                         TEXT("(C) %d %s. All Rights Reserved."),
                         Year,
                         StringCast<TCHAR>(
-                            GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get()
+                            GOD_BUILD_INFO_PRODUCT_COPYRIGHT_HOLDER).Get()
                         );
         }
 

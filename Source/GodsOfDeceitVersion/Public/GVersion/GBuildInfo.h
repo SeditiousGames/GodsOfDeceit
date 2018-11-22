@@ -47,6 +47,7 @@ public:
     static FString GetProductName();
     static FString GetProductInternalName();
     static FString GetProductDescription();
+    static FString GetProductCopyrightHolder();
     static FString GetProductCopyrightNotice();
     static FGProductVersionNumbers GetProductVersionNumbers();
     static FString GetProductBranchName();

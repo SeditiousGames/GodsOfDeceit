@@ -75,6 +75,15 @@ FString GBuildInfo::GetProductDescription()
     return InteropContainer.String;
 }
 
+FString GBuildInfo::GetProductCopyrightHolder()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductCopyrightHolder(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
 FString GBuildInfo::GetProductCopyrightNotice()
 {
     GIC_FString InteropContainer;

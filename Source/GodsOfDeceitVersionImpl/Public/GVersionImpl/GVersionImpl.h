@@ -78,6 +78,7 @@ DLLEXPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
 DLLEXPORT void BuildInfo_GetProductName(void* Out_Name);
 DLLEXPORT void BuildInfo_GetProductInternalName(void* Out_Name);
 DLLEXPORT void BuildInfo_GetProductDescription(void* Out_Description);
+DLLEXPORT void BuildInfo_GetProductCopyrightHolder(void* Out_Notice);
 DLLEXPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
 DLLEXPORT void BuildInfo_GetProductVersionNumbers(
         FGProductVersionNumbers* Out_Numbers);
@@ -98,6 +99,7 @@ DLLIMPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
 DLLIMPORT void BuildInfo_GetProductName(void* Out_Name);
 DLLIMPORT void BuildInfo_GetProductInternalName(void* Out_Name);
 DLLIMPORT void BuildInfo_GetProductDescription(void* Out_Description);
+DLLIMPORT void BuildInfo_GetProductCopyrightHolder(void* Out_Notice);
 DLLIMPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
 DLLIMPORT void BuildInfo_GetProductVersionNumbers(
         FGProductVersionNumbers* Out_Numbers);
