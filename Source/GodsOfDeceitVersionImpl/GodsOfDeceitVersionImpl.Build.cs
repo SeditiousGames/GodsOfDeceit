@@ -71,6 +71,7 @@ public class GodsOfDeceitVersionImpl : ModuleRules
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
+        Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 

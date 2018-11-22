@@ -167,10 +167,10 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
                 + TEXT("Documents");
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
         char PathBuffer[MAX_PATH];
-        HRESULT result = SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL,
+        HRESULT Result = SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL,
                                           SHGFP_TYPE_CURRENT, PathBuffer);
 
-        if (result != S_OK) {
+        if (Result != S_OK) {
             MessageBoxA(0,
                         fmt::format("FATAL: error code: {0}", Result).c_str(),
                         "IO Error", MB_OK);
@@ -243,7 +243,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
         HRESULT Result = SHGetFolderPathA(
                     NULL, CSIDL_PROFILE, NULL, SHGFP_TYPE_CURRENT, PathBuffer);
 
-        if (result != S_OK) {
+        if (Result != S_OK) {
             MessageBoxA(0,
                         fmt::format("FATAL: error code {0}", Result).c_str(),
                         "IO Error", MB_OK);

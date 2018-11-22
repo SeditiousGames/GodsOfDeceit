@@ -71,6 +71,7 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
         Utils.Definitions = new GDefinitions(Utils);
         Utils.EngineModules = new GEngineModules(Utils);
         Utils.GameModules = new GGameModules(Utils);
+        Utils.Plugins = new GPlugins(Utils);
         Utils.ThirdParty = new GThirdParty(Utils);
     }
 
@@ -86,6 +87,10 @@ public class GodsOfDeceitPlatformImpl : ModuleRules
         }
 
         Utils.Definitions.DefinePublicly("GOD_BUILDING_PLATFORM_IMPL_MODULE");
+
+        Utils.Definitions.DefinePublicly(
+                string.Format("GOD_WINDOWS_MY_GAMES_DIRECTORY_NAME=\"{0}\"",
+                        "My Games"));
 
         Utils.Log.EmptyLine();
     }

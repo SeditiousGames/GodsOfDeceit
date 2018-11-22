@@ -109,7 +109,7 @@ public:
                    "%s %d %d",
                    Month, &Day, &Year);
 #else
-            sscanf_s(StringCast<ANSICHAR>(GBuildInfoImpl::GetProductBuildDate()).Get(),
+            sscanf_s(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductBuildDate()).Get(),
                      "%s %d %d",
                      Month, static_cast<unsigned int>(sizeof(Month)),
                      &Day, &Year);

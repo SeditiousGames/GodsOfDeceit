@@ -50,7 +50,6 @@ public class GodsOfDeceitCompression : ModuleRules
         AddEngineModules();
         AddGameModules();
         AddDefinitions();
-        AddThirdPartyLibraries();
 
         Utils.BuildInfo.Print();
 
@@ -110,15 +109,6 @@ public class GodsOfDeceitCompression : ModuleRules
 
         Utils.GameModules.AddPlatform(false);
 
-        Utils.Log.EmptyLine();
-    }
-
-    private void AddThirdPartyLibraries()
-    {
-        Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
     }
 

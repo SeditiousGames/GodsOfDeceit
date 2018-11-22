@@ -86,6 +86,8 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_CRYPTO_IMPL_MODULE");
+
         Utils.Log.EmptyLine();
     }
 
@@ -107,6 +109,7 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
         Utils.Log.EmptyLine();
     }
 
+
     private void AddThirdPartyLibraries()
     {
         Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
@@ -115,16 +118,7 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
         Utils.ThirdParty.AddBoost();
         Utils.Log.EmptyLine();
 
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
         Utils.ThirdParty.AddCryptoPP();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 

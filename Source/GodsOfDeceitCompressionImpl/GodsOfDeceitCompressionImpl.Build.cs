@@ -86,6 +86,8 @@ public class GodsOfDeceitCompressionImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_COMPRESSION_IMPL_MODULE");
+
         Utils.Log.EmptyLine();
     }
 
@@ -113,18 +115,6 @@ public class GodsOfDeceitCompressionImpl : ModuleRules
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddBoost();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCppDB();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCryptoPP();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddSQLite3();
         Utils.Log.EmptyLine();
     }
 

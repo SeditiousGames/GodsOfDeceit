@@ -50,7 +50,6 @@ public class GodsOfDeceitPersistentData : ModuleRules
         AddEngineModules();
         AddGameModules();
         AddDefinitions();
-        AddThirdPartyLibraries();
 
         Utils.BuildInfo.Print();
 
@@ -110,21 +109,6 @@ public class GodsOfDeceitPersistentData : ModuleRules
 
         Utils.GameModules.AddPlatform(true);
 
-        Utils.Log.EmptyLine();
-    }
-
-    private void AddThirdPartyLibraries()
-    {
-        Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddBoost();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddCereal();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
         Utils.Log.EmptyLine();
     }
 
