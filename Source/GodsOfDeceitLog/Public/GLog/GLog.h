@@ -653,207 +653,207 @@ public:
 /* Generic */
 
 #define GLOG_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Generic, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Generic, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Generic, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* AI */
 
 #define GLOG_AI_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::AI, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_AI( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::AI, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::AI, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* Animatoin */
 
 #define GLOG_ANIMATION_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Animation, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_ANIMATION( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Animation, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Animation, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* Blueprints */
 
 #define GLOG_BLUEPRINTS_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Blueprint, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Blueprint, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Blueprints, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_BLUEPRINTS( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Blueprints, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Blueprints, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* Editor */
 
 #define GLOG_EDITOR_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Editor, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_EDITOR( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Editor, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Editor, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* Input */
 
 #define GLOG_INPUT_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Input, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_INPUT( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Input, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Input, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* SQL */
 
 #define GLOG_SQL_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::SQL, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_SQL( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::SQL, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::SQL, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 /* Weapon */
 
 #define GLOG_WEAPON_FATAL( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Fatal, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Fatal, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_ERROR( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Error, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Error, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_WARNING( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Warning, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Warning, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_DISPLAY( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Display, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Display, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_LOG( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::Verbose, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Verbose, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON_VERY_VERBOSE( Key, ... )  \
-    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLog::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::VeryVerbose, GLogCore::ECategory::Weapon, Key, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
 
 #define GLOG_WEAPON( ... )  \
-    (GLogCore(GLogCore::EVerbosity::Log, GLog::ECategory::Weapon, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
+    (GLogCore(GLogCore::EVerbosity::Log, GLogCore::ECategory::Weapon, GLOG_KEY_INFINITE, __FILE__, __FUNCTION__, __LINE__)), __VA_ARGS__;
