@@ -42,7 +42,7 @@
 
 #include <GTypes/GPlatformTypes.h>
 
-class GSystemImpl
+class GODSOFDECEITPLATFORMIMPL_API GSystemImpl
 {
 public:
     static FORCEINLINE const FString& GetDirectorySeparatorChar()

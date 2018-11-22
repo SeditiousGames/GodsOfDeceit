@@ -590,7 +590,7 @@ struct GLogString<std::wstring>
     }
 };
 
-class GLogCore
+class GODSOFDECEITLOG_API GLogCore
 {
 public:
     enum class EVerbosity : uint8

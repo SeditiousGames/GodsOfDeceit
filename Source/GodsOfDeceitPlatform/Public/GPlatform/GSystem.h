@@ -40,7 +40,7 @@
 
 #include <GTypes/GPlatformTypes.h>
 
-class GSystem
+class GODSOFDECEITPLATFORM_API GSystem
 {
 public:
     static FString GetDirectorySeparatorChar();
