@@ -634,7 +634,7 @@ public:
 
 public:
     template <typename TYPE>
-    GLogCore &operator,(const TYPE &Argument)
+    GLogCore &operator,(const TYPE& Argument)
     {
         if (bAnyEntries)
         {
