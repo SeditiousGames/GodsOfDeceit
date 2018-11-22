@@ -66,11 +66,11 @@ static constexpr uint64 GLOG_KEY_INFINITE = static_cast<uint64>(-1);
 static constexpr uint64 GLOG_KEY_AI = static_cast<uint64>(800);
 static constexpr uint64 GLOG_KEY_ANIMATION = static_cast<uint64>(500);
 static constexpr uint64 GLOG_KEY_BLUEPRINTS = static_cast<uint64>(600);
-static constexpr uint64 GLOG_KEY_EDITOR = static_cast<uint64>(300);
+static constexpr uint64 GLOG_KEY_EDITOR = static_cast<uint64>(200);
 static constexpr uint64 GLOG_KEY_GENERIC = static_cast<uint64>(100);
 static constexpr uint64 GLOG_KEY_INPUT = static_cast<uint64>(400);
 static constexpr uint64 GLOG_KEY_PLAYER = static_cast<uint64>(700);
-static constexpr uint64 GLOG_KEY_SQL = static_cast<uint64>(200);
+static constexpr uint64 GLOG_KEY_SQL = static_cast<uint64>(300);
 static constexpr uint64 GLOG_KEY_WEAPON = static_cast<uint64>(600);
 
 template<typename TYPE>
