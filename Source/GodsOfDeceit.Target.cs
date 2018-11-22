@@ -46,7 +46,24 @@ public class GodsOfDeceitTarget : TargetRules
 
         ExtraModuleNames.AddRange(
             new string[] {
-                "GodsOfDeceit"
+                "GodsOfDeceit",
+                "GodsOfDeceitCompression",
+                "GodsOfDeceitCompressionImpl",
+                "GodsOfDeceitCrypto",
+                "GodsOfDeceitCryptoImpl",
+                "GodsOfDeceit",
+                "GodsOfDeceitEditor",
+                "GodsOfDeceitHacks",
+                "GodsOfDeceitInterop",
+                "GodsOfDeceitLoadingScreen",
+                "GodsOfDeceitLog",
+                "GodsOfDeceitPersistentData",
+                "GodsOfDeceitPersistentDataImpl",
+                "GodsOfDeceitPlatform",
+                "GodsOfDeceitPlatformImpl",
+                "GodsOfDeceitTypes",
+                "GodsOfDeceitVersion",
+                "GodsOfDeceitVersionImpl"
             });
 
         BuildEnvironment = TargetBuildEnvironment.Shared;
