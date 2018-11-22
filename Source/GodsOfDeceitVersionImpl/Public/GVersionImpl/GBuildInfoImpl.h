@@ -128,7 +128,7 @@ public:
 
     static FORCEINLINE const FGProductVersionNumbers& GetProductVersionNumbers()
     {
-        static const FGProductVersionNumbers ProductVersionNumbers =
+        static const FGProductVersionNumbers ProductVersionNumbers
         {
             static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION),
             static_cast<uint8>(GOD_BUILD_INFO_PRODUCT_MINOR_VERSION),
