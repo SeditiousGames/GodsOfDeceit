@@ -167,6 +167,8 @@ struct GLogString<char*>
     }
 };
 
+#if defined ( __linux__ )
+
 template< std::size_t LENGTH>
 struct GLogString<const char16_t[LENGTH]>
 {
@@ -202,6 +204,8 @@ struct GLogString<char16_t*>
         Out_String = FString(StringCast<TCHAR>(Value).Get());
     }
 };
+
+#endif  /* defined ( __linux__ ) */
 
 template <>
 struct GLogString<const double>
