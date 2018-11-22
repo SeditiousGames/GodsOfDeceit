@@ -40,7 +40,8 @@
 
 #define LOCTEXT_NAMESPACE "GodsOfDeceitCompression"
 
-class FGodsOfDeceitCompressionModule : public IModuleInterface {
+class FGodsOfDeceitCompressionModule : public IModuleInterface
+{
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;

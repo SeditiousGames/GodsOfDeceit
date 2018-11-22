@@ -40,7 +40,8 @@
 
 #define LOCTEXT_NAMESPACE "GodsOfDeceitPersistentData"
 
-class FGodsOfDeceitPersistentDataModule : public IModuleInterface {
+class FGodsOfDeceitPersistentDataModule : public IModuleInterface
+{
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;

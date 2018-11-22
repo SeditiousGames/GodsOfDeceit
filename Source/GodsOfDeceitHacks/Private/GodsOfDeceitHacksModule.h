@@ -40,7 +40,8 @@
 
 #define LOCTEXT_NAMESPACE "GodsOfDeceitHacks"
 
-class FGodsOfDeceitHacksModule : public IModuleInterface {
+class FGodsOfDeceitHacksModule : public IModuleInterface
+{
 public:
     virtual void StartupModule() override;
     virtual void PreUnloadCallback() override;
