@@ -167,6 +167,42 @@ struct GLogString<char*>
     }
 };
 
+template< std::size_t LENGTH>
+struct GLogString<const char16_t[LENGTH]>
+{
+    static void Format(const char16_t* Value, FString& Out_String)
+    {
+        Out_String = FString(StringCast<TCHAR>(Value).Get());
+    }
+};
+
+template< std::size_t LENGTH>
+struct GLogString<char16_t[LENGTH]>
+{
+    static void Format(const char16_t* Value, FString& Out_String)
+    {
+        Out_String = FString(StringCast<TCHAR>(Value).Get());
+    }
+};
+
+template <>
+struct GLogString<const char16_t*>
+{
+    static void Format(const char16_t* Value, FString& Out_String)
+    {
+        Out_String = FString(StringCast<TCHAR>(Value).Get());
+    }
+};
+
+template <>
+struct GLogString<char16_t*>
+{
+    static void Format(const char16_t* Value, FString& Out_String)
+    {
+        Out_String = FString(StringCast<TCHAR>(Value).Get());
+    }
+};
+
 template <>
 struct GLogString<const double>
 {
