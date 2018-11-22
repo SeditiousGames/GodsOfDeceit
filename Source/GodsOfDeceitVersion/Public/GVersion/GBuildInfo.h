@@ -35,3 +35,35 @@
 
 
 #pragma once
+
+#include <Containers/UnrealString.h>
+
+#include <GTypes/GVersionTypes.h>
+
+class GBuildInfo
+{
+public:
+    static FString GetProductCompanyName();
+    static FString GetProductName();
+    static FString GetProductInternalName();
+    static FString GetProductDescription();
+    static FString GetProductCopyrightNotice();
+    static FGProductVersionNumbers GetProductVersionNumbers();
+    static FString GetProductBranchName();
+    static FString GetProductShortRevisionHash();
+    static FString GetProductVersion();
+    static FString GetProductRevision();
+    static FString GetProductBuildHost();
+    static FString GetProductBuildDate();
+    static FString GetProductBuildTime();
+    static bool ToJson(FString& Out_Json, const bool bPretty = false);
+
+    static FORCEINLINE FString ToJson(const bool bPretty = false)
+    {
+        FString Json;
+
+        (void)ToJson(Json, bPretty);
+
+        return Json;
+    }
+};

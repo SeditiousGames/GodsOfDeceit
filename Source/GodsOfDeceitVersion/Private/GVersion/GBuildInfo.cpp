@@ -35,3 +35,135 @@
 
 
 #include "GBuildInfo.h"
+
+#include <GInterop/GIC_FString.h>
+#include <GVersionImpl/GVersionImpl.h>
+
+FString GBuildInfo::GetProductCompanyName()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductCompanyName(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductName()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductName(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductInternalName()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductInternalName(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductDescription()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductDescription(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductCopyrightNotice()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductCopyrightNotice(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FGProductVersionNumbers GBuildInfo::GetProductVersionNumbers()
+{
+    FGProductVersionNumbers ProductVersionNumbers;
+
+    BuildInfo_GetProductVersionNumbers(&ProductVersionNumbers);
+
+    return ProductVersionNumbers;
+}
+
+FString GBuildInfo::GetProductBranchName()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductBranchName(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductShortRevisionHash()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductShortRevisionHash(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductVersion()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductVersion(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductRevision()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductRevision(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductBuildHost()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductBuildHost(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductBuildDate()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductBuildDate(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+FString GBuildInfo::GetProductBuildTime()
+{
+    GIC_FString InteropContainer;
+
+    BuildInfo_GetProductBuildTime(&InteropContainer);
+
+    return InteropContainer.String;
+}
+
+bool GBuildInfo::ToJson(FString& Out_Json, const bool bPretty)
+{
+    GIC_FString InteropContainer;
+
+    bool bSucceed = BuildInfo_GetProductBuildInfoAsJson(
+                &InteropContainer, bPretty);
+
+    Out_Json = std::move(InteropContainer.String);
+
+    return bSucceed;
+}
