@@ -46,7 +46,22 @@ public class GodsOfDeceitEditorTarget : TargetRules
         ExtraModuleNames.AddRange(
             new string[] {
                 "GodsOfDeceit",
+                "GodsOfDeceitCompression",
+                "GodsOfDeceitCompressionImpl",
+                "GodsOfDeceitCrypto",
+                "GodsOfDeceitCryptoImpl",
                 "GodsOfDeceitEditor"
+                "GodsOfDeceitHacks",
+                "GodsOfDeceitInterop",
+                "GodsOfDeceitLoadingScreen",
+                "GodsOfDeceitLog",
+                "GodsOfDeceitPersistentData",
+                "GodsOfDeceitPersistentDataImpl",
+                "GodsOfDeceitPlatform",
+                "GodsOfDeceitPlatformImpl",
+                "GodsOfDeceitTypes",
+                "GodsOfDeceitVersion",
+                "GodsOfDeceitVersionImpl"
             });
 
         BuildEnvironment = TargetBuildEnvironment.Shared;
