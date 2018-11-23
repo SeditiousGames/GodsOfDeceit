@@ -49,8 +49,6 @@
 #include <Logging/LogVerbosity.h>
 #include <Math/Rotator.h>
 #include <Math/Vector.h>
-#include <UObject/NameTypes.h>
-#include <UObject/ObjectMacros.h>
 
 DECLARE_LOG_CATEGORY_EXTERN ( Log_AI, All, All );
 DECLARE_LOG_CATEGORY_EXTERN ( Log_Animation, All, All );

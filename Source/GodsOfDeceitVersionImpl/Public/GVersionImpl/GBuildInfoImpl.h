@@ -42,6 +42,7 @@
 
 #include <Containers/StringConv.h>
 #include <Containers/UnrealString.h>
+#include <CoreTypes.h>
 
 #include <GHacks/GUndef_check.h>
 

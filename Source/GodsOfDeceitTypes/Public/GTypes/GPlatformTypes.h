@@ -36,7 +36,7 @@
 
 #pragma once
 
-#include <CoreTypes.h>
+#include <HAL/Platform.h>
 
 enum class EGSystemDirectory : uint8
 {
