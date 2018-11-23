@@ -65,6 +65,7 @@ public class GodsOfDeceit : ModuleRules
     {
         Utils = new GUtils(this, "GodsOfDeceit");
 
+        /// NOTE
         /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
         Utils.Path = new GPath(Utils);

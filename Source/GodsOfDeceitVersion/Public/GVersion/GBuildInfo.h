@@ -40,7 +40,7 @@
 
 #include <GTypes/GVersionTypes.h>
 
-class GBuildInfo
+class GODSOFDECEITVERSION_API GBuildInfo
 {
 public:
     static FString GetProductCompanyName();

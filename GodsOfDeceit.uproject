@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.21",
+	"EngineAssociation": "{97FD51B9-4D37-1E30-E8E2-C480F7D72C34}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -23,7 +23,25 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitCompressionImpl",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitCompression": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitCrypto",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitCrypto": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitCryptoImpl",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitCrypto": [
@@ -50,7 +68,25 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitInterop",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitLoadingScreen",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"GodsOfDeceitLoadingScreen": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitLog",
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
 			"GodsOfDeceitLoadingScreen": [
@@ -68,7 +104,52 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitPersistentDataImpl",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPersistentData": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitPlatform",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitPlatformImpl",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitTypes",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitVersion",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitVersionImpl",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitPlatform": [

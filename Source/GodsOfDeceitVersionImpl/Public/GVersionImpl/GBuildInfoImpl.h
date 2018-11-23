@@ -56,7 +56,7 @@ THIRD_PARTY_INCLUDES_END
 
 #include <GTypes/GVersionTypes.h>
 
-class GBuildInfoImpl
+class GODSOFDECEITVERSIONIMPL_API GBuildInfoImpl
 {
 public:
     static FORCEINLINE const FString& GetProductCompanyName()
