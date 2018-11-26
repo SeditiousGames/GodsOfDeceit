@@ -10,7 +10,7 @@ Since we believe in the spirit of free/libre open-source software we provide eve
 
 At the moment we don't have any artists in our time, once this gets addressed this issue will go away over time.
 
-This project is brought to you by Khavaran67.
+This project is brought to you by Seditious Games Studio.
 
 ## How to check this repository out?
 
@@ -19,13 +19,13 @@ Since this repository is using nested git submodules it has to be checked out us
 For HTTPS checkouts:
 
 ```
-git clone --recursive --jobs 16 https://gitlab.com/Khavaran67/GodsOfDeceit.git
+git clone --recursive --jobs 16 https://gitlab.com/Seditious Games Studio/GodsOfDeceit.git
 ```
 
 For SSH checkouts:
 
 ```
-git clone --recursive --jobs 16 git@gitlab.com:Khavaran67/GodsOfDeceit.git
+git clone --recursive --jobs 16 git@gitlab.com:Seditious Games Studio/GodsOfDeceit.git
 ```
 
 ## Submodule Structure
@@ -66,7 +66,7 @@ Theoretically, it's possible to run Gods of Deceit on the following platforms:
 
 MIT License
 
-Copyright (c) 2018 Khavaran67
+Copyright (c) 2018 Seditious Games Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

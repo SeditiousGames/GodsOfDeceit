@@ -3,7 +3,7 @@
 #  (The MIT License)
 #
 #  Copyright (c) 2018 Mohammad S. Babaei
-#  Copyright (c) 2018 Khavaran67
+#  Copyright (c) 2018 Seditious Games Studio
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 
 SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
 PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-REMOTE_REPOSITORY="git@gitlab.com:Khavaran67/GodsOfDeceit_Content_ThirdParty.git"
+REMOTE_REPOSITORY="git@gitlab.com:Seditious Games Studio/GodsOfDeceit_Content_ThirdParty.git"
 BACKUP_REPOSITORY="/home/babaei/dev/GodsOfDeceit-bare-repo.git"
 BACKUP_DIRECTORY=$(dirname "${BACKUP_REPOSITORY}")
 
