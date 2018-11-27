@@ -19,13 +19,13 @@ Since this repository is using nested git submodules it has to be checked out us
 For HTTPS checkouts:
 
 ```
-git clone --recursive --jobs 16 https://gitlab.com/Seditious Games Studio/GodsOfDeceit.git
+git clone --recursive --jobs 16 https://gitlab.com/SeditiousGames/GodsOfDeceit.git
 ```
 
 For SSH checkouts:
 
 ```
-git clone --recursive --jobs 16 git@gitlab.com:Seditious Games Studio/GodsOfDeceit.git
+git clone --recursive --jobs 16 git@gitlab.com:SeditiousGames/GodsOfDeceit.git
 ```
 
 ## Submodules Structure
