@@ -28,22 +28,22 @@ For SSH checkouts:
 git clone --recursive --jobs 16 git@gitlab.com:Seditious Games Studio/GodsOfDeceit.git
 ```
 
-## Submodule Structure
+## Submodules Structure
 
 ```
 GodsOfDeceit
   │
-  ├── Content (public repo)
+  ├── Content (public repo, hosted at GitLab)
   │     │
   │     └── ThirdParty (private repo, includes UE4 marketplace assets)
   │
-  ├── Plugins (public repo)
+  ├── Plugins (public repo, hosted at GitLab)
   │     │
   │     │── UFSM (private repo, UE4 marketplace plugin)
   │     │
-  │     └── VlcMedia (public repo)
+  │     └── VlcMedia (public repo, hosted at GitLab)
   │
-  └── ThirdParty (public repo)
+  └── ThirdParty (public repo, hosted at GitLab)
 ```
 
 ## Supported Platforms
