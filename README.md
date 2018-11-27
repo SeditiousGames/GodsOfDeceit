@@ -8,7 +8,7 @@ Unfortunately, due to licensing restrictions you won't be able to build and run 
 
 Since we believe in the spirit of free/libre open-source software we provide everything we own the copyright for under MIT license in this repository. You should be able to build the game if you pay for the third-party plugins from the marketplace. Nonetheless, you probably won't be able to run the game since you have to reproduce the levels and art assets on your own using the assets from the marketplace. Still, feel free to build a new game using the provided source code with your own art assets.
 
-At the moment we don't have any artists in our time, once this gets addressed this issue will go away over time.
+At the moment we don't have any artists in our team, once this gets addressed this issue will go away over time.
 
 This project is brought to you by Seditious Games Studio.
 
