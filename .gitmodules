@@ -1,12 +1,12 @@
 [submodule "Content"]
 	path = Content
-	url = git@gitlab.com:Khavaran67/GodsOfDeceit_Content.git
+	url = git@gitlab.com:SeditiousGames/GodsOfDeceit_Content.git
 	branch = master
 [submodule "Plugins"]
 	path = Plugins
-	url = git@gitlab.com:Khavaran67/GodsOfDeceit_Plugins.git
+	url = git@gitlab.com:SeditiousGames/GodsOfDeceit_Plugins.git
 	branch = master
 [submodule "ThirdParty"]
 	path = ThirdParty
-	url = git@gitlab.com:Khavaran67/GodsOfDeceit_ThirdParty.git
+	url = git@gitlab.com:SeditiousGames/GodsOfDeceit_ThirdParty.git
 	branch = master
