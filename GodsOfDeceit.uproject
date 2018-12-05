@@ -95,6 +95,15 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitMath",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"GodsOfDeceitLoadingScreen": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitPersistentData",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
@@ -131,6 +140,24 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitRandom",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitRandomImpl",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitTypes",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
@@ -150,6 +177,24 @@
 		},
 		{
 			"Name": "GodsOfDeceitVersionImpl",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitUtils",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
+			"Name": "GodsOfDeceitUtilsImpl",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault",
 			"GodsOfDeceitPlatform": [
