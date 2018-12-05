@@ -30,7 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers the PersistentData layer module.
+ * Main file which registers the low level implementation of the persistent
+ * data module.
  */
 
 

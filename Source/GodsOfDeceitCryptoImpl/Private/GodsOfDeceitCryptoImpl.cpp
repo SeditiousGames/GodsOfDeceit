@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers the Crypto layer module.
+ * Main file which registers the low level implementation of the crypto module.
  */
 
 

@@ -120,9 +120,12 @@ public class GodsOfDeceit : ModuleRules
         Utils.GameModules.AddCrypto(false);
         Utils.GameModules.AddLoadingScreen(false);
         Utils.GameModules.AddLog(false);
+        Utils.GameModules.AddMath(false);
         Utils.GameModules.AddPersistentData(false);
         Utils.GameModules.AddPlatform(false);
+        Utils.GameModules.AddRandom(false);
         Utils.GameModules.AddTypes(false);
+        Utils.GameModules.AddUtils(false);
         Utils.GameModules.AddVersion(false);
 
         Utils.Log.EmptyLine();
@@ -689,6 +692,18 @@ public class GGameModules
         }
     }
 
+    public void AddMath(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitMath");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitMath");
+        }
+    }
+
     public void AddPersistentData(bool bPublic)
     {
         if (bPublic)
@@ -737,6 +752,30 @@ public class GGameModules
         }
     }
 
+    public void AddRandom(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitRandom");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitRandom");
+        }
+    }
+
+    public void AddRandomImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitRandomImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitRandomImpl");
+        }
+    }
+
     public void AddTypes(bool bPublic)
     {
         if (bPublic)
@@ -746,6 +785,30 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceitTypes");
+        }
+    }
+
+    public void AddUtils(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitUtils");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitUtils");
+        }
+    }
+
+    public void AddUtilsImpl(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitUtilsImpl");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitUtilsImpl");
         }
     }
 

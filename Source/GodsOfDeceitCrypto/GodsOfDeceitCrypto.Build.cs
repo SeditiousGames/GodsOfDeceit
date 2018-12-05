@@ -107,7 +107,8 @@ public class GodsOfDeceitCrypto : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddPlatform(false);
+        Utils.GameModules.AddCryptoImpl(true);
+        Utils.GameModules.AddInterop(true);
 
         Utils.Log.EmptyLine();
     }

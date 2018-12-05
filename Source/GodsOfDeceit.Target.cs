@@ -55,11 +55,16 @@ public class GodsOfDeceitTarget : TargetRules
                 "GodsOfDeceitInterop",
                 "GodsOfDeceitLoadingScreen",
                 "GodsOfDeceitLog",
+                "GodsOfDeceitMath",
                 "GodsOfDeceitPersistentData",
                 "GodsOfDeceitPersistentDataImpl",
                 "GodsOfDeceitPlatform",
                 "GodsOfDeceitPlatformImpl",
+                "GodsOfDeceitRandom",
+                "GodsOfDeceitRandomImpl",
                 "GodsOfDeceitTypes",
+                "GodsOfDeceitUtils",
+                "GodsOfDeceitUtilsImpl",
                 "GodsOfDeceitVersion",
                 "GodsOfDeceitVersionImpl"
             });

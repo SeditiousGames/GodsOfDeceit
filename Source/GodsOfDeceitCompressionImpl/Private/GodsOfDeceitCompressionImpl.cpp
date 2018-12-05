@@ -30,7 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers the compression layer module.
+ * Main file which registers the low level implementation of the compression
+ * module.
  */
 
 

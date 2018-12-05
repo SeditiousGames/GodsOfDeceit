@@ -107,7 +107,8 @@ public class GodsOfDeceitCompression : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddPlatform(false);
+        Utils.GameModules.AddCompressionImpl(true);
+        Utils.GameModules.AddInterop(true);
 
         Utils.Log.EmptyLine();
     }

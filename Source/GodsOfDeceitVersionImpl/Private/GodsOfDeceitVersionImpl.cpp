@@ -30,7 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * Main file which registers the version module.
+ * Main file which registers the low level implementation of the version
+ * module.
  */
 
 
