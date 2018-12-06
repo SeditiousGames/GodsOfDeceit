@@ -107,8 +107,8 @@ public class GodsOfDeceitUtils : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddInterop(true);
-        Utils.GameModules.AddUtilsImpl(true);
+        Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddUtilsImpl(false);
 
         Utils.Log.EmptyLine();
     }

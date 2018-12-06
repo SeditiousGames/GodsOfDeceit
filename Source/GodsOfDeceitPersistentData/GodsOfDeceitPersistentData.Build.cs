@@ -107,8 +107,8 @@ public class GodsOfDeceitPersistentData : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddInterop(true);
-        Utils.GameModules.AddPersistentDataImpl(true);
+        Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddPersistentDataImpl(false);
 
         Utils.Log.EmptyLine();
     }

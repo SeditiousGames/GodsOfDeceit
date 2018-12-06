@@ -107,8 +107,8 @@ public class GodsOfDeceitRandom : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddInterop(true);
-        Utils.GameModules.AddRandomImpl(true);
+        Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddRandomImpl(false);
 
         Utils.Log.EmptyLine();
     }

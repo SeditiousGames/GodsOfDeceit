@@ -98,7 +98,7 @@ public class GodsOfDeceitHacks : ModuleRules
     {
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
-        Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCore(false);
 
         Utils.Log.EmptyLine();
     }

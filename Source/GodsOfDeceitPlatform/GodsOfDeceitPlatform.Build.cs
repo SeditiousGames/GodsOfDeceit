@@ -107,9 +107,9 @@ public class GodsOfDeceitPlatform : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddInterop(true);
-        Utils.GameModules.AddPlatformImpl(true);
-        Utils.GameModules.AddTypes(true);
+        Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddPlatformImpl(false);
+        Utils.GameModules.AddTypes(false);
 
         Utils.Log.EmptyLine();
     }

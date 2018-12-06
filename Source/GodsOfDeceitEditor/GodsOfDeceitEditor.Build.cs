@@ -110,7 +110,7 @@ public class GodsOfDeceitEditor : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.GameModules.AddGodsOfDeceit(true);
+        Utils.GameModules.AddGodsOfDeceit(false);
 
         Utils.Log.EmptyLine();
     }
