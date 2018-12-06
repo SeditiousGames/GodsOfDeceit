@@ -37,7 +37,7 @@
 #include "GBuildInfo.h"
 
 #include <GInterop/GIC_FString.h>
-#include <GVersionImpl/GVersionImpl.h>
+#include <GVersionImpl/GExportedFunctions.h>
 
 FString GBuildInfo::GetProductCompanyName()
 {

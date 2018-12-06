@@ -38,7 +38,7 @@
 
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>
-#include <GPlatformImpl/GPlatformImpl.h>
+#include <GPlatformImpl/GExportedFunctions.h>
 
 FString GSystem::GetDirectorySeparatorChar()
 {

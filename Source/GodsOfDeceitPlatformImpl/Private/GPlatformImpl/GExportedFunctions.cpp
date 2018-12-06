@@ -35,7 +35,7 @@
  */
 
 
-#include "GPlatformImpl.h"
+#include "GExportedFunctions.h"
 
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>
