@@ -106,6 +106,7 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
 
         Utils.GameModules.AddHacks(false);
         Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddTypes(false);
 
         Utils.Log.EmptyLine();
     }
@@ -120,6 +121,9 @@ public class GodsOfDeceitCryptoImpl : ModuleRules
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddCryptoPP();
+        Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddFMT();
         Utils.Log.EmptyLine();
     }
 

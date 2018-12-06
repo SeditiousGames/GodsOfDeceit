@@ -109,6 +109,7 @@ public class GodsOfDeceitCompression : ModuleRules
 
         Utils.GameModules.AddCompressionImpl(false);
         Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddTypes(false);
 
         Utils.Log.EmptyLine();
     }

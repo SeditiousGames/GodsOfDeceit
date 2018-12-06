@@ -109,6 +109,7 @@ public class GodsOfDeceitCrypto : ModuleRules
 
         Utils.GameModules.AddCryptoImpl(false);
         Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddTypes(false);
 
         Utils.Log.EmptyLine();
     }
