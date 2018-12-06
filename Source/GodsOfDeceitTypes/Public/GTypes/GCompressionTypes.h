@@ -30,18 +30,13 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the platform module's enumerations.
+ * A place to define the compression module's enumerations.
  */
 
 
 #pragma once
 
-#include <CoreTypes.h>
+#include <vector>
 
-enum class EGSystemDirectory : uint8
-{
-    UserDesktop,
-    UserDocuments,
-    UserGameData,
-    UserHome
-};
+typedef char GCompressionByte;
+typedef std::vector<GCompressionByte> GCompressionBuffer;

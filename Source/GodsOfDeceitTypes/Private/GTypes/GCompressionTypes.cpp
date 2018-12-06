@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file
  * @author  Mohammad S. Babaei <info@babaei.net>
  * @version 0.1.0
@@ -30,18 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the platform module's enumerations.
+ * A place to define the compression module's enumerations.
  */
 
 
-#pragma once
-
-#include <CoreTypes.h>
-
-enum class EGSystemDirectory : uint8
-{
-    UserDesktop,
-    UserDocuments,
-    UserGameData,
-    UserHome
-};
+#include "GCompressionTypes.h"

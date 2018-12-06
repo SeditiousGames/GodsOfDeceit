@@ -30,18 +30,15 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the platform module's enumerations.
+ * A place to define the crypto module's enumerations.
  */
 
 
 #pragma once
 
-#include <CoreTypes.h>
+#include <vector>
 
-enum class EGSystemDirectory : uint8
-{
-    UserDesktop,
-    UserDocuments,
-    UserGameData,
-    UserHome
-};
+#include <cstdint>
+
+typedef uint8_t GCryptoByte;
+typedef std::vector<GCryptoByte> GCryptoBuffer;
