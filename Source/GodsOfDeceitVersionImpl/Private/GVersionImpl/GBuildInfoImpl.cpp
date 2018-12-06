@@ -59,8 +59,8 @@ THIRD_PARTY_INCLUDES_END
 
 #include <GHacks/GInclude_Windows.h>
 
-#define     BUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE                 "Serialization Error"
-#define     BUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE              "GBuildInfoImpl: unknown serialization error!"
+#define     GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE                 "Serialization Error"
+#define     GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE              "GBuildInfoImpl: unknown serialization error!"
 
 struct BuildInfo
 {
@@ -181,49 +181,49 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
         return true;
     }
 
-    catch (const cereal::Exception& ex)
+    catch (const cereal::Exception& Exception)
     {
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, boost::diagnostic_information(ex).c_str(),
-                    BUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
+        MessageBoxA(0, boost::diagnostic_information(Exception).c_str(),
+                    GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
-               UTF8_TO_TCHAR(boost::diagnostic_information(ex).c_str()));
+               UTF8_TO_TCHAR(boost::diagnostic_information(Exception).c_str()));
     }
 
-    catch (const boost::exception& ex)
+    catch (const boost::exception& Exception)
     {
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, boost::diagnostic_information(ex).c_str(),
-                    BUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
+        MessageBoxA(0, boost::diagnostic_information(Exception).c_str(),
+                    GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
                StringCast<TCHAR>(
-                   boost::diagnostic_information(ex).c_str()).Get());
+                   boost::diagnostic_information(Exception).c_str()).Get());
     }
 
-    catch (const std::exception& ex)
+    catch (const std::exception& Exception)
     {
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, ex.what(),
-                    BUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
+        MessageBoxA(0, Exception.what(),
+                    GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(ex.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, BUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE,
-                    BUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
+        MessageBoxA(0, GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE,
+                    GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
                StringCast<TCHAR>(
-                   BUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE).Get());
+                   GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE).Get());
     }
 
     return false;
