@@ -71,7 +71,7 @@ THIRD_PARTY_INCLUDES_START
 
 THIRD_PARTY_INCLUDES_END
 
-#define     GCRYPTO_ERROR_DIALOG_TITLE          "Serialization Error"
+#define     GCRYPTO_ERROR_DIALOG_TITLE          "Cryptography Error"
 #define     GCRYPTO_UNKNOWN_ERROR_MESSAGE       "GCrypto: unknown error!"
 
 struct GCryptoImpl::Impl
@@ -185,6 +185,51 @@ bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
                                FString& Out_Encoded,
                                FString& Out_Error)
 {
+    try {
+        Out_Encoded = TEXT("");
+        Out_Error = TEXT("");
+
+        std::string Encoded;
+
+        CryptoPP::StringSource StringStream(
+                    RawBuffer, static_cast<std::size_t>(RawBufferSize), true,
+                    new CryptoPP::Base64Encoder(
+                        new CryptoPP::StringSink(Encoded)));
+        (void)StringStream;
+
+        Out_Encoded.Append(StringCast<TCHAR>(
+                               Encoded.c_str()).Get(), Encoded.size());
+        Out_Encoded.TrimToNullTerminator();
+
+        return true;
+    }
+
+    catch (const CryptoPP::Exception& Exception) {
+        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+    }
+
+    catch (const std::exception& Exception) {
+        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+    }
+
+    catch (...) {
+        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
+                    GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+        checkf(false, TEXT("%s"),
+               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+    }
+
     return false;
 }
 
@@ -192,7 +237,10 @@ bool GCryptoImpl::Base64Encode(const GCryptoBuffer& RawBuffer,
                                FString& Out_Encoded,
                                FString& Out_Error)
 {
-    return false;
+    return GCryptoImpl::Base64Encode(
+                &RawBuffer[0],
+            static_cast<uint64>(RawBuffer.size()),
+            Out_Encoded, Out_Error);
 }
 
 bool GCryptoImpl::Base64Encode(const std::string& RawBuffer,
@@ -278,8 +326,9 @@ bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
     }
 
     catch (const CryptoPP::Exception& Exception) {
+        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, Exception.what(), "Cryptography Error", MB_OK);
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
     }
@@ -287,7 +336,7 @@ bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
     catch (const std::exception& Exception) {
         Out_Error = StringCast<TCHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, Exception.what(), "Cryptography Error", MB_OK);
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
     }
@@ -295,7 +344,7 @@ bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
     catch (...) {
         Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
-        MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE, "Cryptography Error", MB_OK);
+        MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE, GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
                StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
