@@ -86,7 +86,7 @@ public class GodsOfDeceitUtilsImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
-        Utils.Definitions.DefinePublicly("GOD_BUILDING_Utils_IMPL_MODULE");
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_UTILS_IMPL_MODULE");
 
         Utils.Log.EmptyLine();
     }

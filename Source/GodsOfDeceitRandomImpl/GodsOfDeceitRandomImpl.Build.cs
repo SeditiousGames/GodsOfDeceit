@@ -86,7 +86,7 @@ public class GodsOfDeceitRandomImpl : ModuleRules
             Utils.Definitions.DefinePublicly("WIN32_LEAN_AND_MEAN");
         }
 
-        Utils.Definitions.DefinePublicly("GOD_BUILDING_Random_IMPL_MODULE");
+        Utils.Definitions.DefinePublicly("GOD_BUILDING_RANDOM_IMPL_MODULE");
 
         Utils.Log.EmptyLine();
     }
