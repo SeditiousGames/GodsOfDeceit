@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Provides a low-level implementation for an abstraction layer on top of
+ * Provides a low-level implementation for an abstraction layer on top of the
  * platform-specific API.
  */
 
