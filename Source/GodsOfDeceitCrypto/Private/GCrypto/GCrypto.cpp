@@ -352,53 +352,161 @@ bool GCrypto::Base64Encode(const GCryptoByte* const RawBuffer,
                            FString& Out_Encoded,
                            FString& Out_Error)
 {
-    return false;
+    GIC_FString OutEncodedInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_GCryptoByteArray_WithErrorInfo(
+                RawBuffer, RawBufferSize,
+                &OutEncodedInteropContainer, &OutErrorInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const GCryptoBuffer& RawBuffer,
                            FString& Out_Encoded,
                            FString& Out_Error)
 {
-    return false;
+    const GIC_GCryptoBuffer RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_GCryptoBuffer_WithErrorInfo(
+                &RawBufferInteropContainer, &OutEncodedInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const std::string& RawBuffer,
                            FString& Out_Encoded,
                            FString& Out_Error)
 {
-    return false;
+    const GIC_std_string RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_StdString_WithErrorInfo(
+                &RawBufferInteropContainer, &OutEncodedInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const FString& RawBuffer,
                            FString& Out_Encoded,
                            FString& Out_Error)
 {
-    return false;
+    const GIC_FString RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_FString_WithErrorInfo(
+                &RawBufferInteropContainer, &OutEncodedInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const GCryptoByte* const RawBuffer,
                            const uint64 RawBufferSize,
                            FString& Out_Encoded)
 {
-    return false;
+    GIC_FString OutEncodedInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_GCryptoByteArray(
+                RawBuffer, RawBufferSize,
+                &OutEncodedInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const GCryptoBuffer& RawBuffer,
                            FString& Out_Encoded)
 {
-    return false;
+    const GIC_GCryptoBuffer RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_GCryptoBuffer(
+                &RawBufferInteropContainer,
+                &OutEncodedInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const std::string& RawBuffer,
                            FString& Out_Encoded)
 {
-    return false;
+    const GIC_std_string RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_StdString(
+                &RawBufferInteropContainer, &OutEncodedInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Encode(const FString& RawBuffer,
                            FString& Out_Encoded)
 {
-    return false;
+    const GIC_FString RawBufferInteropContainer
+    {
+        RawBuffer
+    };
+
+    GIC_FString OutEncodedInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Encode_FString(
+                &RawBufferInteropContainer, &OutEncodedInteropContainer);
+
+    Out_Encoded = std::move(OutEncodedInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
