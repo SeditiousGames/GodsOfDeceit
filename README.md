@@ -2,7 +2,7 @@
 
 First-person shooter game written and developed in C++ and Unreal Engine 4
 
-## Importat note about this repository
+## Important note about this repository
 
 Unfortunately, due to licensing restrictions you won't be able to build and run the game from this project, as part of the game assets and plugins are not included in this repository. The main reason for this is our usage of third-party assets and plugins from UE4 Marketplace.
 
