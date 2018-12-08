@@ -36,6 +36,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include <Containers/UnrealString.h>
@@ -45,6 +46,10 @@
 
 class GODSOFDECEITCRYPTOIMPL_API GCrypto
 {
+private:
+    struct Impl;
+    std::unique_ptr<Impl> Pimpl;
+
 public:
     static bool BytesArrayToString(const GCryptoByte* const Array,
                                    const uint64 Length,
