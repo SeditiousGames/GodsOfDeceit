@@ -64,5 +64,5 @@ void System_GetSystemDirectoryPath(void* Directory, void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
             GSystemImpl::GetSystemDirectoryPath(
-                static_cast<GIC_EGSystemDirectory*>(Directory)->Directory);
+                static_cast<const GIC_EGSystemDirectory*>(Directory)->Directory);
 }
