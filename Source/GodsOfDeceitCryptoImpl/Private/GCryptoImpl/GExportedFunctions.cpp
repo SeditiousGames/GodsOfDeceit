@@ -109,7 +109,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer_WithErrorInfo(
                 static_cast<GIC_FString*>(Out_Error)->String);
 }
 
-bool GCrypto_Base64Decode_From_GCryptoByte_To_FString_WithErrorInfo(
+bool GCrypto_Base64Decode_From_GCryptoByteArray_To_FString_WithErrorInfo(
         const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
@@ -163,7 +163,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer(
                 static_cast<GIC_GCryptoBuffer*>(Out_Decoded)->Buffer);
 }
 
-bool GCrypto_Base64Decode_From_GCryptoByte_To_FString(
+bool GCrypto_Base64Decode_From_GCryptoByteArray_To_FString(
         const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded)
@@ -273,7 +273,7 @@ bool GCrypto_Base64Encode_FString(
                 static_cast<GIC_FString*>(Out_Encoded)->String);
 }
 
-bool GCrypto_Sign_GCryptoBytArray_WithErrorInfo(
+bool GCrypto_Sign_GCryptoByteArray_WithErrorInfo(
         const GCryptoByte* const Key,
         const uint64 KeySize,
         const GCryptoByte* const PlainBuffer,
@@ -329,7 +329,7 @@ bool GCrypto_Sign_FString_WithErrorInfo(
                 static_cast<GIC_FString*>(Out_Error)->String);
 }
 
-bool GCrypto_Sign_GCryptoBytArray(
+bool GCrypto_Sign_GCryptoByteArray(
         const GCryptoByte* const Key,
         const uint64 KeySize,
         const GCryptoByte* const PlainBuffer,
