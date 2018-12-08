@@ -54,10 +54,17 @@ private:
 public:
     static bool BytesArrayToString(const GCryptoByte* Array,
                                    const uint64 Length,
+                                   FString& Out_String,
+                                   FString& Out_Error);
+    static bool BytesArrayToString(const GCryptoByte* Array,
+                                   const uint64 Length,
                                    FString& Out_String);
     static FString BytesArrayToString(const GCryptoByte* Array,
                                       const uint64 Length);
 
+    static bool HexStringToString(const FString& HexString,
+                                  FString& Out_String,
+                                  FString& Out_Error);
     static bool HexStringToString(const FString& HexString,
                                   FString& Out_String);
     static FString HexStringToString(const FString& HexString);
