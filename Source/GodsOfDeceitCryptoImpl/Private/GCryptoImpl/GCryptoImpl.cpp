@@ -333,7 +333,7 @@ bool GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
     return bSucceed;
 }
 
-bool GCryptoImpl::Base64Decode(const FString& EncodedString,
+bool GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
                                FString& Out_Decoded,
                                FString& Out_Error)
 {
@@ -342,8 +342,8 @@ bool GCryptoImpl::Base64Decode(const FString& EncodedString,
 
     bool bSucceed = GCryptoImpl::Base64Decode(
                 reinterpret_cast<const GCryptoByte*>(
-                    StringCast<ANSICHAR>(*EncodedString).Get()),
-                EncodedString.Len(), Decoded, Out_Error);
+                    StringCast<ANSICHAR>(*EncodedBuffer).Get()),
+                EncodedBuffer.Len(), Decoded, Out_Error);
 
     if (bSucceed)
     {
@@ -389,11 +389,11 @@ bool GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
     return GCryptoImpl::Base64Decode(EncodedBuffer, Out_Decoded, OutError);
 }
 
-bool GCryptoImpl::Base64Decode(const FString& EncodedString,
+bool GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
                                FString& Out_Decoded)
 {
     FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedString, Out_Decoded, OutError);
+    return GCryptoImpl::Base64Decode(EncodedBuffer, Out_Decoded, OutError);
 }
 
 bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,

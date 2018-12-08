@@ -84,7 +84,7 @@ public:
     static bool Base64Decode(const GCryptoBuffer& EncodedBuffer,
                              FString& Out_Decoded,
                              FString& Out_Error);
-    static bool Base64Decode(const FString& EncodedString,
+    static bool Base64Decode(const FString& EncodedBuffer,
                              FString& Out_Decoded,
                              FString& Out_Error);
 
@@ -99,7 +99,7 @@ public:
                              FString& Out_Decoded);
     static bool Base64Decode(const GCryptoBuffer& EncodedBuffer,
                              FString& Out_Decoded);
-    static bool Base64Decode(const FString& EncodedString,
+    static bool Base64Decode(const FString& EncodedBuffer,
                              FString& Out_Decoded);
 
     static bool Base64Encode(const GCryptoByte* RawBuffer,
