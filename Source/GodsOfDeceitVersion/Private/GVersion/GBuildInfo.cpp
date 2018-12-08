@@ -43,7 +43,7 @@ FString GBuildInfo::GetProductCompanyName()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductCompanyName(&InteropContainer);
+    GBuildInfo_GetProductCompanyName(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -52,7 +52,7 @@ FString GBuildInfo::GetProductName()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductName(&InteropContainer);
+    GBuildInfo_GetProductName(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -61,7 +61,7 @@ FString GBuildInfo::GetProductInternalName()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductInternalName(&InteropContainer);
+    GBuildInfo_GetProductInternalName(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -70,7 +70,7 @@ FString GBuildInfo::GetProductDescription()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductDescription(&InteropContainer);
+    GBuildInfo_GetProductDescription(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -79,7 +79,7 @@ FString GBuildInfo::GetProductCopyrightHolder()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductCopyrightHolder(&InteropContainer);
+    GBuildInfo_GetProductCopyrightHolder(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -88,7 +88,7 @@ FString GBuildInfo::GetProductCopyrightNotice()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductCopyrightNotice(&InteropContainer);
+    GBuildInfo_GetProductCopyrightNotice(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -97,7 +97,7 @@ FGProductVersionNumbers GBuildInfo::GetProductVersionNumbers()
 {
     FGProductVersionNumbers ProductVersionNumbers;
 
-    BuildInfo_GetProductVersionNumbers(&ProductVersionNumbers);
+    GBuildInfo_GetProductVersionNumbers(&ProductVersionNumbers);
 
     return ProductVersionNumbers;
 }
@@ -106,7 +106,7 @@ FString GBuildInfo::GetProductBranchName()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductBranchName(&InteropContainer);
+    GBuildInfo_GetProductBranchName(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -115,7 +115,7 @@ FString GBuildInfo::GetProductShortRevisionHash()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductShortRevisionHash(&InteropContainer);
+    GBuildInfo_GetProductShortRevisionHash(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -124,7 +124,7 @@ FString GBuildInfo::GetProductVersion()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductVersion(&InteropContainer);
+    GBuildInfo_GetProductVersion(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -133,7 +133,7 @@ FString GBuildInfo::GetProductRevision()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductRevision(&InteropContainer);
+    GBuildInfo_GetProductRevision(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -142,7 +142,7 @@ FString GBuildInfo::GetProductBuildHost()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductBuildHost(&InteropContainer);
+    GBuildInfo_GetProductBuildHost(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -151,7 +151,7 @@ FString GBuildInfo::GetProductBuildDate()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductBuildDate(&InteropContainer);
+    GBuildInfo_GetProductBuildDate(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -160,7 +160,7 @@ FString GBuildInfo::GetProductBuildTime()
 {
     GIC_FString InteropContainer;
 
-    BuildInfo_GetProductBuildTime(&InteropContainer);
+    GBuildInfo_GetProductBuildTime(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -169,7 +169,7 @@ bool GBuildInfo::ToJson(FString& Out_Json, const bool bPretty)
 {
     GIC_FString InteropContainer;
 
-    bool bSucceed = BuildInfo_GetProductBuildInfoAsJson(
+    bool bSucceed = GBuildInfo_GetProductBuildInfoAsJson(
                 &InteropContainer, bPretty);
 
     Out_Json = std::move(InteropContainer.String);

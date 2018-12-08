@@ -74,44 +74,44 @@ extern "C"
 
 #if defined ( GOD_BUILDING_VERSION_IMPL_MODULE )
 
-DLLEXPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductInternalName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductDescription(void* Out_Description);
-DLLEXPORT void BuildInfo_GetProductCopyrightHolder(void* Out_Notice);
-DLLEXPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
-DLLEXPORT void BuildInfo_GetProductVersionNumbers(
+DLLEXPORT void GBuildInfo_GetProductCompanyName(void* Out_Name);
+DLLEXPORT void GBuildInfo_GetProductName(void* Out_Name);
+DLLEXPORT void GBuildInfo_GetProductInternalName(void* Out_Name);
+DLLEXPORT void GBuildInfo_GetProductDescription(void* Out_Description);
+DLLEXPORT void GBuildInfo_GetProductCopyrightHolder(void* Out_Notice);
+DLLEXPORT void GBuildInfo_GetProductCopyrightNotice(void* Out_Notice);
+DLLEXPORT void GBuildInfo_GetProductVersionNumbers(
         FGProductVersionNumbers* Out_Numbers);
-DLLEXPORT void BuildInfo_GetProductBranchName(void* Out_Name);
-DLLEXPORT void BuildInfo_GetProductShortRevisionHash(void* Out_Hash);
-DLLEXPORT void BuildInfo_GetProductVersion(void* Out_Version);
-DLLEXPORT void BuildInfo_GetProductRevision(void* Out_Revision);
-DLLEXPORT void BuildInfo_GetProductBuildHost(void* Out_Host);
-DLLEXPORT void BuildInfo_GetProductBuildDate(void* Out_Date);
-DLLEXPORT void BuildInfo_GetProductBuildTime(void* Out_Time);
+DLLEXPORT void GBuildInfo_GetProductBranchName(void* Out_Name);
+DLLEXPORT void GBuildInfo_GetProductShortRevisionHash(void* Out_Hash);
+DLLEXPORT void GBuildInfo_GetProductVersion(void* Out_Version);
+DLLEXPORT void GBuildInfo_GetProductRevision(void* Out_Revision);
+DLLEXPORT void GBuildInfo_GetProductBuildHost(void* Out_Host);
+DLLEXPORT void GBuildInfo_GetProductBuildDate(void* Out_Date);
+DLLEXPORT void GBuildInfo_GetProductBuildTime(void* Out_Time);
 
-DLLEXPORT bool BuildInfo_GetProductBuildInfoAsJson(
+DLLEXPORT bool GBuildInfo_GetProductBuildInfoAsJson(
         void* Out_Json, const bool bPretty);
 
 #else
 
-DLLIMPORT void BuildInfo_GetProductCompanyName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductInternalName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductDescription(void* Out_Description);
-DLLIMPORT void BuildInfo_GetProductCopyrightHolder(void* Out_Notice);
-DLLIMPORT void BuildInfo_GetProductCopyrightNotice(void* Out_Notice);
-DLLIMPORT void BuildInfo_GetProductVersionNumbers(
+DLLIMPORT void GBuildInfo_GetProductCompanyName(void* Out_Name);
+DLLIMPORT void GBuildInfo_GetProductName(void* Out_Name);
+DLLIMPORT void GBuildInfo_GetProductInternalName(void* Out_Name);
+DLLIMPORT void GBuildInfo_GetProductDescription(void* Out_Description);
+DLLIMPORT void GBuildInfo_GetProductCopyrightHolder(void* Out_Notice);
+DLLIMPORT void GBuildInfo_GetProductCopyrightNotice(void* Out_Notice);
+DLLIMPORT void GBuildInfo_GetProductVersionNumbers(
         FGProductVersionNumbers* Out_Numbers);
-DLLIMPORT void BuildInfo_GetProductBranchName(void* Out_Name);
-DLLIMPORT void BuildInfo_GetProductShortRevisionHash(void* Out_Hash);
-DLLIMPORT void BuildInfo_GetProductVersion(void* Out_Version);
-DLLIMPORT void BuildInfo_GetProductRevision(void* Out_Revision);
-DLLIMPORT void BuildInfo_GetProductBuildHost(void* Out_Host);
-DLLIMPORT void BuildInfo_GetProductBuildDate(void* Out_Date);
-DLLIMPORT void BuildInfo_GetProductBuildTime(void* Out_Time);
+DLLIMPORT void GBuildInfo_GetProductBranchName(void* Out_Name);
+DLLIMPORT void GBuildInfo_GetProductShortRevisionHash(void* Out_Hash);
+DLLIMPORT void GBuildInfo_GetProductVersion(void* Out_Version);
+DLLIMPORT void GBuildInfo_GetProductRevision(void* Out_Revision);
+DLLIMPORT void GBuildInfo_GetProductBuildHost(void* Out_Host);
+DLLIMPORT void GBuildInfo_GetProductBuildDate(void* Out_Date);
+DLLIMPORT void GBuildInfo_GetProductBuildTime(void* Out_Time);
 
-DLLIMPORT bool BuildInfo_GetProductBuildInfoAsJson(
+DLLIMPORT bool GBuildInfo_GetProductBuildInfoAsJson(
         void* Out_Json, const bool bPretty);
 
 #endif  /* defined ( GOD_BUILDING_VERSION_IMPL_MODULE ) */
