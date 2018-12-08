@@ -72,18 +72,18 @@ extern "C"
 
 #if defined ( GOD_BUILDING_PLATFORM_IMPL_MODULE )
 
-DLLEXPORT void System_GetDirectorySeparatorChar(void* Out_Char);
-DLLEXPORT void System_GetExecutablePath(void* Out_Path);
-DLLEXPORT void System_GetCurrentPath(void* Out_Path);
-DLLEXPORT void System_GetSystemDirectoryPath(
+DLLEXPORT void GSystem_GetDirectorySeparatorChar(void* Out_Char);
+DLLEXPORT void GSystem_GetExecutablePath(void* Out_Path);
+DLLEXPORT void GSystem_GetCurrentPath(void* Out_Path);
+DLLEXPORT void GSystem_GetSystemDirectoryPath(
         const void* const Directory, void* Out_Path);
 
 #else
 
-DLLIMPORT void System_GetDirectorySeparatorChar(void* Out_Char);
-DLLIMPORT void System_GetExecutablePath(void* Out_Path);
-DLLIMPORT void System_GetCurrentPath(void* Out_Path);
-DLLIMPORT void System_GetSystemDirectoryPath(
+DLLIMPORT void GSystem_GetDirectorySeparatorChar(void* Out_Char);
+DLLIMPORT void GSystem_GetExecutablePath(void* Out_Path);
+DLLIMPORT void GSystem_GetCurrentPath(void* Out_Path);
+DLLIMPORT void GSystem_GetSystemDirectoryPath(
         const void* const Directory, void* Out_Path);
 
 #endif  /* defined ( GOD_BUILDING_PLATFORM_IMPL_MODULE ) */

@@ -42,25 +42,25 @@
 
 #include "GSystemImpl.h"
 
-void System_GetDirectorySeparatorChar(void* Out_Char)
+void GSystem_GetDirectorySeparatorChar(void* Out_Char)
 {
     static_cast<GIC_FString*>(Out_Char)->String =
             GSystemImpl::GetDirectorySeparatorChar();
 }
 
-void System_GetExecutablePath(void* Out_Path)
+void GSystem_GetExecutablePath(void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
             GSystemImpl::GetExecutablePath();
 }
 
-void System_GetCurrentPath(void* Out_Path)
+void GSystem_GetCurrentPath(void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
             GSystemImpl::GetCurrentPath();
 }
 
-void System_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
+void GSystem_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
             GSystemImpl::GetSystemDirectoryPath(

@@ -44,7 +44,7 @@ FString GSystem::GetDirectorySeparatorChar()
 {
     GIC_FString InteropContainer;
 
-    System_GetDirectorySeparatorChar(&InteropContainer);
+    GSystem_GetDirectorySeparatorChar(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -53,7 +53,7 @@ FString GSystem::GetExecutablePath()
 {
     GIC_FString InteropContainer;
 
-    System_GetExecutablePath(&InteropContainer);
+    GSystem_GetExecutablePath(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -62,7 +62,7 @@ FString GSystem::GetCurrentPath()
 {
     GIC_FString InteropContainer;
 
-    System_GetCurrentPath(&InteropContainer);
+    GSystem_GetCurrentPath(&InteropContainer);
 
     return InteropContainer.String;
 }
@@ -75,7 +75,7 @@ FString GSystem::GetSystemDirectoryPath(
 
     GIC_FString PathInteropContainer;
 
-    System_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
+    GSystem_GetSystemDirectoryPath(&DirectoryInteropContainer, &PathInteropContainer);
 
     return PathInteropContainer.String;
 }
