@@ -44,7 +44,7 @@
 #include "GCryptoImpl.h"
 
 bool GCrypto_BytesArrayToString_WithErrorInfo(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error)
@@ -56,7 +56,7 @@ bool GCrypto_BytesArrayToString_WithErrorInfo(
 }
 
 bool GCrypto_BytesArrayToString(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String)
 {
@@ -66,7 +66,7 @@ bool GCrypto_BytesArrayToString(
 }
 
 bool GCrypto_HexStringToString_WithErrorInfo(
-        void* HexString,
+        const void* const HexString,
         void* Out_String,
         void* Out_Error)
 {
@@ -77,7 +77,7 @@ bool GCrypto_HexStringToString_WithErrorInfo(
 }
 
 bool GCrypto_HexStringToString(
-        void* HexString,
+        const void* const HexString,
         void* Out_String)
 {
     return GCryptoImpl::HexStringToString(
@@ -86,7 +86,7 @@ bool GCrypto_HexStringToString(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error)
@@ -98,7 +98,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error)
@@ -110,7 +110,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer_WithErrorInfo(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByte_To_FString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error)
@@ -122,7 +122,7 @@ bool GCrypto_Base64Decode_From_GCryptoByte_To_FString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error)
 {
@@ -133,7 +133,7 @@ bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Decode_From_FString_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error)
 {
@@ -144,7 +144,7 @@ bool GCrypto_Base64Decode_From_FString_To_FString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded)
 {
@@ -154,7 +154,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded)
 {
@@ -164,7 +164,7 @@ bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoByte_To_FString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded)
 {
@@ -174,7 +174,7 @@ bool GCrypto_Base64Decode_From_GCryptoByte_To_FString(
 }
 
 bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded)
 {
     return GCryptoImpl::Base64Decode(
@@ -183,7 +183,7 @@ bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString(
 }
 
 bool GCrypto_Base64Decode_From_FString_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded)
 {
     return GCryptoImpl::Base64Decode(
@@ -192,7 +192,7 @@ bool GCrypto_Base64Decode_From_FString_To_FString(
 }
 
 bool GCrypto_Base64Encode_GCryptoByteArray_WithErrorInfo(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded,
         void* Out_Error)
@@ -204,7 +204,7 @@ bool GCrypto_Base64Encode_GCryptoByteArray_WithErrorInfo(
 }
 
 bool GCrypto_Base64Encode_GCryptoBuffer_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error)
 {
@@ -215,7 +215,7 @@ bool GCrypto_Base64Encode_GCryptoBuffer_WithErrorInfo(
 }
 
 bool GCrypto_Base64Encode_StdString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error)
 {
@@ -226,7 +226,7 @@ bool GCrypto_Base64Encode_StdString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Encode_FString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error)
 {
@@ -237,7 +237,7 @@ bool GCrypto_Base64Encode_FString_WithErrorInfo(
 }
 
 bool GCrypto_Base64Encode_GCryptoByteArray(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded)
 {
@@ -247,7 +247,7 @@ bool GCrypto_Base64Encode_GCryptoByteArray(
 }
 
 bool GCrypto_Base64Encode_GCryptoBuffer(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
@@ -256,7 +256,7 @@ bool GCrypto_Base64Encode_GCryptoBuffer(
 }
 
 bool GCrypto_Base64Encode_StdString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
@@ -265,18 +265,18 @@ bool GCrypto_Base64Encode_StdString(
 }
 
 bool GCrypto_Base64Encode_FString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
-                static_cast<GIC_FString*>(RawBuffer)->String,
+                static_cast<const GIC_FString*>(RawBuffer)->String,
                 static_cast<GIC_FString*>(Out_Encoded)->String);
 }
 
 bool GCrypto_Sign_GCryptoBytArray_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        const GCryptoByte* PlainBuffer,
+        const GCryptoByte* const PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC,
         void* Out_Error)
@@ -288,9 +288,9 @@ bool GCrypto_Sign_GCryptoBytArray_WithErrorInfo(
 }
 
 bool GCrypto_Sign_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC,
         void* Out_Error)
 {
@@ -302,9 +302,9 @@ bool GCrypto_Sign_GCryptoBuffer_WithErrorInfo(
 }
 
 bool GCrypto_Sign_StdString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error)
 {
@@ -316,9 +316,9 @@ bool GCrypto_Sign_StdString_WithErrorInfo(
 }
 
 bool GCrypto_Sign_FString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error)
 {
@@ -330,9 +330,9 @@ bool GCrypto_Sign_FString_WithErrorInfo(
 }
 
 bool GCrypto_Sign_GCryptoBytArray(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        const GCryptoByte* PlainBuffer,
+        const GCryptoByte* const PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC)
 {
@@ -342,9 +342,9 @@ bool GCrypto_Sign_GCryptoBytArray(
 }
 
 bool GCrypto_Sign_GCryptoBuffer(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC)
 {
     return GCryptoImpl::Sign(
@@ -354,9 +354,9 @@ bool GCrypto_Sign_GCryptoBuffer(
 }
 
 bool GCrypto_Sign_StdString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC)
 {
     return GCryptoImpl::Sign(
@@ -366,9 +366,9 @@ bool GCrypto_Sign_StdString(
 }
 
 bool GCrypto_Sign_FString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC)
 {
     return GCryptoImpl::Sign(

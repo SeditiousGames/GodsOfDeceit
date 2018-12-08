@@ -77,180 +77,180 @@ extern "C"
 /* BytesArrayToString */
 
 DLLEXPORT bool GCrypto_BytesArrayToString_WithErrorInfo(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_BytesArrayToString(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String);
 
 /* HexStringToString */
 
 DLLEXPORT bool GCrypto_HexStringToString_WithErrorInfo(
-        void* HexString,
+        const void* const HexString,
         void* Out_String,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_HexStringToString(
-        void* HexString,
+        const void* const HexString,
         void* Out_String);
 
 /* Base64Decode with error information */
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByte_To_FString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_FString_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error);
 
 /* Base64Decode without error information */
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoByte_To_FString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded);
 
 DLLEXPORT bool GCrypto_Base64Decode_From_FString_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded);
 
 /* Base64Encode with error information */
 
 DLLEXPORT bool GCrypto_Base64Encode_GCryptoByteArray_WithErrorInfo(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Encode_GCryptoBuffer_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Encode_StdString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Base64Encode_FString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 /* Base64Encode without error information */
 
 DLLEXPORT bool GCrypto_Base64Encode_GCryptoByteArray(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded);
 
 DLLEXPORT bool GCrypto_Base64Encode_GCryptoBuffer(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 DLLEXPORT bool GCrypto_Base64Encode_StdString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 DLLEXPORT bool GCrypto_Base64Encode_FString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 /* Sign with error information */
 
 DLLEXPORT bool GCrypto_Sign_GCryptoBytArray_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        const GCryptoByte* PlainBuffer,
+        const GCryptoByte* const PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Sign_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Sign_StdString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error);
 
 DLLEXPORT bool GCrypto_Sign_FString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error);
 
 /* Sign without error information */
 
 DLLEXPORT bool GCrypto_Sign_GCryptoBytArray(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
         const GCryptoByte* PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC);
 
 DLLEXPORT bool GCrypto_Sign_GCryptoBuffer(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC);
 
 DLLEXPORT bool GCrypto_Sign_StdString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC);
 
 DLLEXPORT bool GCrypto_Sign_FString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC);
 
 #else
@@ -258,180 +258,180 @@ DLLEXPORT bool GCrypto_Sign_FString(
 /* BytesArrayToString */
 
 DLLIMPORT bool GCrypto_BytesArrayToString_WithErrorInfo(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_BytesArrayToString(
-        const GCryptoByte* Array,
+        const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String);
 
 /* HexStringToString */
 
 DLLIMPORT bool GCrypto_HexStringToString_WithErrorInfo(
-        void* HexString,
+        const void* const HexString,
         void* Out_String,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_HexStringToString(
-        void* HexString,
+        const void* const HexString,
         void* Out_String);
 
 /* Base64Decode with error information */
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByte_To_FString_WithErrorInfo(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_FString_To_FString_WithErrorInfo(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded,
         void* Out_Error);
 
 /* Base64Decode without error information */
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByteArray_To_GCryptoBuffer(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoByte_To_FString(
-        const GCryptoByte* EncodedBuffer,
+        const GCryptoByte* const EncodedBuffer,
         const uint64 EncodedBufferSize,
         void* Out_Decoded);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_GCryptoBuffer_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded);
 
 DLLIMPORT bool GCrypto_Base64Decode_From_FString_To_FString(
-        void* EncodedBuffer,
+        const void* const EncodedBuffer,
         void* Out_Decoded);
 
 /* Base64Encode with error information */
 
 DLLIMPORT bool GCrypto_Base64Encode_GCryptoByteArray_WithErrorInfo(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Encode_GCryptoBuffer_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Encode_StdString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Base64Encode_FString_WithErrorInfo(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded,
         void* Out_Error);
 
 /* Base64Encode without error information */
 
 DLLIMPORT bool GCrypto_Base64Encode_GCryptoByteArray(
-        const GCryptoByte* RawBuffer,
+        const GCryptoByte* const RawBuffer,
         const uint64 RawBufferSize,
         void* Out_Encoded);
 
 DLLIMPORT bool GCrypto_Base64Encode_GCryptoBuffer(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 DLLIMPORT bool GCrypto_Base64Encode_StdString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 DLLIMPORT bool GCrypto_Base64Encode_FString(
-        void* RawBuffer,
+        const void* const RawBuffer,
         void* Out_Encoded);
 
 /* Sign with error information */
 
 DLLIMPORT bool GCrypto_Sign_GCryptoBytArray_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        const GCryptoByte* PlainBuffer,
+        const GCryptoByte* const PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Sign_GCryptoBuffer_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Sign_StdString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error);
 
 DLLIMPORT bool GCrypto_Sign_FString_WithErrorInfo(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC,
         void* Out_Error);
 
 /* Sign without error information */
 
 DLLIMPORT bool GCrypto_Sign_GCryptoBytArray(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
         const GCryptoByte* PlainBuffer,
         const uint64 PlainBufferSize,
         void* Out_MAC);
 
 DLLIMPORT bool GCrypto_Sign_GCryptoBuffer(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainBuffer,
+        const void* const PlainBuffer,
         void* Out_MAC);
 
 DLLIMPORT bool GCrypto_Sign_StdString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC);
 
 DLLIMPORT bool GCrypto_Sign_FString(
-        const GCryptoByte* Key,
+        const GCryptoByte* const Key,
         const uint64 KeySize,
-        void* PlainString,
+        const void* const PlainString,
         void* Out_MAC);
 
 #endif  /* defined ( GOD_BUILDING_CRYPTO_IMPL_MODULE ) */
