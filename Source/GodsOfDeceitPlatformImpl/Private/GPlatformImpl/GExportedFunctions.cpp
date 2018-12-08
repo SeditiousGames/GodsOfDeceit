@@ -60,7 +60,7 @@ void System_GetCurrentPath(void* Out_Path)
             GSystemImpl::GetCurrentPath();
 }
 
-void System_GetSystemDirectoryPath(void* Directory, void* Out_Path)
+void System_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
             GSystemImpl::GetSystemDirectoryPath(
