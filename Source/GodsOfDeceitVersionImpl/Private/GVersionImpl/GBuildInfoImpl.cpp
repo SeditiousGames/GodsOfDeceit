@@ -129,7 +129,8 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
 {
     static FString Json;
 
-    if (!Out_Json.IsEmpty()) {
+    if (!Out_Json.IsEmpty())
+    {
         Out_Json.Empty();
     }
 

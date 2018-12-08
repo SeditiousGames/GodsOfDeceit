@@ -88,7 +88,8 @@ FString GSystemImpl::GetExecutablePath()
     DWORD Result = GetModuleFileNameA(NULL, PathBuffer, MAX_PATH);
     FString PathString(StringCast<TCHAR>(PathBuffer).Get());
 
-    if (Result == ERROR_SUCCESS) {
+    if (Result == ERROR_SUCCESS)
+    {
         MessageBoxA(0,
                     fmt::format(
                         "FATAL: failed to get the current directory path! Error code: {0}",
@@ -101,7 +102,8 @@ FString GSystemImpl::GetExecutablePath()
 #endif  /* defined ( __linux__ ) */
 
     if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                            ESearchCase::IgnoreCase)) {
+                            ESearchCase::IgnoreCase))
+    {
         PathString = PathString.LeftChop(PathString.Len() - 2);
     }
 
@@ -125,14 +127,17 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
     boost::filesystem::path Path;
     FString PathString;
 
-    switch (Directory) {
+    switch (Directory)
+    {
 
-    case EGSystemDirectory::UserDesktop: {
+    case EGSystemDirectory::UserDesktop:
+    {
 #if defined ( __linux__ )
         PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
         if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                                ESearchCase::IgnoreCase)) {
+                                ESearchCase::IgnoreCase))
+        {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
@@ -143,7 +148,8 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
         HRESULT result = SHGetFolderPathA(
                     NULL, CSIDL_DESKTOP, NULL, SHGFP_TYPE_CURRENT, PathBuffer);
 
-        if (result != S_OK) {
+        if (result != S_OK)
+        {
             MessageBoxA(0, fmt::format("Error code: {0}", result).c_str(),
                         "IO Error", MB_OK);
             checkf(false,
@@ -154,12 +160,14 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
 #endif  /* defined ( __linux__ ) */
     } break;
 
-    case EGSystemDirectory::UserDocuments: {
+    case EGSystemDirectory::UserDocuments:
+    {
 #if defined ( __linux__ )
         PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
         if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                                ESearchCase::IgnoreCase)) {
+                                ESearchCase::IgnoreCase))
+        {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
@@ -170,7 +178,8 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
         HRESULT Result = SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL,
                                           SHGFP_TYPE_CURRENT, PathBuffer);
 
-        if (Result != S_OK) {
+        if (Result != S_OK)
+        {
             MessageBoxA(0,
                         fmt::format("FATAL: error code: {0}", Result).c_str(),
                         "IO Error", MB_OK);
@@ -182,16 +191,16 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
 #endif  /* defined ( __linux__ ) */
     } break;
 
-    case EGSystemDirectory::UserGameData: {
+    case EGSystemDirectory::UserGameData:
+    {
 #if defined ( __linux__ )
         PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
         if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                                ESearchCase::IgnoreCase)) {
+                                ESearchCase::IgnoreCase))
+        {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
-
-
 
         PathString += GSystemImpl::GetDirectorySeparatorChar()
                 + FString(TEXT(".local"))
@@ -205,7 +214,8 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
         PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserDocuments);
         if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                                ESearchCase::IgnoreCase)) {
+                                ESearchCase::IgnoreCase))
+        {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
@@ -219,18 +229,25 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
 #endif  /* defined ( __linux__ ) */
     } break;
 
-    case EGSystemDirectory::UserHome: {
+    case EGSystemDirectory::UserHome:
+    {
 #if defined ( __linux__ )
         const char *HomeDirectory = nullptr;
-        if ((HomeDirectory = getenv("HOME")) == nullptr) {
+        if ((HomeDirectory = getenv("HOME")) == nullptr)
+        {
             struct passwd *pwd = getpwuid(getuid());
-            if (pwd) {
+            if (pwd)
+            {
                 HomeDirectory = pwd->pw_dir;
-            } else {
+            }
+            else
+            {
                 checkf(false,
                        TEXT("Failed to get user's home directory path!"));
             }
-        } else {
+        }
+        else
+        {
             /// FIXME
             /// THIS CRASHES THE ENGINE AT THE GAME'S INITILIZATION STAGE
             ///checkf(false,
@@ -258,7 +275,8 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
     }
 
     if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
-                            ESearchCase::IgnoreCase)) {
+                            ESearchCase::IgnoreCase))
+    {
         PathString = PathString.LeftChop(PathString.Len() - 2);
     }
 
