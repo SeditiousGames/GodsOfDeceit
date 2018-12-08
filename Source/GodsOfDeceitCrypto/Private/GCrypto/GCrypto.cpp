@@ -513,53 +513,167 @@ bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const GCryptoByte* const PlainBuffer, uint64 PlainBufferSize,
                    FString& Out_MAC, FString& Out_Error)
 {
-    return false;
+    GIC_FString OutMacInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_GCryptoByteArray_WithErrorInfo(
+                Key, KeySize, PlainBuffer, PlainBufferSize,
+                &OutMacInteropContainer, &OutErrorInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
                    FString& Out_Error)
 {
-    return false;
+    const GIC_GCryptoBuffer PlainBufferInteropContainer
+    {
+        PlainBuffer
+    };
+
+    GIC_FString OutMacInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_GCryptoBuffer_WithErrorInfo(
+                Key, KeySize,
+                &PlainBufferInteropContainer, &OutMacInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const std::string& PlainString, FString& Out_MAC,
                    FString& Out_Error)
 {
-    return false;
+    const GIC_std_string PlainStringInteropContainer
+    {
+        PlainString
+    };
+
+    GIC_FString OutMacInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_StdString_WithErrorInfo(
+                Key, KeySize,
+                &PlainStringInteropContainer, &OutMacInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const FString& PlainString, FString& Out_MAC,
                    FString& Out_Error)
 {
-    return false;
+    const GIC_FString PlainStringInteropContainer
+    {
+        PlainString
+    };
+
+    GIC_FString OutMacInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_FString_WithErrorInfo(
+                Key, KeySize,
+                &PlainStringInteropContainer, &OutMacInteropContainer,
+                &OutErrorInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const GCryptoByte* const PlainBuffer, uint64 PlainBufferSize,
                    FString& Out_MAC)
 {
-    return false;
+
+    GIC_FString OutMacInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_GCryptoByteArray(
+                Key, KeySize, PlainBuffer, PlainBufferSize,
+                &OutMacInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const GCryptoBuffer& PlainBuffer, FString& Out_MAC)
 {
-    return false;
+    const GIC_GCryptoBuffer PlainBufferInteropContainer
+    {
+        PlainBuffer
+    };
+
+    GIC_FString OutMacInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_GCryptoBuffer(
+                Key, KeySize,
+                &PlainBufferInteropContainer, &OutMacInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const std::string& PlainString, FString& Out_MAC)
 {
-    return false;
+    const GIC_std_string PlainStringInteropContainer
+    {
+        PlainString
+    };
+
+    GIC_FString OutMacInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_StdString(
+                Key, KeySize,
+                &PlainStringInteropContainer, &OutMacInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Sign(const GCryptoByte* const Key, const uint64 KeySize,
                    const FString& PlainString, FString& Out_MAC)
 {
-    return false;
+    const GIC_FString PlainStringInteropContainer
+    {
+        PlainString
+    };
+
+    GIC_FString OutMacInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Sign_FString(
+                Key, KeySize,
+                &PlainStringInteropContainer, &OutMacInteropContainer);
+
+    Out_MAC = std::move(OutMacInteropContainer.String);
+
+    return bSucceed;
 }
 
 GCrypto::GCrypto(const GCryptoByte* SignKey, const uint64 SignKeySize)
