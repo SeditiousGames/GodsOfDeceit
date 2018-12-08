@@ -66,6 +66,7 @@ Theoretically, it's possible to run Gods of Deceit on the following platforms:
 
 MIT License
 
+Copyright (c) 2018 Mohammad S. Babaei
 Copyright (c) 2018 Seditious Games Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
