@@ -154,18 +154,18 @@ public:
     GCryptoImpl(const GCryptoBuffer& SignKey);
     virtual ~GCryptoImpl();
 
-    bool Sign(const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-              FString& Out_MAC, FString& Out_Error);
+    bool Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
+              FString& Out_MAC, FString& Out_Error) const;
     bool Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-              FString& Out_Error);
+              FString& Out_Error) const;
     bool Sign(const std::string& PlainString, FString& Out_MAC,
-              FString& Out_Error);
+              FString& Out_Error) const;
     bool Sign(const FString& PlainString, FString& Out_MAC,
-              FString& Out_Error);
+              FString& Out_Error) const;
 
-    bool Sign(const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-              FString& Out_MAC);
-    bool Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC);
-    bool Sign(const std::string& PlainString, FString& Out_MAC);
-    bool Sign(const FString& PlainString, FString& Out_MAC);
+    bool Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
+              FString& Out_MAC) const;
+    bool Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC) const;
+    bool Sign(const std::string& PlainString, FString& Out_MAC) const;
+    bool Sign(const FString& PlainString, FString& Out_MAC) const;
 };

@@ -659,57 +659,57 @@ GCryptoImpl::~GCryptoImpl()
 
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-                       FString& Out_MAC, FString& Out_Error)
+bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
+                       FString& Out_MAC, FString& Out_Error) const
 {
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainBuffer, PlainBufferSize, Out_MAC, Out_Error);
 }
 
 bool GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-                       FString& Out_Error)
+                       FString& Out_Error) const
 {
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainBuffer, Out_MAC, Out_Error);
 }
 
 bool GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC,
-                       FString& Out_Error)
+                       FString& Out_Error) const
 {
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainString, Out_MAC, Out_Error);
 }
 
 bool GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC,
-                       FString& Out_Error)
+                       FString& Out_Error) const
 {
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainString, Out_MAC, Out_Error);
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-                       FString& Out_MAC)
+bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
+                       FString& Out_MAC) const
 {
     FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainBuffer, PlainBufferSize, Out_MAC, OutError);
 }
 
-bool GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC)
+bool GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC) const
 {
     FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainBuffer, Out_MAC, OutError);
 }
 
-bool GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC)
+bool GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC) const
 {
     FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
                              PlainString, Out_MAC, OutError);
 }
 
-bool GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC)
+bool GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC) const
 {
     FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
