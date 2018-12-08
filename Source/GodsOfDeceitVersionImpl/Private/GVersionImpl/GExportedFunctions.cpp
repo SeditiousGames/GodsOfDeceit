@@ -41,6 +41,9 @@
 
 #include "GBuildInfoImpl.h"
 
+extern "C"
+{
+
 void GBuildInfo_GetProductCompanyName(void* Out_Name)
 {
     static_cast<GIC_FString*>(Out_Name)->String =
@@ -130,3 +133,5 @@ bool GBuildInfo_GetProductBuildInfoAsJson(void* Out_Json, const bool bPretty)
     return GBuildInfoImpl::ToJson(static_cast<GIC_FString*>(Out_Json)->String,
                                   bPretty);
 }
+
+}   /* extern "C" */

@@ -42,6 +42,9 @@
 
 #include "GSystemImpl.h"
 
+extern "C"
+{
+
 void GSystem_GetDirectorySeparatorChar(void* Out_Char)
 {
     static_cast<GIC_FString*>(Out_Char)->String =
@@ -67,3 +70,5 @@ void GSystem_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
                 static_cast<const GIC_EGSystemDirectory*>(
                     Directory)->Directory);
 }
+
+}   /* extern "C" */

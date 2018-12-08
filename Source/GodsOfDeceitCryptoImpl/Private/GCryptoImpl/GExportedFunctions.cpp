@@ -43,6 +43,9 @@
 
 #include "GCryptoImpl.h"
 
+extern "C"
+{
+
 bool GCrypto_BytesArrayToString_WithErrorInfo(
         const GCryptoByte* const Array,
         const uint64 Length,
@@ -376,3 +379,5 @@ bool GCrypto_Sign_FString(
                 static_cast<const GIC_FString*>(PlainString)->String,
                 static_cast<GIC_FString*>(Out_MAC)->String);
 }
+
+}   /* extern "C" */
