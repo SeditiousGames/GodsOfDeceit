@@ -160,7 +160,18 @@ bool GCrypto::Base64Decode(const GCryptoByte* const EncodedBuffer,
                            std::string& Out_Decoded,
                            FString& Out_Error)
 {
-    return false;
+    GIC_std_string OutDecodedInteropContainer;
+    GIC_FString OutErrorInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString_WithErrorInfo(
+                EncodedBuffer, EncodedBufferSize,
+                &OutDecodedInteropContainer, &OutErrorInteropContainer);
+
+    Out_Decoded = std::move(OutDecodedInteropContainer.String);
+    Out_Error = std::move(OutErrorInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Decode(const GCryptoByte* const EncodedBuffer,
@@ -197,7 +208,16 @@ bool GCrypto::Base64Decode(const GCryptoByte* const EncodedBuffer,
                            const uint64 EncodedBufferSize,
                            std::string& Out_Decoded)
 {
-    return false;
+    GIC_std_string OutDecodedInteropContainer;
+
+    bool bSucceed =
+            GCrypto_Base64Decode_From_GCryptoByteArray_To_StdString(
+                EncodedBuffer, EncodedBufferSize,
+                &OutDecodedInteropContainer);
+
+    Out_Decoded = std::move(OutDecodedInteropContainer.String);
+
+    return bSucceed;
 }
 
 bool GCrypto::Base64Decode(const GCryptoByte* const EncodedBuffer,
