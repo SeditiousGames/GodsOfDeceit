@@ -35,7 +35,7 @@
  */
 
 
-#include "GBuildInfoImpl.h"
+#include "GVersionImpl/GBuildInfoImpl.h"
 
 #include <exception>
 #include <string>

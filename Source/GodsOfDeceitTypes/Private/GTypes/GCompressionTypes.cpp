@@ -34,4 +34,4 @@
  */
 
 
-#include "GCompressionTypes.h"
+#include "GTypes/GCompressionTypes.h"

@@ -34,7 +34,7 @@
  */
 
 
-#include "GBuildInfo.h"
+#include "GVersion/GBuildInfo.h"
 
 #include <GInterop/GIC_FString.h>
 #include <GVersionImpl/GExportedFunctions.h>

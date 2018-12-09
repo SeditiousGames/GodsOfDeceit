@@ -33,7 +33,7 @@
  * Provides a high level cryptography API.
  */
 
-#include "GCrypto.h"
+#include "GCrypto/GCrypto.h"
 
 #include <utility>
 

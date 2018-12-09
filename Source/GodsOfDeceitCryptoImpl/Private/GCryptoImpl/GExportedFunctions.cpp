@@ -35,16 +35,13 @@
  */
 
 
-#include "GExportedFunctions.h"
+#include "GCryptoImpl/GExportedFunctions.h"
 
 #include <GInterop/GIC_FString.h>
 #include <GInterop/GIC_GCryptoBuffer.h>
 #include <GInterop/GIC_std_string.h>
 
-#include "GCryptoImpl.h"
-
-extern "C"
-{
+#include "GCryptoImpl/GCryptoImpl.h"
 
 bool GCrypto_ByteArrayToString_WithErrorInfo(
         const GCryptoByte* const Array,
@@ -379,5 +376,3 @@ bool GCrypto_Sign_FString(
                 static_cast<const GIC_FString*>(PlainString)->String,
                 static_cast<GIC_FString*>(Out_MAC)->String);
 }
-
-}   /* extern "C" */

@@ -34,7 +34,7 @@
  */
 
 
-#include "GSystem.h"
+#include "GPlatform/GSystem.h"
 
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>

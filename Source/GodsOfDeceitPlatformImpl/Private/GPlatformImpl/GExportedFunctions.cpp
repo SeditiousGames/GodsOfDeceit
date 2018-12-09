@@ -35,15 +35,12 @@
  */
 
 
-#include "GExportedFunctions.h"
+#include "GPlatformImpl/GExportedFunctions.h"
 
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>
 
-#include "GSystemImpl.h"
-
-extern "C"
-{
+#include "GPlatformImpl/GSystemImpl.h"
 
 void GSystem_GetDirectorySeparatorChar(void* Out_Char)
 {
@@ -70,5 +67,3 @@ void GSystem_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
                 static_cast<const GIC_EGSystemDirectory*>(
                     Directory)->Directory);
 }
-
-}   /* extern "C" */

@@ -35,4 +35,4 @@
  */
 
 
-#include "GIC_FString.h"
+#include "GInterop/GIC_FString.h"

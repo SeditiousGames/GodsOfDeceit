@@ -35,4 +35,4 @@
  */
 
 
-#include "GIC_EGSystemDirectory.h"
+#include "GInterop/GIC_EGSystemDirectory.h"

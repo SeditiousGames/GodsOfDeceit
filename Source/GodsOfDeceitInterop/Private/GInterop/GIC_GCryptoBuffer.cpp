@@ -35,4 +35,4 @@
  */
 
 
-#include "GIC_GCryptoBuffer.h"
+#include "GInterop/GIC_GCryptoBuffer.h"
