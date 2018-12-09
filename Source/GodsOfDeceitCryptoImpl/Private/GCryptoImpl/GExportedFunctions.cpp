@@ -46,24 +46,24 @@
 extern "C"
 {
 
-bool GCrypto_BytesArrayToString_WithErrorInfo(
+bool GCrypto_ByteArrayToString_WithErrorInfo(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error)
 {
-    return GCryptoImpl::BytesArrayToString(
+    return GCryptoImpl::ByteArrayToString(
                 Array, Length,
                 static_cast<GIC_FString*>(Out_String)->String,
                 static_cast<GIC_FString*>(Out_Error)->String);
 }
 
-bool GCrypto_BytesArrayToString(
+bool GCrypto_ByteArrayToString(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String)
 {
-    return GCryptoImpl::BytesArrayToString(
+    return GCryptoImpl::ByteArrayToString(
                 Array, Length,
                 static_cast<GIC_FString*>(Out_String)->String);
 }

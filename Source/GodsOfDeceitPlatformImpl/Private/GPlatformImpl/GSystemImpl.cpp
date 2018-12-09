@@ -41,25 +41,20 @@
 #include <Misc/AssertionMacros.h>
 
 #include <GHacks/GUndef_check.h>
-
 THIRD_PARTY_INCLUDES_START
-
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/exception.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
-
 THIRD_PARTY_INCLUDES_END
-
 #include <GHacks/GRestore_check.h>
 
 THIRD_PARTY_INCLUDES_START
-
 #include <fmt/format.h>
-
 THIRD_PARTY_INCLUDES_END
 
 #include <GHacks/GInclude_Windows.h>
+
 #include <GVersionImpl/GBuildInfoImpl.h>
 
 FString GSystemImpl::GetExecutablePath()

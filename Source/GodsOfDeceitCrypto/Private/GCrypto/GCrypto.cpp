@@ -53,15 +53,15 @@ public:
     ~Impl();
 };
 
-bool GCrypto::BytesArrayToString(const GCryptoByte* const Array,
-                                 const uint64 Length,
-                                 FString& Out_String,
-                                 FString& Out_Error)
+bool GCrypto::ByteArrayToString(const GCryptoByte* const Array,
+                                const uint64 Length,
+                                FString& Out_String,
+                                FString& Out_Error)
 {
     GIC_FString OutStringInteropContainer;
     GIC_FString OutErrorInteropContainer;
 
-    bool bSucceed = GCrypto_BytesArrayToString_WithErrorInfo(
+    bool bSucceed = GCrypto_ByteArrayToString_WithErrorInfo(
                 Array, Length,
                 &OutStringInteropContainer, &OutErrorInteropContainer);
 
@@ -71,13 +71,13 @@ bool GCrypto::BytesArrayToString(const GCryptoByte* const Array,
     return bSucceed;
 }
 
-bool GCrypto::BytesArrayToString(const GCryptoByte* const Array,
-                                 const uint64 Length,
-                                 FString& Out_String)
+bool GCrypto::ByteArrayToString(const GCryptoByte* const Array,
+                                const uint64 Length,
+                                FString& Out_String)
 {
     GIC_FString OutStringInteropContainer;
 
-    bool bSucceed = GCrypto_BytesArrayToString(
+    bool bSucceed = GCrypto_ByteArrayToString(
                 Array, Length,
                 &OutStringInteropContainer);
 
@@ -86,12 +86,12 @@ bool GCrypto::BytesArrayToString(const GCryptoByte* const Array,
     return bSucceed;
 }
 
-FString GCrypto::BytesArrayToString(const GCryptoByte* const Array,
-                                    const uint64 Length)
+FString GCrypto::ByteArrayToString(const GCryptoByte* const Array,
+                                   const uint64 Length)
 {
     GIC_FString OutStringInteropContainer;
 
-    (void)GCrypto_BytesArrayToString(
+    (void)GCrypto_ByteArrayToString(
                 Array, Length,
                 &OutStringInteropContainer);
 

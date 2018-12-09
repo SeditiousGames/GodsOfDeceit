@@ -44,22 +44,22 @@
 
 #include <GTypes/GCryptoTypes.h>
 
-class GODSOFDECEITCRYPTOIMPL_API GCrypto
+class GODSOFDECEITCRYPTO_API GCrypto
 {
 private:
     struct Impl;
     std::unique_ptr<Impl> Pimpl;
 
 public:
-    static bool BytesArrayToString(const GCryptoByte* const Array,
-                                   const uint64 Length,
-                                   FString& Out_String,
-                                   FString& Out_Error);
-    static bool BytesArrayToString(const GCryptoByte* const Array,
-                                   const uint64 Length,
-                                   FString& Out_String);
-    static FString BytesArrayToString(const GCryptoByte* const Array,
-                                      const uint64 Length);
+    static bool ByteArrayToString(const GCryptoByte* const Array,
+                                  const uint64 Length,
+                                  FString& Out_String,
+                                  FString& Out_Error);
+    static bool ByteArrayToString(const GCryptoByte* const Array,
+                                  const uint64 Length,
+                                  FString& Out_String);
+    static FString ByteArrayToString(const GCryptoByte* const Array,
+                                     const uint64 Length);
 
     static bool HexStringToString(const FString& HexString,
                                   FString& Out_String,

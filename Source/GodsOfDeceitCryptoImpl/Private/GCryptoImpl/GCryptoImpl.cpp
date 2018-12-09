@@ -45,31 +45,25 @@
 #include <Containers/StringConv.h>
 
 #include <GHacks/GUndef_check.h>
-
 THIRD_PARTY_INCLUDES_START
-
 #include <boost/algorithm/string.hpp>
-
 THIRD_PARTY_INCLUDES_END
-
 #include <GHacks/GRestore_check.h>
 
 THIRD_PARTY_INCLUDES_START
-
 #include <cryptopp/base64.h>
 #include <cryptopp/filters.h>
 #include <cryptopp/hex.h>
 #include <cryptopp/hmac.h>
 #include <cryptopp/sha.h>
-
 THIRD_PARTY_INCLUDES_END
 
 THIRD_PARTY_INCLUDES_START
-
 #include <fmt/format.h>
 #include <fmt/ostream.h>
-
 THIRD_PARTY_INCLUDES_END
+
+#include <GHacks/GInclude_Windows.h>
 
 #define     GCRYPTO_ERROR_DIALOG_TITLE          "Cryptography Error"
 #define     GCRYPTO_UNKNOWN_ERROR_MESSAGE       "GCrypto: unknown error!"
@@ -85,7 +79,7 @@ public:
     ~Impl();
 };
 
-bool GCryptoImpl::BytesArrayToString(const GCryptoByte* Array,
+bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
                                      const uint64 Length,
                                      FString& Out_String,
                                      FString& Out_Error)
@@ -130,21 +124,21 @@ bool GCryptoImpl::BytesArrayToString(const GCryptoByte* Array,
     return false;
 }
 
-bool GCryptoImpl::BytesArrayToString(const GCryptoByte* Array,
-                                     const uint64 Length,
-                                     FString& Out_String)
+bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
+                                    const uint64 Length,
+                                    FString& Out_String)
 {
     FString OutError;
-    return GCryptoImpl::BytesArrayToString(Array, Length, Out_String,
-                                           OutError);
+    return GCryptoImpl::ByteArrayToString(Array, Length, Out_String,
+                                          OutError);
 }
 
-FString GCryptoImpl::BytesArrayToString(const GCryptoByte* Array,
-                                        const uint64 Length)
+FString GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
+                                       const uint64 Length)
 {
     FString Result;
     FString OutError;
-    (void)GCryptoImpl::BytesArrayToString(Array, Length, Result, OutError);
+    (void)GCryptoImpl::ByteArrayToString(Array, Length, Result, OutError);
     return Result;
 }
 

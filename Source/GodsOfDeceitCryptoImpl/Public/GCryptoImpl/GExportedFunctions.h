@@ -74,15 +74,15 @@ extern "C"
 
 #if defined ( GOD_BUILDING_CRYPTO_IMPL_MODULE )
 
-/* BytesArrayToString */
+/* ByteArrayToString */
 
-DLLEXPORT bool GCrypto_BytesArrayToString_WithErrorInfo(
+DLLEXPORT bool GCrypto_ByteArrayToString_WithErrorInfo(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error);
 
-DLLEXPORT bool GCrypto_BytesArrayToString(
+DLLEXPORT bool GCrypto_ByteArrayToString(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String);
@@ -255,15 +255,15 @@ DLLEXPORT bool GCrypto_Sign_FString(
 
 #else
 
-/* BytesArrayToString */
+/* ByteArrayToString */
 
-DLLIMPORT bool GCrypto_BytesArrayToString_WithErrorInfo(
+DLLIMPORT bool GCrypto_ByteArrayToString_WithErrorInfo(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String,
         void* Out_Error);
 
-DLLIMPORT bool GCrypto_BytesArrayToString(
+DLLIMPORT bool GCrypto_ByteArrayToString(
         const GCryptoByte* const Array,
         const uint64 Length,
         void* Out_String);
