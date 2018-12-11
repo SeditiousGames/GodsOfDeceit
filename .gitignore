@@ -1,7 +1,17 @@
-# Visual Studio 2015 user specific files
+# Annoying windows files
+[Dd]esktop.ini
+Thumbs.db
+
+# Explcitly ignore Mac DS_Store files, regardless of where they are
+.DS_Store
+
+# Visual Studio settings directory
 .vs/
 
-# Visual Studio 2015 database file
+# Visual Studio Code settings directory
+.vscode/
+
+# Visual Studio database file
 *.VC.db
 
 # Qt Creator
@@ -11,6 +21,9 @@
 *.pro.user.*
 CMakeLists.txt.user
 CMakeLists.txt.user.*
+
+# Ignore CLion directory
+.idea/
 
 # Compiled Object files
 *.slo
