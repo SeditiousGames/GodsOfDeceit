@@ -42,7 +42,7 @@ echo "Projects > Build & Run > Build > Build Steps > Clean Steps > Make argument
 echo
 
 echo "Projects > Build & Run > Run > Run > Executable ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/UE4Editor"
-echo "Projects > Build & Run > Run > Run > Command line arguments ==> \"${PROJECT_FILE}\" -opengl4"
+echo "Projects > Build & Run > Run > Run > Command line arguments ==> \"${PROJECT_FILE}\" -vulkan"
 echo "Projects > Build & Run > Run > Run > Working directory ==> ${ENGINE_DIRECTORY}/Engine/Binaries/Linux/"
 
 echo
