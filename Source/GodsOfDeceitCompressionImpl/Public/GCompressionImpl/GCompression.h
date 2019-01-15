@@ -37,7 +37,6 @@
 
 #pragma once
 
-#include <memory>
 #include <string>
 
 #include <Containers/UnrealString.h>
@@ -47,5 +46,36 @@
 
 class GODSOFDECEITCOMPRESSIONIMPL_API GCompression
 {
-private:
+public:
+    static bool Compress(const GCompressionByte* Data, const uint64 Size,
+                         GCompressionBuffer& Out_CompressedBuffer,
+                         const EGCompressionAlgorithm& Algorithm);
+    static bool Compress(const FString& DataString,
+                         GCompressionBuffer& Out_CompressedBuffer,
+                         const EGCompressionAlgorithm& Algorithm);
+    static bool Compress(const std::string& DataString,
+                         GCompressionBuffer& Out_CompressedBuffer,
+                         const EGCompressionAlgorithm& Algorithm);
+    static bool Compress(const GCompressionBuffer& DataBuffer,
+                         GCompressionBuffer& Out_CompressedBuffer,
+                         const EGCompressionAlgorithm& Algorithm);
+
+    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+                           GCompressionBuffer& Out_UncompressedBuffer,
+                           const EGCompressionAlgorithm& Algorithm);
+    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+                           FString& Out_UncompressedString,
+                           const EGCompressionAlgorithm& Algorithm);
+    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+                           std::string& Out_UncompressedString,
+                           const EGCompressionAlgorithm& Algorithm);
+    static bool Decompress(const GCompressionBuffer& DataBuffer,
+                           GCompressionBuffer& Out_UncompressedBuffer,
+                           const EGCompressionAlgorithm& Algorithm);
+    static bool Decompress(const GCompressionBuffer& DataBuffer,
+                           FString& Out_UncompressedString,
+                           const EGCompressionAlgorithm& Algorithm);
+    static bool Decompress(const GCompressionBuffer& DataBuffer,
+                           std::string& Out_UncompressedString,
+                           const EGCompressionAlgorithm& Algorithm);
 };

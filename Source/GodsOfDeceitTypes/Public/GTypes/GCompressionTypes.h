@@ -38,5 +38,13 @@
 
 #include <vector>
 
+#include <CoreTypes.h>
+
 typedef char GCompressionByte;
 typedef std::vector<GCompressionByte> GCompressionBuffer;
+
+enum class EGCompressionAlgorithm : uint8 {
+    Bzip2,
+    Gzip,
+    Zlib,
+};
