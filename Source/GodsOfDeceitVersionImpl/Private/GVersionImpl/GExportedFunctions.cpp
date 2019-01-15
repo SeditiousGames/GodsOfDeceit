@@ -39,94 +39,94 @@
 
 #include <GInterop/GIC_FString.h>
 
-#include "GVersionImpl/GBuildInfoImpl.h"
+#include "GVersionImpl/GBuildInfo.h"
 
 void GBuildInfo_GetProductCompanyName(void* Out_Name)
 {
     static_cast<GIC_FString*>(Out_Name)->String =
-            GBuildInfoImpl::GetProductCompanyName();
+            GBuildInfo::GetProductCompanyName();
 }
 
 void GBuildInfo_GetProductName(void* Out_Name)
 {
     static_cast<GIC_FString*>(Out_Name)->String =
-            GBuildInfoImpl::GetProductName();
+            GBuildInfo::GetProductName();
 }
 
 void GBuildInfo_GetProductInternalName(void* Out_Name)
 {
     static_cast<GIC_FString*>(Out_Name)->String =
-            GBuildInfoImpl::GetProductInternalName();
+            GBuildInfo::GetProductInternalName();
 }
 
 void GBuildInfo_GetProductDescription(void* Out_Description)
 {
     static_cast<GIC_FString*>(Out_Description)->String =
-            GBuildInfoImpl::GetProductDescription();
+            GBuildInfo::GetProductDescription();
 }
 
 void GBuildInfo_GetProductCopyrightHolder(void* Out_Notice)
 {
     static_cast<GIC_FString*>(Out_Notice)->String =
-            GBuildInfoImpl::GetProductCopyrightHolder();
+            GBuildInfo::GetProductCopyrightHolder();
 }
 
 void GBuildInfo_GetProductCopyrightNotice(void* Out_Notice)
 {
     static_cast<GIC_FString*>(Out_Notice)->String =
-            GBuildInfoImpl::GetProductCopyrightNotice();
+            GBuildInfo::GetProductCopyrightNotice();
 }
 
 void GBuildInfo_GetProductVersionNumbers(
         FGProductVersionNumbers* Out_Numbers)
 {
-    *Out_Numbers = GBuildInfoImpl::GetProductVersionNumbers();
+    *Out_Numbers = GBuildInfo::GetProductVersionNumbers();
 }
 
 void GBuildInfo_GetProductBranchName(void* Out_Name)
 {
     static_cast<GIC_FString*>(Out_Name)->String =
-            GBuildInfoImpl::GetProductBranchName();
+            GBuildInfo::GetProductBranchName();
 }
 
 void GBuildInfo_GetProductShortRevisionHash(void* Out_Hash)
 {
     static_cast<GIC_FString*>(Out_Hash)->String =
-            GBuildInfoImpl::GetProductShortRevisionHash();
+            GBuildInfo::GetProductShortRevisionHash();
 }
 
 void GBuildInfo_GetProductVersion(void* Out_Version)
 {
     static_cast<GIC_FString*>(Out_Version)->String =
-            GBuildInfoImpl::GetProductVersion();
+            GBuildInfo::GetProductVersion();
 }
 
 void GBuildInfo_GetProductRevision(void* Out_Revision)
 {
     static_cast<GIC_FString*>(Out_Revision)->String =
-            GBuildInfoImpl::GetProductRevision();
+            GBuildInfo::GetProductRevision();
 }
 
 void GBuildInfo_GetProductBuildHost(void* Out_Host)
 {
     static_cast<GIC_FString*>(Out_Host)->String =
-            GBuildInfoImpl::GetProductBuildHost();
+            GBuildInfo::GetProductBuildHost();
 }
 
 void GBuildInfo_GetProductBuildDate(void* Out_Date)
 {
     static_cast<GIC_FString*>(Out_Date)->String =
-            GBuildInfoImpl::GetProductBuildDate();
+            GBuildInfo::GetProductBuildDate();
 }
 
 void GBuildInfo_GetProductBuildTime(void* Out_Time)
 {
     static_cast<GIC_FString*>(Out_Time)->String =
-            GBuildInfoImpl::GetProductBuildTime();
+            GBuildInfo::GetProductBuildTime();
 }
 
 bool GBuildInfo_GetProductBuildInfoAsJson(void* Out_Json, const bool bPretty)
 {
-    return GBuildInfoImpl::ToJson(static_cast<GIC_FString*>(Out_Json)->String,
+    return GBuildInfo::ToJson(static_cast<GIC_FString*>(Out_Json)->String,
                                   bPretty);
 }

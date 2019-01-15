@@ -35,7 +35,7 @@
  */
 
 
-#include "GVersionImpl/GBuildInfoImpl.h"
+#include "GVersionImpl/GBuildInfo.h"
 
 #include <exception>
 #include <string>
@@ -60,7 +60,7 @@ THIRD_PARTY_INCLUDES_END
 #include <GHacks/GInclude_Windows.h>
 
 #define     GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE                 "Serialization Error"
-#define     GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE              "GBuildInfoImpl: unknown serialization error!"
+#define     GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE              "GBuildInfo: unknown serialization error!"
 
 struct BuildInfo
 {
@@ -83,20 +83,20 @@ public:
 
 public:
     BuildInfo()
-        : ProductCompanyName(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductCompanyName()).Get()),
-          ProductName(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductName()).Get()),
-          ProductInternalName(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductInternalName()).Get()),
-          ProductDescription(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductDescription()).Get()),
-          ProductCopyrightNotice(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductCopyrightNotice()).Get()),
-          ProductMajorVersion(GBuildInfoImpl::GetProductVersionNumbers().Major),
-          ProductMinorVersion(GBuildInfoImpl::GetProductVersionNumbers().Minor),
-          ProductPatchVersion(GBuildInfoImpl::GetProductVersionNumbers().Patch),
-          ProductShortRevisionHash(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductShortRevisionHash()).Get()),
-          ProductVersion(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductVersion()).Get()),
-          ProductRevision(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductRevision()).Get()),
-          ProductBuildHost(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductBuildHost()).Get()),
-          ProductBuildDate(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductBuildDate()).Get()),
-          ProductBuildTime(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductBuildTime()).Get())
+        : ProductCompanyName(StringCast<ANSICHAR>(*GBuildInfo::GetProductCompanyName()).Get()),
+          ProductName(StringCast<ANSICHAR>(*GBuildInfo::GetProductName()).Get()),
+          ProductInternalName(StringCast<ANSICHAR>(*GBuildInfo::GetProductInternalName()).Get()),
+          ProductDescription(StringCast<ANSICHAR>(*GBuildInfo::GetProductDescription()).Get()),
+          ProductCopyrightNotice(StringCast<ANSICHAR>(*GBuildInfo::GetProductCopyrightNotice()).Get()),
+          ProductMajorVersion(GBuildInfo::GetProductVersionNumbers().Major),
+          ProductMinorVersion(GBuildInfo::GetProductVersionNumbers().Minor),
+          ProductPatchVersion(GBuildInfo::GetProductVersionNumbers().Patch),
+          ProductShortRevisionHash(StringCast<ANSICHAR>(*GBuildInfo::GetProductShortRevisionHash()).Get()),
+          ProductVersion(StringCast<ANSICHAR>(*GBuildInfo::GetProductVersion()).Get()),
+          ProductRevision(StringCast<ANSICHAR>(*GBuildInfo::GetProductRevision()).Get()),
+          ProductBuildHost(StringCast<ANSICHAR>(*GBuildInfo::GetProductBuildHost()).Get()),
+          ProductBuildDate(StringCast<ANSICHAR>(*GBuildInfo::GetProductBuildDate()).Get()),
+          ProductBuildTime(StringCast<ANSICHAR>(*GBuildInfo::GetProductBuildTime()).Get())
     {
 
     }
@@ -125,7 +125,7 @@ private:
     }
 };
 
-bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
+bool GBuildInfo::ToJson(FString& Out_Json, const bool bPretty)
 {
     static FString Json;
 

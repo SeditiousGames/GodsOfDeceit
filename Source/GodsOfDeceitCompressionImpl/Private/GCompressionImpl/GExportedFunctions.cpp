@@ -40,4 +40,4 @@
 #include <GInterop/GIC_FString.h>
 #include <GInterop/GIC_std_string.h>
 
-#include "GCompressionImpl/GCompressionImpl.h"
+#include "GCompressionImpl/GCompression.h"

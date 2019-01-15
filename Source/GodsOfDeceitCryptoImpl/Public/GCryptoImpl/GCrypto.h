@@ -45,7 +45,7 @@
 
 #include <GTypes/GCryptoTypes.h>
 
-class GODSOFDECEITCRYPTOIMPL_API GCryptoImpl
+class GODSOFDECEITCRYPTOIMPL_API GCrypto
 {
 private:
     struct Impl;
@@ -150,9 +150,9 @@ public:
                      const FString& PlainString, FString& Out_MAC);
 
 public:
-    GCryptoImpl(const GCryptoByte* const SignKey, const uint64 SignKeySize);
-    GCryptoImpl(const GCryptoBuffer& SignKey);
-    virtual ~GCryptoImpl();
+    GCrypto(const GCryptoByte* const SignKey, const uint64 SignKeySize);
+    GCrypto(const GCryptoBuffer& SignKey);
+    virtual ~GCrypto();
 
     bool Sign(const GCryptoByte* const PlainBuffer, const uint64 PlainBufferSize,
               FString& Out_MAC, FString& Out_Error) const;

@@ -35,17 +35,4 @@
  */
 
 
-#pragma once
-
-#include <memory>
-#include <string>
-
-#include <Containers/UnrealString.h>
-#include <CoreTypes.h>
-
-#include <GTypes/GCompressionTypes.h>
-
-class GODSOFDECEITCOMPRESSIONIMPL_API GCompressionImpl
-{
-private:
-};
+#include "GCompressionImpl/GCompression.h"

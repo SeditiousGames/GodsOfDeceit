@@ -31,8 +31,32 @@
  * @section DESCRIPTION
  *
  * Provides a low-level implementation for an abstraction layer on top of the
- * compression API.
+ * platform-specific API.
  */
 
 
-#include "GCompressionImpl/GCompressionImpl.h"
+#pragma once
+
+#include <Containers/UnrealString.h>
+#include <CoreTypes.h>
+
+#include <GTypes/GPlatformTypes.h>
+
+class GODSOFDECEITPLATFORMIMPL_API GSystem
+{
+public:
+    static FORCEINLINE const FString& GetDirectorySeparatorChar()
+    {
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        static const FString Character(TEXT("\\"));
+#else
+        static const FString Character(TEXT("/"));
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+
+        return Character;
+    }
+
+    static FString GetExecutablePath();
+    static FString GetCurrentPath();
+    static FString GetSystemDirectoryPath(const EGSystemDirectory Directory);
+};
