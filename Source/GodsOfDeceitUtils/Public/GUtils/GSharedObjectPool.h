@@ -35,3 +35,103 @@
 
 
 #pragma once
+
+#include <memory>
+#include <mutex>
+#include <stack>
+#include <utility>
+
+#include <Misc/AssertionMacros.h>
+
+template <typename TYPE, typename DEFAULT_DELETER = std::default_delete<TYPE>>
+class GSharedObjectPool
+{
+private:
+    struct ReturnToPoolDeleter
+    {
+    private:
+        std::weak_ptr<GSharedObjectPool<TYPE, DEFAULT_DELETER>*> Pool;
+
+    public:
+        explicit ReturnToPoolDeleter(const std::weak_ptr<GSharedObjectPool<TYPE, DEFAULT_DELETER>*> InPool = { })
+            : Pool(InPool)
+        {
+
+        }
+
+        void operator()(TYPE* Pointer)
+        {
+            if (auto PoolPointer = Pool.lock())
+            {
+                std::unique_ptr<TYPE, DEFAULT_DELETER> UniquePointer{Pointer};
+                (*PoolPointer.get())->Add(UniquePointer);
+            }
+            else
+            {
+                DEFAULT_DELETER{}(Pointer);
+            }
+        }
+    };
+
+public:
+    using PointerType = std::unique_ptr<TYPE, ReturnToPoolDeleter>;
+
+private:
+    std::shared_ptr<GSharedObjectPool<TYPE, DEFAULT_DELETER>*> ThisSharedPointer;
+    std::stack<std::unique_ptr<TYPE, DEFAULT_DELETER>> Pool;
+    std::mutex Lock;
+
+public:
+    GSharedObjectPool()
+        : ThisSharedPointer(std::make_shared<
+                            GSharedObjectPool<TYPE, DEFAULT_DELETER>*>(this))
+    {
+
+    }
+
+    virtual ~GSharedObjectPool()
+    {
+
+    }
+
+public:
+    void Add(std::unique_ptr<TYPE, DEFAULT_DELETER>& UniquePointer)
+    {
+        std::lock_guard<std::mutex> LockGuard(Lock);
+        (void)LockGuard;
+
+        Pool.push(std::move(UniquePointer));
+    }
+
+    PointerType Acquire()
+    {
+        std::lock_guard<std::mutex> LockGuard(Lock);
+        (void)LockGuard;
+
+        checkf(!Pool.empty(),
+               TEXT("FATAL: Cannot acquire object from an empty pool!"));
+
+        PointerType TempPointer(Pool.top().release(),
+                        ReturnToPoolDeleter {
+                            std::weak_ptr<GSharedObjectPool
+                            <TYPE, DEFAULT_DELETER>*>{ThisSharedPointer}});
+        Pool.pop();
+
+        return std::move(TempPointer);
+    }
+
+    bool Empty() const
+    {
+        return Pool.empty();
+    }
+
+    std::size_t Size() const
+    {
+        return Pool.size();
+    }
+
+    std::stack<std::unique_ptr<TYPE, DEFAULT_DELETER>>& GetPool()
+    {
+        return Pool;
+    }
+};
