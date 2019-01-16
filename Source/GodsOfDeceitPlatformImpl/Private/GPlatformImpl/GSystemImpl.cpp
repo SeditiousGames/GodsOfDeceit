@@ -67,7 +67,7 @@ FString GSystemImpl::GetExecutablePath()
     std::memset(ExePathBuffer, 0, sizeof(ExePathBuffer));
 
     /// NOTE
-    /// /proc/self/exe yealds the same result
+    /// /proc/self/exe yields the same result
     char ProcPathBuffer[PATH_MAX];
     pid_t Pid = getpid();
     std::sprintf(ProcPathBuffer, "/proc/%d/exe", Pid);
