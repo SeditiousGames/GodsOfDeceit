@@ -30,8 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * A class for generating random numbers, characters, and uuids
+ * A smart thread-safe object pool implementation
  */
 
 
-#pragma once
+#include "GUtils/GSharedObjectPool.h"
