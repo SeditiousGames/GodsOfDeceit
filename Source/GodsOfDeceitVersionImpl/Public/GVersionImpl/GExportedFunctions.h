@@ -90,7 +90,7 @@ DLLEXPORT void GBuildInfo_GetProductBuildHost(void* Out_Host);
 DLLEXPORT void GBuildInfo_GetProductBuildDate(void* Out_Date);
 DLLEXPORT void GBuildInfo_GetProductBuildTime(void* Out_Time);
 
-DLLEXPORT bool GBuildInfo_GetProductBuildInfoAsJson(
+DLLEXPORT void GBuildInfo_GetProductBuildInfoAsJson(
         void* Out_Json, const bool bPretty);
 
 #else
@@ -111,7 +111,7 @@ DLLIMPORT void GBuildInfo_GetProductBuildHost(void* Out_Host);
 DLLIMPORT void GBuildInfo_GetProductBuildDate(void* Out_Date);
 DLLIMPORT void GBuildInfo_GetProductBuildTime(void* Out_Time);
 
-DLLIMPORT bool GBuildInfo_GetProductBuildInfoAsJson(
+DLLIMPORT void GBuildInfo_GetProductBuildInfoAsJson(
         void* Out_Json, const bool bPretty);
 
 #endif  /* defined ( GOD_BUILDING_VERSION_IMPL_MODULE ) */

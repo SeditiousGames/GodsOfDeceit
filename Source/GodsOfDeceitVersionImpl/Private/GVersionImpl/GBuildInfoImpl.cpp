@@ -125,14 +125,9 @@ private:
     }
 };
 
-bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
+FString GBuildInfoImpl::ToJson(const bool bPretty)
 {
     static FString Json;
-
-    if (!Out_Json.IsEmpty())
-    {
-        Out_Json.Empty();
-    }
 
     try
     {
@@ -176,10 +171,6 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
                             StringStream.str().size());
             Json.TrimToNullTerminator();
         }
-
-        Out_Json = Json.GetCharArray().GetData();
-
-        return true;
     }
 
     catch (const cereal::Exception& Exception)
@@ -190,7 +181,8 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
-               UTF8_TO_TCHAR(boost::diagnostic_information(Exception).c_str()));
+                StringCast<WIDECHAR>(
+                   boost::diagnostic_information(Exception).c_str()).Get());
     }
 
     catch (const boost::exception& Exception)
@@ -227,5 +219,5 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
                    GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE).Get());
     }
 
-    return false;
+    return Json;
 }

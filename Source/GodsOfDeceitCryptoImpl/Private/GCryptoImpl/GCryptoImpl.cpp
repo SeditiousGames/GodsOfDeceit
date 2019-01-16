@@ -79,10 +79,9 @@ public:
     ~Impl();
 };
 
-bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
-                                     const uint64 Length,
-                                     FString& Out_String,
-                                     FString& Out_Error)
+void GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
+                                    const uint64 Length,
+                                    FString& Out_String)
 {
     try
     {
@@ -97,22 +96,28 @@ bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
 
         Out_String = StringCast<WIDECHAR>(
                     fmt::to_string(MemoryBuffer).c_str()).Get();
+    }
 
-        return true;
+    catch (const fmt::v5::format_error& Exception)
+    {
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
@@ -120,31 +125,18 @@ bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
         checkf(false, TEXT("%s"),
                StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
-}
-
-bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
-                                    const uint64 Length,
-                                    FString& Out_String)
-{
-    FString OutError;
-    return GCryptoImpl::ByteArrayToString(Array, Length, Out_String,
-                                          OutError);
 }
 
 FString GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
                                        const uint64 Length)
 {
     FString Result;
-    FString OutError;
-    (void)GCryptoImpl::ByteArrayToString(Array, Length, Result, OutError);
+    GCryptoImpl::ByteArrayToString(Array, Length, Result);
     return Result;
 }
 
-bool GCryptoImpl::HexStringToString(const FString& HexString,
-                                    FString& Out_String,
-                                    FString& Out_Error)
+void GCryptoImpl::HexStringToString(const FString& HexString,
+                                    FString& Out_String)
 {
     try {
         Out_String = FString();
@@ -171,22 +163,28 @@ bool GCryptoImpl::HexStringToString(const FString& HexString,
 
         Out_String = StringCast<WIDECHAR>(
                     fmt::to_string(MemoryBuffer).c_str()).Get();
+    }
 
-        return true;
+    catch (const fmt::v5::format_error& Exception)
+    {
+#if defined ( _WIN32 ) || defined ( _WIN64 )
+        MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
+#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
@@ -194,34 +192,22 @@ bool GCryptoImpl::HexStringToString(const FString& HexString,
         checkf(false, TEXT("%s"),
                StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
-}
-
-bool GCryptoImpl::HexStringToString(const FString& HexString,
-                                    FString& Out_String)
-{
-    FString OutError;
-    return GCryptoImpl::HexStringToString(HexString, Out_String, OutError);
 }
 
 FString GCryptoImpl::HexStringToString(const FString& HexString)
 {
     FString Result;
-    FString OutError;
-    (void)GCryptoImpl::HexStringToString(HexString, Result, OutError);
+    GCryptoImpl::HexStringToString(HexString, Result);
     return Result;
 }
 
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
+void GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
                                const uint64 EncodedBufferSize,
-                               std::string& Out_Decoded,
-                               FString& Out_Error)
+                               std::string& Out_Decoded)
 {
     try
     {
         Out_Decoded.clear();
-        Out_Error = TEXT("");
 
         CryptoPP::StringSource StringSource(
                     EncodedBuffer, static_cast<std::size_t>(EncodedBufferSize),
@@ -231,31 +217,28 @@ bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
                         )
                     );
         (void)StringSource;
-
-        return true;
     }
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"),  StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
@@ -263,142 +246,73 @@ bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
         checkf(false, TEXT("%s"),
                StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
 }
 
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
+void GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
                                const uint64 EncodedBufferSize,
-                               GCryptoBuffer& Out_Decoded,
-                               FString& Out_Error)
+                               GCryptoBuffer& Out_Decoded)
 {
     Out_Decoded.clear();
     std::string Decoded;
 
-    bool bSucceed = GCryptoImpl::Base64Decode(
-                &EncodedBuffer[0], EncodedBufferSize, Decoded, Out_Error);
+    GCryptoImpl::Base64Decode(
+                &EncodedBuffer[0], EncodedBufferSize, Decoded);
 
-    if (bSucceed)
-    {
-        Out_Decoded.assign(Decoded.begin(), Decoded.end());
-    }
-
-    return bSucceed;
+    Out_Decoded.assign(Decoded.begin(), Decoded.end());
 }
 
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
+void GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
                                const uint64 EncodedBufferSize,
-                               FString& Out_Decoded,
-                               FString& Out_Error)
+                               FString& Out_Decoded)
 {
     Out_Decoded = TEXT("");
     std::string Decoded;
 
-    bool bSucceed = GCryptoImpl::Base64Decode(
-                &EncodedBuffer[0], EncodedBufferSize, Decoded, Out_Error);
+    GCryptoImpl::Base64Decode(
+                &EncodedBuffer[0], EncodedBufferSize, Decoded);
 
-    if (bSucceed)
-    {
-        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
-                           Decoded.size());
-        Out_Decoded.TrimToNullTerminator();
-    }
-
-    return bSucceed;
+    Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
+                       Decoded.size());
+    Out_Decoded.TrimToNullTerminator();
 }
 
-bool GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
-                               FString& Out_Decoded,
-                               FString& Out_Error)
+void GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
+                               FString& Out_Decoded)
 {
     Out_Decoded = TEXT("");
     std::string Decoded;
 
-    bool bSucceed = GCryptoImpl::Base64Decode(&EncodedBuffer[0],
-            static_cast<uint64>(EncodedBuffer.size()), Decoded, Out_Error);
+    GCryptoImpl::Base64Decode(&EncodedBuffer[0],
+            static_cast<uint64>(EncodedBuffer.size()), Decoded);
 
-    if (bSucceed)
-    {
-        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
-                           Decoded.size());
-        Out_Decoded.TrimToNullTerminator();
-    }
-
-    return bSucceed;
+    Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
+                       Decoded.size());
+    Out_Decoded.TrimToNullTerminator();
 }
 
-bool GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
-                               FString& Out_Decoded,
-                               FString& Out_Error)
+void GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
+                               FString& Out_Decoded)
 {
     Out_Decoded = TEXT("");
     std::string Decoded;
 
-    bool bSucceed = GCryptoImpl::Base64Decode(
+    GCryptoImpl::Base64Decode(
                 reinterpret_cast<const GCryptoByte*>(
                     StringCast<ANSICHAR>(*EncodedBuffer).Get()),
-                EncodedBuffer.Len(), Decoded, Out_Error);
+                EncodedBuffer.Len(), Decoded);
 
-    if (bSucceed)
-    {
-        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
-                           Decoded.size());
-        Out_Decoded.TrimToNullTerminator();
-    }
-
-    return bSucceed;
+    Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
+                       Decoded.size());
+    Out_Decoded.TrimToNullTerminator();
 }
 
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
-                               const uint64 EncodedBufferSize,
-                               std::string& Out_Decoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedBuffer, EncodedBufferSize,
-                                     Out_Decoded, OutError);
-}
-
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
-                               const uint64 EncodedBufferSize,
-                               GCryptoBuffer& Out_Decoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedBuffer, EncodedBufferSize,
-                                     Out_Decoded, OutError);
-}
-
-bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
-                               const uint64 EncodedBufferSize,
-                               FString& Out_Decoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedBuffer, EncodedBufferSize,
-                                     Out_Decoded, OutError);
-}
-
-bool GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
-                               FString& Out_Decoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedBuffer, Out_Decoded, OutError);
-}
-
-bool GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
-                               FString& Out_Decoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Decode(EncodedBuffer, Out_Decoded, OutError);
-}
-
-bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
+void GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
                                const uint64 RawBufferSize,
-                               FString& Out_Encoded,
-                               FString& Out_Error)
+                               FString& Out_Encoded)
 {
     try
     {
         Out_Encoded = TEXT("");
-        Out_Error = TEXT("");
 
         std::string Encoded;
 
@@ -411,31 +325,28 @@ bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
         Out_Encoded.Append(StringCast<WIDECHAR>(
                                Encoded.c_str()).Get(), Encoded.size());
         Out_Encoded.TrimToNullTerminator();
-
-        return true;
     }
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
@@ -443,59 +354,18 @@ bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
         checkf(false, TEXT("%s"),
                StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
 }
 
-bool GCryptoImpl::Base64Encode(const GCryptoBuffer& RawBuffer,
-                               FString& Out_Encoded,
-                               FString& Out_Error)
+void GCryptoImpl::Base64Encode(const GCryptoBuffer& RawBuffer,
+                               FString& Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
                 &RawBuffer[0],
             static_cast<uint64>(RawBuffer.size()),
-            Out_Encoded, Out_Error);
-}
-
-bool GCryptoImpl::Base64Encode(const std::string& RawBuffer,
-                               FString& Out_Encoded,
-                               FString& Out_Error)
-{
-    return GCryptoImpl::Base64Encode(
-                reinterpret_cast<const GCryptoByte*>(RawBuffer.c_str()),
-                static_cast<uint64>(RawBuffer.size()),
-                Out_Encoded, Out_Error);
-}
-
-bool GCryptoImpl::Base64Encode(const FString& RawBuffer,
-                               FString& Out_Encoded,
-                               FString& Out_Error)
-{
-    return GCryptoImpl::Base64Encode(
-                reinterpret_cast<const GCryptoByte*>(
-                    StringCast<ANSICHAR>(*RawBuffer).Get()),
-                RawBuffer.Len(),
-                Out_Encoded, Out_Error);
-}
-
-bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
-                               const uint64 RawBufferSize,
-                               FString& Out_Encoded)
-{
-    FString OutError;
-    return GCryptoImpl::Base64Encode(RawBuffer, RawBufferSize,
-                                     Out_Encoded, OutError);
-}
-
-bool GCryptoImpl::Base64Encode(const GCryptoBuffer& RawBuffer,
-                               FString& Out_Encoded)
-{
-    return GCryptoImpl::Base64Encode(&RawBuffer[0],
-            static_cast<uint64>(RawBuffer.size()),
             Out_Encoded);
 }
 
-bool GCryptoImpl::Base64Encode(const std::string& RawBuffer,
+void GCryptoImpl::Base64Encode(const std::string& RawBuffer,
                                FString& Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
@@ -504,7 +374,7 @@ bool GCryptoImpl::Base64Encode(const std::string& RawBuffer,
                 Out_Encoded);
 }
 
-bool GCryptoImpl::Base64Encode(const FString& RawBuffer,
+void GCryptoImpl::Base64Encode(const FString& RawBuffer,
                                FString& Out_Encoded)
 {
     return GCryptoImpl::Base64Encode(
@@ -514,14 +384,13 @@ bool GCryptoImpl::Base64Encode(const FString& RawBuffer,
                 Out_Encoded);
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
+void GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
                        const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-                       FString& Out_MAC, FString& Out_Error)
+                       FString& Out_MAC)
 {
     try
     {
         Out_MAC = FString();
-        Out_Error = FString();
 
         CryptoPP::HMAC<CryptoPP::SHA512> HMAC(Key, KeySize);
 
@@ -536,102 +405,64 @@ bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
                                    new CryptoPP::StringSink(Encoded)));
 
         Out_MAC = StringCast<WIDECHAR>(Encoded.c_str()).Get();
-
-        return true;
     }
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),
+               StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE, GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
                StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-                       FString& Out_Error)
+void GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
+                       const GCryptoBuffer& PlainBuffer, FString& Out_MAC)
 {
-    return GCryptoImpl::Sign(
+    GCryptoImpl::Sign(
                 Key, KeySize,
                 &PlainBuffer[0], static_cast<uint64>(PlainBuffer.size()),
-            Out_MAC, Out_Error);
+            Out_MAC);
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const std::string& PlainString, FString& Out_MAC,
-                       FString& Out_Error)
+void GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
+                       const std::string& PlainString, FString& Out_MAC)
 {
-    return GCryptoImpl::Sign(
+    GCryptoImpl::Sign(
                 Key, KeySize,
                 reinterpret_cast<const GCryptoByte*>(PlainString.c_str()),
                 static_cast<uint64>(PlainString.size()),
-                Out_MAC, Out_Error);
+                Out_MAC);
 }
 
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const FString& PlainString, FString& Out_MAC,
-                       FString& Out_Error)
+void GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
+                       const FString& PlainString, FString& Out_MAC)
 {
-    return GCryptoImpl::Sign(
+    GCryptoImpl::Sign(
                 Key, KeySize,
                 reinterpret_cast<const GCryptoByte*>(
                     StringCast<ANSICHAR>(*PlainString).Get()),
                 static_cast<uint64>(PlainString.Len()),
-                Out_MAC, Out_Error);
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const GCryptoByte* PlainBuffer, uint64 PlainBufferSize,
-                       FString& Out_MAC)
-{
-    FString OutError;
-    return GCryptoImpl::Sign(Key, KeySize, PlainBuffer, PlainBufferSize,
-                             Out_MAC, OutError);
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const GCryptoBuffer& PlainBuffer, FString& Out_MAC)
-{
-    FString OutError;
-    return GCryptoImpl::Sign(Key, KeySize, PlainBuffer, Out_MAC, OutError);
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const std::string& PlainString, FString& Out_MAC)
-{
-    FString OutError;
-    return GCryptoImpl::Sign(Key, KeySize, PlainString, Out_MAC, OutError);
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
-                       const FString& PlainString, FString& Out_MAC)
-{
-    FString OutError;
-    return GCryptoImpl::Sign(Key, KeySize, PlainString, Out_MAC, OutError);
+                Out_MAC);
 }
 
 GCryptoImpl::GCryptoImpl(const GCryptoByte* SignKey, const uint64 SignKeySize)
@@ -648,66 +479,33 @@ GCryptoImpl::GCryptoImpl(const GCryptoBuffer& SignKey)
 
 }
 
-GCryptoImpl::~GCryptoImpl()
-{
+GCryptoImpl::~GCryptoImpl() = default;
 
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
-                       FString& Out_MAC, FString& Out_Error) const
-{
-    return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainBuffer, PlainBufferSize, Out_MAC, Out_Error);
-}
-
-bool GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-                       FString& Out_Error) const
-{
-    return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainBuffer, Out_MAC, Out_Error);
-}
-
-bool GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC,
-                       FString& Out_Error) const
-{
-    return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainString, Out_MAC, Out_Error);
-}
-
-bool GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC,
-                       FString& Out_Error) const
-{
-    return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainString, Out_MAC, Out_Error);
-}
-
-bool GCryptoImpl::Sign(const GCryptoByte* PlainBuffer, const uint64 PlainBufferSize,
+void GCryptoImpl::Sign(const GCryptoByte* PlainBuffer,
+                       const uint64 PlainBufferSize,
                        FString& Out_MAC) const
 {
-    FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainBuffer, PlainBufferSize, Out_MAC, OutError);
+                             PlainBuffer, PlainBufferSize, Out_MAC);
 }
 
-bool GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC) const
+void GCryptoImpl::Sign(const GCryptoBuffer& PlainBuffer,
+                       FString& Out_MAC) const
 {
-    FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainBuffer, Out_MAC, OutError);
+                             PlainBuffer, Out_MAC);
 }
 
-bool GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC) const
+void GCryptoImpl::Sign(const std::string& PlainString, FString& Out_MAC) const
 {
-    FString OutError;
     return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainString, Out_MAC, OutError);
+                             PlainString, Out_MAC);
 }
 
-bool GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC) const
+void GCryptoImpl::Sign(const FString& PlainString, FString& Out_MAC) const
 {
-    FString OutError;
-    return GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
-                             PlainString, Out_MAC, OutError);
+    GCryptoImpl::Sign(Pimpl->SignKey, Pimpl->SignKeySize,
+                      PlainString, Out_MAC);
 }
 
 GCryptoImpl::Impl::Impl()

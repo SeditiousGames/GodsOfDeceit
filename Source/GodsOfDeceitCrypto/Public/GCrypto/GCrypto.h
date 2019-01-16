@@ -51,101 +51,48 @@ private:
     std::unique_ptr<Impl> Pimpl;
 
 public:
-    static bool ByteArrayToString(const GCryptoByte* const Array,
-                                  const uint64 Length,
-                                  FString& Out_String,
-                                  FString& Out_Error);
-    static bool ByteArrayToString(const GCryptoByte* const Array,
+    static void ByteArrayToString(const GCryptoByte* const Array,
                                   const uint64 Length,
                                   FString& Out_String);
     static FString ByteArrayToString(const GCryptoByte* const Array,
                                      const uint64 Length);
 
-    static bool HexStringToString(const FString& HexString,
-                                  FString& Out_String,
-                                  FString& Out_Error);
-    static bool HexStringToString(const FString& HexString,
+    static void HexStringToString(const FString& HexString,
                                   FString& Out_String);
     static FString HexStringToString(const FString& HexString);
 
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
-                             const uint64 EncodedBufferSize,
-                             std::string& Out_Decoded,
-                             FString& Out_Error);
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
-                             const uint64 EncodedBufferSize,
-                             GCryptoBuffer& Out_Decoded,
-                             FString& Out_Error);
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
-                             const uint64 EncodedBufferSize,
-                             FString& Out_Decoded,
-                             FString& Out_Error);
-    static bool Base64Decode(const GCryptoBuffer& EncodedBuffer,
-                             FString& Out_Decoded,
-                             FString& Out_Error);
-    static bool Base64Decode(const FString& EncodedBuffer,
-                             FString& Out_Decoded,
-                             FString& Out_Error);
-
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
+    static void Base64Decode(const GCryptoByte* const EncodedBuffer,
                              const uint64 EncodedBufferSize,
                              std::string& Out_Decoded);
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
+    static void Base64Decode(const GCryptoByte* const EncodedBuffer,
                              const uint64 EncodedBufferSize,
                              GCryptoBuffer& Out_Decoded);
-    static bool Base64Decode(const GCryptoByte* const EncodedBuffer,
+    static void Base64Decode(const GCryptoByte* const EncodedBuffer,
                              const uint64 EncodedBufferSize,
                              FString& Out_Decoded);
-    static bool Base64Decode(const GCryptoBuffer& EncodedBuffer,
+    static void Base64Decode(const GCryptoBuffer& EncodedBuffer,
                              FString& Out_Decoded);
-    static bool Base64Decode(const FString& EncodedBuffer,
+    static void Base64Decode(const FString& EncodedBuffer,
                              FString& Out_Decoded);
 
-    static bool Base64Encode(const GCryptoByte* const RawBuffer,
-                             const uint64 RawBufferSize,
-                             FString& Out_Encoded,
-                             FString& Out_Error);
-    static bool Base64Encode(const GCryptoBuffer& RawBuffer,
-                             FString& Out_Encoded,
-                             FString& Out_Error);
-    static bool Base64Encode(const std::string& RawBuffer,
-                             FString& Out_Encoded,
-                             FString& Out_Error);
-    static bool Base64Encode(const FString& RawBuffer,
-                             FString& Out_Encoded,
-                             FString& Out_Error);
-
-    static bool Base64Encode(const GCryptoByte* const RawBuffer,
+    static void Base64Encode(const GCryptoByte* const RawBuffer,
                              const uint64 RawBufferSize,
                              FString& Out_Encoded);
-    static bool Base64Encode(const GCryptoBuffer& RawBuffer,
+    static void Base64Encode(const GCryptoBuffer& RawBuffer,
                              FString& Out_Encoded);
-    static bool Base64Encode(const std::string& RawBuffer,
+    static void Base64Encode(const std::string& RawBuffer,
                              FString& Out_Encoded);
-    static bool Base64Encode(const FString& RawBuffer,
+    static void Base64Encode(const FString& RawBuffer,
                              FString& Out_Encoded);
 
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
-                     const GCryptoByte* const PlainBuffer, uint64 PlainBufferSize,
-                     FString& Out_MAC, FString& Out_Error);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
-                     const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-                     FString& Out_Error);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
-                     const std::string& PlainString, FString& Out_MAC,
-                     FString& Out_Error);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
-                     const FString& PlainString, FString& Out_MAC,
-                     FString& Out_Error);
-
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
+    static void Sign(const GCryptoByte* const Key, const uint64 KeySize,
                      const GCryptoByte* const PlainBuffer, uint64 PlainBufferSize,
                      FString& Out_MAC);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
+    static void Sign(const GCryptoByte* const Key, const uint64 KeySize,
                      const GCryptoBuffer& PlainBuffer, FString& Out_MAC);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
+    static void Sign(const GCryptoByte* const Key, const uint64 KeySize,
                      const std::string& PlainString, FString& Out_MAC);
-    static bool Sign(const GCryptoByte* const Key, const uint64 KeySize,
+    static void Sign(const GCryptoByte* const Key, const uint64 KeySize,
                      const FString& PlainString, FString& Out_MAC);
 
 public:
@@ -153,18 +100,9 @@ public:
     GCrypto(const GCryptoBuffer& SignKey);
     virtual ~GCrypto();
 
-    bool Sign(const GCryptoByte* const PlainBuffer, const uint64 PlainBufferSize,
-              FString& Out_MAC, FString& Out_Error) const;
-    bool Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC,
-              FString& Out_Error) const;
-    bool Sign(const std::string& PlainString, FString& Out_MAC,
-              FString& Out_Error) const;
-    bool Sign(const FString& PlainString, FString& Out_MAC,
-              FString& Out_Error) const;
-
-    bool Sign(const GCryptoByte* const PlainBuffer, const uint64 PlainBufferSize,
+    void Sign(const GCryptoByte* const PlainBuffer, const uint64 PlainBufferSize,
               FString& Out_MAC) const;
-    bool Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC) const;
-    bool Sign(const std::string& PlainString, FString& Out_MAC) const;
-    bool Sign(const FString& PlainString, FString& Out_MAC) const;
+    void Sign(const GCryptoBuffer& PlainBuffer, FString& Out_MAC) const;
+    void Sign(const std::string& PlainString, FString& Out_MAC) const;
+    void Sign(const FString& PlainString, FString& Out_MAC) const;
 };

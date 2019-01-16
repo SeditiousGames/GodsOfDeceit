@@ -125,8 +125,8 @@ void GBuildInfo_GetProductBuildTime(void* Out_Time)
             GBuildInfoImpl::GetProductBuildTime();
 }
 
-bool GBuildInfo_GetProductBuildInfoAsJson(void* Out_Json, const bool bPretty)
+void GBuildInfo_GetProductBuildInfoAsJson(void* Out_Json, const bool bPretty)
 {
-    return GBuildInfoImpl::ToJson(static_cast<GIC_FString*>(Out_Json)->String,
-                                  bPretty);
+    static_cast<GIC_FString*>(Out_Json)->String =
+            GBuildInfoImpl::ToJson(bPretty);
 }

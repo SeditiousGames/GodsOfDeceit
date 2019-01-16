@@ -62,7 +62,7 @@ THIRD_PARTY_INCLUDES_END
 #define GCOMPRESSION_DECOMPRESS_ERROR_DIALOG_TITLE  "Decompression Error"
 #define GGCOMPRESSION_UNKNOWN_ERROR_MESSAGE         "GCompression: unknown error!"
 
-bool GCompressionImpl::Compress(const GCompressionByte* DataArray,
+void GCompressionImpl::Compress(const GCompressionByte* DataArray,
                                 const uint64 Length,
                                 GCompressionBuffer& Out_CompressedBuffer,
                                 const EGCompressionAlgorithm& Algorithm)
@@ -91,8 +91,6 @@ bool GCompressionImpl::Compress(const GCompressionByte* DataArray,
         Output.push(boost::iostreams::back_inserter(Out_CompressedBuffer));
         boost::iostreams::write(Output, DataArray,
                                 static_cast<std::streamsize>(Length));
-
-        return true;
     }
 
     catch (const boost::exception& Exception)
@@ -128,36 +126,34 @@ bool GCompressionImpl::Compress(const GCompressionByte* DataArray,
                StringCast<WIDECHAR>(
                    GGCOMPRESSION_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
 }
 
-bool GCompressionImpl::Compress(const FString& DataString,
+void GCompressionImpl::Compress(const FString& DataString,
                                 GCompressionBuffer& Out_CompressedBuffer,
                                 const EGCompressionAlgorithm& Algorithm)
 {
-    return GCompressionImpl::Compress(StringCast<ANSICHAR>(*DataString).Get(),
-                                      static_cast<uint64>(DataString.Len()),
-                                      Out_CompressedBuffer, Algorithm);
+    GCompressionImpl::Compress(StringCast<ANSICHAR>(*DataString).Get(),
+                               static_cast<uint64>(DataString.Len()),
+                               Out_CompressedBuffer, Algorithm);
 }
 
-bool GCompressionImpl::Compress(const std::string& DataString,
+void GCompressionImpl::Compress(const std::string& DataString,
                                 GCompressionBuffer& Out_CompressedBuffer,
                                 const EGCompressionAlgorithm& Algorithm)
 {
-    return GCompressionImpl::Compress(DataString.c_str(), DataString.size(),
-                                      Out_CompressedBuffer, Algorithm);
+    GCompressionImpl::Compress(DataString.c_str(), DataString.size(),
+                               Out_CompressedBuffer, Algorithm);
 }
 
-bool GCompressionImpl::Compress(const GCompressionBuffer& DataBuffer,
+void GCompressionImpl::Compress(const GCompressionBuffer& DataBuffer,
                                 GCompressionBuffer& Out_CompressedBuffer,
                                 const EGCompressionAlgorithm& Algorithm)
 {
-    return GCompressionImpl::Compress(&DataBuffer[0], DataBuffer.size(),
-                                      Out_CompressedBuffer, Algorithm);
+    GCompressionImpl::Compress(&DataBuffer[0], DataBuffer.size(),
+            Out_CompressedBuffer, Algorithm);
 }
 
-bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
+void GCompressionImpl::Decompress(const GCompressionByte* DataArray,
                                   const uint64 Length,
                                   GCompressionBuffer& Out_UncompressedBuffer,
                                   const EGCompressionAlgorithm& Algorithm)
@@ -186,8 +182,6 @@ bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
         Output.push(boost::iostreams::back_inserter(Out_UncompressedBuffer));
         boost::iostreams::write(Output, DataArray,
                                 static_cast<std::streamsize>(Length));
-
-        return true;
     }
 
     catch (const boost::exception& Exception)
@@ -223,11 +217,9 @@ bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
                StringCast<WIDECHAR>(
                    GGCOMPRESSION_UNKNOWN_ERROR_MESSAGE).Get());
     }
-
-    return false;
 }
 
-bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
+void GCompressionImpl::Decompress(const GCompressionByte* DataArray,
                                   const uint64 Length,
                                   FString& Out_UncompressedString,
                                   const EGCompressionAlgorithm& Algorithm)
@@ -235,20 +227,15 @@ bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
     Out_UncompressedString = TEXT("");
     GCompressionBuffer Buffer;
 
-    bool bSucceed = GCompressionImpl::Decompress(
+    GCompressionImpl::Decompress(
                 DataArray, Length, Buffer, Algorithm);
 
-    if (bSucceed)
-    {
-        Out_UncompressedString.Append(StringCast<WIDECHAR>(&Buffer[0]).Get(),
-                                      static_cast<int32>(Buffer.size()));
-        Out_UncompressedString.TrimToNullTerminator();
-    }
-
-    return bSucceed;
+    Out_UncompressedString.Append(StringCast<WIDECHAR>(&Buffer[0]).Get(),
+            static_cast<int32>(Buffer.size()));
+    Out_UncompressedString.TrimToNullTerminator();
 }
 
-bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
+void GCompressionImpl::Decompress(const GCompressionByte* DataArray,
                                   const uint64 Length,
                                   std::string& Out_UncompressedString,
                                   const EGCompressionAlgorithm& Algorithm)
@@ -256,26 +243,21 @@ bool GCompressionImpl::Decompress(const GCompressionByte* DataArray,
     Out_UncompressedString.clear();
     GCompressionBuffer Buffer;
 
-    bool bSucceed = GCompressionImpl::Decompress(
+    GCompressionImpl::Decompress(
                 DataArray, Length, Buffer, Algorithm);
 
-    if (bSucceed)
-    {
-        Out_UncompressedString.assign(&Buffer[0], Buffer.size());
-    }
-
-    return bSucceed;
+    Out_UncompressedString.assign(&Buffer[0], Buffer.size());
 }
 
-bool GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
+void GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
                                   GCompressionBuffer& Out_UncompressedBuffer,
                                   const EGCompressionAlgorithm& Algorithm)
 {
     return GCompressionImpl::Decompress(&DataBuffer[0], DataBuffer.size(),
-                                        Out_UncompressedBuffer, Algorithm);
+            Out_UncompressedBuffer, Algorithm);
 }
 
-bool GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
+void GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
                                   FString& Out_UncompressedString,
                                   const EGCompressionAlgorithm& Algorithm)
 {
@@ -283,20 +265,15 @@ bool GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
 
     GCompressionBuffer Buffer;
 
-    bool bSucceed = GCompressionImpl::Decompress(
+    GCompressionImpl::Decompress(
                 &DataBuffer[0], DataBuffer.size(), Buffer, Algorithm);
 
-    if (bSucceed)
-    {
-        Out_UncompressedString.Append(StringCast<WIDECHAR>(&Buffer[0]).Get(),
-                                      static_cast<int32>(Buffer.size()));
-        Out_UncompressedString.TrimToNullTerminator();
-    }
-
-    return bSucceed;
+    Out_UncompressedString.Append(StringCast<WIDECHAR>(&Buffer[0]).Get(),
+            static_cast<int32>(Buffer.size()));
+    Out_UncompressedString.TrimToNullTerminator();
 }
 
-bool GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
+void GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
                                   std::string& Out_UncompressedString,
                                   const EGCompressionAlgorithm& Algorithm)
 {
@@ -304,13 +281,8 @@ bool GCompressionImpl::Decompress(const GCompressionBuffer& DataBuffer,
 
     GCompressionBuffer Buffer;
 
-    bool bSucceed = GCompressionImpl::Decompress(
+    GCompressionImpl::Decompress(
                 &DataBuffer[0], DataBuffer.size(), Buffer, Algorithm);
 
-    if (bSucceed)
-    {
-        Out_UncompressedString.assign(&DataBuffer[0], DataBuffer.size());
-    }
-
-    return bSucceed;
+    Out_UncompressedString.assign(&DataBuffer[0], DataBuffer.size());
 }

@@ -57,14 +57,5 @@ public:
     static FString GetProductBuildHost();
     static FString GetProductBuildDate();
     static FString GetProductBuildTime();
-    static bool ToJson(FString& Out_Json, const bool bPretty = false);
-
-    static FORCEINLINE FString ToJson(const bool bPretty = false)
-    {
-        FString Json;
-
-        (void)ToJson(Json, bPretty);
-
-        return Json;
-    }
+    static FString ToJson(const bool bPretty = false);
 };

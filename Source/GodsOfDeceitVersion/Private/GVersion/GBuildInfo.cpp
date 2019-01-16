@@ -165,14 +165,11 @@ FString GBuildInfo::GetProductBuildTime()
     return InteropContainer.String;
 }
 
-bool GBuildInfo::ToJson(FString& Out_Json, const bool bPretty)
+FString GBuildInfo::ToJson(const bool bPretty)
 {
     GIC_FString InteropContainer;
 
-    bool bSucceed = GBuildInfo_GetProductBuildInfoAsJson(
-                &InteropContainer, bPretty);
+    GBuildInfo_GetProductBuildInfoAsJson(&InteropContainer, bPretty);
 
-    Out_Json = std::move(InteropContainer.String);
-
-    return bSucceed;
+    return std::move(InteropContainer.String);
 }

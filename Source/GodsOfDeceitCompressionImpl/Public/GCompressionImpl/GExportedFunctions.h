@@ -74,112 +74,112 @@ extern "C"
 
 #if defined ( GOD_BUILDING_COMPRESSION_IMPL_MODULE )
 
-DLLEXPORT bool GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Compress_From_FString_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Compress_From_FString_To_GCompressionBuffer(
         const void* DataString,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Compress_From_StdString_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Compress_From_StdString_To_GCompressionBuffer(
         const void* DataString,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
         const void* DataBuffer,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionByteArray_To_FString(
+DLLEXPORT void GCompression_Decompress_From_GCompressionByteArray_To_FString(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionByteArray_To_StdString(
+DLLEXPORT void GCompression_Decompress_From_GCompressionByteArray_To_StdString(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
+DLLEXPORT void GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
         const void* DataBuffer,
         void* Out_UncompressedBuffer,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionBuffer_To_FString(
+DLLEXPORT void GCompression_Decompress_From_GCompressionBuffer_To_FString(
         const void* DataBuffer,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLEXPORT bool GCompression_Decompress_From_GCompressionBuffer_To_StdString(
+DLLEXPORT void GCompression_Decompress_From_GCompressionBuffer_To_StdString(
         const void* DataBuffer,
         void* Out_UncompressedString,
         const void* Algorithm);
 
 #else
 
-DLLIMPORT bool GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Compress_From_FString_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Compress_From_FString_To_GCompressionBuffer(
         const void* DataString,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Compress_From_StdString_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Compress_From_StdString_To_GCompressionBuffer(
         const void* DataString,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
         const void* DataBuffer,
         void* Out_CompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionByteArray_To_FString(
+DLLIMPORT void GCompression_Decompress_From_GCompressionByteArray_To_FString(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionByteArray_To_StdString(
+DLLIMPORT void GCompression_Decompress_From_GCompressionByteArray_To_StdString(
         const GCompressionByte* DataArray,
         const uint64 Length,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
+DLLIMPORT void GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
         const void* DataBuffer,
         void* Out_UncompressedBuffer,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionBuffer_To_FString(
+DLLIMPORT void GCompression_Decompress_From_GCompressionBuffer_To_FString(
         const void* DataBuffer,
         void* Out_UncompressedString,
         const void* Algorithm);
 
-DLLIMPORT bool GCompression_Decompress_From_GCompressionBuffer_To_StdString(
+DLLIMPORT void GCompression_Decompress_From_GCompressionBuffer_To_StdString(
         const void* DataBuffer,
         void* Out_UncompressedString,
         const void* Algorithm);
