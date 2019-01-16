@@ -36,3 +36,15 @@
 
 
 #include "GUtilsImpl/GExportedFunctions.h"
+
+#include <GInterop/GIC_FString.h>
+
+#include "GUtilsImpl/GUtilsImpl.h"
+
+void GUtils_CalculateBytes(
+        const uint64 Bytes,
+        void* Out_CalculatedBytes)
+{
+    static_cast<GIC_FString*>(Out_CalculatedBytes)->String =
+            GUtilsImpl::CalculateBytes(Bytes);
+}

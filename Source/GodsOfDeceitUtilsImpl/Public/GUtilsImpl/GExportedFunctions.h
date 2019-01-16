@@ -36,3 +36,54 @@
 
 
 #pragma once
+
+/// NOTE
+/// Defines a C++ like static_assert
+#ifdef __cplusplus
+#include <cassert>
+#else
+#include <assert.h>
+#endif  /* __cplusplus */
+
+/// NOTE
+/// Contains __bool_true_false_are_defined macro that can be used in order to
+/// check whether boolean type is supported by the compiler or not.
+#ifdef __cplusplus
+#include <cstdbool>
+#else
+#include <stdbool.h>
+#endif  /* __cplusplus */
+
+#include <CoreTypes.h>
+
+/// NOTE
+/// Check at compile time whether the C compiler has support for bool, true,
+/// and false macros.
+static_assert(__bool_true_false_are_defined,
+              "Error: bool, true, and false are not defined!");
+
+/// NOTE
+/// If C++ is used switch to C mode in order to prevent C++'s name mangling of
+/// method names.
+#ifdef __cplusplus
+extern "C"
+{
+#endif  /* __cplusplus */
+
+#if defined ( GOD_BUILDING_UTILS_IMPL_MODULE )
+
+DLLEXPORT void GUtils_CalculateBytes(
+        const uint64 Bytes,
+        void* Out_CalculatedBytes);
+
+#else
+
+DLLIMPORT void GUtils_CalculateBytes(
+        const uint64 Bytes,
+        void* Out_CalculatedBytes);
+
+#endif  /* defined ( GOD_BUILDING_UTILS_IMPL_MODULE ) */
+
+#ifdef __cplusplus
+}
+#endif  /* __cplusplus */

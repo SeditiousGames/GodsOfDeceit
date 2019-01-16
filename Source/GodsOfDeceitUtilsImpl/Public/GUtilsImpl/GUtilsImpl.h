@@ -35,3 +35,12 @@
 
 
 #pragma once
+
+#include <Containers/UnrealString.h>
+#include <CoreTypes.h>
+
+class GODSOFDECEITUTILSIMPL_API GUtilsImpl
+{
+public:
+    static FString CalculateBytes(const uint64 Bytes);
+};

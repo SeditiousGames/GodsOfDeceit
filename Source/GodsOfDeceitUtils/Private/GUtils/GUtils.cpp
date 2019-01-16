@@ -35,3 +35,15 @@
 
 
 #include "GUtils/GUtils.h"
+
+#include <GInterop/GIC_FString.h>
+#include <GUtilsImpl/GExportedFunctions.h>
+
+FString GUtils::CalculateBytes(const uint64 Bytes)
+{
+    GIC_FString CalculateBytesInteropContainer;
+
+    GUtils_CalculateBytes(Bytes, &CalculateBytesInteropContainer);
+
+    return CalculateBytesInteropContainer.String;
+}

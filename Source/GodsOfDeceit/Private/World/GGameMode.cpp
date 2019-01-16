@@ -41,6 +41,7 @@
 #include <GPlatform/GSystem.h>
 #include <GTypes/GPlatformTypes.h>
 #include <GTypes/GVersionTypes.h>
+#include <GUtils/GUtils.h>
 #include <GVersion/GBuildInfo.h>
 
 AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
@@ -114,6 +115,8 @@ void AGGameMode::BeginPlay()
                      EGSystemDirectory::UserGameData),
                  GSystem::GetSystemDirectoryPath(
                      EGSystemDirectory::UserHome));
+
+    GLOG_WARNING(GLOG_KEY_GENERIC, GUtils::CalculateBytes(8193));
 }
 
 void AGGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
