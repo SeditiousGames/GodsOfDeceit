@@ -40,30 +40,30 @@
 #include <GInterop/GIC_EGSystemDirectory.h>
 #include <GInterop/GIC_FString.h>
 
-#include "GPlatformImpl/GSystem.h"
+#include "GPlatformImpl/GSystemImpl.h"
 
 void GSystem_GetDirectorySeparatorChar(void* Out_Char)
 {
     static_cast<GIC_FString*>(Out_Char)->String =
-            GSystem::GetDirectorySeparatorChar();
+            GSystemImpl::GetDirectorySeparatorChar();
 }
 
 void GSystem_GetExecutablePath(void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
-            GSystem::GetExecutablePath();
+            GSystemImpl::GetExecutablePath();
 }
 
 void GSystem_GetCurrentPath(void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
-            GSystem::GetCurrentPath();
+            GSystemImpl::GetCurrentPath();
 }
 
 void GSystem_GetSystemDirectoryPath(const void* const Directory, void* Out_Path)
 {
     static_cast<GIC_FString*>(Out_Path)->String =
-            GSystem::GetSystemDirectoryPath(
+            GSystemImpl::GetSystemDirectoryPath(
                 static_cast<const GIC_EGSystemDirectory*>(
                     Directory)->Directory);
 }

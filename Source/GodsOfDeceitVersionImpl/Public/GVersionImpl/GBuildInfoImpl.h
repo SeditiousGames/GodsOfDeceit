@@ -56,7 +56,7 @@ THIRD_PARTY_INCLUDES_END
 
 #include <GTypes/GVersionTypes.h>
 
-class GODSOFDECEITVERSIONIMPL_API GBuildInfo
+class GODSOFDECEITVERSIONIMPL_API GBuildInfoImpl
 {
 public:
     static FORCEINLINE const FString& GetProductCompanyName()
@@ -115,11 +115,11 @@ public:
 
 #if !defined ( _WIN32 ) && !defined ( _WIN64 )
             sscanf(StringCast<ANSICHAR>(
-                       *GBuildInfo::GetProductBuildDate()).Get(),
+                       *GBuildInfoImpl::GetProductBuildDate()).Get(),
                    "%s %d %d",
                    Month, &Day, &Year);
 #else
-            sscanf_s(StringCast<ANSICHAR>(*GBuildInfo::GetProductBuildDate()).Get(),
+            sscanf_s(StringCast<ANSICHAR>(*GBuildInfoImpl::GetProductBuildDate()).Get(),
                      "%s %d %d",
                      Month, static_cast<unsigned int>(sizeof(Month)),
                      &Day, &Year);

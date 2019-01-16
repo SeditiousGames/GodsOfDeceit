@@ -35,7 +35,7 @@
  */
 
 
-#include "GPlatformImpl/GSystem.h"
+#include "GPlatformImpl/GSystemImpl.h"
 
 #include <Containers/StringConv.h>
 #include <Misc/AssertionMacros.h>
@@ -55,9 +55,9 @@ THIRD_PARTY_INCLUDES_END
 
 #include <GHacks/GInclude_Windows.h>
 
-#include <GVersionImpl/GBuildInfo.h>
+#include <GVersionImpl/GBuildInfoImpl.h>
 
-FString GSystem::GetExecutablePath()
+FString GSystemImpl::GetExecutablePath()
 {
     boost::filesystem::path Path(
                 boost::filesystem::initial_path<boost::filesystem::path>());
@@ -96,7 +96,7 @@ FString GSystem::GetExecutablePath()
     static_assert(false, "FATAL: unsuported platform!");
 #endif  /* defined ( __linux__ ) */
 
-    if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+    if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                             ESearchCase::IgnoreCase))
     {
         PathString = PathString.LeftChop(PathString.Len() - 2);
@@ -109,7 +109,7 @@ FString GSystem::GetExecutablePath()
     return FString(StringCast<TCHAR>(Path.string().c_str()).Get());
 }
 
-FString GSystem::GetCurrentPath()
+FString GSystemImpl::GetCurrentPath()
 {
     boost::filesystem::path Path(
                 boost::filesystem::system_complete(
@@ -117,7 +117,7 @@ FString GSystem::GetCurrentPath()
     return FString(StringCast<TCHAR>(Path.string().c_str()).Get());
 }
 
-FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory Directory)
+FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
 {
     boost::filesystem::path Path;
     FString PathString;
@@ -128,15 +128,15 @@ FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory Directory)
     case EGSystemDirectory::UserDesktop:
     {
 #if defined ( __linux__ )
-        PathString = GSystem::GetSystemDirectoryPath(
+        PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
-        if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+        if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                                 ESearchCase::IgnoreCase))
         {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
-        PathString += GSystem::GetDirectorySeparatorChar()
+        PathString += GSystemImpl::GetDirectorySeparatorChar()
                 + TEXT("Desktop");
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
         char PathBuffer[MAX_PATH];
@@ -158,15 +158,15 @@ FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory Directory)
     case EGSystemDirectory::UserDocuments:
     {
 #if defined ( __linux__ )
-        PathString = GSystem::GetSystemDirectoryPath(
+        PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
-        if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+        if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                                 ESearchCase::IgnoreCase))
         {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
-        PathString += GSystem::GetDirectorySeparatorChar()
+        PathString += GSystemImpl::GetDirectorySeparatorChar()
                 + TEXT("Documents");
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
         char PathBuffer[MAX_PATH];
@@ -189,38 +189,38 @@ FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory Directory)
     case EGSystemDirectory::UserGameData:
     {
 #if defined ( __linux__ )
-        PathString = GSystem::GetSystemDirectoryPath(
+        PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserHome);
-        if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+        if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                                 ESearchCase::IgnoreCase))
         {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
-        PathString += GSystem::GetDirectorySeparatorChar()
+        PathString += GSystemImpl::GetDirectorySeparatorChar()
                 + FString(TEXT(".local"))
-                + GSystem::GetDirectorySeparatorChar()
+                + GSystemImpl::GetDirectorySeparatorChar()
                 + FString(TEXT("share"))
-                + GSystem::GetDirectorySeparatorChar()
-                + GBuildInfo::GetProductCompanyName()
-                + GSystem::GetDirectorySeparatorChar()
-                + GBuildInfo::GetProductName();
+                + GSystemImpl::GetDirectorySeparatorChar()
+                + GBuildInfoImpl::GetProductCompanyName()
+                + GSystemImpl::GetDirectorySeparatorChar()
+                + GBuildInfoImpl::GetProductName();
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
-        PathString = GSystem::GetSystemDirectoryPath(
+        PathString = GSystemImpl::GetSystemDirectoryPath(
                     EGSystemDirectory::UserDocuments);
-        if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+        if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                                 ESearchCase::IgnoreCase))
         {
             PathString = PathString.LeftChop(PathString.Len() - 2);
         }
 
-        PathString += GSystem::GetDirectorySeparatorChar()
+        PathString += GSystemImpl::GetDirectorySeparatorChar()
                 + FString(StringCast<TCHAR>(
                               GOD_WINDOWS_MY_GAMES_DIRECTORY_NAME).Get())
-                + GSystem::GetDirectorySeparatorChar()
-                + GBuildInfo::GetProductCompanyName()
-                + GSystem::GetDirectorySeparatorChar()
-                + GBuildInfo::GetProductName();
+                + GSystemImpl::GetDirectorySeparatorChar()
+                + GBuildInfoImpl::GetProductCompanyName()
+                + GSystemImpl::GetDirectorySeparatorChar()
+                + GBuildInfoImpl::GetProductName();
 #endif  /* defined ( __linux__ ) */
     } break;
 
@@ -269,7 +269,7 @@ FString GSystem::GetSystemDirectoryPath(const EGSystemDirectory Directory)
 
     }
 
-    if (PathString.EndsWith(GSystem::GetDirectorySeparatorChar(),
+    if (PathString.EndsWith(GSystemImpl::GetDirectorySeparatorChar(),
                             ESearchCase::IgnoreCase))
     {
         PathString = PathString.LeftChop(PathString.Len() - 2);

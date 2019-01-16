@@ -44,7 +44,7 @@
 
 #include <GTypes/GCompressionTypes.h>
 
-class GODSOFDECEITCOMPRESSIONIMPL_API GCompression
+class GODSOFDECEITCOMPRESSIONIMPL_API GCompressionImpl
 {
 public:
     static bool Compress(const GCompressionByte* DataArray,
