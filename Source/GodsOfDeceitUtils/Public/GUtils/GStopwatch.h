@@ -35,3 +35,45 @@
 
 
 #pragma once
+
+#include <chrono>
+
+template<typename CLOCK_TYPE = std::chrono::high_resolution_clock,
+         typename UNIT_TYPE = std::chrono::microseconds,
+         typename DURATION_TYPE = double>
+class GStopwatch
+{
+private:
+    typedef std::chrono::time_point<CLOCK_TYPE> TimePoint;
+
+private:
+    TimePoint StartPoint;
+    TimePoint EndPoint;
+
+public:
+    GStopwatch()
+    {
+        Start();
+    }
+
+    virtual ~GStopwatch() = default;
+
+public:
+    void Start()
+    {
+        StartPoint = CLOCK_TYPE::now();
+        EndPoint = StartPoint;
+    }
+
+    DURATION_TYPE Stop()
+    {
+        EndPoint = CLOCK_TYPE::now();
+        return Elapsed();
+    }
+
+    DURATION_TYPE Elapsed()
+    {
+        auto Delta = std::chrono::duration_cast<UNIT_TYPE>(EndPoint - StartPoint);
+        return Delta.count();
+    }
+};
