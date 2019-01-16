@@ -89,10 +89,7 @@ public:
 
     }
 
-    virtual ~GSharedObjectPool()
-    {
-
-    }
+    virtual ~GSharedObjectPool() = default;
 
 public:
     void Add(std::unique_ptr<TYPE, DEFAULT_DELETER>& UniquePointer)
