@@ -37,7 +37,123 @@
 
 #include "GCompressionImpl/GExportedFunctions.h"
 
+#include <GInterop/GIC_EGCompressionAlgorithm.h>
 #include <GInterop/GIC_FString.h>
+#include <GInterop/GIC_GCompressionBuffer.h>
 #include <GInterop/GIC_std_string.h>
 
 #include "GCompressionImpl/GCompression.h"
+
+bool GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
+        const GCompressionByte* DataArray,
+        const uint64 Length,
+        void* Out_CompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Compress(
+                DataArray, Length,
+                static_cast<GIC_GCompressionBuffer*>(Out_CompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Compress_From_FString_To_GCompressionBuffer(
+        const void* DataString,
+        void* Out_CompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Compress(
+                static_cast<const GIC_FString*>(DataString)->String,
+                static_cast<GIC_GCompressionBuffer*>(Out_CompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Compress_From_StdString_To_GCompressionBuffer(
+        const void* DataString,
+        void* Out_CompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Compress(
+                static_cast<const GIC_std_string*>(DataString)->String,
+                static_cast<GIC_GCompressionBuffer*>(Out_CompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
+        const void* DataBuffer,
+        void* Out_CompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Compress(
+                static_cast<const GIC_GCompressionBuffer*>(DataBuffer)->Buffer,
+                static_cast<GIC_GCompressionBuffer*>(Out_CompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
+        const GCompressionByte* DataArray,
+        const uint64 Length,
+        void* Out_UncompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                DataArray, Length,
+                static_cast<GIC_GCompressionBuffer*>(Out_UncompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionByteArray_To_FString(
+        const GCompressionByte* DataArray,
+        const uint64 Length,
+        void* Out_UncompressedString,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                DataArray, Length,
+                static_cast<GIC_FString*>(Out_UncompressedString)->String,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionByteArray_To_StdString(
+        const GCompressionByte* DataArray,
+        const uint64 Length,
+        void* Out_UncompressedString,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                DataArray, Length,
+                static_cast<GIC_std_string*>(Out_UncompressedString)->String,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
+        const void* DataBuffer,
+        void* Out_UncompressedBuffer,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                static_cast<const GIC_GCompressionBuffer*>(DataBuffer)->Buffer,
+                static_cast<GIC_GCompressionBuffer*>(Out_UncompressedBuffer)->Buffer,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionBuffer_To_FString(
+        const void* DataBuffer,
+        void* Out_UncompressedString,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                static_cast<const GIC_GCompressionBuffer*>(DataBuffer)->Buffer,
+                static_cast<GIC_FString*>(Out_UncompressedString)->String,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}
+
+bool GCompression_Decompress_From_GCompressionBuffer_To_StdString(
+        const void* DataBuffer,
+        void* Out_UncompressedString,
+        const void* Algorithm)
+{
+    return GCompression::Decompress(
+                static_cast<const GIC_GCompressionBuffer*>(DataBuffer)->Buffer,
+                static_cast<GIC_std_string*>(Out_UncompressedString)->String,
+                static_cast<const GIC_EGCompressionAlgorithm*>(Algorithm)->Algorithm);
+}

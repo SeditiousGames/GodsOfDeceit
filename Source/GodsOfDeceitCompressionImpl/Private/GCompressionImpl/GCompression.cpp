@@ -37,72 +37,76 @@
 
 #include "GCompressionImpl/GCompression.h"
 
-bool GCompression::Compress(const GCompressionByte* Data, const uint64 Size,
-              GCompressionBuffer& Out_CompressedBuffer,
-              const EGCompressionAlgorithm& Algorithm)
+bool GCompression::Compress(const GCompressionByte* DataArray,
+                            const uint64 Length,
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
 bool GCompression::Compress(const FString& DataString,
-              GCompressionBuffer& Out_CompressedBuffer,
-              const EGCompressionAlgorithm& Algorithm)
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
 bool GCompression::Compress(const std::string& DataString,
-              GCompressionBuffer& Out_CompressedBuffer,
-              const EGCompressionAlgorithm& Algorithm)
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
 bool GCompression::Compress(const GCompressionBuffer& DataBuffer,
-              GCompressionBuffer& Out_CompressedBuffer,
-              const EGCompressionAlgorithm& Algorithm)
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
-bool GCompression::Decompress(const GCompressionByte* Data, const uint64 Size,
-                GCompressionBuffer& Out_UncompressedBuffer,
-                const EGCompressionAlgorithm& Algorithm)
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              GCompressionBuffer& Out_UncompressedBuffer,
+                              const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
-bool GCompression::Decompress(const GCompressionByte* Data, const uint64 Size,
-                FString& Out_UncompressedString,
-                const EGCompressionAlgorithm& Algorithm)
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              FString& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
-bool GCompression::Decompress(const GCompressionByte* Data, const uint64 Size,
-                std::string& Out_UncompressedString,
-                const EGCompressionAlgorithm& Algorithm)
-{
-    return false;
-}
-
-bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
-                GCompressionBuffer& Out_UncompressedBuffer,
-                const EGCompressionAlgorithm& Algorithm)
-{
-    return false;
-}
-
-bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
-                FString& Out_UncompressedString,
-                const EGCompressionAlgorithm& Algorithm)
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              std::string& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }
 
 bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
-                std::string& Out_UncompressedString,
-                const EGCompressionAlgorithm& Algorithm)
+                              GCompressionBuffer& Out_UncompressedBuffer,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    return false;
+}
+
+bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
+                              FString& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    return false;
+}
+
+bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
+                              std::string& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
 {
     return false;
 }

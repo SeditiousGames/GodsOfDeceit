@@ -35,8 +35,262 @@
 
 #include "GCompression/GCompression.h"
 
-#include <utility>
-
 #include <GCompressionImpl/GExportedFunctions.h>
+#include <GInterop/GIC_EGCompressionAlgorithm.h>
 #include <GInterop/GIC_FString.h>
+#include <GInterop/GIC_GCompressionBuffer.h>
 #include <GInterop/GIC_std_string.h>
+
+bool GCompression::Compress(const GCompressionByte* DataArray,
+                            const uint64 Length,
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
+{
+    GIC_GCompressionBuffer Out_CompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Compress_From_GCompressionByteArray_To_GCompressionBuffer(
+                DataArray, Length,
+                &Out_CompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Compress(const FString& DataString,
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_FString DataStringInteropContainer
+    {
+        DataString
+    };
+
+    GIC_GCompressionBuffer Out_CompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Compress_From_FString_To_GCompressionBuffer(
+                &DataStringInteropContainer,
+                &Out_CompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Compress(const std::string& DataString,
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_std_string DataStringInteropContainer
+    {
+        DataString
+    };
+
+    GIC_GCompressionBuffer Out_CompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Compress_From_StdString_To_GCompressionBuffer(
+                &DataStringInteropContainer,
+                &Out_CompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Compress(const GCompressionBuffer& DataBuffer,
+                            GCompressionBuffer& Out_CompressedBuffer,
+                            const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_GCompressionBuffer DataBufferInteropContainer
+    {
+        DataBuffer
+    };
+
+    GIC_GCompressionBuffer Out_CompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Compress_From_GCompressionBuffer_To_GCompressionBuffer(
+                &DataBufferInteropContainer,
+                &Out_CompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              GCompressionBuffer& Out_UncompressedBuffer,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    GIC_GCompressionBuffer Out_UncompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionByteArray_To_GCompressionBuffer(
+                DataArray, Length,
+                &Out_UncompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedBuffer = std::move(Out_UncompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              FString& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    GIC_FString Out_UncompressedStringInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionByteArray_To_FString(
+                DataArray, Length,
+                &Out_UncompressedStringInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionByte* DataArray,
+                              const uint64 Length,
+                              std::string& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    GIC_std_string Out_UncompressedStringInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionByteArray_To_StdString(
+                DataArray, Length,
+                &Out_UncompressedStringInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
+                              GCompressionBuffer& Out_UncompressedBuffer,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_GCompressionBuffer DataBufferInteropContainer
+    {
+        DataBuffer
+    };
+
+    GIC_GCompressionBuffer Out_UncompressedBufferInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionBuffer_To_GCompressionBuffer(
+                &DataBufferInteropContainer,
+                &Out_UncompressedBufferInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedBuffer = std::move(Out_UncompressedBufferInteropContainer.Buffer);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
+                              FString& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_GCompressionBuffer DataBufferInteropContainer
+    {
+        DataBuffer
+    };
+
+    GIC_FString Out_UncompressedStringInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionBuffer_To_FString(
+                &DataBufferInteropContainer,
+                &Out_UncompressedStringInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+
+    return bSucceed;
+}
+
+bool GCompression::Decompress(const GCompressionBuffer& DataBuffer,
+                              std::string& Out_UncompressedString,
+                              const EGCompressionAlgorithm& Algorithm)
+{
+    const GIC_GCompressionBuffer DataBufferInteropContainer
+    {
+        DataBuffer
+    };
+
+    GIC_std_string Out_UncompressedStringInteropContainer;
+
+    const GIC_EGCompressionAlgorithm AlgorithmInteropContainer
+    {
+        Algorithm
+    };
+
+    bool bSucceed =
+            GCompression_Decompress_From_GCompressionBuffer_To_StdString(
+                &DataBufferInteropContainer,
+                &Out_UncompressedStringInteropContainer,
+                &AlgorithmInteropContainer);
+
+    Out_UncompressedString.assign(std::move(Out_UncompressedStringInteropContainer.String));
+
+    return bSucceed;
+}

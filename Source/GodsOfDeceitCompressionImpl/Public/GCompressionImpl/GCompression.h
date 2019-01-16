@@ -47,7 +47,8 @@
 class GODSOFDECEITCOMPRESSIONIMPL_API GCompression
 {
 public:
-    static bool Compress(const GCompressionByte* Data, const uint64 Size,
+    static bool Compress(const GCompressionByte* DataArray,
+                         const uint64 Length,
                          GCompressionBuffer& Out_CompressedBuffer,
                          const EGCompressionAlgorithm& Algorithm);
     static bool Compress(const FString& DataString,
@@ -60,13 +61,16 @@ public:
                          GCompressionBuffer& Out_CompressedBuffer,
                          const EGCompressionAlgorithm& Algorithm);
 
-    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+    static bool Decompress(const GCompressionByte* DataArray,
+                           const uint64 Length,
                            GCompressionBuffer& Out_UncompressedBuffer,
                            const EGCompressionAlgorithm& Algorithm);
-    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+    static bool Decompress(const GCompressionByte* DataArray,
+                           const uint64 Length,
                            FString& Out_UncompressedString,
                            const EGCompressionAlgorithm& Algorithm);
-    static bool Decompress(const GCompressionByte* Data, const uint64 Size,
+    static bool Decompress(const GCompressionByte* DataArray,
+                           const uint64 Length,
                            std::string& Out_UncompressedString,
                            const EGCompressionAlgorithm& Algorithm);
     static bool Decompress(const GCompressionBuffer& DataBuffer,
