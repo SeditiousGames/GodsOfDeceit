@@ -58,7 +58,8 @@ void GCompression::Compress(const GCompressionByte* DataArray,
                 &Out_CompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+    Out_CompressedBuffer =
+            std::move(Out_CompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Compress(const FString& DataString,
@@ -82,7 +83,8 @@ void GCompression::Compress(const FString& DataString,
                 &Out_CompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+    Out_CompressedBuffer =
+            std::move(Out_CompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Compress(const std::string& DataString,
@@ -106,7 +108,8 @@ void GCompression::Compress(const std::string& DataString,
                 &Out_CompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+    Out_CompressedBuffer =
+            std::move(Out_CompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Compress(const GCompressionBuffer& DataBuffer,
@@ -130,7 +133,8 @@ void GCompression::Compress(const GCompressionBuffer& DataBuffer,
                 &Out_CompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_CompressedBuffer = std::move(Out_CompressedBufferInteropContainer.Buffer);
+    Out_CompressedBuffer =
+            std::move(Out_CompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Decompress(const GCompressionByte* DataArray,
@@ -150,7 +154,8 @@ void GCompression::Decompress(const GCompressionByte* DataArray,
                 &Out_UncompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedBuffer = std::move(Out_UncompressedBufferInteropContainer.Buffer);
+    Out_UncompressedBuffer =
+            std::move(Out_UncompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Decompress(const GCompressionByte* DataArray,
@@ -170,7 +175,8 @@ void GCompression::Decompress(const GCompressionByte* DataArray,
                 &Out_UncompressedStringInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+    Out_UncompressedString =
+            std::move(Out_UncompressedStringInteropContainer.String);
 }
 
 void GCompression::Decompress(const GCompressionByte* DataArray,
@@ -190,7 +196,8 @@ void GCompression::Decompress(const GCompressionByte* DataArray,
                 &Out_UncompressedStringInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+    Out_UncompressedString =
+            std::move(Out_UncompressedStringInteropContainer.String);
 }
 
 void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
@@ -214,7 +221,8 @@ void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
                 &Out_UncompressedBufferInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedBuffer = std::move(Out_UncompressedBufferInteropContainer.Buffer);
+    Out_UncompressedBuffer =
+            std::move(Out_UncompressedBufferInteropContainer.Buffer);
 }
 
 void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
@@ -238,7 +246,8 @@ void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
                 &Out_UncompressedStringInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedString = std::move(Out_UncompressedStringInteropContainer.String);
+    Out_UncompressedString =
+            std::move(Out_UncompressedStringInteropContainer.String);
 }
 
 void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
@@ -262,5 +271,6 @@ void GCompression::Decompress(const GCompressionBuffer& DataBuffer,
                 &Out_UncompressedStringInteropContainer,
                 &AlgorithmInteropContainer);
 
-    Out_UncompressedString.assign(std::move(Out_UncompressedStringInteropContainer.String));
+    Out_UncompressedString.assign(
+                std::move(Out_UncompressedStringInteropContainer.String));
 }
