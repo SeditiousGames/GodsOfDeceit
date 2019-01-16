@@ -172,7 +172,7 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
             boost::property_tree::write_json(
                         StringStream, PropertyTree, bPretty);
 
-            Json.Append(StringCast<TCHAR>(StringStream.str().c_str()).Get(),
+            Json.Append(StringCast<WIDECHAR>(StringStream.str().c_str()).Get(),
                             StringStream.str().size());
             Json.TrimToNullTerminator();
         }
@@ -201,7 +201,7 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(
+               StringCast<WIDECHAR>(
                    boost::diagnostic_information(Exception).c_str()).Get());
     }
 
@@ -212,7 +212,7 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
                     GBUILD_INFO_SERIALIZATION_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
@@ -223,7 +223,7 @@ bool GBuildInfoImpl::ToJson(FString& Out_Json, const bool bPretty)
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
 
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(
+               StringCast<WIDECHAR>(
                    GBUILD_INFO_UNKNOWN_SERIALIZATION_ERROR_MESSAGE).Get());
     }
 

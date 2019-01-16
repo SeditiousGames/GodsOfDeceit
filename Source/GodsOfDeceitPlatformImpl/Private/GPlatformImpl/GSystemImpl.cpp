@@ -77,11 +77,11 @@ FString GSystemImpl::GetExecutablePath()
 
     checkf(bResult, TEXT("FATAL: failed to get current directory path!"));
 
-    FString PathString(StringCast<TCHAR>(ExePathBuffer).Get());
+    FString PathString(StringCast<WIDECHAR>(ExePathBuffer).Get());
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
     char PathBuffer[MAX_PATH];
     DWORD Result = GetModuleFileNameA(NULL, PathBuffer, MAX_PATH);
-    FString PathString(StringCast<TCHAR>(PathBuffer).Get());
+    FString PathString(StringCast<WIDECHAR>(PathBuffer).Get());
 
     if (Result == ERROR_SUCCESS)
     {
@@ -106,7 +106,7 @@ FString GSystemImpl::GetExecutablePath()
                 boost::filesystem::path(
                     StringCast<ANSICHAR>(*PathString).Get()));
 
-    return FString(StringCast<TCHAR>(Path.string().c_str()).Get());
+    return FString(StringCast<WIDECHAR>(Path.string().c_str()).Get());
 }
 
 FString GSystemImpl::GetCurrentPath()
@@ -114,7 +114,7 @@ FString GSystemImpl::GetCurrentPath()
     boost::filesystem::path Path(
                 boost::filesystem::system_complete(
                     boost::filesystem::current_path()));
-    return FString(StringCast<TCHAR>(Path.string().c_str()).Get());
+    return FString(StringCast<WIDECHAR>(Path.string().c_str()).Get());
 }
 
 FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
@@ -151,7 +151,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
                    TEXT("FATAL: failed to get the user's desktop directory path!"));
         }
 
-        PathString = StringCast<TCHAR>(PathBuffer).Get();
+        PathString = StringCast<WIDECHAR>(PathBuffer).Get();
 #endif  /* defined ( __linux__ ) */
     } break;
 
@@ -182,7 +182,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
                    TEXT("Failed to get the user's desktop directory path!"));
         }
 
-        PathString = StringCast<TCHAR>(PathBuffer).Get();
+        PathString = StringCast<WIDECHAR>(PathBuffer).Get();
 #endif  /* defined ( __linux__ ) */
     } break;
 
@@ -215,7 +215,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
         }
 
         PathString += GSystemImpl::GetDirectorySeparatorChar()
-                + FString(StringCast<TCHAR>(
+                + FString(StringCast<WIDECHAR>(
                               GOD_WINDOWS_MY_GAMES_DIRECTORY_NAME).Get())
                 + GSystemImpl::GetDirectorySeparatorChar()
                 + GBuildInfoImpl::GetProductCompanyName()
@@ -249,7 +249,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
             ///       TEXT("FATAL: failed to get the user's home directory path!"));
         }
 
-        PathString = StringCast<TCHAR>(HomeDirectory).Get();
+        PathString = StringCast<WIDECHAR>(HomeDirectory).Get();
 #elif defined ( _WIN32 ) || defined ( _WIN64 )
         char PathBuffer[MAX_PATH];
         HRESULT Result = SHGetFolderPathA(
@@ -263,7 +263,7 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
                    TEXT("FATAL: failed to get the user's home directory path!"));
         }
 
-        PathString = StringCast<TCHAR>(PathBuffer).Get();
+        PathString = StringCast<WIDECHAR>(PathBuffer).Get();
 #endif  /* defined ( __linux__ ) */
     } break;
 
@@ -279,5 +279,5 @@ FString GSystemImpl::GetSystemDirectoryPath(const EGSystemDirectory Directory)
                 boost::filesystem::path(
                     StringCast<ANSICHAR>(*PathString).Get()));
 
-    return FString(StringCast<TCHAR>(Path.string().c_str()).Get());
+    return FString(StringCast<WIDECHAR>(Path.string().c_str()).Get());
 }

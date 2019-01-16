@@ -133,8 +133,8 @@ GLogCore::GLogCore(const EVerbosity& Verbosity,
     Pimpl->Verbosity = Verbosity;
     Pimpl->Category = Category;
     Pimpl->Key = Key;
-    Pimpl->File = FString(StringCast<TCHAR>(File.c_str()).Get());
-    Pimpl->Function = FString(StringCast<TCHAR>(Function.c_str()).Get());
+    Pimpl->File = FString(StringCast<WIDECHAR>(File.c_str()).Get());
+    Pimpl->Function = FString(StringCast<WIDECHAR>(Function.c_str()).Get());
     Pimpl->Line = FString::FromInt(Line);
 #endif  /* defined ( GOD_LOGGING ) */
 }

@@ -62,7 +62,7 @@ public:
     static FORCEINLINE const FString& GetProductCompanyName()
     {
         static const FString ProductCompanyName(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_COMPANY_NAME).Get());
 
         return ProductCompanyName;
@@ -71,7 +71,7 @@ public:
     static FORCEINLINE const FString& GetProductName()
     {
         static const FString ProductName(
-                    StringCast<TCHAR>(GOD_BUILD_INFO_PRODUCT_NAME).Get());
+                    StringCast<WIDECHAR>(GOD_BUILD_INFO_PRODUCT_NAME).Get());
 
         return ProductName;
     }
@@ -79,7 +79,7 @@ public:
     static FORCEINLINE const FString& GetProductInternalName()
     {
         static const FString ProductInternalName(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_INTERNAL_NAME).Get());
 
         return ProductInternalName;
@@ -88,7 +88,7 @@ public:
     static FORCEINLINE const FString& GetProductDescription()
     {
         static const FString ProductDescription(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_DESCRIPTION).Get());
 
         return ProductDescription;
@@ -97,7 +97,7 @@ public:
     static FORCEINLINE const FString& GetProductCopyrightHolder()
     {
         static const FString ProductCopyrightHolder(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_COPYRIGHT_HOLDER).Get());
 
         return ProductCopyrightHolder;
@@ -128,7 +128,7 @@ public:
             ProductCopyrightNotice = FString::Printf(
                         TEXT("(C) %d %s. All Rights Reserved."),
                         Year,
-                        StringCast<TCHAR>(
+                        StringCast<WIDECHAR>(
                             GOD_BUILD_INFO_PRODUCT_COPYRIGHT_HOLDER).Get()
                         );
         }
@@ -151,7 +151,7 @@ public:
     static FORCEINLINE const FString& GetProductBranchName()
     {
         static const FString ProductBranchName(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_BRANCH_NAME).Get());
 
         return ProductBranchName;
@@ -160,7 +160,7 @@ public:
     static FORCEINLINE const FString& GetProductShortRevisionHash()
     {
         static const FString ProductShortRevisionHash(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH).Get());
 
         return ProductShortRevisionHash;
@@ -169,7 +169,7 @@ public:
     static FORCEINLINE const FString& GetProductVersion()
     {
         static const FString ProductVersion(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         BOOST_PP_STRINGIZE(GOD_BUILD_INFO_PRODUCT_MAJOR_VERSION)
                         "."
                         BOOST_PP_STRINGIZE(GOD_BUILD_INFO_PRODUCT_MINOR_VERSION)
@@ -183,7 +183,7 @@ public:
     static FORCEINLINE const FString& GetProductRevision()
     {
         static const FString ProductRevision(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_BRANCH_NAME
                         "-"
                         GOD_BUILD_INFO_PRODUCT_SHORT_REVISION_HASH).Get());
@@ -194,7 +194,7 @@ public:
     static FORCEINLINE const FString& GetProductBuildDate()
     {
         static const FString ProductBuildDate(
-                    StringCast<TCHAR>(__DATE__).Get());
+                    StringCast<WIDECHAR>(__DATE__).Get());
 
         return ProductBuildDate;
     }
@@ -202,7 +202,7 @@ public:
     static FORCEINLINE const FString& GetProductBuildTime()
     {
         static const FString ProductBuildTime(
-                    StringCast<TCHAR>(__TIME__).Get());
+                    StringCast<WIDECHAR>(__TIME__).Get());
 
         return ProductBuildTime;
     }
@@ -210,7 +210,7 @@ public:
     static FORCEINLINE const FString& GetProductBuildHost()
     {
         static const FString ProductBuildHost(
-                    StringCast<TCHAR>(
+                    StringCast<WIDECHAR>(
                         GOD_BUILD_INFO_PRODUCT_BUILD_HOST).Get());
 
         return ProductBuildHost;

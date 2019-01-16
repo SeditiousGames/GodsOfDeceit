@@ -134,7 +134,7 @@ struct GLogString<const char[LENGTH]>
 {
     static void Format(const char* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -143,7 +143,7 @@ struct GLogString<char[LENGTH]>
 {
     static void Format(const char* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -152,7 +152,7 @@ struct GLogString<const char*>
 {
     static void Format(const char* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -161,7 +161,7 @@ struct GLogString<char*>
 {
     static void Format(const char* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -172,7 +172,7 @@ struct GLogString<const char16_t[LENGTH]>
 {
     static void Format(const char16_t* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -181,7 +181,7 @@ struct GLogString<char16_t[LENGTH]>
 {
     static void Format(const char16_t* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -190,7 +190,7 @@ struct GLogString<const char16_t*>
 {
     static void Format(const char16_t* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -199,7 +199,7 @@ struct GLogString<char16_t*>
 {
     static void Format(const char16_t* Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value).Get());
     }
 };
 
@@ -215,7 +215,7 @@ struct GLogString<const double>
 
         std::string String(Buffer);
 
-        Out_String = FString(StringCast<TCHAR>(String.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(String.c_str()).Get());
     }
 };
 
@@ -229,7 +229,7 @@ struct GLogString<double>
 
         std::string String(Buffer);
 
-        Out_String = FString(StringCast<TCHAR>(String.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(String.c_str()).Get());
     }
 };
 
@@ -404,7 +404,7 @@ struct GLogString<const long double>
 
         std::string String(Buffer);
 
-        Out_String = FString(StringCast<TCHAR>(String.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(String.c_str()).Get());
     }
 };
 
@@ -418,7 +418,7 @@ struct GLogString<long double>
 
         std::string String(Buffer);
 
-        Out_String = FString(StringCast<TCHAR>(String.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(String.c_str()).Get());
     }
 };
 
@@ -521,7 +521,7 @@ struct GLogString<const std::string>
 {
     static void Format(const std::string& Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value.c_str()).Get());
     }
 };
 
@@ -530,7 +530,7 @@ struct GLogString<std::string>
 {
     static void Format(const std::string& Value, FString& Out_String)
     {
-        Out_String = FString(StringCast<TCHAR>(Value.c_str()).Get());
+        Out_String = FString(StringCast<WIDECHAR>(Value.c_str()).Get());
     }
 };
 

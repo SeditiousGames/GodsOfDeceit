@@ -95,7 +95,7 @@ bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
             fmt::format_to(MemoryBuffer, "{i}", fmt::arg("i", Array[Index]));
         }
 
-        Out_String = StringCast<TCHAR>(
+        Out_String = StringCast<WIDECHAR>(
                     fmt::to_string(MemoryBuffer).c_str()).Get();
 
         return true;
@@ -103,22 +103,22 @@ bool GCryptoImpl::ByteArrayToString(const GCryptoByte* Array,
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+               StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
 
     return false;
@@ -169,7 +169,7 @@ bool GCryptoImpl::HexStringToString(const FString& HexString,
                                             nullptr, 16))));
         }
 
-        Out_String = StringCast<TCHAR>(
+        Out_String = StringCast<WIDECHAR>(
                     fmt::to_string(MemoryBuffer).c_str()).Get();
 
         return true;
@@ -177,22 +177,22 @@ bool GCryptoImpl::HexStringToString(const FString& HexString,
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+               StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
 
     return false;
@@ -237,31 +237,31 @@ bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"),  StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"),  StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+               StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
 
     return false;
@@ -299,7 +299,7 @@ bool GCryptoImpl::Base64Decode(const GCryptoByte* EncodedBuffer,
 
     if (bSucceed)
     {
-        Out_Decoded.Append(StringCast<TCHAR>(Decoded.c_str()).Get(),
+        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
                            Decoded.size());
         Out_Decoded.TrimToNullTerminator();
     }
@@ -319,7 +319,7 @@ bool GCryptoImpl::Base64Decode(const GCryptoBuffer& EncodedBuffer,
 
     if (bSucceed)
     {
-        Out_Decoded.Append(StringCast<TCHAR>(Decoded.c_str()).Get(),
+        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
                            Decoded.size());
         Out_Decoded.TrimToNullTerminator();
     }
@@ -341,7 +341,7 @@ bool GCryptoImpl::Base64Decode(const FString& EncodedBuffer,
 
     if (bSucceed)
     {
-        Out_Decoded.Append(StringCast<TCHAR>(Decoded.c_str()).Get(),
+        Out_Decoded.Append(StringCast<WIDECHAR>(Decoded.c_str()).Get(),
                            Decoded.size());
         Out_Decoded.TrimToNullTerminator();
     }
@@ -408,7 +408,7 @@ bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
                         new CryptoPP::StringSink(Encoded)));
         (void)StringSource;
 
-        Out_Encoded.Append(StringCast<TCHAR>(
+        Out_Encoded.Append(StringCast<WIDECHAR>(
                                Encoded.c_str()).Get(), Encoded.size());
         Out_Encoded.TrimToNullTerminator();
 
@@ -417,31 +417,31 @@ bool GCryptoImpl::Base64Encode(const GCryptoByte* RawBuffer,
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE,
                     GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+               StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
 
     return false;
@@ -535,37 +535,37 @@ bool GCryptoImpl::Sign(const GCryptoByte* Key, const uint64 KeySize,
         CryptoPP::StringSource(MAC, true, new CryptoPP::Base64Encoder(
                                    new CryptoPP::StringSink(Encoded)));
 
-        Out_MAC = StringCast<TCHAR>(Encoded.c_str()).Get();
+        Out_MAC = StringCast<WIDECHAR>(Encoded.c_str()).Get();
 
         return true;
     }
 
     catch (const CryptoPP::Exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (const std::exception& Exception)
     {
-        Out_Error = StringCast<TCHAR>(Exception.what()).Get();
+        Out_Error = StringCast<WIDECHAR>(Exception.what()).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, Exception.what(), GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
-        checkf(false, TEXT("%s"), StringCast<TCHAR>(Exception.what()).Get());
+        checkf(false, TEXT("%s"), StringCast<WIDECHAR>(Exception.what()).Get());
     }
 
     catch (...)
     {
-        Out_Error = StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
+        Out_Error = StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get();
 #if defined ( _WIN32 ) || defined ( _WIN64 )
         MessageBoxA(0, GCRYPTO_UNKNOWN_ERROR_MESSAGE, GCRYPTO_ERROR_DIALOG_TITLE, MB_OK);
 #endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
         checkf(false, TEXT("%s"),
-               StringCast<TCHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
+               StringCast<WIDECHAR>(GCRYPTO_UNKNOWN_ERROR_MESSAGE).Get());
     }
 
     return false;
