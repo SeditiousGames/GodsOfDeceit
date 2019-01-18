@@ -30,48 +30,16 @@
  *
  * @section DESCRIPTION
  *
- * A class for generating random numbers, characters, and uuids
+ * A container struct which allows safe-passing of EGRandomCharacterSet enum
+ * class between C and C++ code without any extra integer type casting.
  */
 
 
 #pragma once
 
-#include <Containers/UnrealString.h>
-#include <CoreTypes.h>
-
 #include <GTypes/GRandomTypes.h>
 
-class GODSOFDECEITRANDOM_API GRandom
+struct GIC_EGRandomCharacterSet
 {
-public:
-    static void Characters(const EGRandomCharacterSet& CharacterSet,
-                           const uint64 Length,
-                           FString& Out_RandomCharacters);
-
-    static FORCEINLINE FString Characters(
-            const EGRandomCharacterSet& CharacterSet,
-            const uint64 Length)
-    {
-        FString RandomCharacters;
-        Characters(CharacterSet, Length, RandomCharacters);
-        return RandomCharacters;
-    }
-
-    static int8 Number(const int8 LowerBound, const int8 UpperBound);
-    static int16 Number(const int16 LowerBound, const int16 UpperBound);
-    static int32 Number(const int32 LowerBound, const int32 UpperBound);
-    static int64 Number(const int64 LowerBound, const int64 UpperBound);
-    static uint8 Number(const uint8 LowerBound, const uint8 UpperBound);
-    static uint16 Number(const uint16 LowerBound, const uint16 UpperBound);
-    static uint32 Number(const uint32 LowerBound, const uint32 UpperBound);
-    static uint64 Number(const uint64 LowerBound, const uint64 UpperBound);
-
-    static void Uuid(FString& Out_RandomUuid);
-
-    static FORCEINLINE FString Uuid()
-    {
-        FString RandomUuid;
-        Uuid(RandomUuid);
-        return RandomUuid;
-    }
+    EGRandomCharacterSet CharacterSet;
 };

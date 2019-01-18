@@ -36,3 +36,83 @@
 
 
 #include "GRandomImpl/GExportedFunctions.h"
+
+#include <GInterop/GIC_EGRandomCharacterSet.h>
+#include <GInterop/GIC_FString.h>
+#include <GTypes/GRandomTypes.h>
+
+#include "GRandomImpl/GRandomImpl.h"
+
+void GRandom_Characters(
+        const void* CharacterSet,
+        const uint64 Length,
+        void* Out_RandomCharacters)
+{
+    GRandomImpl::Characters(
+                static_cast<const GIC_EGRandomCharacterSet*>(
+                    CharacterSet)->CharacterSet,
+                Length,
+                static_cast<GIC_FString*>(Out_RandomCharacters)->String);
+}
+
+int8 GRandom_Number_int8(
+        const int8 LowerBound,
+        const int8 UpperBound)
+{
+    return GRandomImpl::Number<int8>(LowerBound, UpperBound);
+}
+
+int16 GRandom_Number_int16(
+        const int16 LowerBound,
+        const int16 UpperBound)
+{
+    return GRandomImpl::Number<int16>(LowerBound, UpperBound);
+}
+
+int32 GRandom_Number_int32(
+        const int32 LowerBound,
+        const int32 UpperBound)
+{
+    return GRandomImpl::Number<int32>(LowerBound, UpperBound);
+}
+
+int64 GRandom_Number_int64(
+        const int64 LowerBound,
+        const int64 UpperBound)
+{
+    return GRandomImpl::Number<int64>(LowerBound, UpperBound);
+}
+
+uint8 GRandom_Number_uint8(
+        const uint8 LowerBound,
+        const uint8 UpperBound)
+{
+    return GRandomImpl::Number<uint8>(LowerBound, UpperBound);
+}
+
+uint16 GRandom_Number_uint16(
+        const uint16 LowerBound,
+        const uint16 UpperBound)
+{
+    return GRandomImpl::Number<uint16>(LowerBound, UpperBound);
+}
+
+uint32 GRandom_Number_uint32(
+        const uint32 LowerBound,
+        const uint32 UpperBound)
+{
+    return GRandomImpl::Number<uint32>(LowerBound, UpperBound);
+}
+
+uint64 GRandom_Number_uint64(
+        const uint64 LowerBound,
+        const uint64 UpperBound)
+{
+    return GRandomImpl::Number<uint64>(LowerBound, UpperBound);
+}
+
+void GRandom_Uuid(
+        void* Out_RandomUuid)
+{
+    GRandomImpl::Uuid(static_cast<GIC_FString*>(Out_RandomUuid)->String);
+}

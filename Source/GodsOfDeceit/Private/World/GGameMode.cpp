@@ -39,6 +39,7 @@
 
 #include <GLog/GLog.h>
 #include <GPlatform/GSystem.h>
+#include <GRandom/GRandom.h>
 #include <GTypes/GPlatformTypes.h>
 #include <GTypes/GVersionTypes.h>
 #include <GUtils/GUtils.h>
@@ -117,6 +118,11 @@ void AGGameMode::BeginPlay()
                      EGSystemDirectory::UserHome));
 
     GLOG_WARNING(GLOG_KEY_GENERIC, GUtils::CalculateBytes(8193));
+
+    GLOG_WARNING(GLOG_KEY_GENERIC, GRandom::Characters(
+                     EGRandomCharacterSet::Alphanumeric, 10));
+    GLOG_WARNING(GLOG_KEY_GENERIC, GRandom::Number(10, 90));
+    GLOG_WARNING(GLOG_KEY_GENERIC, GRandom::Uuid());
 }
 
 void AGGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)

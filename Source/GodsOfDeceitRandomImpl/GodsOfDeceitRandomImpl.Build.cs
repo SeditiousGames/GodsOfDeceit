@@ -106,6 +106,7 @@ public class GodsOfDeceitRandomImpl : ModuleRules
 
         Utils.GameModules.AddHacks(false);
         Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddTypes(false);
 
         Utils.Log.EmptyLine();
     }

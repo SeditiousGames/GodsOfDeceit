@@ -36,3 +36,126 @@
 
 
 #pragma once
+
+/// NOTE
+/// Defines a C++ like static_assert
+#ifdef __cplusplus
+#include <cassert>
+#else
+#include <assert.h>
+#endif  /* __cplusplus */
+
+/// NOTE
+/// Contains __bool_true_false_are_defined macro that can be used in order to
+/// check whether boolean type is supported by the compiler or not.
+#ifdef __cplusplus
+#include <cstdbool>
+#else
+#include <stdbool.h>
+#endif  /* __cplusplus */
+
+#include <CoreTypes.h>
+
+/// NOTE
+/// Check at compile time whether the C compiler has support for bool, true,
+/// and false macros.
+static_assert(__bool_true_false_are_defined,
+              "Error: bool, true, and false are not defined!");
+
+/// NOTE
+/// If C++ is used switch to C mode in order to prevent C++'s name mangling of
+/// method names.
+#ifdef __cplusplus
+extern "C"
+{
+#endif  /* __cplusplus */
+
+#if defined ( GOD_BUILDING_RANDOM_IMPL_MODULE )
+
+DLLEXPORT void GRandom_Characters(
+        const void* CharacterSet,
+        const uint64 Length,
+        void* Out_RandomCharacters);
+
+DLLEXPORT int8 GRandom_Number_int8(
+        const int8 LowerBound,
+        const int8 UpperBound);
+
+DLLEXPORT int16 GRandom_Number_int16(
+        const int16 LowerBound,
+        const int16 UpperBound);
+
+DLLEXPORT int32 GRandom_Number_int32(
+        const int32 LowerBound,
+        const int32 UpperBound);
+
+DLLEXPORT int64 GRandom_Number_int64(
+        const int64 LowerBound,
+        const int64 UpperBound);
+
+DLLEXPORT uint8 GRandom_Number_uint8(
+        const uint8 LowerBound,
+        const uint8 UpperBound);
+
+DLLEXPORT uint16 GRandom_Number_uint16(
+        const uint16 LowerBound,
+        const uint16 UpperBound);
+
+DLLEXPORT uint32 GRandom_Number_uint32(
+        const uint32 LowerBound,
+        const uint32 UpperBound);
+
+DLLEXPORT uint64 GRandom_Number_uint64(
+        const uint64 LowerBound,
+        const uint64 UpperBound);
+
+DLLEXPORT void GRandom_Uuid(
+        void* Out_RandomUuid);
+
+#else
+
+DLLIMPORT void GRandom_Characters(
+        const void* CharacterSet,
+        const uint64 Length,
+        void* Out_RandomCharacters);
+
+DLLIMPORT int8 GRandom_Number_int8(
+        const int8 LowerBound,
+        const int8 UpperBound);
+
+DLLIMPORT int16 GRandom_Number_int16(
+        const int16 LowerBound,
+        const int16 UpperBound);
+
+DLLIMPORT int32 GRandom_Number_int32(
+        const int32 LowerBound,
+        const int32 UpperBound);
+
+DLLIMPORT int64 GRandom_Number_int64(
+        const int64 LowerBound,
+        const int64 UpperBound);
+
+DLLIMPORT uint8 GRandom_Number_uint8(
+        const uint8 LowerBound,
+        const uint8 UpperBound);
+
+DLLIMPORT uint16 GRandom_Number_uint16(
+        const uint16 LowerBound,
+        const uint16 UpperBound);
+
+DLLIMPORT uint32 GRandom_Number_uint32(
+        const uint32 LowerBound,
+        const uint32 UpperBound);
+
+DLLIMPORT uint64 GRandom_Number_uint64(
+        const uint64 LowerBound,
+        const uint64 UpperBound);
+
+DLLIMPORT void GRandom_Uuid(
+        void* Out_RandomUuid);
+
+#endif  /* defined ( GOD_BUILDING_RANDOM_IMPL_MODULE ) */
+
+#ifdef __cplusplus
+}
+#endif  /* __cplusplus */
