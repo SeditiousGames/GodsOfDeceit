@@ -35,3 +35,10 @@
 
 
 #pragma once
+
+#include <CoreTypes.h>
+
+class GODSOFDECEITMATH_API GMath
+{
+
+};
