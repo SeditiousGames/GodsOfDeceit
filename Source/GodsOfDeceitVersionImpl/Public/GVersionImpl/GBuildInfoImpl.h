@@ -47,9 +47,7 @@
 #include <GHacks/GUndef_check.h>
 
 THIRD_PARTY_INCLUDES_START
-
 #include <boost/preprocessor/stringize.hpp>
-
 THIRD_PARTY_INCLUDES_END
 
 #include <GHacks/GRestore_check.h>
