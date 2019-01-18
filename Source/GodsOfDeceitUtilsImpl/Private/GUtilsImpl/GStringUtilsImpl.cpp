@@ -34,4 +34,4 @@
  */
 
 
-#pragma once
+#include "GStringUtilsImpl.h"
