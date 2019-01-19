@@ -106,6 +106,8 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
 
         Utils.GameModules.AddHacks(false);
         Utils.GameModules.AddInterop(false);
+        Utils.GameModules.AddLog(false);
+        Utils.GameModules.AddUtilsImpl(false);
 
         Utils.Log.EmptyLine();
     }
@@ -119,6 +121,9 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddCereal();
+        Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddCppDB();
         Utils.Log.EmptyLine();
 
         Utils.ThirdParty.AddFMT();

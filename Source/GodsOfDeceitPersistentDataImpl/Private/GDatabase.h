@@ -35,3 +35,88 @@
 
 
 #pragma once
+
+#include <memory>
+
+#include <Containers/UnrealString.h>
+#include <CoreTypes.h>
+
+#include <GHacks/GUndef_check.h>
+THIRD_PARTY_INCLUDES_START
+#include <cppdb/frontend.h>
+THIRD_PARTY_INCLUDES_END
+#include <GHacks/GRestore_check.h>
+
+namespace cppdb
+{
+    class session;
+}
+
+class GODSOFDECEITPERSISTENTDATAIMPL_API GDatabaseImpl
+{
+public:
+    class SessionGuard
+    {
+    private:
+        GDatabaseImpl& Instance;
+
+    public:
+        SessionGuard(GDatabaseImpl& InInstance);
+        ~SessionGuard();
+    };
+
+private:
+    struct Impl;
+    std::unique_ptr<Impl> Pimpl;
+
+private:
+    static bool bSqlite3DriverLoaded;
+
+public:
+    static inline bool IsSqlite3DriverLoaded()
+    {
+        return bSqlite3DriverLoaded;
+    }
+
+    static void LoadSqlite3Driver();
+
+    static bool Sqlite3Vacuum(const FString& DatabasePath);
+
+public:
+    explicit GDatabaseImpl(const FString& DatabasePath,
+                           bool bWALMode = false);
+    virtual ~GDatabaseImpl();
+
+public:
+    bool IsSessionOpen();
+    bool OpenSession();
+    bool CloseSession();
+
+    bool Initialize();
+
+    void RegisterTable(const FString& Id,
+                       const FString& Name,
+                       const FString& Fields);
+    FString GetTableName(const FString& Id) const;
+    FString GetTableFields(const FString& Id) const;
+    void SetTableName(const FString& Id, const FString& NewName);
+    void SetTableFields(const FString& Id, const FString& Fields);
+
+    cppdb::session& Sql();
+
+    void CreateTable(const FString& Id);
+    void DropTable(const FString& Id);
+    void RenameTable(const FString& Id, const FString& NewName);
+
+    void Insert(const FString& Id,
+                const FString& Fields,
+                const std::initializer_list<FString>& Args);
+    void Update(const FString& Id,
+                const FString& Where,
+                const FString& Value,
+                const FString& Set,
+                const std::initializer_list<FString>& Args);
+    void Delete(const FString& Id,
+                const FString& Where,
+                const FString& Value);
+};
