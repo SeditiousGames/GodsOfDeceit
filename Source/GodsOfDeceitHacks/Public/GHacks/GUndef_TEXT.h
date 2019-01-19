@@ -37,12 +37,8 @@
 
 #pragma once
 
-#if defined ( _WIN32 ) || defined ( _WIN64 )
-
 #ifdef TEXT
 #pragma push_macro("TEXT")
 #undef TEXT
 #define __G_RESTORE_TEXT__
 #endif  /* TEXT */
-
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */

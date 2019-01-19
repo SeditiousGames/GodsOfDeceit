@@ -37,11 +37,7 @@
 
 #pragma once
 
-#if defined ( _WIN32 ) || defined ( _WIN64 )
-
 #ifdef __G_RESTORE_TEXT__
 #pragma pop_macro("TEXT")
 #undef __G_RESTORE_TEXT__
 #endif  /* __G_RESTORE_TEXT__ */
-
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */

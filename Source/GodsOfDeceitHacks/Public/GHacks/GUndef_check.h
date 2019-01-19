@@ -38,12 +38,8 @@
 
 #pragma once
 
-#if defined ( _WIN32 ) || defined ( _WIN64 )
-
 #ifdef check
 #pragma push_macro("check")
 #undef check
 #define __G_RESTORE_check__
 #endif  /* check */
-
-#endif  /* defined ( _WIN32 ) || defined ( _WIN64 ) */
