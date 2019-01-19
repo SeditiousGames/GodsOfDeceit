@@ -35,3 +35,59 @@
 
 
 #include "GPersistentDataImpl/GPersistentDataImpl.h"
+
+#include <sstream>
+#include <utility>
+
+#include <GHacks/GUndef_check.h>
+THIRD_PARTY_INCLUDES_START
+#include <boost/exception/diagnostic_information.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/regex.hpp>
+THIRD_PARTY_INCLUDES_END
+#include <GHacks/GRestore_check.h>
+
+THIRD_PARTY_INCLUDES_START
+#include <cereal/archives/json.hpp>
+#include <fmt/format.h>
+#include <fmt/ostream.h>
+THIRD_PARTY_INCLUDES_END
+
+#include <GCompressionImpl/GCompressionImpl.h>
+#include <GCryptoImpl/GCryptoImpl.h>
+#include <GHacks/GInclude_Windows.h>
+//#include <GPlatformImpl/GFilesSstemImpl.h>
+#include <GPlatformImpl/GSystemImpl.h>
+#include <GVersionImpl/GBuildInfoImpl.h>
+
+//#include "GDatabase.h"
+
+struct GPersistentDataImpl::Impl
+{
+
+};
+
+GPersistentDataImpl::GPersistentDataImpl()
+    : Pimpl(std::make_unique<GPersistentDataImpl::Impl>())
+{
+
+}
+
+//GCryptoImpl& GPersistentDataImpl::GetCryptoInstance()
+//{
+//    static GCryptoImpl Instance(GPersistentDataImpl::Impl::GetSignKey());
+//    return Instance;
+//}
+
+//GDatabaseImpl& GPersistentDataImpl::GetDatabaseInstance()
+//{
+//    static bool bInitialized = false;
+
+//    return Instance;
+//}
+
+//GPersistentDataImpl::GameDataRecord& GPersistentDataImpl::GetGameData()
+//{
+//    return Pimpl->GameData;
+//}

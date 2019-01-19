@@ -104,10 +104,14 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
     {
         Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
+        Utils.GameModules.AddCompressionImpl(false);
+        Utils.GameModules.AddCryptoImpl(false);
         Utils.GameModules.AddHacks(false);
         Utils.GameModules.AddInterop(false);
-        Utils.GameModules.AddLog(false);
+        Utils.GameModules.AddPlatformImpl(false);
+        Utils.GameModules.AddTypes(false);
         Utils.GameModules.AddUtilsImpl(false);
+        Utils.GameModules.AddVersionImpl(false);
 
         Utils.Log.EmptyLine();
     }
