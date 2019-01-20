@@ -1,13 +1,13 @@
 /**
  * @file
- * @author  Mohammad S. Babaei <info@babaei.net>
+ * @author  Mamadou Babaei <info@babaei.net>
  * @version 0.1.0
  *
  * @section LICENSE
  *
  * (The MIT License)
  *
- * Copyright (c) 2018 - 2019 Mohammad S. Babaei
+ * Copyright (c) 2018 - 2019 Mamadou Babaei
  * Copyright (c) 2018 - 2019 Seditious Games Studio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1299,7 +1299,7 @@ public class GBuildInfo
         Name = "Gods of Deceit";
         InternalName = "GOD";
         Description = "A first-person shooter game written and developed in C++ and Unreal Engine 4.";
-        CopyrightHolder = "Seditious Games Studio and Mohammad S. Babaei";
+        CopyrightHolder = "Seditious Games Studio and Mamadou Babaei";
         CopyrightNotice = String.Format("(C) {0} {1}. All Rights Reserved.", DateTime.Now.Year.ToString(), CopyrightHolder);
         VersionMajor = 0;
         VersionMinor = 0;

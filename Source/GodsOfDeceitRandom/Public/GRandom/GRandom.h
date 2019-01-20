@@ -1,13 +1,13 @@
 /**
  * @file
- * @author  Mohammad S. Babaei <info@babaei.net>
+ * @author  Mamadou Babaei <info@babaei.net>
  * @version 0.1.0
  *
  * @section LICENSE
  *
  * (The MIT License)
  *
- * Copyright (c) 2018 - 2019 Mohammad S. Babaei
+ * Copyright (c) 2018 - 2019 Mamadou Babaei
  * Copyright (c) 2018 - 2019 Seditious Games Studio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
