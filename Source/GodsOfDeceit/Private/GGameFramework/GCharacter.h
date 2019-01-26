@@ -38,6 +38,7 @@
 
 #include <GameFramework/Character.h>
 #include <UObject/ObjectMacros.h>
+
 #include "GCharacter.generated.h"
 
 UCLASS(Abstract, BlueprintType, config=Game)

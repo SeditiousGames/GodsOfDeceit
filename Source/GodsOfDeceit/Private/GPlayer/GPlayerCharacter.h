@@ -38,6 +38,7 @@
 
 #include <GGameFramework/GCharacter.h>
 #include <UObject/ObjectMacros.h>
+
 #include "GPlayerCharacter.generated.h"
 
 class UCameraComponent;

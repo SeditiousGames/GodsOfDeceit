@@ -38,6 +38,7 @@
 
 #include <GameFramework/GameMode.h>
 #include <UObject/ObjectMacros.h>
+
 #include "GGameMode.generated.h"
 
 UCLASS()
