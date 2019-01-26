@@ -50,6 +50,15 @@
 			]
 		},
 		{
+			"Name": "GodsOfDeceitDifficultyLevel",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"GodsOfDeceitPlatform": [
+				"Linux",
+				"Windows"
+			]
+		},
+		{
 			"Name": "GodsOfDeceitEditor",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit",

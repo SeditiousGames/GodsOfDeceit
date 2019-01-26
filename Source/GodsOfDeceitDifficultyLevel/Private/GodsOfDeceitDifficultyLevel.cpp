@@ -30,8 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * Main file which registers the game difficulty level module.
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#include "GodsOfDeceitDifficultyLevel.h"
+#include "GodsOfDeceitDifficultyLevelModule.h"
+
+IMPLEMENT_GAME_MODULE(FGodsOfDeceitDifficultyLevelModule, GodsOfDeceitDifficultyLevel);

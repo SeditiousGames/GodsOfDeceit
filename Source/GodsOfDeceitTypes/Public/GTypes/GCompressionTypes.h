@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the compression module's enumerations.
+ * A place to define the compression module's types and enumerations
  */
 
 

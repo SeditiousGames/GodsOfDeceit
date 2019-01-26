@@ -30,8 +30,22 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * The main game mode class for Gods of Deceit
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#pragma once
+
+#include <CoreMinimal.h>
+#include <GameFramework/GameMode.h>
+#include "GGameMode.generated.h"
+
+UCLASS()
+class GODSOFDECEIT_API AGGameMode : public AGameMode
+{
+    GENERATED_UCLASS_BODY()
+
+protected:
+    virtual void BeginPlay();
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason);
+};

@@ -30,8 +30,32 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * Game difficulty level module implementation entry/exit point.
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#include "GodsOfDeceitDifficultyLevelModule.h"
+#include "GodsOfDeceitDifficultyLevel.h"
+
+#define LOCTEXT_NAMESPACE "GodsOfDeceitDifficultyLevel"
+
+void FGodsOfDeceitDifficultyLevelModule::StartupModule()
+{
+    IModuleInterface::StartupModule();
+}
+
+void FGodsOfDeceitDifficultyLevelModule::PreUnloadCallback()
+{
+    IModuleInterface::PreUnloadCallback();
+}
+void FGodsOfDeceitDifficultyLevelModule::PostLoadCallback()
+{
+    IModuleInterface::PostLoadCallback();
+}
+
+void FGodsOfDeceitDifficultyLevelModule::ShutdownModule()
+{
+    IModuleInterface::ShutdownModule();
+}
+
+#undef LOCTEXT_NAMESPACE

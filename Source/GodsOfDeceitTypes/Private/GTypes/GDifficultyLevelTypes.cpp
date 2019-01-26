@@ -30,8 +30,8 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * A place to define the game difficulty level module's types and enumerations
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#include "GTypes/GDifficultyLevelTypes.h"

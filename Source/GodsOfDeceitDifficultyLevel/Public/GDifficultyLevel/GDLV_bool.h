@@ -30,8 +30,48 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * A game difficulty level variable which represents bool type
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#pragma once
+
+#include <UObject/Object.h>
+#include <UObject/ObjectMacros.h>
+
+#include "GDLV_bool.generated.h"
+
+USTRUCT(BlueprintInternalUseOnly)
+struct GODSOFDECEITDIFFICULTYLEVEL_API FGDLV_bool
+{
+    GENERATED_USTRUCT_BODY()
+
+public:
+    UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
+    bool Recruit;
+
+    UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
+    bool Regular;
+
+    UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
+    bool Hardened;
+
+    UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
+    bool Veteran;
+
+private:
+    UPROPERTY ( Transient )
+    UObject* Outer;
+
+    UPROPERTY ( Transient )
+    bool Dummy;
+
+public:
+    FGDLV_bool();
+
+public:
+    void Initialize(UObject* InOuter);
+
+    const bool& Get() const;
+    bool& Get();
+};

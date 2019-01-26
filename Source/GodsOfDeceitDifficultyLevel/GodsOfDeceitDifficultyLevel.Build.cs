@@ -30,17 +30,17 @@
  *
  * @section DESCRIPTION
  *
- * Build script for GodsOfDeceitTypes target.
+ * Build script for GodsOfDeceitDifficultyLevel target.
  */
 
 
 using UnrealBuildTool;
 
-public class GodsOfDeceitTypes : ModuleRules
+public class GodsOfDeceitDifficultyLevel : ModuleRules
 {
     public GUtils Utils;
 
-    public GodsOfDeceitTypes(ReadOnlyTargetRules Target) : base(Target)
+    public GodsOfDeceitDifficultyLevel(ReadOnlyTargetRules Target) : base(Target)
     {
         InitializeUtils();
 
@@ -48,8 +48,8 @@ public class GodsOfDeceitTypes : ModuleRules
 
         SetupBuildConfiguration();
         AddEngineModules();
+        AddGameModules();
         AddDefinitions();
-        AddThirdPartyLibraries();
 
         Utils.BuildInfo.Print();
 
@@ -58,7 +58,7 @@ public class GodsOfDeceitTypes : ModuleRules
 
     private void InitializeUtils()
     {
-        Utils = new GUtils(this, "GodsOfDeceitTypes");
+        Utils = new GUtils(this, "GodsOfDeceitDifficultyLevel");
 
         /// Order matters, these modules must get initialized before the rest
         Utils.BuildPlatform = new GBuildPlatform(Utils);
@@ -100,22 +100,18 @@ public class GodsOfDeceitTypes : ModuleRules
 
         Utils.EngineModules.AddCore(true);
         Utils.EngineModules.AddCoreUObject(true);
+        Utils.EngineModules.AddEngine(true);
 
         Utils.Log.EmptyLine();
     }
 
-    private void AddThirdPartyLibraries()
+    private void AddGameModules()
     {
-        Utils.Log.Info("Setting up required third-party libraries for '{0}'...", Utils.ModuleName);
-        Utils.Log.EmptyLine();
+        Utils.Log.Info("Setting up required game modules for '{0}'...", Utils.ModuleName);
 
-        Utils.ThirdParty.AddBoost();
-        Utils.Log.EmptyLine();
+//        Utils.GameModules.AddGodsOfDeceit(false);
+        Utils.GameModules.AddTypes(false);
 
-        Utils.ThirdParty.AddCereal();
-        Utils.Log.EmptyLine();
-
-        Utils.ThirdParty.AddFMT();
         Utils.Log.EmptyLine();
     }
 

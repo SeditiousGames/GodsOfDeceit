@@ -118,6 +118,7 @@ public class GodsOfDeceit : ModuleRules
 
         Utils.GameModules.AddCompression(false);
         Utils.GameModules.AddCrypto(false);
+        Utils.GameModules.AddDifficultyLevel(false);
         Utils.GameModules.AddLoadingScreen(false);
         Utils.GameModules.AddLog(false);
         Utils.GameModules.AddMath(false);
@@ -629,6 +630,18 @@ public class GGameModules
         else
         {
             AddPrivateDependencyModuleName("GodsOfDeceit");
+        }
+    }
+
+    public void AddDifficultyLevel(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("GodsOfDeceitDifficultyLevel");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("GodsOfDeceitDifficultyLevel");
         }
     }
 

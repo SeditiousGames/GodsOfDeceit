@@ -30,8 +30,20 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * A place to define the game difficulty level module's types and enumerations
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#pragma once
+
+#include <CoreTypes.h>
+#include <UObject/ObjectMacros.h>
+
+UENUM(BlueprintType)
+enum class EGDifficultyLevel : uint8
+{
+    Recruit,
+    Regular,
+    Hardened,
+    Veteran
+};

@@ -30,8 +30,30 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * The game instance for Gods of Deceit
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#pragma once
+
+#include <Engine/GameInstance.h>
+
+#include <GTypes/GDifficultyLevelTypes.h>
+
+#include "GGameInstance.generated.h"
+
+UCLASS(config=Game, transient, BlueprintType, Blueprintable)
+class GODSOFDECEIT_API UGGameInstance : public UGameInstance
+{
+    GENERATED_UCLASS_BODY()
+
+protected:
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay" )
+    EGDifficultyLevel DifficultyLevel;
+
+public:
+    FORCEINLINE const EGDifficultyLevel& GetDifficultyLevel() const
+    {
+        return DifficultyLevel;
+    }
+};

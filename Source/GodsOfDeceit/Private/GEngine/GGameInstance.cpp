@@ -30,8 +30,15 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's types and enumerations
+ * The game instance for Gods of Deceit
  */
 
 
-#include "GTypes/GRandomTypes.h"
+#include "GGameInstance.h"
+#include "GodsOfDeceit.h"
+
+UGGameInstance::UGGameInstance(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+    DifficultyLevel = EGDifficultyLevel::Regular;
+}
