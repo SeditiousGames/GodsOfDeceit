@@ -51,7 +51,6 @@ public class GodsOfDeceitTarget : TargetRules
                 "GodsOfDeceitCompressionImpl",
                 "GodsOfDeceitCrypto",
                 "GodsOfDeceitCryptoImpl",
-                "GodsOfDeceitDifficultyLevel",
                 "GodsOfDeceitHacks",
                 "GodsOfDeceitInterop",
                 "GodsOfDeceitLoadingScreen",
