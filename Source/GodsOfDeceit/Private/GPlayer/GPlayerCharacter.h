@@ -62,19 +62,19 @@ protected:
     UCameraComponent* FirstPersonCamera;
 
 public:
-    /** Returns ThirdPersonCameraBoom subobject */
+    /** Returns ThirdPersonCameraBoom component */
     FORCEINLINE const USpringArmComponent* const GetThirdPersonCameraBoom() const
     {
         return ThirdPersonCameraBoom;
     }
 
-    /** Returns ThirdPersonCamera subobject */
+    /** Returns ThirdPersonCamera component */
     FORCEINLINE const UCameraComponent* const GetThirdPersonCamera() const
     {
         return ThirdPersonCamera;
     }
 
-    /** Returns FirstPersonCamera subobject */
+    /** Returns FirstPersonCamera component */
     FORCEINLINE const UCameraComponent* const GetFirstPersonCamera() const
     {
         return FirstPersonCamera;
