@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the crypto module's enumerations.
+ * A place to define the crypto module's types and enumerations
  */
 
 

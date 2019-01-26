@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the random module's enumerations.
+ * A place to define the random module's types and enumerations
  */
 
 
