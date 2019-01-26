@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * The main game mode class for Gods of Deceit.
+ * The main game mode class for Gods of Deceit
  */
 
 
