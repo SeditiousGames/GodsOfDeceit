@@ -30,11 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A game difficulty level variable which represents bool type
+ * A game difficulty level variable which represents float type
  */
 
 
-#include "GDifficultyLevel/GDLV_bool.h"
+#include "GDifficultyLevel/GDLV_float.h"
 #include "GodsOfDeceit.h"
 
 #include <Engine/World.h>
@@ -44,7 +44,7 @@
 #include <GEngine/GGameInstance.h>
 #include <GTypes/GDifficultyLevelTypes.h>
 
-FGDLV_bool::FGDLV_bool()
+FGDLV_float::FGDLV_float()
 {
     Outer = nullptr;
 
@@ -54,12 +54,12 @@ FGDLV_bool::FGDLV_bool()
     Veteran = Dummy;
 }
 
-void FGDLV_bool::Initialize(UObject* InOuter)
+void FGDLV_float::Initialize(UObject* InOuter)
 {
     Outer = InOuter;
 }
 
-const bool& FGDLV_bool::Get() const
+const float& FGDLV_float::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
                        " Initialize(UObject* InOuter) first!"));
@@ -103,8 +103,8 @@ const bool& FGDLV_bool::Get() const
     return this->Dummy;
 }
 
-bool& FGDLV_bool::Get()
+float& FGDLV_float::Get()
 {
-    return const_cast<bool&>(
-                static_cast<const FGDLV_bool*>(this)->Get());
+    return const_cast<float&>(
+                static_cast<const FGDLV_float*>(this)->Get());
 }

@@ -30,11 +30,11 @@
  *
  * @section DESCRIPTION
  *
- * A game difficulty level variable which represents bool type
+ * A game difficulty level variable which represents FRotator type
  */
 
 
-#include "GDifficultyLevel/GDLV_bool.h"
+#include "GDifficultyLevel/GDLV_FRotator.h"
 #include "GodsOfDeceit.h"
 
 #include <Engine/World.h>
@@ -44,7 +44,7 @@
 #include <GEngine/GGameInstance.h>
 #include <GTypes/GDifficultyLevelTypes.h>
 
-FGDLV_bool::FGDLV_bool()
+FGDLV_FRotator::FGDLV_FRotator()
 {
     Outer = nullptr;
 
@@ -54,12 +54,12 @@ FGDLV_bool::FGDLV_bool()
     Veteran = Dummy;
 }
 
-void FGDLV_bool::Initialize(UObject* InOuter)
+void FGDLV_FRotator::Initialize(UObject* InOuter)
 {
     Outer = InOuter;
 }
 
-const bool& FGDLV_bool::Get() const
+const FRotator& FGDLV_FRotator::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
                        " Initialize(UObject* InOuter) first!"));
@@ -103,8 +103,8 @@ const bool& FGDLV_bool::Get() const
     return this->Dummy;
 }
 
-bool& FGDLV_bool::Get()
+FRotator& FGDLV_FRotator::Get()
 {
-    return const_cast<bool&>(
-                static_cast<const FGDLV_bool*>(this)->Get());
+    return const_cast<FRotator&>(
+                static_cast<const FGDLV_FRotator*>(this)->Get());
 }

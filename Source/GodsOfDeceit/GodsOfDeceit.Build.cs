@@ -108,6 +108,7 @@ public class GodsOfDeceit : ModuleRules
         Utils.EngineModules.AddCoreUObject(true);
         Utils.EngineModules.AddEngine(true);
         Utils.EngineModules.AddInputCore(false);
+        Utils.EngineModules.AddRHI(true);
 
         Utils.Log.EmptyLine();
     }
@@ -496,6 +497,18 @@ public class GEngineModules
         }
     }
 
+    public void AddRHI(bool bPublic)
+    {
+        if (bPublic)
+        {
+            AddPublicDependencyModuleName("RHI");
+        }
+        else
+        {
+            AddPrivateDependencyModuleName("RHI");
+        }
+    }
+
     public void AddSlate(bool bPublic)
     {
         if (bPublic)
@@ -506,7 +519,7 @@ public class GEngineModules
         {
             AddPrivateDependencyModuleName("Slate");
         }
-        }
+    }
 
     public void AddSlateCore(bool bPublic)
     {
