@@ -99,6 +99,7 @@ public class GodsOfDeceitTypes : ModuleRules
         Utils.Log.Info("Setting up required engine modules for '{0}'...", Utils.ModuleName);
 
         Utils.EngineModules.AddCore(true);
+        Utils.EngineModules.AddCoreUObject(true);
 
         Utils.Log.EmptyLine();
     }
