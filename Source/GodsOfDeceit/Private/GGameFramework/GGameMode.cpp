@@ -34,7 +34,7 @@
  */
 
 
-#include "GGameMode.h"
+#include "GGameFramework/GGameMode.h"
 #include "GodsOfDeceit.h"
 
 #include <GLog/GLog.h>
