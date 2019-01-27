@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Implements common filing and filesystem operations
+ * Implements common filing and filesystem operations.
  */
 
 

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A class for generating random numbers, characters, and uuids
+ * A class for generating random numbers, characters, and uuids.
  */
 
 

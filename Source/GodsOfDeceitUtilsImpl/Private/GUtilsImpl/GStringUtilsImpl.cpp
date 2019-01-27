@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Provides extra string functionalities in order to facilitate FString usage
+ * Provides extra string functionalities in order to facilitate FString usage.
  */
 
 

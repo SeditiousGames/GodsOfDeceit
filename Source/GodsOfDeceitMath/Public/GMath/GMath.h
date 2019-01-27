@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A class providing generic math operations and functions
+ * A class providing generic math operations and functions.
  */
 
 

@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A smart thread-safe object pool implementation
+ * A smart thread-safe object pool implementation.
  */
 
 

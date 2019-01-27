@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A place for common utilities
+ * A place for common utilities.
  */
 
 

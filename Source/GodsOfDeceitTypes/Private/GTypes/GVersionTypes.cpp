@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the version module's types and enumerations
+ * A place to define the version module's types and enumerations.
  */
 
 

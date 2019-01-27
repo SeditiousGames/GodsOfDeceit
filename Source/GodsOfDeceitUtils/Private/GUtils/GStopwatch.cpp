@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A generic stopwatch implementation
+ * A generic stopwatch implementation.
  */
 
 

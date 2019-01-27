@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * Provides the low-level implementation for the persistent data module
+ * Provides the low-level implementation for the persistent data module.
  */
 
 

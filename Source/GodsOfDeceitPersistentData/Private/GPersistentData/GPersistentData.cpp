@@ -31,7 +31,7 @@
  * @section DESCRIPTION
  *
  * A high-level implementation for a persistent data storage across play
- * sessions
+ * sessions.
  */
 
 
