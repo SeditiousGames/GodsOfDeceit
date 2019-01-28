@@ -64,19 +64,19 @@ protected:
 
 public:
     /** Returns ThirdPersonCameraBoom component */
-    FORCEINLINE const USpringArmComponent* const GetThirdPersonCameraBoom() const
+    FORCEINLINE const USpringArmComponent* GetThirdPersonCameraBoom() const
     {
         return ThirdPersonCameraBoom;
     }
 
     /** Returns ThirdPersonCamera component */
-    FORCEINLINE const UCameraComponent* const GetThirdPersonCamera() const
+    FORCEINLINE const UCameraComponent* GetThirdPersonCamera() const
     {
         return ThirdPersonCamera;
     }
 
     /** Returns FirstPersonCamera component */
-    FORCEINLINE const UCameraComponent* const GetFirstPersonCamera() const
+    FORCEINLINE const UCameraComponent* GetFirstPersonCamera() const
     {
         return FirstPersonCamera;
     }
