@@ -132,6 +132,9 @@ public class GodsOfDeceitPersistentDataImpl : ModuleRules
 
         Utils.ThirdParty.AddFMT();
         Utils.Log.EmptyLine();
+
+        Utils.ThirdParty.AddSQLite3();
+        Utils.Log.EmptyLine();
     }
 
     private void SetupBuildConfiguration()
