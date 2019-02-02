@@ -37,6 +37,10 @@
 #include "GGameFramework/GGameMode.h"
 #include "GodsOfDeceit.h"
 
+#include <Templates/Casts.h>
+#include <UObject/Class.h>
+#include <UObject/ConstructorHelpers.h>
+
 #include <GLog/GLog.h>
 #include <GPlatform/GSystem.h>
 #include <GRandom/GRandom.h>
@@ -48,7 +52,29 @@
 AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
+    static ConstructorHelpers::FObjectFinder<UClass> GameStateBlueprints(
+                TEXT("Class'/Game/GodsOfDeceit/Core/"
+                     "BP_GameState.BP_GameState_C'"));
+    if (GameStateBlueprints.Object)
+    {
+       GameStateClass = GameStateBlueprints.Object;
+    }
 
+    static ConstructorHelpers::FObjectFinder<UClass> PlayerControllerBlueprints(
+                TEXT("Class'/Game/GodsOfDeceit/Core/Characters/Player/"
+                     "BP_PlayerCharacter.BP_PlayerCharacter_C'"));
+    if (PlayerControllerBlueprints.Object)
+    {
+        PlayerControllerClass = PlayerControllerBlueprints.Object;
+    }
+
+    static ConstructorHelpers::FObjectFinder<UClass> HUDBlueprints(
+                TEXT("Class'/Game/GodsOfDeceit/Core/HUDs/"
+                     "BP_GameHUD.BP_GameHUD_C'"));
+    if (HUDBlueprints.Object)
+    {
+        HUDClass = HUDBlueprints.Object;
+    }
 }
 
 void AGGameMode::BeginPlay()
