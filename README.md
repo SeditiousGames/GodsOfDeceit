@@ -6,7 +6,7 @@ First-person shooter game written and developed in C++ and Unreal Engine 4
 
 Unfortunately, due to licensing restrictions you won't be able to build and run the game from this project, as part of the game assets and plugins are not included in this repository. The main reason for this is our usage of third-party assets and plugins from UE4 Marketplace.
 
-Since we believe in the spirit of free/libre open-source software we provide everything we own the copyright for under MIT license in this repository. You should be able to build the game if you pay for the third-party plugins from the marketplace. Nonetheless, you probably won't be able to run the game since you have to reproduce the levels and art assets on your own using the assets from the marketplace. Still, feel free to build a new game using the provided source code with your own art assets.
+Since we believe in the spirit of free/libre open-source software we provide everything we own the copyright for under MIT license in this repository. You should be able to build the game if you pay for the third-party plugins from the marketplace. Nonetheless, you probably won't be able to run the game since you have to also buy the third-party assets from the Unreal Engine marketplace. If you do so, you have to place each purchased item in its own directory inside Content/ThirdParty/${ASSET} according to the Submodule Structure below.
 
 At the moment we don't have any artists in our team, once this gets addressed this issue will go away over time.
 
@@ -36,6 +36,21 @@ GodsOfDeceit
   ├── Content (public repo, hosted at GitLab)
   │     │
   │     └── ThirdParty (private repo, includes UE4 marketplace assets)
+  │           │
+  │           │── AnimStarterPack (private repo, UE4 marketplace assets)
+  │           │── GenericNPCAnimPack (private repo, UE4 marketplace assets)
+  │           │── SimpleCity (private repo, UE4 marketplace assets)
+  │           │── SimpleFarm (private repo, UE4 marketplace assets)
+  │           │── SimpleHouseInteriors (private repo, UE4 marketplace assets)
+  │           │── SimpleMilitary (private repo, UE4 marketplace assets)
+  │           │── SimpleOffice (private repo, UE4 marketplace assets)
+  │           │── SimplePeople (private repo, UE4 marketplace assets)
+  │           │── SimplePort (private repo, UE4 marketplace assets)
+  │           │── SimplePropsItemsIcons (private repo, UE4 marketplace assets)
+  │           │── SimpleRacer (private repo, UE4 marketplace assets)
+  │           │── SimpleShopsInterior (private repo, UE4 marketplace assets)
+  │           │── SimpleTown (private repo, UE4 marketplace assets)
+  │           └── SimpleTrains (private repo, UE4 marketplace assets)
   │
   ├── Plugins (public repo, hosted at GitLab)
   │     │
