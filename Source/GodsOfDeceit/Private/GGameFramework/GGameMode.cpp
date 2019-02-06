@@ -52,36 +52,36 @@
 AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
-    static ConstructorHelpers::FObjectFinder<UClass> GameStateBlueprints(
+    static ConstructorHelpers::FObjectFinder<UClass> GameState(
                 TEXT("Class'/Game/GodsOfDeceit/Core/"
                      "BP_GameState.BP_GameState_C'"));
-    if (GameStateBlueprints.Object)
+    if (GameState.Succeeded() && GameState.Object)
     {
-       GameStateClass = GameStateBlueprints.Object;
+        GameStateClass = GameState.Object;
     }
 
-    static ConstructorHelpers::FObjectFinder<UClass> PlayerControllerBlueprints(
+    static ConstructorHelpers::FObjectFinder<UClass> PlayerController(
                 TEXT("Class'/Game/GodsOfDeceit/Core/Characters/Player/"
                      "BP_PlayerController.BP_PlayerController_C'"));
-    if (PlayerControllerBlueprints.Object)
+    if (PlayerController.Succeeded() && PlayerController.Object)
     {
-        PlayerControllerClass = PlayerControllerBlueprints.Object;
+        PlayerControllerClass = PlayerController.Object;
     }
 
-    static ConstructorHelpers::FObjectFinder<UClass> HUDBlueprints(
+    static ConstructorHelpers::FObjectFinder<UClass> HUD(
                 TEXT("Class'/Game/GodsOfDeceit/Core/HUDs/"
                      "BP_GameHUD.BP_GameHUD_C'"));
-    if (HUDBlueprints.Object)
+    if (HUD.Succeeded() && HUD.Object)
     {
-        HUDClass = HUDBlueprints.Object;
+        HUDClass = HUD.Object;
     }
 
-    static ConstructorHelpers::FObjectFinder<UClass> DefaultPawnBlueprints(
+    static ConstructorHelpers::FObjectFinder<UClass> DefaultPawn(
                 TEXT("Class'/Game/GodsOfDeceit/Core/Characters/Player/"
                      "BP_PlayerCharacter.BP_PlayerCharacter_C'"));
-    if (DefaultPawnBlueprints.Object)
+    if (DefaultPawn.Succeeded() && DefaultPawn.Object)
     {
-        DefaultPawnClass = DefaultPawnBlueprints.Object;
+        DefaultPawnClass = DefaultPawn.Object;
     }
 }
 
