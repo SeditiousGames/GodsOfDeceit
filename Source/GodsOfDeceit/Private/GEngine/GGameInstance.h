@@ -48,10 +48,12 @@ class GODSOFDECEIT_API UGGameInstance : public UGameInstance
     GENERATED_UCLASS_BODY()
 
 protected:
+    /** The game's difficulty level */
     UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay" )
     EGDifficultyLevel DifficultyLevel;
 
 public:
+    /** Returns DifficultyLevel */
     FORCEINLINE const EGDifficultyLevel& GetDifficultyLevel() const
     {
         return DifficultyLevel;
