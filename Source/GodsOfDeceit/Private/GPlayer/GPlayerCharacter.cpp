@@ -46,10 +46,13 @@
 #include <UObject/ConstructorHelpers.h>
 
 #include "GPlayer/GPlayerAnimInstance.h"
+#include "GPlayer/GPlayerCharacterMovementComponent.h"
 
 AGPlayerCharacter::AGPlayerCharacter(
         const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+    : Super(ObjectInitializer.SetDefaultSubobjectClass
+            <UGPlayerCharacterMovementComponent>
+            (ACharacter::CharacterMovementComponentName))
 {
     UCapsuleComponent* CapsuleComponent = GetCapsuleComponent();
     if (CapsuleComponent)

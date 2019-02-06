@@ -30,19 +30,24 @@
  *
  * @section DESCRIPTION
  *
- * A generic Gods of Deceit character implementation
+ * Character movement component for the player character.
  */
 
 
-#include "GGameFramework/GCharacter.h"
-#include "GodsOfDeceit.h"
+#pragma once
+
+#include <UObject/ObjectMacros.h>
 
 #include "GGameFramework/GCharacterMovementComponent.h"
 
-AGCharacter::AGCharacter(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer.SetDefaultSubobjectClass
-            <UGCharacterMovementComponent>
-            (ACharacter::CharacterMovementComponentName))
-{
+#include "GPlayerCharacterMovementComponent.generated.h"
 
-}
+UCLASS(Abstract)
+class GODSOFDECEIT_API UGPlayerCharacterMovementComponent
+    : public UGCharacterMovementComponent
+{
+    GENERATED_UCLASS_BODY()
+
+public:
+    virtual float GetMaxSpeed() const override;
+};

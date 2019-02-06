@@ -30,19 +30,9 @@
  *
  * @section DESCRIPTION
  *
- * A generic Gods of Deceit character implementation
+ * Base class for all Gods of Deceit anim character movement components.
  */
 
 
-#include "GGameFramework/GCharacter.h"
-#include "GodsOfDeceit.h"
-
 #include "GGameFramework/GCharacterMovementComponent.h"
-
-AGCharacter::AGCharacter(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer.SetDefaultSubobjectClass
-            <UGCharacterMovementComponent>
-            (ACharacter::CharacterMovementComponentName))
-{
-
-}
+#include "GodsOfDeceit.h"

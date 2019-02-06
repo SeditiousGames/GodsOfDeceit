@@ -30,19 +30,25 @@
  *
  * @section DESCRIPTION
  *
- * A generic Gods of Deceit character implementation
+ * Base class for all Gods of Deceit anim character movement components.
  */
 
 
-#include "GGameFramework/GCharacter.h"
-#include "GodsOfDeceit.h"
+#pragma once
 
-#include "GGameFramework/GCharacterMovementComponent.h"
+#include <GameFramework/CharacterMovementComponent.h>
+#include <UObject/ObjectMacros.h>
 
-AGCharacter::AGCharacter(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer.SetDefaultSubobjectClass
-            <UGCharacterMovementComponent>
-            (ACharacter::CharacterMovementComponentName))
+#include "GCharacterMovementComponent.generated.h"
+
+UCLASS(Abstract)
+class GODSOFDECEIT_API UGCharacterMovementComponent
+    : public UCharacterMovementComponent
 {
+    GENERATED_UCLASS_BODY()
 
-}
+public:
+    /** The maximum ground speed when sprinting. */
+    UPROPERTY(Category="Character Movement: Walking", EditAnywhere, BlueprintReadWrite, meta=(ClampMin="0", UIMin="0"))
+    float MaxSprintSpeed;
+};
