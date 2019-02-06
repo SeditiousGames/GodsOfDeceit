@@ -37,9 +37,32 @@
 #include "GPlayer/GPlayerCharacter.h"
 #include "GodsOfDeceit.h"
 
+#include <Components/CapsuleComponent.h>
+#include <Components/SkeletalMeshComponent.h>
+
 AGPlayerCharacter::AGPlayerCharacter(
         const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
+    UCapsuleComponent* CapsuleComponent = GetCapsuleComponent();
+    if (CapsuleComponent)
+    {
+        CapsuleComponent->InitCapsuleSize(88.f, 155.0f);
+        RootComponent = CapsuleComponent;
+    }
 
+    USkeletalMeshComponent* Mesh = GetMesh();
+    if (Mesh)
+    {
+        Mesh->SetupAttachment(this->RootComponent);
+        Mesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -150.0f),
+                                             FRotator(0.0f, -90.0f, 0.0f));
+        Mesh->SetOnlyOwnerSee(false);
+        Mesh->bCastDynamicShadow = true;
+        Mesh->CastShadow = true;
+        Mesh->SetCollisionObjectType(ECC_Pawn);
+        Mesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+        Mesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+        Mesh->SetCanEverAffectNavigation(false);
+    }
 }
