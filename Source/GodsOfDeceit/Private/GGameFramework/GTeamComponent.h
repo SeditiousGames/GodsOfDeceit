@@ -64,9 +64,11 @@ public:
     }
 
 protected:
+    /** The team number */
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Team Component")
     uint8 TeamNumber;
 
+    /** The team color */
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Team Component")
     FColor TeamColor;
 
