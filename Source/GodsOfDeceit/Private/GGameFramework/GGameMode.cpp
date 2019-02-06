@@ -62,7 +62,7 @@ AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
 
     static ConstructorHelpers::FObjectFinder<UClass> PlayerControllerBlueprints(
                 TEXT("Class'/Game/GodsOfDeceit/Core/Characters/Player/"
-                     "BP_PlayerCharacter.BP_PlayerCharacter_C'"));
+                     "BP_PlayerController.BP_PlayerController_C'"));
     if (PlayerControllerBlueprints.Object)
     {
         PlayerControllerClass = PlayerControllerBlueprints.Object;
@@ -74,6 +74,14 @@ AGGameMode::AGGameMode(const FObjectInitializer& ObjectInitializer)
     if (HUDBlueprints.Object)
     {
         HUDClass = HUDBlueprints.Object;
+    }
+
+    static ConstructorHelpers::FObjectFinder<UClass> DefaultPawnBlueprints(
+                TEXT("Class'/Game/GodsOfDeceit/Core/Characters/Player/"
+                     "BP_PlayerCharacter.BP_PlayerCharacter_C'"));
+    if (DefaultPawnBlueprints.Object)
+    {
+        DefaultPawnClass = DefaultPawnBlueprints.Object;
     }
 }
 
