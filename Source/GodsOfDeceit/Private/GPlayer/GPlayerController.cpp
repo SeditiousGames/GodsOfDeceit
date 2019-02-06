@@ -34,7 +34,7 @@
  */
 
 
-#include "GGameFramework/GPlayerController.h"
+#include "GPlayer/GPlayerController.h"
 #include "GodsOfDeceit.h"
 
 AGPlayerController::AGPlayerController(
