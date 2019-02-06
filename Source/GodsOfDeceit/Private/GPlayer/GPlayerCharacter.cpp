@@ -37,8 +37,15 @@
 #include "GPlayer/GPlayerCharacter.h"
 #include "GodsOfDeceit.h"
 
+#include <Animation/AnimBlueprintGeneratedClass.h>
 #include <Components/CapsuleComponent.h>
 #include <Components/SkeletalMeshComponent.h>
+#include <Engine/SkeletalMesh.h>
+#include <Templates/Casts.h>
+#include <UObject/Class.h>
+#include <UObject/ConstructorHelpers.h>
+
+#include "GPlayer/GPlayerAnimInstance.h"
 
 AGPlayerCharacter::AGPlayerCharacter(
         const FObjectInitializer& ObjectInitializer)
@@ -47,13 +54,32 @@ AGPlayerCharacter::AGPlayerCharacter(
     UCapsuleComponent* CapsuleComponent = GetCapsuleComponent();
     if (CapsuleComponent)
     {
-        CapsuleComponent->InitCapsuleSize(88.f, 155.0f);
+        CapsuleComponent->InitCapsuleSize(88.f, 150.0f);
         RootComponent = CapsuleComponent;
     }
 
     USkeletalMeshComponent* Mesh = GetMesh();
     if (Mesh)
     {
+        static ConstructorHelpers::FObjectFinder<USkeletalMesh> SkeletalMesh(
+                    TEXT("SkeletalMesh'/Game/ThirdParty/SimpleMilitary/Meshes/"
+                         "Characters/SK_Soldier_01.SK_Soldier_01'"));
+        if (SkeletalMesh.Succeeded() && SkeletalMesh.Object)
+        {
+            Mesh->SetSkeletalMesh(SkeletalMesh.Object, true);
+        }
+
+        static ConstructorHelpers::FObjectFinder<UAnimBlueprintGeneratedClass>
+                AnimBlueprint(
+                    TEXT("AnimBlueprint'/Game/GodsOfDeceit/Core/"
+                         "Characters/Player/"
+                         "ABP_PlayerCharacter.ABP_PlayerCharacter_C'"));
+        if (AnimBlueprint.Succeeded() && AnimBlueprint.Object)
+        {
+            Mesh->SetAnimationMode(EAnimationMode::AnimationBlueprint);
+            Mesh->AnimClass = AnimBlueprint.Object;
+        }
+
         Mesh->SetupAttachment(this->RootComponent);
         Mesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -150.0f),
                                              FRotator(0.0f, -90.0f, 0.0f));
