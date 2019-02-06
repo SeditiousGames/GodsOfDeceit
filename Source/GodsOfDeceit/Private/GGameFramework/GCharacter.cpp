@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A generic Gods of Deceit character implementation
+ * A generic Gods of Deceit character implementation.
  */
 
 
@@ -38,11 +38,13 @@
 #include "GodsOfDeceit.h"
 
 #include "GGameFramework/GCharacterMovementComponent.h"
+#include "GGameFramework/GTeamComponent.h"
 
 AGCharacter::AGCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer.SetDefaultSubobjectClass
             <UGCharacterMovementComponent>
             (ACharacter::CharacterMovementComponentName))
 {
-
+    Team = ObjectInitializer.CreateDefaultSubobject<UGTeamComponent>(
+                this, TEXT("Team"));
 }

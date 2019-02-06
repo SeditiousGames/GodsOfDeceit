@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * A generic Gods of Deceit character implementation
+ * A generic Gods of Deceit character implementation.
  */
 
 
@@ -41,8 +41,15 @@
 
 #include "GCharacter.generated.h"
 
+class UGTeamComponent;
+
 UCLASS(Abstract, BlueprintType, config=Game)
 class GODSOFDECEIT_API AGCharacter : public ACharacter
 {
     GENERATED_UCLASS_BODY()
+
+protected:
+    /** The team component */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    UGTeamComponent* Team;
 };
