@@ -54,11 +54,6 @@ FGDLV_FName::FGDLV_FName()
     Veteran = Dummy;
 }
 
-void FGDLV_FName::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const FName& FGDLV_FName::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const FName& FGDLV_FName::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-FName& FGDLV_FName::Get()
-{
-    return const_cast<FName&>(
-                static_cast<const FGDLV_FName*>(this)->Get());
 }

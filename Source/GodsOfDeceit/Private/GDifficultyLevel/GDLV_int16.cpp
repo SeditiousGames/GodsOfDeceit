@@ -54,11 +54,6 @@ FGDLV_int16::FGDLV_int16()
     Veteran = Dummy;
 }
 
-void FGDLV_int16::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const int16& FGDLV_int16::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const int16& FGDLV_int16::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-int16& FGDLV_int16::Get()
-{
-    return const_cast<int16&>(
-                static_cast<const FGDLV_int16*>(this)->Get());
 }

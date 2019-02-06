@@ -71,8 +71,16 @@ public:
     FGDLV_FName();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FName& Get() const;
-    FName& Get();
+
+    FORCEINLINE FName& Get()
+    {
+        return const_cast<FName&>(
+                    static_cast<const FGDLV_FName*>(this)->Get());
+    }
 };

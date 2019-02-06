@@ -54,11 +54,6 @@ FGDLV_FColor::FGDLV_FColor()
     Veteran = Dummy;
 }
 
-void FGDLV_FColor::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const FColor& FGDLV_FColor::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const FColor& FGDLV_FColor::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-FColor& FGDLV_FColor::Get()
-{
-    return const_cast<FColor&>(
-                static_cast<const FGDLV_FColor*>(this)->Get());
 }

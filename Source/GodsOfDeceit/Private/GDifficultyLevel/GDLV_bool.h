@@ -70,8 +70,16 @@ public:
     FGDLV_bool();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const bool& Get() const;
-    bool& Get();
+
+    FORCEINLINE bool& Get()
+    {
+        return const_cast<bool&>(
+                    static_cast<const FGDLV_bool*>(this)->Get());
+    }
 };

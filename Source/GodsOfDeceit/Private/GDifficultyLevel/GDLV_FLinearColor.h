@@ -71,8 +71,16 @@ public:
     FGDLV_FLinearColor();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FLinearColor& Get() const;
-    FLinearColor& Get();
+
+    FORCEINLINE FLinearColor& Get()
+    {
+        return const_cast<FLinearColor&>(
+                    static_cast<const FGDLV_FLinearColor*>(this)->Get());
+    }
 };

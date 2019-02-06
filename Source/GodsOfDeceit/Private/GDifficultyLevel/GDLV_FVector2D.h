@@ -71,8 +71,16 @@ public:
     FGDLV_FVector2D();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FVector2D& Get() const;
-    FVector2D& Get();
+
+    FORCEINLINE FVector2D& Get()
+    {
+        return const_cast<FVector2D&>(
+                    static_cast<const FGDLV_FVector2D*>(this)->Get());
+    }
 };

@@ -54,11 +54,6 @@ FGDLV_FString::FGDLV_FString()
     Veteran = Dummy;
 }
 
-void FGDLV_FString::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const FString& FGDLV_FString::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const FString& FGDLV_FString::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-FString& FGDLV_FString::Get()
-{
-    return const_cast<FString&>(
-                static_cast<const FGDLV_FString*>(this)->Get());
 }

@@ -54,11 +54,6 @@ FGDLV_float::FGDLV_float()
     Veteran = Dummy;
 }
 
-void FGDLV_float::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const float& FGDLV_float::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const float& FGDLV_float::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-float& FGDLV_float::Get()
-{
-    return const_cast<float&>(
-                static_cast<const FGDLV_float*>(this)->Get());
 }

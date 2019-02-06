@@ -70,8 +70,16 @@ public:
     FGDLV_float();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const float& Get() const;
-    float& Get();
+
+    FORCEINLINE float& Get()
+    {
+        return const_cast<float&>(
+                    static_cast<const FGDLV_float*>(this)->Get());
+    }
 };

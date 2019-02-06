@@ -71,8 +71,16 @@ public:
     FGDLV_int64();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const int64& Get() const;
-    int64& Get();
+
+    FORCEINLINE int64& Get()
+    {
+        return const_cast<int64&>(
+                    static_cast<const FGDLV_int64*>(this)->Get());
+    }
 };

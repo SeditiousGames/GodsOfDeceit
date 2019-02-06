@@ -71,8 +71,16 @@ public:
     FGDLV_FString();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FString& Get() const;
-    FString& Get();
+
+    FORCEINLINE FString& Get()
+    {
+        return const_cast<FString&>(
+                    static_cast<const FGDLV_FString*>(this)->Get());
+    }
 };

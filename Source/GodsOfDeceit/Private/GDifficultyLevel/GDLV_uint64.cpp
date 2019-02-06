@@ -54,11 +54,6 @@ FGDLV_uint64::FGDLV_uint64()
     Veteran = Dummy;
 }
 
-void FGDLV_uint64::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const uint64& FGDLV_uint64::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const uint64& FGDLV_uint64::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-uint64& FGDLV_uint64::Get()
-{
-    return const_cast<uint64&>(
-                static_cast<const FGDLV_uint64*>(this)->Get());
 }

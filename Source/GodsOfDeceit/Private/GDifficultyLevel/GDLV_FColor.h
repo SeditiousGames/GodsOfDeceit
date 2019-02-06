@@ -71,8 +71,16 @@ public:
     FGDLV_FColor();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FColor& Get() const;
-    FColor& Get();
+
+    FORCEINLINE FColor& Get()
+    {
+        return const_cast<FColor&>(
+                    static_cast<const FGDLV_FColor*>(this)->Get());
+    }
 };

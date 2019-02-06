@@ -54,11 +54,6 @@ FGDLV_double::FGDLV_double()
     Veteran = Dummy;
 }
 
-void FGDLV_double::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const double& FGDLV_double::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const double& FGDLV_double::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-double& FGDLV_double::Get()
-{
-    return const_cast<double&>(
-                static_cast<const FGDLV_double*>(this)->Get());
 }

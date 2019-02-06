@@ -71,8 +71,16 @@ public:
     FGDLV_FRotator();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const FRotator& Get() const;
-    FRotator& Get();
+
+    FORCEINLINE FRotator& Get()
+    {
+        return const_cast<FRotator&>(
+                    static_cast<const FGDLV_FRotator*>(this)->Get());
+    }
 };

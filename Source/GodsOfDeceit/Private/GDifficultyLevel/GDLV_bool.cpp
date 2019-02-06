@@ -54,11 +54,6 @@ FGDLV_bool::FGDLV_bool()
     Veteran = Dummy;
 }
 
-void FGDLV_bool::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const bool& FGDLV_bool::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const bool& FGDLV_bool::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-bool& FGDLV_bool::Get()
-{
-    return const_cast<bool&>(
-                static_cast<const FGDLV_bool*>(this)->Get());
 }

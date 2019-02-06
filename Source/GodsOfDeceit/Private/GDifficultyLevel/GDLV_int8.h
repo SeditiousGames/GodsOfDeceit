@@ -71,8 +71,16 @@ public:
     FGDLV_int8();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const int8& Get() const;
-    int8& Get();
+
+    FORCEINLINE int8& Get()
+    {
+        return const_cast<int8&>(
+                    static_cast<const FGDLV_int8*>(this)->Get());
+    }
 };

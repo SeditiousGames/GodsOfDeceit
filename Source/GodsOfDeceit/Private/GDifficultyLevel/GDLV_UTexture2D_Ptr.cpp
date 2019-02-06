@@ -54,11 +54,6 @@ FGDLV_UTexture2D_Ptr::FGDLV_UTexture2D_Ptr()
     Veteran = Dummy;
 }
 
-void FGDLV_UTexture2D_Ptr::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const UTexture2D* FGDLV_UTexture2D_Ptr::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const UTexture2D* FGDLV_UTexture2D_Ptr::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-UTexture2D* FGDLV_UTexture2D_Ptr::Get()
-{
-    return const_cast<UTexture2D*>(
-                static_cast<const FGDLV_UTexture2D_Ptr*>(this)->Get());
 }

@@ -54,11 +54,6 @@ FGDLV_FVector::FGDLV_FVector()
     Veteran = Dummy;
 }
 
-void FGDLV_FVector::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const FVector& FGDLV_FVector::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const FVector& FGDLV_FVector::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-FVector& FGDLV_FVector::Get()
-{
-    return const_cast<FVector&>(
-                static_cast<const FGDLV_FVector*>(this)->Get());
 }

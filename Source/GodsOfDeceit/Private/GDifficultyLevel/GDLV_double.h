@@ -70,8 +70,16 @@ public:
     FGDLV_double();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const double& Get() const;
-    double& Get();
+
+    FORCEINLINE double& Get()
+    {
+        return const_cast<double&>(
+                    static_cast<const FGDLV_double*>(this)->Get());
+    }
 };

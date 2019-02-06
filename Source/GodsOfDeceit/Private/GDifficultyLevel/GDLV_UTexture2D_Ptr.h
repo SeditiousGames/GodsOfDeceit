@@ -71,8 +71,16 @@ public:
     FGDLV_UTexture2D_Ptr();
 
 public:
-    void Initialize(UObject* InOuter);
+    FORCEINLINE void Initialize(UObject* InOuter)
+    {
+        Outer = InOuter;
+    }
 
     const UTexture2D* Get() const;
-    UTexture2D* Get();
+
+    FORCEINLINE UTexture2D* Get()
+    {
+        return const_cast<UTexture2D*>(
+                    static_cast<const FGDLV_UTexture2D_Ptr*>(this)->Get());
+    }
 };

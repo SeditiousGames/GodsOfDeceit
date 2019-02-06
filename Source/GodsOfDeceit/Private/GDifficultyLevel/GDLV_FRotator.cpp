@@ -54,11 +54,6 @@ FGDLV_FRotator::FGDLV_FRotator()
     Veteran = Dummy;
 }
 
-void FGDLV_FRotator::Initialize(UObject* InOuter)
-{
-    Outer = InOuter;
-}
-
 const FRotator& FGDLV_FRotator::Get() const
 {
     checkf(Outer, TEXT("FATAL: has not been initialized! Call"
@@ -101,10 +96,4 @@ const FRotator& FGDLV_FRotator::Get() const
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
     return this->Dummy;
-}
-
-FRotator& FGDLV_FRotator::Get()
-{
-    return const_cast<FRotator&>(
-                static_cast<const FGDLV_FRotator*>(this)->Get());
 }
