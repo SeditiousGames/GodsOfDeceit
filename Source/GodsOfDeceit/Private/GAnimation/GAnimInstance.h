@@ -51,9 +51,11 @@ class GODSOFDECEIT_API UGAnimInstance : public UAnimInstance
     GENERATED_UCLASS_BODY()
 
 protected:
+    // The pawn who owns this anim instance
     AGCharacter* PawnOwner;
 
 public:
+    /** Returns PawnOwner */
     FORCEINLINE AGCharacter* GetPawnOwner() const
     {
        return PawnOwner;
