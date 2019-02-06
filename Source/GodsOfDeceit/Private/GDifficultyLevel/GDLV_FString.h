@@ -48,22 +48,29 @@ struct GODSOFDECEIT_API FGDLV_FString
     GENERATED_USTRUCT_BODY()
 
 public:
+    /** The desired value for Recruit difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     FString Recruit;
 
+    /** The desired value for Regular difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     FString Regular;
 
+    /** The desired value for Hardened difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     FString Hardened;
 
+    /** The desired value for Veteran difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     FString Veteran;
 
 private:
+    /** The transient outer uboject class in order to obtain a valied world
+     *  object */
     UPROPERTY ( Transient )
     UObject* Outer;
 
+    /** Nothing special but a dummy value */
     UPROPERTY ( Transient )
     FString Dummy;
 
@@ -71,13 +78,18 @@ public:
     FGDLV_FString();
 
 public:
+    /** Initializes the wrapper object by providing the outer uobject;
+     *  this function should be called prior to setting/getting any values,
+     *  or the game will crash. */
     FORCEINLINE void Initialize(UObject* InOuter)
     {
         Outer = InOuter;
     }
 
+    /** Returns the const value for current difficuly level */
     const FString& Get() const;
 
+    /** Returns the non-const value for current difficuly level */
     FORCEINLINE FString& Get()
     {
         return const_cast<FString&>(

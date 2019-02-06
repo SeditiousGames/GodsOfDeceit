@@ -48,22 +48,29 @@ struct GODSOFDECEIT_API FGDLV_uint16
     GENERATED_USTRUCT_BODY()
 
 public:
+    /** The desired value for Recruit difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     uint16 Recruit;
 
+    /** The desired value for Regular difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     uint16 Regular;
 
+    /** The desired value for Hardened difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     uint16 Hardened;
 
+    /** The desired value for Veteran difficuly level */
     UPROPERTY ( EditDefaultsOnly, Category = "Difficulty Level" )
     uint16 Veteran;
 
 private:
+    /** The transient outer uboject class in order to obtain a valied world
+     *  object */
     UPROPERTY ( Transient )
     UObject* Outer;
 
+    /** Nothing special but a dummy value */
     UPROPERTY ( Transient )
     uint16 Dummy;
 
@@ -71,13 +78,18 @@ public:
     FGDLV_uint16();
 
 public:
+    /** Initializes the wrapper object by providing the outer uobject;
+     *  this function should be called prior to setting/getting any values,
+     *  or the game will crash. */
     FORCEINLINE void Initialize(UObject* InOuter)
     {
         Outer = InOuter;
     }
 
+    /** Returns the const value for current difficuly level */
     const uint16& Get() const;
 
+    /** Returns the non-const value for current difficuly level */
     FORCEINLINE uint16& Get()
     {
         return const_cast<uint16&>(
