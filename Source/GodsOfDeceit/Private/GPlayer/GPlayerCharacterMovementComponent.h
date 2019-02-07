@@ -42,7 +42,7 @@
 
 #include "GPlayerCharacterMovementComponent.generated.h"
 
-UCLASS(Abstract)
+UCLASS()
 class GODSOFDECEIT_API UGPlayerCharacterMovementComponent
     : public UGCharacterMovementComponent
 {
