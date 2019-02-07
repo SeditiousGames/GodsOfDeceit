@@ -41,7 +41,7 @@
 
 #include "GCharacterMovementComponent.generated.h"
 
-UCLASS(Abstract)
+UCLASS()
 class GODSOFDECEIT_API UGCharacterMovementComponent
     : public UCharacterMovementComponent
 {
