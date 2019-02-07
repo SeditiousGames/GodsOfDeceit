@@ -48,6 +48,8 @@ FGDLV_FLinearColor::FGDLV_FLinearColor()
 {
     Outer = nullptr;
 
+    Dummy = FColor::Black;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

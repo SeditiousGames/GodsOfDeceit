@@ -48,6 +48,8 @@ FGDLV_FString::FGDLV_FString()
 {
     Outer = nullptr;
 
+    Dummy = FString();
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

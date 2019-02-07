@@ -48,6 +48,8 @@ FGDLV_float::FGDLV_float()
 {
     Outer = nullptr;
 
+    Dummy = 0.0f;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

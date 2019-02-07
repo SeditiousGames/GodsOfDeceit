@@ -48,6 +48,8 @@ FGDLV_bool::FGDLV_bool()
 {
     Outer = nullptr;
 
+    Dummy = false;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

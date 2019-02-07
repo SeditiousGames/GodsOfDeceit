@@ -48,6 +48,8 @@ FGDLV_UTexture2D_Ptr::FGDLV_UTexture2D_Ptr()
 {
     Outer = nullptr;
 
+    Dummy = nullptr;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

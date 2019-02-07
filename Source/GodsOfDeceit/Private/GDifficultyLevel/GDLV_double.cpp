@@ -48,6 +48,8 @@ FGDLV_double::FGDLV_double()
 {
     Outer = nullptr;
 
+    Dummy = 0.0;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

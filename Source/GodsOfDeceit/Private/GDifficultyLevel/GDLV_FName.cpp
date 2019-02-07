@@ -48,6 +48,8 @@ FGDLV_FName::FGDLV_FName()
 {
     Outer = nullptr;
 
+    Dummy = FName();
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

@@ -48,6 +48,8 @@ FGDLV_FVector2D::FGDLV_FVector2D()
 {
     Outer = nullptr;
 
+    Dummy = FVector2D();
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

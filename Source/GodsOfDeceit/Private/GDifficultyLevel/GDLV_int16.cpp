@@ -48,6 +48,8 @@ FGDLV_int16::FGDLV_int16()
 {
     Outer = nullptr;
 
+    Dummy = 0;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

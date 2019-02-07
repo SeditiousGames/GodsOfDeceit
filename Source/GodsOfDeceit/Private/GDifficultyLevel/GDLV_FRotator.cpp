@@ -48,6 +48,8 @@ FGDLV_FRotator::FGDLV_FRotator()
 {
     Outer = nullptr;
 
+    Dummy = FRotator();
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

@@ -48,6 +48,8 @@ FGDLV_uint64::FGDLV_uint64()
 {
     Outer = nullptr;
 
+    Dummy = 0;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;

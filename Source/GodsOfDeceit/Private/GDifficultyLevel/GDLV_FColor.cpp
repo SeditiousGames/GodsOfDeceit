@@ -48,6 +48,8 @@ FGDLV_FColor::FGDLV_FColor()
 {
     Outer = nullptr;
 
+    Dummy = FColor::Black;
+
     Recruit = Dummy;
     Regular = Dummy;
     Hardened = Dummy;
