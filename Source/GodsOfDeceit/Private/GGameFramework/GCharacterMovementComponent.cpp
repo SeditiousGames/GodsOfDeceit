@@ -36,3 +36,10 @@
 
 #include "GGameFramework/GCharacterMovementComponent.h"
 #include "GodsOfDeceit.h"
+
+UGCharacterMovementComponent::UGCharacterMovementComponent(
+        const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+    MaxSprintSpeed = 600.0f;
+}

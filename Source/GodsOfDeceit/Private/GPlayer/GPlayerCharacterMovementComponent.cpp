@@ -37,6 +37,13 @@
 #include "GPlayer/GPlayerCharacterMovementComponent.h"
 #include "GodsOfDeceit.h"
 
+UGPlayerCharacterMovementComponent::UGPlayerCharacterMovementComponent(
+        const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+
+}
+
 float UGPlayerCharacterMovementComponent::GetMaxSpeed() const
 {
     float MaxSpeed = Super::GetMaxSpeed();
