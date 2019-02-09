@@ -72,7 +72,7 @@ public class GodsOfDeceitTarget : TargetRules
         BuildEnvironment = TargetBuildEnvironment.Shared;
 
         bEnforceIWYU = true;
-        bCompileLeanAndMeanUE = true;
+        bBuildDeveloperTools = false;
         bForceEnableRTTI = false;
         bForceEnableExceptions = false;
         bUseUnityBuild = true;
