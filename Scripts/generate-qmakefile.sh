@@ -33,4 +33,4 @@ ANDROID_CLI="${PROJECT_DIRECTORY}/Scripts/android-cli.sh"
 
 cd "${ENGINE_DIRECTORY}" \
     && source "${ANDROID_CLI}" \
-    && ./GenerateProjectFiles.sh ${GENERATE_PROJECT_FILES_ARGS}
+    && eval ./GenerateProjectFiles.sh ${GENERATE_PROJECT_FILES_ARGS}
