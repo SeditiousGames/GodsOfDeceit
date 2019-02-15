@@ -45,4 +45,49 @@ UCLASS(Abstract, BlueprintType, config=Game)
 class GODSOFDECEIT_API AGPlayerController : public APlayerController
 {
     GENERATED_UCLASS_BODY()
+
+protected:
+    virtual void BeginPlay() override;
+
+    virtual void OnPossess(APawn* aPawn) override;
+    virtual void OnUnPossess() override;
+
+    void OnInputPausePressed();
+
+    void OnInputMoveForward(const float AxisValue);
+    void OnInputMoveRight(const float AxisValue);
+    void OnInputCameraYaw(const float AxisValue);
+    void OnInputCameraPitch(const float AxisValue);
+
+    void OnInputSprintPressed();
+    void OnInputSprintReleased();
+    void OnInputJumpPressed();
+    void OnInputJumpReleased();
+    void OnInputCrouchHoldPressed();
+    void OnInputCrouchHoldReleased();
+    void OnInputCrouchTogglePressed();
+    void OnInputProneTogglePressed();
+
+    void OnInputZoomPressed();
+    void OnInputZoomReleased();
+\
+    void OnInputFirePressed();
+    void OnInputFireReleased();
+
+    void OnInputMeleeAttackPressed();
+    void OnInputMeleeAttackReleased();
+
+    void OnInputThrowGrenadePressed();
+    void OnInputThrowGrenadeReleased();
+    void OnInputThrowFlashPressed();
+    void OnInputThrowFlashReleased();
+
+    void OnInputReloadWeapon();
+    void OnInputSelectWeapon(const float AxisValue);
+    void OnInputSwitchWeapon();
+    void OnInputSelectPrimaryWeapon();
+    void OnInputSelectSecondaryWeapon();
+
+protected:
+    virtual void SetupInputComponent() override;
 };
