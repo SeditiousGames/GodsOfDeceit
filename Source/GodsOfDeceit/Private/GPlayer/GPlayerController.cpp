@@ -106,22 +106,22 @@ void AGPlayerController::OnInputJumpReleased()
 
 }
 
-void AGPlayerController::OnInputCrouchHoldPressed()
+void AGPlayerController::OnInputCrouchPressed()
 {
 
 }
 
-void AGPlayerController::OnInputCrouchHoldReleased()
+void AGPlayerController::OnInputCrouchReleased()
 {
 
 }
 
-void AGPlayerController::OnInputCrouchTogglePressed()
+void AGPlayerController::OnInputToggleCrouchPressed()
 {
 
 }
 
-void AGPlayerController::OnInputProneTogglePressed()
+void AGPlayerController::OnInputTogglePronePressed()
 {
 
 }
@@ -156,22 +156,32 @@ void AGPlayerController::OnInputMeleeAttackReleased()
 
 }
 
-void AGPlayerController::OnInputThrowGrenadePressed()
+void AGPlayerController::OnInputFragmentationGrenadePressed()
 {
 
 }
 
-void AGPlayerController::OnInputThrowGrenadeReleased()
+void AGPlayerController::OnInputFragmentationGrenadeReleased()
 {
 
 }
 
-void AGPlayerController::OnInputThrowFlashPressed()
+void AGPlayerController::OnInputStunGrenadePressed()
 {
 
 }
 
-void AGPlayerController::OnInputThrowFlashReleased()
+void AGPlayerController::OnInputStunGrenadeReleased()
+{
+
+}
+
+void AGPlayerController::OnInputSmokeGrenadePressed()
+{
+
+}
+
+void AGPlayerController::OnInputSmokeGrenadeReleased()
 {
 
 }
@@ -243,17 +253,17 @@ void AGPlayerController::SetupInputComponent()
                 "Jump", EInputEvent::IE_Released,
                 this, &AGPlayerController::OnInputJumpReleased);
     this->InputComponent->BindAction(
-                "CrouchHold", EInputEvent::IE_Pressed,
-                this, &AGPlayerController::OnInputCrouchHoldPressed);
+                "Crouch", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputCrouchPressed);
     this->InputComponent->BindAction(
-                "CrouchHold", EInputEvent::IE_Released,
-                this, &AGPlayerController::OnInputCrouchHoldReleased);
+                "Crouch", EInputEvent::IE_Released,
+                this, &AGPlayerController::OnInputCrouchReleased);
     this->InputComponent->BindAction(
-                "CrouchToggle", EInputEvent::IE_Pressed,
-                this, &AGPlayerController::OnInputCrouchTogglePressed);
+                "ToggleCrouch", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputToggleCrouchPressed);
     this->InputComponent->BindAction(
-                "ProneToggle", EInputEvent::IE_Pressed,
-                this, &AGPlayerController::OnInputProneTogglePressed);
+                "ToggleProne", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputTogglePronePressed);
 
     this->InputComponent->BindAction(
                 "Zoom", EInputEvent::IE_Pressed,
@@ -277,17 +287,23 @@ void AGPlayerController::SetupInputComponent()
                 this, &AGPlayerController::OnInputMeleeAttackReleased);
 
     this->InputComponent->BindAction(
-                "ThrowGrenade", EInputEvent::IE_Pressed,
-                this, &AGPlayerController::OnInputThrowGrenadePressed);
+                "FragmentationGrenade", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputFragmentationGrenadePressed);
     this->InputComponent->BindAction(
-                "ThrowGrenade", EInputEvent::IE_Released,
-                this, &AGPlayerController::OnInputThrowGrenadeReleased);
+                "FragmentationGrenade", EInputEvent::IE_Released,
+                this, &AGPlayerController::OnInputFragmentationGrenadeReleased);
     this->InputComponent->BindAction(
-                "ThrowFlash", EInputEvent::IE_Pressed,
-                this, &AGPlayerController::OnInputThrowFlashPressed);
+                "StunGrenade", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputStunGrenadePressed);
     this->InputComponent->BindAction(
-                "ThrowFlash", EInputEvent::IE_Released,
-                this, &AGPlayerController::OnInputThrowFlashReleased);
+                "StunGrenade", EInputEvent::IE_Released,
+                this, &AGPlayerController::OnInputStunGrenadeReleased);
+    this->InputComponent->BindAction(
+                "SmokeGrenade", EInputEvent::IE_Pressed,
+                this, &AGPlayerController::OnInputSmokeGrenadePressed);
+    this->InputComponent->BindAction(
+                "SmokeGrenade", EInputEvent::IE_Released,
+                this, &AGPlayerController::OnInputSmokeGrenadeReleased);
 
     this->InputComponent->BindAction(
                 "ReloadWeapon", EInputEvent::IE_Pressed,

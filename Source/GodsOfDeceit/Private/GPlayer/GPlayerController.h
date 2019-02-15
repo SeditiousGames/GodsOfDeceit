@@ -63,10 +63,10 @@ protected:
     void OnInputSprintReleased();
     void OnInputJumpPressed();
     void OnInputJumpReleased();
-    void OnInputCrouchHoldPressed();
-    void OnInputCrouchHoldReleased();
-    void OnInputCrouchTogglePressed();
-    void OnInputProneTogglePressed();
+    void OnInputCrouchPressed();
+    void OnInputCrouchReleased();
+    void OnInputToggleCrouchPressed();
+    void OnInputTogglePronePressed();
 
     void OnInputZoomPressed();
     void OnInputZoomReleased();
@@ -77,10 +77,12 @@ protected:
     void OnInputMeleeAttackPressed();
     void OnInputMeleeAttackReleased();
 
-    void OnInputThrowGrenadePressed();
-    void OnInputThrowGrenadeReleased();
-    void OnInputThrowFlashPressed();
-    void OnInputThrowFlashReleased();
+    void OnInputFragmentationGrenadePressed();
+    void OnInputFragmentationGrenadeReleased();
+    void OnInputStunGrenadePressed();
+    void OnInputStunGrenadeReleased();
+    void OnInputSmokeGrenadePressed();
+    void OnInputSmokeGrenadeReleased();
 
     void OnInputReloadWeapon();
     void OnInputSelectWeapon(const float AxisValue);
