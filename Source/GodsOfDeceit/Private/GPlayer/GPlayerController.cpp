@@ -53,12 +53,12 @@ void AGPlayerController::BeginPlay()
 
 void AGPlayerController::OnPossess(APawn* aPawn)
 {
-    Super::Possess(aPawn);
+    Super::OnPossess(aPawn);
 }
 
 void AGPlayerController::OnUnPossess()
 {
-    Super::UnPossess();
+    Super::OnUnPossess();
 }
 
 void AGPlayerController::OnInputPausePressed()
