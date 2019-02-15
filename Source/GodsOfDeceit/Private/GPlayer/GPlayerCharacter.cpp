@@ -95,3 +95,582 @@ AGPlayerCharacter::AGPlayerCharacter(
         Mesh->SetCanEverAffectNavigation(false);
     }
 }
+
+void AGPlayerCharacter::OnBeginAimState(
+        uint8 StateId, uint8 PreviousStateId,
+        FName StateName, FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)PreviousStateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnUpdateAimState(
+        uint8 StateId, FName StateName,
+        float StateTime)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)StateTime;
+}
+
+void AGPlayerCharacter::OnExitAimState(
+        uint8 StateId, FName StateName,
+        FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnBeginCombatState(
+        uint8 StateId, uint8 PreviousStateId,
+        FName StateName, FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)PreviousStateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnUpdateCombatState(
+        uint8 StateId, FName StateName,
+        float StateTime)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)StateTime;
+}
+
+void AGPlayerCharacter::OnExitCombatState(
+        uint8 StateId, FName StateName,
+        FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnBeginMovementState(
+        uint8 StateId, uint8 PreviousStateId,
+        FName StateName, FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)PreviousStateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnUpdateMovementState(
+        uint8 StateId, FName StateName,
+        float StateTime)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)StateTime;
+}
+
+void AGPlayerCharacter::OnExitMovementState(
+        uint8 StateId, FName StateName,
+        FSM_Transition Transition)
+{
+    (void)StateId;
+    (void)StateName;
+    (void)Transition;
+}
+
+void AGPlayerCharacter::OnAim_Blocked_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Blocked_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Blocked_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Hip_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Hip_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Hip_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Inactive_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Inactive_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_Inactive_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_IronSight_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_IronSight_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_IronSight_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_None_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_None_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_None_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_TelescopicSight_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_TelescopicSight_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnAim_TelescopicSight_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Equipping_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Equipping_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Equipping_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Firing_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Firing_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Firing_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Idle_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Idle_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Idle_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Inactive_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Inactive_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Inactive_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_None_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_None_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_None_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Melee_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Melee_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Melee_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Reloading_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Reloading_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Reloading_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Throwing_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Throwing_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_Throwing_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_WeaponSwitching_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_WeaponSwitching_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnCombat_WeaponSwitching_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingIdle_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingIdle_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingIdle_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingWalking_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingWalking_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_CrouchingWalking_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Dead_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Dead_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Dead_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Falling_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Falling_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Falling_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Idle_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Idle_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Idle_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Inactive_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Inactive_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Inactive_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Jumping_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Jumping_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Jumping_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Landing_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Landing_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Landing_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Leaping_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Leaping_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Leaping_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_None_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_None_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_None_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_PlatformAscending_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_PlatformAscending_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_PlatformAscending_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Plummeting_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Plummeting_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Plummeting_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneCrawling_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneCrawling_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneCrawling_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneIdle_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneIdle_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_ProneIdle_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Spawning_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Spawning_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Spawning_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Sprinting_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Sprinting_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Sprinting_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Vaulting_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Vaulting_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Vaulting_Exit()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Walking_Begin()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Walking_Update()
+{
+
+}
+
+void AGPlayerCharacter::OnMovement_Walking_Exit()
+{
+
+}
