@@ -54,10 +54,10 @@ protected:
 
     void OnInputPausePressed();
 
+    void OnInputAddCameraYaw(const float AxisValue);
+    void OnInputAddCameraPitch(const float AxisValue);
     void OnInputMoveForward(const float AxisValue);
     void OnInputMoveRight(const float AxisValue);
-    void OnInputCameraYaw(const float AxisValue);
-    void OnInputCameraPitch(const float AxisValue);
 
     void OnInputSprintPressed();
     void OnInputSprintReleased();
@@ -84,11 +84,11 @@ protected:
     void OnInputSmokeGrenadePressed();
     void OnInputSmokeGrenadeReleased();
 
-    void OnInputReloadWeapon();
+    void OnInputReloadWeaponPressed();
     void OnInputSelectWeapon(const float AxisValue);
-    void OnInputSwitchWeapon();
-    void OnInputSelectPrimaryWeapon();
-    void OnInputSelectSecondaryWeapon();
+    void OnInputSwitchWeaponPressed();
+    void OnInputSelectPrimaryWeaponPressed();
+    void OnInputSelectSecondaryWeaponPressed();
 
 protected:
     virtual void SetupInputComponent() override;
