@@ -60,31 +60,17 @@ public:
     typedef void (AGPlayerCharacter::*EventHandlerPtr)(void);
 
 protected:
-    UPROPERTY(Transient)
-    EGPlayerCharacterCombatState State;
-
-    UPROPERTY(Transient)
+    EGPlayerCombatState State;
     uint8 Id;
-
-    UPROPERTY(Transient)
     FName Name;
 
-    UPROPERTY(Transient)
     EventHandlerPtr BeginEventHandler;
-
-    UPROPERTY(Transient)
     FName BeginEventHandlerName;
 
-    UPROPERTY(Transient)
     EventHandlerPtr UpdateEventHandler;
-
-    UPROPERTY(Transient)
     FName UpdateEventHandlerName;
 
-    UPROPERTY(Transient)
     EventHandlerPtr ExitEventHandler;
-
-    UPROPERTY(Transient)
     FName ExitEventHandlerName;
 
 public:
