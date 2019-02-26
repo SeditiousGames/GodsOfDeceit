@@ -60,35 +60,53 @@ public:
     typedef void (AGPlayerCharacter::*EventHandlerPtr)(void);
 
 protected:
+    /** The player's combat state */
     EGPlayerCombatState State;
+
+    /** The integer representation of the player's aim state */
     uint8 Id;
+
+    /** The string representation of the player's aim state */
     FName Name;
 
+    /** The begin event handler */
     EventHandlerPtr BeginEventHandler;
+
+    /** The begin event handler's name */
     FName BeginEventHandlerName;
 
+    /** The update event handler */
     EventHandlerPtr UpdateEventHandler;
+
+    /** The update event handler's name */
     FName UpdateEventHandlerName;
 
+    /** The exit event handler */
     EventHandlerPtr ExitEventHandler;
+
+    /** The exit event handler's name */
     FName ExitEventHandlerName;
 
 public:
+    /** Returns State */
     FORCEINLINE const EGPlayerCombatState& GetState() const
     {
         return State;
     }
 
+    /** Returns Id */
     FORCEINLINE uint8 GetId() const
     {
         return Id;
     }
 
+    /** Returns Name */
     FORCEINLINE const FName& GetName() const
     {
         return Name;
     }
 
+    /** Returns BeginEventHandler */
     FORCEINLINE EventHandlerPtr GetBeginEventHandler() const
     {
         checkf(BeginEventHandler, TEXT("FATAL: null event handler detected!"));
@@ -96,11 +114,13 @@ public:
         return BeginEventHandler;
     }
 
+    /** Returns BeginEventHandlerName */
     FORCEINLINE const FName& GetBeginEventHandlerName() const
     {
         return BeginEventHandlerName;
     }
 
+    /** Returns UpdateEventHandler */
     FORCEINLINE EventHandlerPtr GetUpdateEventHandler() const
     {
         checkf(UpdateEventHandler, TEXT("FATAL: null event handler detected!"));
@@ -108,11 +128,13 @@ public:
         return UpdateEventHandler;
     }
 
+    /** Returns UpdateEventHandlerName */
     FORCEINLINE const FName& GetUpdateEventHandlerName() const
     {
         return UpdateEventHandlerName;
     }
 
+    /** Returns ExitEventHandler */
     FORCEINLINE EventHandlerPtr GetExitEventHandler() const
     {
         checkf(ExitEventHandler, TEXT("FATAL: null event handler detected!"));
@@ -120,12 +142,14 @@ public:
         return ExitEventHandler;
     }
 
+    /** Returns ExitEventHandlerName */
     FORCEINLINE const FName& GetExitEventHandlerName() const
     {
         return ExitEventHandlerName;
     }
 
 protected:
+    /** Registers event handlers */
     void RegisterHandler(const EventHandlerPtr Pointer, const FName& Name,
                          EventHandlerPtr& Out_Pointer, FName& Out_Name);
 
