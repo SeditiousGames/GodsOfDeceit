@@ -33,6 +33,7 @@
  * A health component which manages damage and healing.
  */
 
+
 #pragma once
 
 #include <memory>
