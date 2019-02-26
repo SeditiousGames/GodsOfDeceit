@@ -61,7 +61,7 @@ public:
 
 protected:
     UPROPERTY(Transient)
-    EGPlayerCharacterAimState State;
+    EGPlayerAimState State;
 
     UPROPERTY(Transient)
     uint8 Id;

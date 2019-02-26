@@ -40,7 +40,7 @@
 #include <UObject/ObjectMacros.h>
 
 UENUM(BlueprintType)
-enum class EGPlayerCharacterAimState : uint8
+enum class EGPlayerAimState : uint8
 {
     None            UMETA(DisplayName="None"),
     Blocked         UMETA(DisplayName="Blocked"),
