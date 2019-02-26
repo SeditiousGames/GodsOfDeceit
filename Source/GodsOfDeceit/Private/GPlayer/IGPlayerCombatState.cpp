@@ -48,9 +48,9 @@ UGPlayerCombatState::UGPlayerCombatState(
 }
 
 void IGPlayerCombatState::RegisterHandler(
-        const EventHandlerPtr Pointer, const FName& Name,
-        EventHandlerPtr& Out_Pointer, FName& Out_Name)
+        const EventHandlerPtr HandlerPointer, const FName& HandlerName,
+        EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
 {
-    Out_Pointer = Pointer;
-    Out_Name = Name;
+    Out_HandlerPointer = HandlerPointer;
+    Out_HandlerName = HandlerName;
 }

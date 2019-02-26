@@ -58,6 +58,7 @@ class GODSOFDECEIT_API IGPlayerAimState
 
 public:
     typedef void (AGPlayerCharacter::*EventHandlerPtr)(void);
+    typedef IGPlayerAimState* Ptr;
 
 protected:
     /** The player's aim state */
@@ -150,8 +151,10 @@ public:
 
 protected:
     /** Registers event handlers */
-    void RegisterHandler(const EventHandlerPtr Pointer, const FName& Name,
-                         EventHandlerPtr& Out_Pointer, FName& Out_Name);
+    void RegisterHandler(const EventHandlerPtr HandlerPointer,
+                         const FName& HandlerName,
+                         EventHandlerPtr& Out_HandlerPointer,
+                         FName& Out_HandlerName);
 
 #define RegisterBeginHandler( Pointer ) \
     RegisterHandler( Pointer, STATIC_FUNCTION_FNAME( TEXT( #Pointer ) ), \
