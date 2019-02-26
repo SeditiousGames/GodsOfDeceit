@@ -36,6 +36,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include <CoreTypes.h>
 #include <GGameFramework/GCharacter.h>
 #include <UObject/ObjectMacros.h>
@@ -53,6 +55,15 @@ UCLASS(BlueprintType, config=Game)
 class GODSOFDECEIT_API AGPlayerCharacter : public ACharacter
 {
     GENERATED_UCLASS_BODY()
+
+private:
+    struct Impl;
+    struct ImplDeleter
+    {
+        void operator()(Impl* Pointer);
+    };
+    std::unique_ptr<Impl, ImplDeleter> Pimpl;
+    ImplDeleter PimplDeleter;
 
 protected:
     /** Camera boom which positions the third-person camera behind the character */

@@ -37,6 +37,8 @@
 #include "GPlayer/GPlayerCharacter.h"
 #include "GodsOfDeceit.h"
 
+#include <utility>
+
 #include <Animation/AnimBlueprintGeneratedClass.h>
 #include <Components/CapsuleComponent.h>
 #include <Components/SkeletalMeshComponent.h>
@@ -49,6 +51,20 @@
 
 #include "GPlayer/GPlayerAnimInstance.h"
 #include "GPlayer/GPlayerCharacterMovementComponent.h"
+
+struct AGPlayerCharacter::Impl
+{
+public:
+
+private:
+    AGPlayerCharacter* Owner;
+
+public:
+    explicit Impl(AGPlayerCharacter* InOwner);
+    ~Impl();
+
+public:
+};
 
 AGPlayerCharacter::AGPlayerCharacter(
         const FObjectInitializer& ObjectInitializer)
@@ -684,4 +700,18 @@ void AGPlayerCharacter::OnMovement_Walking_Update()
 void AGPlayerCharacter::OnMovement_Walking_Exit()
 {
 
+}
+
+AGPlayerCharacter::Impl::Impl(AGPlayerCharacter* InOwner)
+    : Owner(InOwner)
+{
+
+}
+
+AGPlayerCharacter::Impl::~Impl() = default;
+
+void AGPlayerCharacter::ImplDeleter::operator()(
+        AGPlayerCharacter::Impl* Pointer)
+{
+    delete Pointer;
 }
