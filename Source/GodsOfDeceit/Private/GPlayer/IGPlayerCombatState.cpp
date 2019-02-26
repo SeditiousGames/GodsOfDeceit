@@ -30,35 +30,27 @@
  *
  * @section DESCRIPTION
  *
- * A place to define the main game module's types and enumerations.
+ * An interface to be implemented by all the player's aim states.
  */
 
 
-#pragma once
+#include "GPlayer/IGPlayerCombatState.h"
+#include "GodsOfDeceit.h"
 
-#include <CoreTypes.h>
-#include <UObject/ObjectMacros.h>
+#include <Misc/AssertionMacros.h>
+#include <Misc/CoreMiscDefines.h>
 
-UENUM(BlueprintType)
-enum class EGPlayerAimState : uint8
+UGPlayerCombatState::UGPlayerCombatState(
+        const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
 {
-    None            UMETA(DisplayName="None"),
-    Blocked         UMETA(DisplayName="Blocked"),
-    Hip             UMETA(DisplayName="Hip"),
-    Inactive        UMETA(DisplayName="Inactive"),
-    IronSight       UMETA(DisplayName="IronSight"),
-    TelescopicSight UMETA(DisplayName="TelescopicSight")
-};
 
-UENUM(BlueprintType)
-enum class EGPlayerCombatState : uint8 {
-    None            UMETA(DisplayName="None"),
-    Equipping       UMETA(DisplayName="Equipping"),
-    Firing          UMETA(DisplayName="Firing"),
-    Idle            UMETA(DisplayName="Idle"),
-    Inactive        UMETA(DisplayName="Inactive"),
-    Melee           UMETA(DisplayName="Melee"),
-    Reloading       UMETA(DisplayName="Reloading"),
-    Throwing        UMETA(DisplayName="Throwing"),
-    WeaponSwitching UMETA(DisplayName="WeaponSwitching")
-};
+}
+
+void IGPlayerCombatState::RegisterHandler(
+        const EventHandlerPtr Pointer, const FName& Name,
+        EventHandlerPtr& Out_Pointer, FName& Out_Name)
+{
+    Out_Pointer = Pointer;
+    Out_Name = Name;
+}
