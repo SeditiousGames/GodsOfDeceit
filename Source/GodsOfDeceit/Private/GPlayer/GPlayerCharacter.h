@@ -45,6 +45,8 @@
 class UCameraComponent;
 class USpringArmComponent;
 
+class UStateMachineComponent;
+
 enum class FSM_Transition : uint8;
 
 UCLASS(BlueprintType, config=Game)
@@ -64,6 +66,18 @@ protected:
     /** First-person camera */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     UCameraComponent* FirstPersonCamera;
+
+    /** Finite State Machine for aim-related states */
+    UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
+    UStateMachineComponent* AimStateMachine;
+
+    /** Finite State Machine for combat-related states */
+    UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
+    UStateMachineComponent* CombatStateMachine;
+
+    /** Finite State Machine for movement-related states */
+    UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
+    UStateMachineComponent* MovementStateMachine;
 
 public:
     /**

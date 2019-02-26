@@ -45,6 +45,8 @@
 #include <UObject/Class.h>
 #include <UObject/ConstructorHelpers.h>
 
+#include <UFSM_StateMachineComponent.h>
+
 #include "GPlayer/GPlayerAnimInstance.h"
 #include "GPlayer/GPlayerCharacterMovementComponent.h"
 
@@ -94,6 +96,15 @@ AGPlayerCharacter::AGPlayerCharacter(
         Mesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
         Mesh->SetCanEverAffectNavigation(false);
     }
+
+    AimStateMachine = ObjectInitializer.CreateDefaultSubobject<
+            UStateMachineComponent>(this, TEXT("AimStateMachine"));
+
+    CombatStateMachine = ObjectInitializer.CreateDefaultSubobject<
+            UStateMachineComponent>(this, TEXT("CombatStateMachine"));
+
+    MovementStateMachine = ObjectInitializer.CreateDefaultSubobject<
+            UStateMachineComponent>(this, TEXT("MovementStateMachine"));
 }
 
 void AGPlayerCharacter::OnBeginAimState(
