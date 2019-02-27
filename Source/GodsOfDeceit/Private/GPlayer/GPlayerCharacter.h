@@ -672,14 +672,14 @@ public:
         return FirstPersonCamera;
     }
 
-    /** Returns aim state objects by their enum component. */
+    /** Returns aim state objects by their corrsponding enum value. */
     FORCEINLINE IGPlayerAimState::Ptr GetAimStateObject(
             const EGPlayerAimState& State) const
     {
         return CastChecked<IGPlayerAimState>(AimStateMap[State].GetObject());
     }
 
-    /** Returns combat state objects by their enum component. */
+    /** Returns combat state objects by their corrsponding enum value. */
     FORCEINLINE IGPlayerCombatState::Ptr GetCombatStateObject(
             const EGPlayerCombatState& State) const
     {
