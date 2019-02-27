@@ -51,14 +51,14 @@ enum class EGPlayerAimState : uint8
      */
     None            UMETA(DisplayName="None"),
 
+    /** Player's aim state machine has been disabled. */
+    Inactive        UMETA(DisplayName="Inactive"),
+
     /** Player's aim has been blocked by an obstacle. */
     Blocked         UMETA(DisplayName="Blocked"),
 
     /** Hip aim mode. */
     Hip             UMETA(DisplayName="Hip"),
-
-    /** Player's aim state machine has been disabled. */
-    Inactive        UMETA(DisplayName="Inactive"),
 
     /** Iron-sight aim mode. */
     IronSight       UMETA(DisplayName="IronSight"),
@@ -93,6 +93,9 @@ enum class EGPlayerCombatState : uint8
      */
     None            UMETA(DisplayName="None"),
 
+    /** Player's combat state machine has been disabled. */
+    Inactive        UMETA(DisplayName="Inactive"),
+
     /** Player is equiping a weapon. */
     Equipping       UMETA(DisplayName="Equipping"),
 
@@ -101,9 +104,6 @@ enum class EGPlayerCombatState : uint8
 
     /** Player is not fighting or doing nothing with the current weapon. */
     Idle            UMETA(DisplayName="Idle"),
-
-    /** Player's combat state machine has been disabled. */
-    Inactive        UMETA(DisplayName="Inactive"),
 
     /** Player is performing a melee attack. */
     Melee           UMETA(DisplayName="Melee"),
