@@ -38,9 +38,18 @@
 
 #include <memory>
 
+#include <memory>
+#include <Containers/Array.h>
+#include <Containers/Map.h>
 #include <CoreTypes.h>
 #include <GGameFramework/GCharacter.h>
+#include <HAL/Platform.h>
+#include <Misc/AssertionMacros.h>
+#include <Templates/Casts.h>
 #include <UObject/ObjectMacros.h>
+
+#include "GPlayer/IGPlayerAimState.h"
+#include "GPlayer/IGPlayerCombatState.h"
 
 #include "GPlayerCharacter.generated.h"
 
@@ -82,9 +91,31 @@ protected:
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
     UStateMachineComponent* AimStateMachine;
 
+    /** Array containing all aim states objects */
+    UPROPERTY(Transient)
+    TArray<TScriptInterface<IGPlayerAimState>> AimStates;
+
+    /**
+     * Maps aim enums to aim state objects in order to find state objects by
+     * their corresponding enum values in an efficient manner
+     */
+    UPROPERTY(Transient)
+    TMap<EGPlayerAimState, TScriptInterface<IGPlayerAimState>> AimStateMap;
+
     /** Finite State Machine for combat-related states */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
     UStateMachineComponent* CombatStateMachine;
+
+    /** Array containing all combat states objects */
+    UPROPERTY(Transient)
+    TArray<TScriptInterface<IGPlayerCombatState>> CombatStates;
+
+    /**
+     * Maps combat enums to combat state objects in order to find state objects
+     * by their corresponding enum values in an efficient manner
+     */
+    UPROPERTY(Transient)
+    TMap<EGPlayerCombatState, TScriptInterface<IGPlayerCombatState>> CombatStateMap;
 
     /** Finite State Machine for movement-related states */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
@@ -636,5 +667,18 @@ public:
     FORCEINLINE const UCameraComponent* GetFirstPersonCamera() const
     {
         return FirstPersonCamera;
+    }
+
+    FORCEINLINE IGPlayerAimState::Ptr GetAimStateObject(
+            const EGPlayerAimState& State) const
+    {
+        return CastChecked<IGPlayerAimState>(AimStateMap[State].GetObject());
+    }
+
+    FORCEINLINE IGPlayerCombatState::Ptr GetCombatStateObject(
+            const EGPlayerCombatState& State) const
+    {
+        return CastChecked<IGPlayerCombatState>(
+                    CombatStateMap[State].GetObject());
     }
 };
