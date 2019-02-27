@@ -99,7 +99,7 @@ enum class EGPlayerCombatState : uint8
     /** Player is firing a weapon. */
     Firing          UMETA(DisplayName="Firing"),
 
-    /** Player is doing nothing with the weapon. */
+    /** Player is not fighting or doing nothing with the current weapon. */
     Idle            UMETA(DisplayName="Idle"),
 
     /** Player's combat state machine has been disabled. */
