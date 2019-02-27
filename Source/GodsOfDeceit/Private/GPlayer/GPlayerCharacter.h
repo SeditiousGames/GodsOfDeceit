@@ -78,55 +78,55 @@ private:
     ImplDeleter PimplDeleter;
 
 protected:
-    /** Camera boom which positions the third-person camera behind the character */
+    /** Camera boom which positions the third-person camera behind the character. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     USpringArmComponent* ThirdPersonCameraBoom;
 
-    /** Third-person camera */
+    /** Third-person camera. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     UCameraComponent* ThirdPersonCamera;
 
-    /** First-person camera */
+    /** First-person camera. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     UCameraComponent* FirstPersonCamera;
 
-    /** Finite State Machine for aim-related states */
+    /** Finite State Machine for aim-related states. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
     UStateMachineComponent* AimStateMachine;
 
-    /** Array containing all aim states objects */
+    /** Array containing all aim states objects. */
     TArray<TScriptInterface<IGPlayerAimState>,
         TFixedAllocator<G_PLAYER_AIM_STATE_ENUM_COUNT>> AimStates;
 
     /**
      * Maps aim enums to aim state objects in order to find state objects by
-     * their corresponding enum values in an efficient manner
+     * their corresponding enum values in an efficient manner.
      */
     UPROPERTY(Transient)
     TMap<EGPlayerAimState, TScriptInterface<IGPlayerAimState>> AimStateMap;
 
-    /** Finite State Machine for combat-related states */
+    /** Finite State Machine for combat-related states. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
     UStateMachineComponent* CombatStateMachine;
 
-    /** Array containing all combat states objects */
+    /** Array containing all combat states objects. */
     TArray<TScriptInterface<IGPlayerCombatState>,
         TFixedAllocator<G_PLAYER_COMBAT_STATE_ENUM_COUNT>> CombatStates;
 
     /**
      * Maps combat enums to combat state objects in order to find state objects
-     * by their corresponding enum values in an efficient manner
+     * by their corresponding enum values in an efficient manner.
      */
     UPROPERTY(Transient)
     TMap<EGPlayerCombatState, TScriptInterface<IGPlayerCombatState>> CombatStateMap;
 
-    /** Finite State Machine for movement-related states */
+    /** Finite State Machine for movement-related states. */
     UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = FSM, meta = (AllowPrivateAccess = "true"))
     UStateMachineComponent* MovementStateMachine;
 
 public:
     /**
-     * Handles Begin event for any Aim state
+     * Handles Begin event for any Aim state.
      *
      * @param    StateId         The state id
      * @param    PreviousStateId The previous state id
@@ -140,7 +140,7 @@ public:
                          FName StateName, FSM_Transition Transition);
 
     /**
-     * Handles Update event for any Aim state
+     * Handles Update event for any Aim state.
      *
      * @param    StateId         The state id
      * @param    StateName       The state name
@@ -153,7 +153,7 @@ public:
                           float StateTime);
 
     /**
-     * Handles Exit event for any Aim state
+     * Handles Exit event for any Aim state.
      *
      * @param    StateId         The state id
      * @param    StateName       The state name
@@ -166,7 +166,7 @@ public:
                         FSM_Transition Transition);
 
     /**
-     * Handles Begin event for any Combat state
+     * Handles Begin event for any Combat state.
      *
      * @param    StateId         The state id
      * @param    PreviousStateId The previous state id
@@ -180,7 +180,7 @@ public:
                             FName StateName, FSM_Transition Transition);
 
     /**
-     * Handles Update event for any Combat state
+     * Handles Update event for any Combat state.
      *
      * @param    StateId         The state id
      * @param    StateName       The state name
@@ -193,7 +193,7 @@ public:
                              float StateTime);
 
     /**
-     * Handles Exit event for any Combat state
+     * Handles Exit event for any Combat state.
      *
      * @param    StateId         The state id
      * @param    StateName       The state name
@@ -206,7 +206,7 @@ public:
                            FSM_Transition Transition);
 
     /**
-     * Handles Begin event for any Movement state
+     * Handles Begin event for any Movement state.
      *
      * @param    StateId         The state id
      * @param    PreviousStateId The previous state id
@@ -220,7 +220,7 @@ public:
                               FName StateName, FSM_Transition Transition);
 
     /**
-    * Handles Update event for any Movement state
+    * Handles Update event for any Movement state.
     *
     * @param    StateId         The state id
     * @param    StateName       The state name
@@ -233,7 +233,7 @@ public:
                                float StateTime);
 
     /**
-    * Handles Exit event for any Movement state
+    * Handles Exit event for any Movement state.
     *
     * @param    StateId         The state id
     * @param    StateName       The state name
@@ -245,191 +245,191 @@ public:
     void OnExitMovementState(uint8 StateId, FName StateName,
                              FSM_Transition Transition);
 
-    /** Handles Blocked state Begin event for Aim state machine */
+    /** Handles Blocked state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_Blocked_Begin();
 
-    /** Handles Blocked state Update event for Aim state machine */
+    /** Handles Blocked state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_Blocked_Update();
 
-    /** Handles Blocked state Exit event for Aim state machine */
+    /** Handles Blocked state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_Blocked_Exit();
 
-    /** Handles Hip state Begin event for Aim state machine */
+    /** Handles Hip state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_Hip_Begin();
 
-    /** Handles Hip state Update event for Aim state machine */
+    /** Handles Hip state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_Hip_Update();
 
-    /** Handles Hip state Exit event for Aim state machine */
+    /** Handles Hip state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_Hip_Exit();
 
-    /** Handles Inactive state Begin event for Aim state machine */
+    /** Handles Inactive state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_Inactive_Begin();
 
-    /** Handles Inactive state Update event for Aim state machine */
+    /** Handles Inactive state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_Inactive_Update();
 
-    /** Handles Inactive state Exit event for Aim state machine */
+    /** Handles Inactive state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_Inactive_Exit();
 
-    /** Handles Iron Sight state Begin event for Aim state machine */
+    /** Handles Iron Sight state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_IronSight_Begin();
 
-    /** Handles Iron Sight state Update event for Aim state machine */
+    /** Handles Iron Sight state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_IronSight_Update();
 
-    /** Handles Iron Sight state Exit event for Aim state machine */
+    /** Handles Iron Sight state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_IronSight_Exit();
 
-    /** Handles None state Begin event for Aim state machine */
+    /** Handles None state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_None_Begin();
 
-    /** Handles None state Update event for Aim state machine */
+    /** Handles None state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_None_Update();
 
-    /** Handles None state Exit event for Aim state machine */
+    /** Handles None state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_None_Exit();
 
-    /** Handles Telescopic Sight state Begin event for Aim state machine */
+    /** Handles Telescopic Sight state Begin event for Aim state machine. */
     UFUNCTION()
     void OnAim_TelescopicSight_Begin();
 
-    /** Handles Telescopic Sight state Update event for Aim state machine */
+    /** Handles Telescopic Sight state Update event for Aim state machine. */
     UFUNCTION()
     void OnAim_TelescopicSight_Update();
 
-    /** Handles Telescopic Sight state Exit event for Aim state machine */
+    /** Handles Telescopic Sight state Exit event for Aim state machine. */
     UFUNCTION()
     void OnAim_TelescopicSight_Exit();
 
-    /** Handles Equipping state Begin event for Combat state machine */
+    /** Handles Equipping state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Equipping_Begin();
 
-    /** Handles Equipping state Update event for Combat state machine */
+    /** Handles Equipping state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Equipping_Update();
 
-    /** Handles Equipping state Exit event for Combat state machine */
+    /** Handles Equipping state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Equipping_Exit();
 
-    /** Handles Firing state Begin event for Combat state machine */
+    /** Handles Firing state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Firing_Begin();
 
-    /** Handles Firing state Update event for Combat state machine */
+    /** Handles Firing state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Firing_Update();
 
-    /** Handles Firing state Exit event for Combat state machine */
+    /** Handles Firing state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Firing_Exit();
 
-    /** Handles Idle state Begin event for Combat state machine */
+    /** Handles Idle state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Idle_Begin();
 
-    /** Handles Idle state Update event for Combat state machine */
+    /** Handles Idle state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Idle_Update();
 
-    /** Handles Idle state Exit event for Combat state machine */
+    /** Handles Idle state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Idle_Exit();
 
-    /** Handles Inactive state Begin event for Combat state machine */
+    /** Handles Inactive state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Inactive_Begin();
 
-    /** Handles Inactive state Update event for Combat state machine */
+    /** Handles Inactive state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Inactive_Update();
 
-    /** Handles Inactive state Exit event for Combat state machine */
+    /** Handles Inactive state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Inactive_Exit();
 
-    /** Handles None state Begin event for Combat state machine */
+    /** Handles None state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_None_Begin();
 
-    /** Handles None state Update event for Combat state machine */
+    /** Handles None state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_None_Update();
 
-    /** Handles None state Exit event for Combat state machine */
+    /** Handles None state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_None_Exit();
 
-    /** Handles Melee state Begin event for Combat state machine */
+    /** Handles Melee state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Melee_Begin();
 
-    /** Handles Melee state Update event for Combat state machine */
+    /** Handles Melee state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Melee_Update();
 
-    /** Handles Melee state Exit event for Combat state machine */
+    /** Handles Melee state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Melee_Exit();
 
-    /** Handles Reloading state Begin event for Combat state machine */
+    /** Handles Reloading state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Reloading_Begin();
 
-    /** Handles Reloading state Update event for Combat state machine */
+    /** Handles Reloading state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Reloading_Update();
 
-    /** Handles Reloading state Exit event for Combat state machine */
+    /** Handles Reloading state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Reloading_Exit();
 
-    /** Handles Throwing state Begin event for Combat state machine */
+    /** Handles Throwing state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Throwing_Begin();
 
-    /** Handles Throwing state Update event for Combat state machine */
+    /** Handles Throwing state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Throwing_Update();
 
-    /** Handles Throwing state Exit event for Combat state machine */
+    /** Handles Throwing state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_Throwing_Exit();
 
-    /** Handles Weapon Switching state Begin event for Combat state machine */
+    /** Handles Weapon Switching state Begin event for Combat state machine. */
     UFUNCTION()
     void OnCombat_WeaponSwitching_Begin();
 
-    /** Handles Weapon Switching state Update event for Combat state machine */
+    /** Handles Weapon Switching state Update event for Combat state machine. */
     UFUNCTION()
     void OnCombat_WeaponSwitching_Update();
 
-    /** Handles Weapon Switching state Exit event for Combat state machine */
+    /** Handles Weapon Switching state Exit event for Combat state machine. */
     UFUNCTION()
     void OnCombat_WeaponSwitching_Exit();
 
-    /** Handles Crouching Idle state Begin event for Movement state machine */
+    /** Handles Crouching Idle state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_CrouchingIdle_Begin();
 
-    /** Handles Crouching Idle state Update event for Movement state machine */
+    /** Handles Crouching Idle state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_CrouchingIdle_Update();
 
@@ -438,235 +438,235 @@ public:
     void OnMovement_CrouchingIdle_Exit();
 
     /**
-     * Handles Crouching Walking state Begin event for Movement state machine
+     * Handles Crouching Walking state Begin event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_CrouchingWalking_Begin();
 
     /**
-     * Handles Crouching Walking state Update event for Movement state machine
+     * Handles Crouching Walking state Update event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_CrouchingWalking_Update();
 
     /**
-     * Handles Crouching Walking state Exit event for Movement state machine
+     * Handles Crouching Walking state Exit event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_CrouchingWalking_Exit();
 
-    /** Handles Dead state Begin event for Movement state machine */
+    /** Handles Dead state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Dead_Begin();
 
-    /** Handles Dead state Update event for Movement state machine */
+    /** Handles Dead state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Dead_Update();
 
-    /** Handles Dead state Exit event for Movement state machine */
+    /** Handles Dead state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Dead_Exit();
 
-    /** Handles Falling state Begin event for Movement state machine */
+    /** Handles Falling state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Falling_Begin();
 
-    /** Handles Falling state Update event for Movement state machine */
+    /** Handles Falling state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Falling_Update();
 
-    /** Handles Falling state Exit event for Movement state machine */
+    /** Handles Falling state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Falling_Exit();
 
-    /** Handles Idle state Begin event for Movement state machine */
+    /** Handles Idle state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Idle_Begin();
 
-    /** Handles Idle state Update event for Movement state machine */
+    /** Handles Idle state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Idle_Update();
 
-    /** Handles Idle state Exit event for Movement state machine */
+    /** Handles Idle state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Idle_Exit();
 
-    /** Handles Inactive state Begin event for Movement state machine */
+    /** Handles Inactive state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Inactive_Begin();
 
-    /** Handles Inactive state Update event for Movement state machine */
+    /** Handles Inactive state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Inactive_Update();
 
-    /** Handles Inactive state Exit event for Movement state machine */
+    /** Handles Inactive state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Inactive_Exit();
 
-    /** Handles Jumping state Begin event for Movement state machine */
+    /** Handles Jumping state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Jumping_Begin();
 
-    /** Handles Jumping state Update event for Movement state machine */
+    /** Handles Jumping state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Jumping_Update();
 
-    /** Handles Jumping state Exit event for Movement state machine */
+    /** Handles Jumping state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Jumping_Exit();
 
-    /** Handles Landing state Begin event for Movement state machine */
+    /** Handles Landing state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Landing_Begin();
 
-    /** Handles Landing state Update event for Movement state machine */
+    /** Handles Landing state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Landing_Update();
 
-    /** Handles Landing state Exit event for Movement state machine */
+    /** Handles Landing state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Landing_Exit();
 
-    /** Handles Leaping state Begin event for Movement state machine */
+    /** Handles Leaping state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Leaping_Begin();
 
-    /** Handles Leaping state Update event for Aim state machine */
+    /** Handles Leaping state Update event for Aim state machine. */
     UFUNCTION()
     void OnMovement_Leaping_Update();
 
-    /** Handles Leaping state Exit event for Movement state machine */
+    /** Handles Leaping state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Leaping_Exit();
 
-    /** Handles None state Begin event for Movement state machine */
+    /** Handles None state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_None_Begin();
 
-    /** Handles None state Update event for Movement state machine */
+    /** Handles None state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_None_Update();
 
-    /** Handles None state Exit event for Movement state machine */
+    /** Handles None state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_None_Exit();
 
     /**
-     * Handles Platform Ascending state Begin event for Movement state machine
+     * Handles Platform Ascending state Begin event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_PlatformAscending_Begin();
 
     /**
-     * Handles Platform Ascending state Update event for Movement state machine
+     * Handles Platform Ascending state Update event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_PlatformAscending_Update();
 
     /**
-     * Handles Platform Ascending state Exit event for Movement state machine
+     * Handles Platform Ascending state Exit event for Movement state machine.
      */
     UFUNCTION()
     void OnMovement_PlatformAscending_Exit();
 
-    /** Handles Plummeting state Begin event for Movement state machine */
+    /** Handles Plummeting state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Plummeting_Begin();
 
-    /** Handles Plummeting state Update event for Movement state machine */
+    /** Handles Plummeting state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Plummeting_Update();
 
-    /** Handles Plummeting state Exit event for Movement state machine */
+    /** Handles Plummeting state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Plummeting_Exit();
 
-    /** Handles Prone Crawling state Begin event for Movement state machine */
+    /** Handles Prone Crawling state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneCrawling_Begin();
 
-    /** Handles Prone Crawling state Update event for Movement state machine */
+    /** Handles Prone Crawling state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneCrawling_Update();
 
-    /** Handles Prone Crawling state Exit event for Movement state machine */
+    /** Handles Prone Crawling state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneCrawling_Exit();
 
-    /** Handles Prone Idle state Begin event for Movement state machine */
+    /** Handles Prone Idle state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneIdle_Begin();
 
-    /** Handles Prone Idle state Update event for Movement state machine */
+    /** Handles Prone Idle state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneIdle_Update();
 
-    /** Handles Prone Idle state Exit event for Movement state machine */
+    /** Handles Prone Idle state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_ProneIdle_Exit();
 
-    /** Handles Spawning state Begin event for Movement state machine */
+    /** Handles Spawning state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Spawning_Begin();
 
-    /** Handles Spawning state Update event for Movement state machine */
+    /** Handles Spawning state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Spawning_Update();
 
-    /** Handles Spawning state Exit event for Movement state machine */
+    /** Handles Spawning state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Spawning_Exit();
 
-    /** Handles Sprinting state Begin event for Movement state machine */
+    /** Handles Sprinting state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Sprinting_Begin();
 
-    /** Handles Sprinting state Update event for Movement state machine */
+    /** Handles Sprinting state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Sprinting_Update();
 
-    /** Handles Sprinting state Exit event for Movement state machine */
+    /** Handles Sprinting state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Sprinting_Exit();
 
-    /** Handles Vaulting state Begin event for Movement state machine */
+    /** Handles Vaulting state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Vaulting_Begin();
 
-    /** Handles Vaulting state Update event for Movement state machine */
+    /** Handles Vaulting state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Vaulting_Update();
 
-    /** Handles Vaulting state Exit event for Movement state machine */
+    /** Handles Vaulting state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Vaulting_Exit();
 
-    /** Handles Walking state Begin event for Movement state machine */
+    /** Handles Walking state Begin event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Walking_Begin();
 
-    /** Handles Walking state Update event for Movement state machine */
+    /** Handles Walking state Update event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Walking_Update();
 
-    /** Handles Walking state Exit event for Movement state machine */
+    /** Handles Walking state Exit event for Movement state machine. */
     UFUNCTION()
     void OnMovement_Walking_Exit();
 
 public:
-    /** Returns ThirdPersonCameraBoom component */
+    /** Returns ThirdPersonCameraBoom component. */
     FORCEINLINE const USpringArmComponent* GetThirdPersonCameraBoom() const
     {
         return ThirdPersonCameraBoom;
     }
 
-    /** Returns ThirdPersonCamera component */
+    /** Returns ThirdPersonCamera component. */
     FORCEINLINE const UCameraComponent* GetThirdPersonCamera() const
     {
         return ThirdPersonCamera;
     }
 
-    /** Returns FirstPersonCamera component */
+    /** Returns FirstPersonCamera component. */
     FORCEINLINE const UCameraComponent* GetFirstPersonCamera() const
     {
         return FirstPersonCamera;
