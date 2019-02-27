@@ -34,7 +34,7 @@
  */
 
 
-#include "GPlayer/IGPlayerAimState.h"
+#include "GPlayerAimState/IGPlayerAimState.h"
 #include "GodsOfDeceit.h"
 
 #include <Misc/AssertionMacros.h>
