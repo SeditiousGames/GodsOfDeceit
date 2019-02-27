@@ -39,26 +39,95 @@
 #include <CoreTypes.h>
 #include <UObject/ObjectMacros.h>
 
+/** Enum that defines all player's aim states. */
 UENUM(BlueprintType)
 enum class EGPlayerAimState : uint8
 {
+    /**
+     * Uninitialized aim state.
+     *
+     * Note: This has to be defined as the first enum element since the enum
+     * count calculations relies on it.
+     */
     None            UMETA(DisplayName="None"),
+
+    /** Player's aim has been blocked by an obstacle. */
     Blocked         UMETA(DisplayName="Blocked"),
+
+    /** Hip aim mode. */
     Hip             UMETA(DisplayName="Hip"),
+
+    /** Player's aim state machine has been disabled. */
     Inactive        UMETA(DisplayName="Inactive"),
+
+    /** Iron-sight aim mode. */
     IronSight       UMETA(DisplayName="IronSight"),
+
+    /**
+     * Telescopi-sight aim mode.
+     *
+     * Note: This has to be defined as the last enum element since the enum
+     * count calculations relies on it.
+     */
     TelescopicSight UMETA(DisplayName="TelescopicSight")
 };
 
+/**
+ * Calculates the number of elements defined by the player's aim state enum at
+ * compile time.
+ */
+constexpr uint8 G_PLAYER_AIM_STATE_ENUM_COUNT =
+        static_cast<uint8>(EGPlayerAimState::TelescopicSight)
+        - static_cast<uint8>(EGPlayerAimState::None)
+        + 1;
+
+/** Enum that defines all player's combat states. */
 UENUM(BlueprintType)
-enum class EGPlayerCombatState : uint8 {
+enum class EGPlayerCombatState : uint8
+{
+    /**
+     * Uninitialized combat state.
+     *
+     * Note: This has to be defined as the first enum element since the enum
+     * count calculations relies on it.
+     */
     None            UMETA(DisplayName="None"),
+
+    /** Player is equiping a weapon. */
     Equipping       UMETA(DisplayName="Equipping"),
+
+    /** Player is firing a weapon. */
     Firing          UMETA(DisplayName="Firing"),
+
+    /** Player is doing nothing with the weapon. */
     Idle            UMETA(DisplayName="Idle"),
+
+    /** Player's combat state machine has been disabled. */
     Inactive        UMETA(DisplayName="Inactive"),
+
+    /** Player is performing a melee attack. */
     Melee           UMETA(DisplayName="Melee"),
+
+    /** Player is reloading a weapon. */
     Reloading       UMETA(DisplayName="Reloading"),
+
+    /** Player is throwing a grenade. */
     Throwing        UMETA(DisplayName="Throwing"),
+
+    /**
+    * Player is switching a weapon.
+    *
+    * Note: This has to be defined as the last enum element since the enum
+    * count calculations relies on it.
+    */
     WeaponSwitching UMETA(DisplayName="WeaponSwitching")
 };
+
+/**
+ * Calculates the number of elements defined by the player's combat state enum
+ * at compile time.
+ */
+constexpr uint8 G_PLAYER_COMBAT_STATE_ENUM_COUNT =
+        static_cast<uint8>(EGPlayerCombatState::WeaponSwitching)
+        - static_cast<uint8>(EGPlayerCombatState::None)
+        + 1;
