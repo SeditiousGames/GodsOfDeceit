@@ -40,6 +40,7 @@
 
 #include <memory>
 #include <Containers/Array.h>
+#include <Containers/ContainerAllocationPolicies.h>
 #include <Containers/Map.h>
 #include <CoreTypes.h>
 #include <GGameFramework/GCharacter.h>
@@ -47,6 +48,8 @@
 #include <Misc/AssertionMacros.h>
 #include <Templates/Casts.h>
 #include <UObject/ObjectMacros.h>
+
+#include <GTypes/GGodsOfDeceitTypes.h>
 
 #include "GPlayer/IGPlayerAimState.h"
 #include "GPlayer/IGPlayerCombatState.h"
@@ -92,8 +95,8 @@ protected:
     UStateMachineComponent* AimStateMachine;
 
     /** Array containing all aim states objects */
-    UPROPERTY(Transient)
-    TArray<TScriptInterface<IGPlayerAimState>> AimStates;
+    TArray<TScriptInterface<IGPlayerAimState>,
+        TFixedAllocator<G_PLAYER_AIM_STATE_ENUM_COUNT>> AimStates;
 
     /**
      * Maps aim enums to aim state objects in order to find state objects by
@@ -107,8 +110,8 @@ protected:
     UStateMachineComponent* CombatStateMachine;
 
     /** Array containing all combat states objects */
-    UPROPERTY(Transient)
-    TArray<TScriptInterface<IGPlayerCombatState>> CombatStates;
+    TArray<TScriptInterface<IGPlayerCombatState>,
+        TFixedAllocator<G_PLAYER_COMBAT_STATE_ENUM_COUNT>> CombatStates;
 
     /**
      * Maps combat enums to combat state objects in order to find state objects
