@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * WeaponSwitching state's data for the Combat state machine.
+ * Weapon Switching state's data for the Combat state machine.
  */
 
 

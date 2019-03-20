@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * IronSight state's data for the Aim state machine.
+ * Iron Sight state's data for the Aim state machine.
  */
 
 

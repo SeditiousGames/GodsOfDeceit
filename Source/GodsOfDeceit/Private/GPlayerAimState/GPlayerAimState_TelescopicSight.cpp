@@ -30,7 +30,7 @@
  *
  * @section DESCRIPTION
  *
- * TelescopicSight state's data for the Aim state machine.
+ * Telescopic Sight state's data for the Aim state machine.
  */
 
 
