@@ -51,6 +51,7 @@
 
 #include "GPlayer/GPlayerAnimInstance.h"
 #include "GPlayer/GPlayerCharacterMovementComponent.h"
+#include "GPlayerStates/GPlayerStates.h"
 
 struct AGPlayerCharacter::Impl
 {
@@ -115,6 +116,27 @@ AGPlayerCharacter::AGPlayerCharacter(
 
     AimStateMachine = ObjectInitializer.CreateDefaultSubobject<
             UStateMachineComponent>(this, TEXT("AimStateMachine"));
+    if (AimStateMachine->IsValidLowLevel())
+    {
+        AimStates.Emplace(NewObject<UGPlayerAimState_None>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_None")));
+        AimStates.Emplace(NewObject<UGPlayerAimState_Blocked>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_Blocked")));
+        AimStates.Emplace(NewObject<UGPlayerAimState_Hip>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_Hip")));
+        AimStates.Emplace(NewObject<UGPlayerAimState_Inactive>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_Inactive")));
+        AimStates.Emplace(NewObject<UGPlayerAimState_IronSight>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_IronSight")));
+        AimStates.Emplace(NewObject<UGPlayerAimState_TelescopicSight>(
+                              AimStateMachine,
+                              TEXT("PlayerAimState_TelescopicSight")));
+    }
 
     CombatStateMachine = ObjectInitializer.CreateDefaultSubobject<
             UStateMachineComponent>(this, TEXT("CombatStateMachine"));

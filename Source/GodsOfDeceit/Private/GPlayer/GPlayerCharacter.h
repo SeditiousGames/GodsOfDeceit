@@ -51,8 +51,8 @@
 
 #include <GTypes/GGodsOfDeceitTypes.h>
 
-#include "GPlayer/IGPlayerAimState.h"
-#include "GPlayer/IGPlayerCombatState.h"
+#include "GPlayerAimState/IGPlayerAimState.h"
+#include "GPlayerCombatState/IGPlayerCombatState.h"
 
 #include "GPlayerCharacter.generated.h"
 
