@@ -140,6 +140,33 @@ AGPlayerCharacter::AGPlayerCharacter(
 
     CombatStateMachine = ObjectInitializer.CreateDefaultSubobject<
             UStateMachineComponent>(this, TEXT("CombatStateMachine"));
+    if (CombatStateMachine->IsValidLowLevel())
+    {
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_None>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_None")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Equipping>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Equipping")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Firing>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Firing")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Inactive>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Inactive")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Melee>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Melee")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Reloading>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Reloading")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_Throwing>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_Throwing")));
+        CombatStates.Emplace(NewObject<UGPlayerCombatState_WeaponSwitching>(
+                                 CombatStateMachine,
+                                 TEXT("PlayerCombatState_WeaponSwitching")));
+    }
 
     MovementStateMachine = ObjectInitializer.CreateDefaultSubobject<
             UStateMachineComponent>(this, TEXT("MovementStateMachine"));
