@@ -30,27 +30,9 @@
  *
  * @section DESCRIPTION
  *
- * A header file which includes player's movement states all at once.
+ * Falling state's data for the Movement state machine.
  */
 
 
-#pragma once
-
-#include "GPlayerMovementState/GPlayerMovementState_CrouchingIdle.h"
-#include "GPlayerMovementState/GPlayerMovementState_CrouchingWalking.h"
-#include "GPlayerMovementState/GPlayerMovementState_Dead.h"
 #include "GPlayerMovementState/GPlayerMovementState_Falling.h"
-#include "GPlayerMovementState/GPlayerMovementState_Idle.h"
-#include "GPlayerMovementState/GPlayerMovementState_Inactive.h"
-#include "GPlayerMovementState/GPlayerMovementState_Jumping.h"
-#include "GPlayerMovementState/GPlayerMovementState_Landing.h"
-#include "GPlayerMovementState/GPlayerMovementState_Leaping.h"
-#include "GPlayerMovementState/GPlayerMovementState_None.h"
-#include "GPlayerMovementState/GPlayerMovementState_PlatformAscending.h"
-#include "GPlayerMovementState/GPlayerMovementState_Plummeting.h"
-#include "GPlayerMovementState/GPlayerMovementState_ProneCrawling.h"
-#include "GPlayerMovementState/GPlayerMovementState_ProneIdle.h"
-#include "GPlayerMovementState/GPlayerMovementState_Spawning.h"
-#include "GPlayerMovementState/GPlayerMovementState_Sprinting.h"
-#include "GPlayerMovementState/GPlayerMovementState_Vaulting.h"
-#include "GPlayerMovementState/GPlayerMovementState_Walking.h"
+#include "GodsOfDeceit.h"
