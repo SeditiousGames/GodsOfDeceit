@@ -2,8 +2,8 @@
 
 #  (The MIT License)
 #
-#  Copyright (c) 2018 Mohammad S. Babaei
-#  Copyright (c) 2018 Seditious Games Studio
+#  Copyright (c) 2018 - 2019 Mohammad S. Babaei
+#  Copyright (c) 2018 - 2019 Seditious Games Studio
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
