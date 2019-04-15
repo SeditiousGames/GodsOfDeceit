@@ -77,5 +77,7 @@ public class GodsOfDeceitTarget : TargetRules
         bForceEnableExceptions = false;
         bUseUnityBuild = true;
         bForceUnityBuild = true;
+
+        CppStandard = CppStandardVersion.Cpp17;
     }
 }
