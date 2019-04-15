@@ -25,7 +25,7 @@
 
 
 GIT_CLONE_URL="https://github.com/weidai11/cryptopp.git"
-GIT_TAG_TO_BUILD=CRYPTOPP_8_1_0
+GIT_TAG_TO_BUILD="CRYPTOPP_8_1_0"
 SOURCE_DIRECTORY_NAME="cryptopp"
 DEBUG_BUILD_DIRECTORY_NAME="build-debug"
 RELEASE_BUILD_DIRECTORY_NAME="build-release"
@@ -50,22 +50,22 @@ THIRDPARTY_LIB_DEBUG_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/debug"
 THIRDPARTY_LIB_RELEASE_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/release"
 
 source "${BUILD_TOOLCHAIN_SETUP}" \
-    && rm -rf ${SOURCE_DIRECTORY} \
-    && git clone -b "${GIT_TAG_TO_BUILD}" --single-branch --depth 1 \
-        ${GIT_CLONE_URL} ${SOURCE_DIRECTORY} \
-    && cp -vr ${BUILD_CMAKE_LISTS} ${SOURCE_DIRECTORY}/CMakeLists.txt \
-    && cd ${SOURCE_DIRECTORY} \
+    && rm -rf "${SOURCE_DIRECTORY}" \
+    && git clone -b ${GIT_TAG_TO_BUILD} --single-branch --depth 1 \
+        ${GIT_CLONE_URL} "${SOURCE_DIRECTORY}" \
+    && cp -vr "${BUILD_CMAKE_LISTS}" "${SOURCE_DIRECTORY}/CMakeLists.txt" \
+    && cd "${SOURCE_DIRECTORY}" \
     && mkdir -p "${DEBUG_BUILD_DIRECTORY}" \
     && cd "${DEBUG_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE=${BUILD_TOOLCHAIN_FILE} \
+        -DCMAKE_TOOLCHAIN_FILE="${BUILD_TOOLCHAIN_FILE}" \
         -DCMAKE_BUILD_TYPE=Debug .. \
     && ninja \
     && cd .. \
     && mkdir -p "${RELEASE_BUILD_DIRECTORY}" \
     && cd "${RELEASE_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE=${BUILD_TOOLCHAIN_FILE} \
+        -DCMAKE_TOOLCHAIN_FILE="${BUILD_TOOLCHAIN_FILE}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
