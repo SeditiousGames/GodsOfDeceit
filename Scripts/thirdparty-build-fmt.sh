@@ -90,7 +90,7 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
-            cp  -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
+            cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
                 "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}"
