@@ -26,17 +26,20 @@
 
 set -e
 
-TOOLCHAIN_ROOT_DIRECTORY="/opt/UnrealEngine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v13_clang-7.0.1-centos7/x86_64-unknown-linux-gnu"
+export GOD_ARCHITECTURE_TRIPLE="x86_64-unknown-linux-gnu"
+export GOD_TOOLCHAIN_ROOT_DIRECTORY="/opt/UnrealEngine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v13_clang-7.0.1-centos7/${GOD_ARCHITECTURE_TRIPLE}"
+export GOD_TOOLCHAIN_BIN_DIRECTORY="${GOD_TOOLCHAIN_ROOT_DIRECTORY}/bin"
 
 # WORKAROUND
-# Linker refuses to find ${TOOLCHAIN_ROOT_DIRECTORY}/usr/lib64 if
-# ${TOOLCHAIN_ROOT_DIRECTORY}/usr/lib64 does not exists and stops with the following errors:
+# Linker refuses to find ${GOD_TOOLCHAIN_ROOT_DIRECTORY}/usr/lib64 if
+# ${GOD_TOOLCHAIN_ROOT_DIRECTORY}/usr/lib does not exists and stops with the
+# following errors:
 # cannot find crt1.o: No such file or directory
 # cannot find crti.o: No such file or directory
-mkdir -p "${TOOLCHAIN_ROOT_DIRECTORY}/usr/lib"
+mkdir -p "${GOD_TOOLCHAIN_ROOT_DIRECTORY}/usr/lib"
 
 # WORKAROUND
-# For asserts in ${TOOLCHAIN_ROOT_DIRECTORY}/bin/x86_64-unknown-linux-gnu-* binaries
+# For asserts in ${GOD_TOOLCHAIN_ROOT_DIRECTORY}/bin/x86_64-unknown-linux-gnu-* binaries
 export LANG=C
 export LC_CTYPE="C"
 export LC_NUMERIC="C"
