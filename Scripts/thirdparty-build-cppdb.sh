@@ -128,4 +128,4 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
                 "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}" \
-    && rm -rf "${ARCHIVE_FILE}"
+        "${ARCHIVE_FILE}"

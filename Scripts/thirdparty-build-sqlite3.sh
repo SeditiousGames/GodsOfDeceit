@@ -120,6 +120,6 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
                 "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}" \
-    && rm -rf "${AMALGAMATION_SOURCE_DIRECTORY}" \
-    && rm -rf "${FOSSIL_SOURCE_DIRECTORY}" \
-    && rm -rf "${FOSSIL_FILE}"
+        "${AMALGAMATION_SOURCE_DIRECTORY}" \
+        "${FOSSIL_SOURCE_DIRECTORY}" \
+        "${FOSSIL_FILE}"
