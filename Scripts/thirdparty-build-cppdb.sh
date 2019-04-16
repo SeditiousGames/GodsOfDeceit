@@ -100,6 +100,9 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
     && unlink "${FAKE_SQLITE3_LIB64_DIRECTORY}" \
     && unlink "${FAKE_SQLITE3_INCLUDE_DIRECTORY}" \
     && rm -rf "${FAKE_SQLITE3_PREFIX}" \
+    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\

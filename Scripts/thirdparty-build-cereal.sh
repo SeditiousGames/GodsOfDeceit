@@ -40,6 +40,9 @@ THIRDPARTY_INCLUDE_DIRECTORY="${THIRDPARTY_DIRECTORY}/include"
 rm -rf "${SOURCE_DIRECTORY}" \
     && git clone -b ${GIT_TAG_TO_BUILD} --single-branch --depth 1 \
         ${GIT_CLONE_URL} "${SOURCE_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\

@@ -69,6 +69,9 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
+    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && rm -rf "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \

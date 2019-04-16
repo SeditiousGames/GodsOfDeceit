@@ -89,6 +89,9 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         -sZLIB_SOURCE="${ZLIB_SOURCE_DIRECTORY}" \
         -j 17 \
         install \
+    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/boost" \
         "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/"libboost_*mt-d-x64*.* \
         "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/"libboost_*mt-x64*.* \
