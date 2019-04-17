@@ -63,8 +63,8 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
     && git clone -b ${ZLIB_GIT_TAG_TO_BUILD} --single-branch --depth 1 \
         ${ZLIB_GIT_CLONE_URL} "${ZLIB_SOURCE_DIRECTORY}" \
     && git clone -b ${BOOST_GIT_TAG_TO_BUILD} --single-branch --depth 1 \
-        ${BOOST_GIT_CLONE_URL} "${BOOST_SOURCE_DIRECTORY}" \
         --recursive --shallow-submodules --jobs ${GIT_CLONE_NUMBER_OF_JOBS} \
+        ${BOOST_GIT_CLONE_URL} "${BOOST_SOURCE_DIRECTORY}" \
     && mkdir -p "${BOOST_BUILD_PATH}" \
     && cp -vr "${BUILD_USER_CONFIG_JAM_FILE}" \
         "${BOOST_BUILD_PATH}/user-config.jam" \
