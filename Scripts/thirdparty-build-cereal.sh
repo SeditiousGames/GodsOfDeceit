@@ -26,7 +26,7 @@
 
 GIT_CLONE_URL="https://github.com/USCiLab/cereal.git"
 GIT_TAG_TO_BUILD="v1.2.2"
-SOURCE_DIRECTORY_NAME="cereal"
+SOURCE_DIRECTORY_NAME="god-thirdparty-cereal"
 TEMP_DIRECTORY="/tmp"
 
 declare -a INCLUDES=( "cereal" )
