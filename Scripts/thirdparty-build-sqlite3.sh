@@ -44,7 +44,7 @@ SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
 BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
 source "${BUILD_TOOLCHAIN_SETUP}"
 
-BUILD_CMAKE_LISTS="${GOD_TEMP_DIRECTORY}/toolchains/sqlite3-CMakeLists.txt"
+BUILD_CMAKE_LISTS="${GOD_THIRDPARTY_DIRECTORY}/toolchains/sqlite3-CMakeLists.txt"
 
 FOSSIL_FILE="${GOD_TEMP_DIRECTORY}/${FOSSIL_FILE_NAME}"
 FOSSIL_SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${FOSSIL_SOURCE_DIRECTORY_NAME}"
@@ -79,14 +79,14 @@ rm -rf "${FOSSIL_FILE}" \
     && mkdir -p "${DEBUG_BUILD_DIRECTORY}" \
     && cd "${DEBUG_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE="${BUILD_TOOLCHAIN_FILE}" \
+        -DCMAKE_TOOLCHAIN_FILE="${GOD_THIRDPARTY_TOOLCHAIN_FILE}" \
         -DCMAKE_BUILD_TYPE=Debug .. \
     && ninja \
     && cd .. \
     && mkdir -p "${RELEASE_BUILD_DIRECTORY}" \
     && cd "${RELEASE_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE=${BUILD_TOOLCHAIN_FILE} \
+        -DCMAKE_TOOLCHAIN_FILE=${GOD_THIRDPARTY_TOOLCHAIN_FILE} \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \

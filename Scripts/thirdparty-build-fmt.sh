@@ -51,14 +51,14 @@ rm -rf "${SOURCE_DIRECTORY}" \
     && mkdir -p "${DEBUG_BUILD_DIRECTORY}" \
     && cd "${DEBUG_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE="${BUILD_TOOLCHAIN_FILE}" \
+        -DCMAKE_TOOLCHAIN_FILE="${GOD_THIRDPARTY_TOOLCHAIN_FILE}" \
         -DCMAKE_BUILD_TYPE=Debug .. \
     && ninja \
     && cd .. \
     && mkdir -p "${RELEASE_BUILD_DIRECTORY}" \
     && cd "${RELEASE_BUILD_DIRECTORY}" \
     && cmake -GNinja \
-        -DCMAKE_TOOLCHAIN_FILE="${BUILD_TOOLCHAIN_FILE}" \
+        -DCMAKE_TOOLCHAIN_FILE="${GOD_THIRDPARTY_TOOLCHAIN_FILE}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
