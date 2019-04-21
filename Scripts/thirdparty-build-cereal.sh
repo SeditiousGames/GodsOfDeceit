@@ -24,32 +24,33 @@
 #  SOFTWARE.
 
 
+set -e
+
 GIT_CLONE_URL="https://github.com/USCiLab/cereal.git"
 GIT_TAG_TO_BUILD="v1.2.2"
 SOURCE_DIRECTORY_NAME="god-thirdparty-cereal"
-TEMP_DIRECTORY="/tmp"
 
 declare -a INCLUDES=( "cereal" )
 
-SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
+SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
+BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
+source "${BUILD_TOOLCHAIN_SETUP}"
 
-PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-THIRDPARTY_DIRECTORY="${PROJECT_DIRECTORY}/ThirdParty"
-THIRDPARTY_INCLUDE_DIRECTORY="${THIRDPARTY_DIRECTORY}/include"
+SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
 
 rm -rf "${SOURCE_DIRECTORY}" \
     && git clone -b ${GIT_TAG_TO_BUILD} --single-branch --depth 1 \
         ${GIT_CLONE_URL} "${SOURCE_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
+            rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
         done \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             cp -vr "${SOURCE_DIRECTORY}/include/${ITEM}" \
-                "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}"

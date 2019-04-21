@@ -26,29 +26,25 @@
 
 GIT_CLONE_URL="https://github.com/weidai11/cryptopp.git"
 GIT_TAG_TO_BUILD="CRYPTOPP_8_1_0"
+
 SOURCE_DIRECTORY_NAME="cryptopp"
 DEBUG_BUILD_DIRECTORY_NAME="build-debug"
 RELEASE_BUILD_DIRECTORY_NAME="build-release"
-TEMP_DIRECTORY="/tmp"
 
 TARGET_INCLUDE_DIRECTORY_NAME="cryptopp"
 declare -a DEBUG_LIBRARIES=( "libcryptopp.a" )
 declare -a RELEASE_LIBRARIES=( "libcryptopp.a" )
 
-SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
+SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
+BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
+source "${BUILD_TOOLCHAIN_SETUP}"
+
+BUILD_CMAKE_LISTS="${GOD_TEMP_DIRECTORY}/toolchains/cryptopp-CMakeLists.txt"
+THIRDPARTY_INCLUDE_TARGET_DIRECTORY="${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${TARGET_INCLUDE_DIRECTORY_NAME}"
+
+SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
 DEBUG_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${DEBUG_BUILD_DIRECTORY_NAME}"
 RELEASE_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${RELEASE_BUILD_DIRECTORY_NAME}"
-
-SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
-PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-THIRDPARTY_DIRECTORY="${PROJECT_DIRECTORY}/ThirdParty"
-BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-build-toochain-setup.sh"
-BUILD_TOOLCHAIN_FILE="${THIRDPARTY_DIRECTORY}/toolchains/ue4-bundled-toolchain.cmake"
-BUILD_CMAKE_LISTS="${THIRDPARTY_DIRECTORY}/toolchains/cryptopp-CMakeLists.txt"
-THIRDPARTY_INCLUDE_DIRECTORY="${THIRDPARTY_DIRECTORY}/include"
-THIRDPARTY_INCLUDE_TARGET_DIRECTORY="${THIRDPARTY_INCLUDE_DIRECTORY}/${TARGET_INCLUDE_DIRECTORY_NAME}"
-THIRDPARTY_LIB_DEBUG_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/debug"
-THIRDPARTY_LIB_RELEASE_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/release"
 
 source "${BUILD_TOOLCHAIN_SETUP}" \
     && rm -rf "${SOURCE_DIRECTORY}" \
@@ -70,29 +66,29 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
-    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
-    && rm -rf "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
+    && rm -rf "${GOD_THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
-    && mkdir -p "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
     && cp -vr "${SOURCE_DIRECTORY}/"*.h \
-        "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}/" \
+        "${GOD_THIRDPARTY_INCLUDE_TARGET_DIRECTORY}/" \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
             cp -vr "${DEBUG_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
             cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}"

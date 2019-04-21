@@ -24,32 +24,27 @@
 #  SOFTWARE.
 
 
+set -e
+
 GIT_CLONE_URL="https://github.com/fmtlib/fmt.git"
 GIT_TAG_TO_BUILD="5.3.0"
 SOURCE_DIRECTORY_NAME="god-thirdparty-fmt"
 DEBUG_BUILD_DIRECTORY_NAME="build-debug"
 RELEASE_BUILD_DIRECTORY_NAME="build-release"
-TEMP_DIRECTORY="/tmp"
 
 declare -a INCLUDES=( "fmt" )
 declare -a DEBUG_LIBRARIES=( "libfmtd.a" )
 declare -a RELEASE_LIBRARIES=( "libfmt.a" )
 
-SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
+SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
+BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
+source "${BUILD_TOOLCHAIN_SETUP}"
+
+SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
 DEBUG_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${DEBUG_BUILD_DIRECTORY_NAME}"
 RELEASE_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${RELEASE_BUILD_DIRECTORY_NAME}"
 
-SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
-PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-THIRDPARTY_DIRECTORY="${PROJECT_DIRECTORY}/ThirdParty"
-BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
-BUILD_TOOLCHAIN_FILE="${THIRDPARTY_DIRECTORY}/toolchains/ue4-bundled-toolchain.cmake"
-THIRDPARTY_INCLUDE_DIRECTORY="${THIRDPARTY_DIRECTORY}/include"
-THIRDPARTY_LIB_DEBUG_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/debug"
-THIRDPARTY_LIB_RELEASE_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/release"
-
-source "${BUILD_TOOLCHAIN_SETUP}" \
-    && rm -rf ${SOURCE_DIRECTORY} \
+rm -rf "${SOURCE_DIRECTORY}" \
     && git clone -b ${GIT_TAG_TO_BUILD} --single-branch --depth 1 \
         ${GIT_CLONE_URL} "${SOURCE_DIRECTORY}" \
     && cd "${SOURCE_DIRECTORY}" \
@@ -67,34 +62,34 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
-    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
+            rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
         done \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             cp -vr "${SOURCE_DIRECTORY}/include/${ITEM}" \
-                "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
             cp -vr "${DEBUG_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
             cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}"

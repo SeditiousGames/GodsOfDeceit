@@ -24,39 +24,36 @@
 #  SOFTWARE.
 
 
+set -e
+
 FOSSIL_CLONE_URL="https://www.sqlite.org/src"
 FOSSIL_TAG_TO_BUILD="release"
+
 FOSSIL_FILE_NAME="sqlite.fossil"
 FOSSIL_SOURCE_DIRECTORY_NAME="god-thirdparty-sqlite"
 AMALGAMATION_SOURCE_DIRECTORY_NAME="god-thirdparty-sqlite-amalgamation"
 SOURCE_DIRECTORY_NAME="god-thirdparty-sqlite3"
 DEBUG_BUILD_DIRECTORY_NAME="build-debug"
 RELEASE_BUILD_DIRECTORY_NAME="build-release"
-TEMP_DIRECTORY="/tmp"
 
 declare -a INCLUDES=( "sqlite3.h" "sqlite3ext.h" )
 declare -a DEBUG_LIBRARIES=( "libsqlite3.a" )
 declare -a RELEASE_LIBRARIES=( "libsqlite3.a" )
 
-FOSSIL_FILE="${TEMP_DIRECTORY}/${FOSSIL_FILE_NAME}"
-FOSSIL_SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${FOSSIL_SOURCE_DIRECTORY_NAME}"
-AMALGAMATION_SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${AMALGAMATION_SOURCE_DIRECTORY_NAME}"
-SOURCE_DIRECTORY="${TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
+SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
+BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
+source "${BUILD_TOOLCHAIN_SETUP}"
+
+BUILD_CMAKE_LISTS="${GOD_TEMP_DIRECTORY}/toolchains/sqlite3-CMakeLists.txt"
+
+FOSSIL_FILE="${GOD_TEMP_DIRECTORY}/${FOSSIL_FILE_NAME}"
+FOSSIL_SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${FOSSIL_SOURCE_DIRECTORY_NAME}"
+AMALGAMATION_SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${AMALGAMATION_SOURCE_DIRECTORY_NAME}"
+SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
 DEBUG_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${DEBUG_BUILD_DIRECTORY_NAME}"
 RELEASE_BUILD_DIRECTORY="${SOURCE_DIRECTORY}/${RELEASE_BUILD_DIRECTORY_NAME}"
 
-SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
-PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-THIRDPARTY_DIRECTORY="${PROJECT_DIRECTORY}/ThirdParty"
-BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
-BUILD_TOOLCHAIN_FILE="${THIRDPARTY_DIRECTORY}/toolchains/ue4-bundled-toolchain.cmake"
-BUILD_CMAKE_LISTS="${THIRDPARTY_DIRECTORY}/toolchains/sqlite3-CMakeLists.txt"
-THIRDPARTY_INCLUDE_DIRECTORY="${THIRDPARTY_DIRECTORY}/include"
-THIRDPARTY_LIB_DEBUG_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/debug"
-THIRDPARTY_LIB_RELEASE_DIRECTORY="${THIRDPARTY_DIRECTORY}/lib/linux/release"
-
-source "${BUILD_TOOLCHAIN_SETUP}" \
-    && rm -rf "${FOSSIL_FILE}" \
+rm -rf "${FOSSIL_FILE}" \
     && rm -rf "${FOSSIL_SOURCE_DIRECTORY}" \
     && rm -rf "${AMALGAMATION_SOURCE_DIRECTORY}" \
     && rm -rf "${SOURCE_DIRECTORY}" \
@@ -93,35 +90,35 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
         -DCMAKE_BUILD_TYPE=Release .. \
     && ninja \
     && cd .. \
-    && mkdir -p "${THIRDPARTY_INCLUDE_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
-    && mkdir -p "${THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
+    && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
+            rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
         done \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
-            rm -rf "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             cp -vr "${SOURCE_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
             cp -vr "${DEBUG_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
             cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
-                "${THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
+                "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
     && rm -rf "${SOURCE_DIRECTORY}" \
         "${AMALGAMATION_SOURCE_DIRECTORY}" \
