@@ -128,6 +128,29 @@ function GOD-RestoreEnvironment {
     Foreach-Object { Set-Item Env:$($_.Name) $_.Value }
 }
 
+function GOD-ExecuteExternalCommand {
+    Param(
+        [Parameter(Mandatory=$True)]
+        [String]$Executable,
+        [Parameter(Mandatory=$False)]
+        [String]$Arguments
+    )
+
+    $Process = New-Object System.Diagnostics.Process
+    $Process.StartInfo.Filename = "$Executable"
+    $Process.StartInfo.Arguments = "$Arguments"
+    $Process.StartInfo.RedirectStandardOutput = $False
+    $Process.StartInfo.UseShellExecute = $False
+    $Process.Start()
+    $Process.WaitForExit()
+
+    if ($Process.ExitCode -eq 0) {
+        return $True
+    } else {
+        return $False
+    }
+}
+
 function GOD-ApplyBuildSettings {
     Param(
         [Parameter(Mandatory=$True)]
@@ -389,22 +412,10 @@ function GOD-RunCmakeBuild {
         GOD-InvokeCmdScript -Script "$GOD_VcVars64Script"
     }
 
-    if ($PSBoundParameters.ContainsKey('CMakeBuildOptions')) {
-        & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
-            -A $Platform `
-            -DCMAKE_BUILD_TYPE=$Configuration `
-            $CMakeBuildOptions `
-            -B"$BuildDirectory" `
-            -H"$SourceDirectory"
-    } else {
-        & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
-            -A $Platform `
-            -DCMAKE_BUILD_TYPE=$Configuration `
-            -B"$BuildDirectory" `
-            -H"$SourceDirectory"
-    }
-
-    GOD-DieOnError -Succeeded $? `
+    [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
+        -Executable "$GOD_CMakeExecutable" `
+        -Arguments "-G `"$GOD_CmakeGenerator`" -A $Platform -DCMAKE_BUILD_TYPE=$Configuration $CMakeBuildOptions -B`"$BuildDirectory`" -H`"$SourceDirectory`""
+    GOD-DieOnError -Succeeded $ReturnCode `
         -Error "failed to invoke $GOD_CMakeExecutable!"
 
     GOD-ApplyBuildSettings `
@@ -413,10 +424,10 @@ function GOD-RunCmakeBuild {
         -Vcxproj "$Vcxproj" `
         -TargetName "$TargetName"
 
-    & msbuild /t:clean /t:build "$Vcxproj" `
-        /property:Configuration=$Configuration `
-        /property:Platform=$Platform
-    GOD-DieOnError -Succeeded $? `
+    [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
+        -Executable "msbuild" `
+        -Arguments "/t:clean /t:build `"$Vcxproj`" /property:Configuration=$Configuration ` /property:Platform=$Platform"
+    GOD-DieOnError -Succeeded $ReturnCode `
         -Error "failed to invoke msbuild!"
 
     GOD-RestoreEnvironment -OldEnvironment $EnvironmentCache
@@ -460,10 +471,10 @@ function GOD-RunMsBuild {
         -Vcxproj "$Vcxproj" `
         -TargetName "$TargetName"
 
-    & msbuild /t:clean /t:build "$VcxprojName" `
-        /property:Configuration=$Configuration `
-        /property:Platform=$Platform
-    GOD-DieOnError -Succeeded $? `
+    [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
+        -Executable "msbuild" `
+        -Arguments "/t:clean /t:build `"$Vcxproj`" /property:Configuration=$Configuration ` /property:Platform=$Platform"
+    GOD-DieOnError -Succeeded $ReturnCode `
         -Error "failed to invoke msbuild!"
 
     GOD-RestoreEnvironment -OldEnvironment $EnvironmentCache
