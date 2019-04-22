@@ -30,21 +30,27 @@ New-Variable -Name "VersionToBuild" -Value "3280000"
 
 New-Variable -Name "ArchiveName" -Value "sqlite-amalgamation-${VersionToBuild}"
 New-Variable -Name "ArchiveFileName" -Value "$ArchiveName.zip"
-New-Variable -Name "SourceArchiveUrl" -Value "https://sqlite.org/2019/${ArchiveFileName}"
+New-Variable -Name "SourceArchiveUrl" `
+    -Value "https://sqlite.org/2019/${ArchiveFileName}"
 
 New-Variable -Name "TAG" -Value "sqlite3"
 
 New-Variable -Name "ScriptsDirectory" -Value "$PSScriptRoot"
-New-Variable -Name "BuildEnvironmentSetupScript" -Value "$ScriptsDirectory\thirdparty-setup-build-environment.ps1"
+New-Variable -Name "BuildEnvironmentSetupScript" `
+    -Value "$ScriptsDirectory\thirdparty-setup-build-environment.ps1"
 
 . "$BuildEnvironmentSetupScript"
 
-New-Variable -Name "BuildCMakeLists" -Value "$GOD_ThidPartyToolchainDirectory\sqlite3-CMakeLists.txt"
+New-Variable -Name "BuildCMakeLists" `
+    -Value "$GOD_ThidPartyToolchainDirectory\sqlite3-CMakeLists.txt"
 
-New-Variable -Name "SourceDirectoryName" -Value "$GOD_ThidPartyBuildDirectoryPrefix-$TAG"
-New-Variable -Name "SourceDirectory" -Value "$GOD_TempDirectory\$SourceDirectoryName"
+New-Variable -Name "SourceDirectoryName" `
+    -Value "$GOD_ThidPartyBuildDirectoryPrefix-$TAG"
+New-Variable -Name "SourceDirectory" `
+    -Value "$GOD_TempDirectory\$SourceDirectoryName"
 New-Variable -Name "InnerSourceDirectoryName" -Value "$ArchiveName"
-New-Variable -Name "InnerSourceDirectory" -Value "$SourceDirectory\$InnerSourceDirectoryName"
+New-Variable -Name "InnerSourceDirectory" `
+    -Value "$SourceDirectory\$InnerSourceDirectoryName"
 
 New-Variable -Name "ArchiveFile" -Value "$SourceDirectory\$ArchiveFileName"
 
@@ -59,16 +65,21 @@ New-Variable -Name "Win32ReleaseBuildDirectoryName" -Value "build-win32-release"
 New-Variable -Name "Win64DebugBuildDirectoryName" -Value "build-win64-debug"
 New-Variable -Name "Win64ReleaseBuildDirectoryName" -Value "build-win64-release"
 
-New-Variable -Name "Win32DebugBuildDirectory" -Value "$InnerSourceDirectory\$Win32DebugBuildDirectoryName"
-New-Variable -Name "Win32ReleaseBuildDirectory" -Value "$InnerSourceDirectory\$Win32ReleaseBuildDirectoryName"
-New-Variable -Name "Win64DebugBuildDirectory" -Value "$InnerSourceDirectory\$Win64DebugBuildDirectoryName"
-New-Variable -Name "Win64ReleaseBuildDirectory" -Value "$InnerSourceDirectory\$Win64ReleaseBuildDirectoryName"
+New-Variable -Name "Win32DebugBuildDirectory" `
+    -Value "$InnerSourceDirectory\$Win32DebugBuildDirectoryName"
+New-Variable -Name "Win32ReleaseBuildDirectory"`
+     -Value "$InnerSourceDirectory\$Win32ReleaseBuildDirectoryName"
+New-Variable -Name "Win64DebugBuildDirectory" `
+    -Value "$InnerSourceDirectory\$Win64DebugBuildDirectoryName"
+New-Variable -Name "Win64ReleaseBuildDirectory" `
+    -Value "$InnerSourceDirectory\$Win64ReleaseBuildDirectoryName"
 
 # Remove the temporary build directory if it does exists already
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
 
 # Create the temporary build directory
-New-Item -Path "$GOD_TempDirectory" -Name "$SourceDirectoryName" -ItemType "directory"
+New-Item -Path "$GOD_TempDirectory" -Name "$SourceDirectoryName"
+    ` -ItemType "directory"
 
 # Download the distfile
 Invoke-WebRequest -Uri $SourceArchiveUrl -OutFile "$ArchiveFile"
@@ -116,22 +127,30 @@ GOD-RunCmakeBuild `
     -BuildDirectoryName "$Win64ReleaseBuildDirectoryName"
 
 # Copy the headers to ThirdParty/include
-Copy-Item "$InnerSourceDirectory\sqlite3.h" -Destination "$GOD_ThirdPartyIncludeDirectory"
-Copy-Item "$InnerSourceDirectory\sqlite3ext.h" -Destination "$GOD_ThirdPartyIncludeDirectory"
+Copy-Item "$InnerSourceDirectory\sqlite3.h" `
+    -Destination "$GOD_ThirdPartyIncludeDirectory"
+Copy-Item "$InnerSourceDirectory\sqlite3ext.h" `
+    -Destination "$GOD_ThirdPartyIncludeDirectory"
 
 # Copy the win32 debug libraries to ThirdParty/lib/win32/debug
-Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.lib" -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
-Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.pdb" -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
+Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.lib" `
+    -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
+Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.pdb" `
+    -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
 
 # Copy win32 release libraries to ThirdParty/lib/win32/release
-Copy-Item "$Win32ReleaseBuildDirectory\Release\$Win32ReleaseTargetName.lib" -Destination "$GOD_ThirdPartyLibWin32ReleaseDirectory"
+Copy-Item "$Win32ReleaseBuildDirectory\Release\$Win32ReleaseTargetName.lib" `
+    -Destination "$GOD_ThirdPartyLibWin32ReleaseDirectory"
 
 # Copy the win64 debug libraries to ThirdParty/lib/win64/debug
-Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.lib" -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
-Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.pdb" -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
+Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.lib" `
+    -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
+Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.pdb" `
+    -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
 
 # Copy win64 release libraries to ThirdParty/lib/win64/release
-Copy-Item "$Win64ReleaseBuildDirectory\Release\$Win64ReleaseTargetName.lib" -Destination "$GOD_ThirdPartyLibWin64ReleaseDirectory"
+Copy-Item "$Win64ReleaseBuildDirectory\Release\$Win64ReleaseTargetName.lib" 
+    `-Destination "$GOD_ThirdPartyLibWin64ReleaseDirectory"
 
 # Clean up the temporary build directory
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse

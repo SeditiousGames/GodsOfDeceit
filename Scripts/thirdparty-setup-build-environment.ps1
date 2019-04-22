@@ -28,29 +28,45 @@ $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
 New-Variable -Name "GOD_CMakeExecutable" -Value "C:\CMake\bin\cmake.exe"
 New-Variable -Name "GOD_GitExecutable" -Value "C:\Program Files\Git\bin\git.exe"
-New-Variable -Name "GOD_VisualStudioBasePath" -Value "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+New-Variable -Name "GOD_VisualStudioBasePath" `
+    -Value "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
 New-Variable -Name "GOD_CmakeGenerator" -Value "Visual Studio 16 2019"
 New-Variable -Name "GOD_WindowsTargetPlatformVersion" -Value "10.0"
 
-New-Variable -Name "GOD_VcVarsScriptsBasePath" -Value "$GOD_VisualStudioBasePath\VC\Auxiliary\Build"
-New-Variable -Name "GOD_VcVarsAllScript" -Value "$GOD_VcVarsScriptsBasePath\vcvarsall.bat"
-New-Variable -Name "GOD_VcVars32Script" -Value "$GOD_VcVarsScriptsBasePath\vcvars32.bat"
-New-Variable -Name "GOD_VcVars64Script" -Value "$GOD_VcVarsScriptsBasePath\vcvars64.bat"
+New-Variable -Name "GOD_VcVarsScriptsBasePath" `
+    -Value "$GOD_VisualStudioBasePath\VC\Auxiliary\Build"
+New-Variable -Name "GOD_VcVarsAllScript" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvarsall.bat"
+New-Variable -Name "GOD_VcVars32Script" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvars32.bat"
+New-Variable -Name "GOD_VcVars64Script" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvars64.bat"
 
 New-Variable -Name "GOD_ProjectDirectory" -Value "$PSScriptRoot\.."
-New-Variable -Name "GOD_ThirdPartyDirectory" -Value "$GOD_ProjectDirectory\ThirdParty"
-New-Variable -Name "GOD_ThirdPartyIncludeDirectory" -Value "$GOD_ThirdPartyDirectory\include"
-New-Variable -Name "GOD_ThirdPartyLibBaseDirectory" -Value "$GOD_ThirdPartyDirectory\lib"
-New-Variable -Name "GOD_ThirdPartyLibWin32BaseDirectory" -Value "$GOD_ThirdPartyLibBaseDirectory\win32"
-New-Variable -Name "GOD_ThirdPartyLibWin32DebugDirectory" -Value "$GOD_ThirdPartyLibWin32BaseDirectory\debug"
-New-Variable -Name "GOD_ThirdPartyLibWin32ReleaseDirectory" -Value "$GOD_ThirdPartyLibWin32BaseDirectory\release"
-New-Variable -Name "GOD_ThirdPartyLibWin64BaseDirectory" -Value "$GOD_ThirdPartyLibBaseDirectory\win64"
-New-Variable -Name "GOD_ThirdPartyLibWin64DebugDirectory" -Value "$GOD_ThirdPartyLibWin64BaseDirectory\debug"
-New-Variable -Name "GOD_ThirdPartyLibWin64ReleaseDirectory" -Value "$GOD_ThirdPartyLibWin64BaseDirectory\release"
-New-Variable -Name "GOD_ThidPartyToolchainDirectory" -Value "$GOD_ThirdPartyDirectory\toolchain"
+New-Variable -Name "GOD_ThirdPartyDirectory" `
+    -Value "$GOD_ProjectDirectory\ThirdParty"
+New-Variable -Name "GOD_ThirdPartyIncludeDirectory" `
+    -Value "$GOD_ThirdPartyDirectory\include"
+New-Variable -Name "GOD_ThirdPartyLibBaseDirectory" `
+    -Value "$GOD_ThirdPartyDirectory\lib"
+New-Variable -Name "GOD_ThirdPartyLibWin32BaseDirectory" `
+    -Value "$GOD_ThirdPartyLibBaseDirectory\win32"
+New-Variable -Name "GOD_ThirdPartyLibWin32DebugDirectory" `
+    -Value "$GOD_ThirdPartyLibWin32BaseDirectory\debug"
+New-Variable -Name "GOD_ThirdPartyLibWin32ReleaseDirectory" `
+    -Value "$GOD_ThirdPartyLibWin32BaseDirectory\release"
+New-Variable -Name "GOD_ThirdPartyLibWin64BaseDirectory" `
+    -Value "$GOD_ThirdPartyLibBaseDirectory\win64"
+New-Variable -Name "GOD_ThirdPartyLibWin64DebugDirectory" `
+    -Value "$GOD_ThirdPartyLibWin64BaseDirectory\debug"
+New-Variable -Name "GOD_ThirdPartyLibWin64ReleaseDirectory" `
+    -Value "$GOD_ThirdPartyLibWin64BaseDirectory\release"
+New-Variable -Name "GOD_ThidPartyToolchainDirectory" `
+    -Value "$GOD_ThirdPartyDirectory\toolchain"
 New-Variable -Name "GOD_ThidPartyBuildDirectoryPrefix" -Value "god-thirdparty"
 
-New-Variable -Name "GOD_TempDirectory" -Value "$($(Get-ChildItem Env:\TEMP).Value)"
+New-Variable -Name "GOD_TempDirectory" `
+    -Value "$($(Get-ChildItem Env:\TEMP).Value)"
 
 function GOD-Fatal() {
     Param(
@@ -100,10 +116,12 @@ function GOD-RestoreEnvironment {
         [System.Collections.DictionaryEntry[]]$OldEnvironment
     )
 
-    Compare-Object $OldEnvironment $(GOD-GetEnvironment) -Property Key -PassThru |
+    Compare-Object $OldEnvironment $(GOD-GetEnvironment) `
+        -Property Key -PassThru |
     Where-Object { $_.SideIndicator -eq "=>" } |
     Foreach-Object { Remove-item Env:$($_.Name) }
-    Compare-Object $OldEnvironment $(GOD-GetEnvironment) -Property Value -PassThru |
+    Compare-Object $OldEnvironment $(GOD-GetEnvironment) `
+        -Property Value -PassThru |
     Where-Object { $_.SideIndicator -eq "<=" } |
     Foreach-Object { Set-Item Env:$($_.Name) $_.Value }
 }
@@ -135,18 +153,23 @@ function GOD-ApplyBuildSettings {
     $XPathProject = "//ns:Project"
     $XPathPropertyGroup = "$XPathProject/ns:PropertyGroup"
     $XPathGlobals = "$XPathPropertyGroup[@Label = `"Globals`"]"
-    $XPathWindowsTargetPlatformVersion = "$XPathGlobals/ns:WindowsTargetPlatformVersion"
+    $XPathWindowsTargetPlatformVersion = `
+        "$XPathGlobals/ns:WindowsTargetPlatformVersion"
     $XPathPropertyGroupNoAttribute = "$XPathPropertyGroup[not(@*)]"
-    $XPathTargetName = "$XPathPropertyGroupNoAttribute/ns:TargetName[contains(@Condition, `"$BuildType`")]"
-    $XPathConfiguration = "$XPathPropertyGroup[contains(@Condition, `"$BuildType`") and @Label = `"Configuration`"]"
+    $XPathTargetName = `
+        "$XPathPropertyGroupNoAttribute/ns:TargetName[contains(@Condition, `"$BuildType`")]"
+    $XPathConfiguration = `
+        "$XPathPropertyGroup[contains(@Condition, `"$BuildType`") and @Label = `"Configuration`"]"
     $XPathCharacterSet = "$XPathConfiguration/ns:CharacterSet"
-    $XPathItemDefinitionGroup = "$XPathProject/ns:ItemDefinitionGroup[contains(@Condition, `"$BuildType`")]"
+    $XPathItemDefinitionGroup = `
+        "$XPathProject/ns:ItemDefinitionGroup[contains(@Condition, `"$BuildType`")]"
     $XPathClCompile = "$XPathItemDefinitionGroup/ns:ClCompile"
     $XPathRuntimeLibrary = "$XPathClCompile/ns:RuntimeLibrary"
     $XPathProgramDataBaseFileName = "$XPathClCompile/ns:ProgramDataBaseFileName"
 
     [Xml]$BuildConfig = Get-Content -Path "$Vcxproj"
-    $Namespace = New-Object System.Xml.XmlNamespaceManager -ArgumentList $BuildConfig.NameTable
+    $Namespace = New-Object System.Xml.XmlNamespaceManager `
+        -ArgumentList $BuildConfig.NameTable
     $Namespace.AddNamespace("ns", "$Xmlns")
 
     $Project = $BuildConfig.SelectSingleNode("$XPathProject", $Namespace)
@@ -156,7 +179,8 @@ function GOD-ApplyBuildSettings {
 
     $Globals = $BuildConfig.SelectSingleNode("$XPathGlobals", $Namespace)
     if (-not $Globals) {
-        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", $Project.NamespaceURI);
+        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", `
+            $Project.NamespaceURI);
         $LabelAttribute = $BuildConfig.CreateAttribute("Label")
         $LabelAttribute.Value = "Globals"
         $PropertyGroupElement.Attributes.Append($LabelAttribute)
@@ -165,84 +189,116 @@ function GOD-ApplyBuildSettings {
         $Globals = $BuildConfig.SelectSingleNode("$XPathGlobals", $Namespace)
     }
 
-    $WindowsTargetPlatformVersion = $BuildConfig.SelectSingleNode("$XPathWindowsTargetPlatformVersion", $Namespace)
+    $WindowsTargetPlatformVersion = `
+        $BuildConfig.SelectSingleNode("$XPathWindowsTargetPlatformVersion",`
+             $Namespace)
     if (-not $WindowsTargetPlatformVersion) {
-        $WindowsTargetPlatformVersionElement = $BuildConfig.CreateElement("WindowsTargetPlatformVersion", $Globals.NamespaceURI);
-        $TextNode = $BuildConfig.CreateTextNode("$GOD_WindowsTargetPlatformVersion")
+        $WindowsTargetPlatformVersionElement = `
+            $BuildConfig.CreateElement("WindowsTargetPlatformVersion", `
+                $Globals.NamespaceURI);
+        $TextNode = `
+            $BuildConfig.CreateTextNode("$GOD_WindowsTargetPlatformVersion")
         $WindowsTargetPlatformVersionElement.AppendChild($TextNode)
         $Globals.AppendChild($WindowsTargetPlatformVersionElement)
 
-        $WindowsTargetPlatformVersion = $BuildConfig.SelectSingleNode("$XPathWindowsTargetPlatformVersion", $Namespace)
+        $WindowsTargetPlatformVersion = `
+            $BuildConfig.SelectSingleNode("$XPathWindowsTargetPlatformVersion", `
+                $Namespace)
     } else {
-        $WindowsTargetPlatformVersion."#text" = "$GOD_WindowsTargetPlatformVersion"
+        $WindowsTargetPlatformVersion."#text" = `
+            "$GOD_WindowsTargetPlatformVersion"
     }
 
-    $PropertyGroupNoAttribute = $BuildConfig.SelectSingleNode("$XPathPropertyGroupNoAttribute", $Namespace)
+    $PropertyGroupNoAttribute = `
+        $BuildConfig.SelectSingleNode("$XPathPropertyGroupNoAttribute",`
+             $Namespace)
     if (-not $PropertyGroupNoAttribute) {
-        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", $Project.NamespaceURI);
+        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", `
+            $Project.NamespaceURI);
         $Project.AppendChild($PropertyGroupElement)
 
-        $PropertyGroupNoAttribute = $BuildConfig.SelectSingleNode("$XPathPropertyGroupNoAttribute", $Namespace)
+        $PropertyGroupNoAttribute = `
+            $BuildConfig.SelectSingleNode("$XPathPropertyGroupNoAttribute", `
+                $Namespace)
     }
 
-    $TargetNameNode = $BuildConfig.SelectSingleNode("$XPathTargetName", $Namespace)
+    $TargetNameNode = $BuildConfig.SelectSingleNode("$XPathTargetName", `
+        $Namespace)
     if (-not $TargetNameNode) {
-        $TargetNameElement = $BuildConfig.CreateElement("TargetName", $PropertyGroupNoAttribute.NamespaceURI);
+        $TargetNameElement = $BuildConfig.CreateElement("TargetName", `
+            $PropertyGroupNoAttribute.NamespaceURI);
         $ConditionAttribute = $BuildConfig.CreateAttribute("Condition")
-        $ConditionAttribute.Value = "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
+        $ConditionAttribute.Value = `
+            "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
         $TargetNameElement.Attributes.Append($ConditionAttribute)
         $TextNode = $BuildConfig.CreateTextNode("$TargetName")
         $TargetNameElement.AppendChild($TextNode)
         $PropertyGroupNoAttribute.AppendChild($TargetNameElement)
 
-        $TargetNameNode = $BuildConfig.SelectSingleNode("$XPathTargetName", $Namespace)
+        $TargetNameNode = $BuildConfig.SelectSingleNode("$XPathTargetName",`
+             $Namespace)
     } else {
         $TargetNameNode."#text" = "$TargetName"
     }
 
-    $ConfigurationNode = $BuildConfig.SelectSingleNode("$XPathConfiguration", $Namespace)
+    $ConfigurationNode = $BuildConfig.SelectSingleNode("$XPathConfiguration", `
+        $Namespace)
     if (-not $ConfigurationNode) {
-        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", $Project.NamespaceURI);
+        $PropertyGroupElement = $BuildConfig.CreateElement("PropertyGroup", `
+            $Project.NamespaceURI);
         $ConditionAttribute = $BuildConfig.CreateAttribute("Condition")
-        $ConditionAttribute.Value = "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
+        $ConditionAttribute.Value = `
+            "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
         $PropertyGroupElement.Attributes.Append($ConditionAttribute)
         $LabelAttribute = $BuildConfig.CreateAttribute("Label")
         $LabelAttribute.Value = "Configuration"
         $PropertyGroupElement.Attributes.Append($LabelAttribute)
         $Project.AppendChild($PropertyGroupElement)
 
-        $ConfigurationNode = $BuildConfig.SelectSingleNode("$XPathConfiguration", $Namespace)
+        $ConfigurationNode = `
+            $BuildConfig.SelectSingleNode("$XPathConfiguration", $Namespace)
     }
 
-    $CharacterSet = $BuildConfig.SelectSingleNode("$XPathCharacterSet", $Namespace)
+    $CharacterSet = $BuildConfig.SelectSingleNode("$XPathCharacterSet", `
+        $Namespace)
     if (-not $CharacterSet) {
-        $CharacterSetElement = $BuildConfig.CreateElement("CharacterSet", $ConfigurationNode.NamespaceURI);
+        $CharacterSetElement = $BuildConfig.CreateElement("CharacterSet", `
+            $ConfigurationNode.NamespaceURI);
         $TextNode = $BuildConfig.CreateTextNode("Unicode")
         $CharacterSetElement.AppendChild($TextNode)
         $ConfigurationNode.AppendChild($CharacterSetElement)
 
-        $CharacterSet = $BuildConfig.SelectSingleNode("$XPathCharacterSet", $Namespace)
+        $CharacterSet = `
+            $BuildConfig.SelectSingleNode("$XPathCharacterSet", $Namespace)
     } else {
         $CharacterSet."#text" = "Unicode"
     }
 
-    $ItemDefinitionGroup = $BuildConfig.SelectSingleNode("$XPathItemDefinitionGroup", $Namespace)
+    $ItemDefinitionGroup = `
+        $BuildConfig.SelectSingleNode("$XPathItemDefinitionGroup", $Namespace)
     if (-not $ItemDefinitionGroup) {
-        $ItemDefinitionGroupElement = $BuildConfig.CreateElement("ItemDefinitionGroup", $Project.NamespaceURI);
+        $ItemDefinitionGroupElement = `
+            $BuildConfig.CreateElement("ItemDefinitionGroup", `
+                $Project.NamespaceURI);
         $ConditionAttribute = $BuildConfig.CreateAttribute("Condition")
-        $ConditionAttribute.Value = "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
+        $ConditionAttribute.Value = `
+            "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
         $ItemDefinitionGroupElement.Attributes.Append($ConditionAttribute)
         $Project.AppendChild($ItemDefinitionGroupElement)
 
-        $ItemDefinitionGroup = $BuildConfig.SelectSingleNode("$XPathItemDefinitionGroup", $Namespace)
+        $ItemDefinitionGroup = `
+            $BuildConfig.SelectSingleNode("$XPathItemDefinitionGroup", `
+            $Namespace)
     }
 
     $ClCompile = $BuildConfig.SelectSingleNode("$XPathClCompile", $Namespace)
     if (-not $ClCompile) {
-        $ClCompileElement = $BuildConfig.CreateElement("ClCompile", $ItemDefinitionGroup.NamespaceURI);
+        $ClCompileElement = $BuildConfig.CreateElement("ClCompile", `
+            $ItemDefinitionGroup.NamespaceURI);
         $ItemDefinitionGroup.AppendChild($ClCompileElement)
 
-        $ClCompile = $BuildConfig.SelectSingleNode("$XPathClCompile", $Namespace)
+        $ClCompile = $BuildConfig.SelectSingleNode("$XPathClCompile", `
+            $Namespace)
     }
 
     if ("$Configuration" -eq "Debug") {
@@ -251,14 +307,17 @@ function GOD-ApplyBuildSettings {
         $RuntimeLibraryValue = "MultiThreadedDLL"
     }
 
-    $RuntimeLibrary = $BuildConfig.SelectSingleNode("$XPathRuntimeLibrary", $Namespace)
+    $RuntimeLibrary = `
+        $BuildConfig.SelectSingleNode("$XPathRuntimeLibrary", $Namespace)
     if (-not $RuntimeLibrary) {
-        $RuntimeLibraryElement = $BuildConfig.CreateElement("RuntimeLibrary", $ClCompile.NamespaceURI);
+        $RuntimeLibraryElement = $BuildConfig.CreateElement("RuntimeLibrary", `
+            $ClCompile.NamespaceURI);
         $TextNode = $BuildConfig.CreateTextNode("$RuntimeLibraryValue")
         $RuntimeLibraryElement.AppendChild($TextNode)
         $ClCompile.AppendChild($RuntimeLibraryElement)
 
-        $RuntimeLibrary = $BuildConfig.SelectSingleNode("$XPathRuntimeLibrary", $Namespace)
+        $RuntimeLibrary = `
+            $BuildConfig.SelectSingleNode("$XPathRuntimeLibrary", $Namespace)
     } else {
         $RuntimeLibrary."#text" = "$RuntimeLibraryValue"
     }
@@ -266,14 +325,20 @@ function GOD-ApplyBuildSettings {
     if ("$Configuration" -eq "Debug") {
         $PdbFile = "`$(OutDir)`$(TargetName).pdb"
 
-        $ProgramDataBaseFileName = $BuildConfig.SelectSingleNode("$XPathProgramDataBaseFileName", $Namespace)
+        $ProgramDataBaseFileName = `
+            $BuildConfig.SelectSingleNode("$XPathProgramDataBaseFileName", `
+                $Namespace)
         if (-not $ProgramDataBaseFileName) {
-            $ProgramDataBaseFileNameElement = $BuildConfig.CreateElement("ProgramDataBaseFileName", $ClCompile.NamespaceURI);
+            $ProgramDataBaseFileNameElement = `
+                $BuildConfig.CreateElement("ProgramDataBaseFileName", `
+                    $ClCompile.NamespaceURI);
             $TextNode = $BuildConfig.CreateTextNode("$PdbFile")
             $ProgramDataBaseFileNameElement.AppendChild($TextNode)
             $ClCompile.AppendChild($ProgramDataBaseFileNameElement)
 
-            $ProgramDataBaseFileName = $BuildConfig.SelectSingleNode("$XPathProgramDataBaseFileName", $Namespace)
+            $ProgramDataBaseFileName = `
+                $BuildConfig.SelectSingleNode("$XPathProgramDataBaseFileName", `
+                    $Namespace)
         } else {
             $ProgramDataBaseFileName."#text" = "$PdbFile"
         }
