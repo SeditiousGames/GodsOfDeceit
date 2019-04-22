@@ -71,8 +71,10 @@ $Win64ReleaseLibraries = ( `
     "$Win64ReleaseTargetName.lib"
 )
 
+# Remove the temporary build directory if it does exists already
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
 
+# Fetch the source code
 [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
     -Executable "$GOD_GitExecutable" `
     -Arguments "clone -b $GitTagToBuild --single-branch --depth 1 $GitCloneUrl `"$SourceDirectory`""
