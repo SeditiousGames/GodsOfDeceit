@@ -58,6 +58,10 @@ New-Variable -Name "BoostSourceDirectory" `
     -Value "$SourceDirectory\$TAG"
 New-Variable -Name "BoostStageDirectory" `
     -Value "$SourceDirectory\stage"
+New-Variable -Name "BoostStageIncludeDirectory" `
+    -Value "$BoostStageDirectory\include"
+New-Variable -Name "BoostStageLibDirectory" `
+    -Value "$BoostStageDirectory\lib"
 New-Variable -Name "ZlibSourceDirectory" `
     -Value "$SourceDirectory\$TAG_ZLIB"
 
@@ -111,3 +115,74 @@ GOD-DieOnError -Succeeded $ReturnCode `
     -WorkingDirectory "$BoostSourceDirectory"
 GOD-DieOnError -Succeeded $ReturnCode `
     -Error "failed to build Boost C++ Libraries inside '$BoostSourceDirectory'!"
+
+# First, clean up the old headers
+# Then, copy the new headers to destination
+Remove-Item -LiteralPath "$TargetIncludeDirectory" `
+    -ErrorAction Ignore -Force -Recurse
+Copy-Item "$BoostStageIncludeDirectory\$TAG-$($BoostVersionMajor)_$($BoostVersionMinor)\$TargetIncludeDirectoryName" `
+    -Destination "$GOD_ThirdPartyIncludeDirectory" `
+     -Recurse
+
+# First, clean up the old win32 debug libraries
+# Then, copy the new win32 debug libraries to destination
+$CopyPattern = "libboost_*-mt-gd-x32-*"
+$CopyDestination = "$GOD_ThirdPartyLibWin32DebugDirectory"
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.lib" `
+    -ErrorAction Ignore -Force
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.pdb" `
+    -ErrorAction Ignore -Force
+Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
+    -Destination "$CopyDestination"
+Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+    Copy -Destination "$CopyDestination"
+
+# First, clean up the old win32 release libraries
+# Then, copy the new win32 release libraries to destination
+$CopyPattern = "libboost_*-mt-x32-*"
+$CopyDestination = "$GOD_ThirdPartyLibWin32ReleaseDirectory"
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.lib" `
+    -ErrorAction Ignore -Force
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.pdb" `
+    -ErrorAction Ignore -Force
+Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
+    -Destination "$CopyDestination"
+Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+    Copy -Destination "$CopyDestination"
+
+# First, clean up the old win64 debug libraries
+# Then, copy the new win64 debug libraries to destination
+$CopyPattern = "libboost_*-mt-gd-x64-*"
+$CopyDestination = "$GOD_ThirdPartyLibWin64DebugDirectory"
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.lib" `
+    -ErrorAction Ignore -Force
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.pdb" `
+    -ErrorAction Ignore -Force
+Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
+    -Destination "$CopyDestination"
+Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+    Copy -Destination "$CopyDestination"
+
+# First, clean up the old win64 release libraries
+# Then, copy the new win64 release libraries to destination
+$CopyPattern = "libboost_*-mt-x64-*"
+$CopyDestination = "$GOD_ThirdPartyLibWin64ReleaseDirectory"
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.lib" `
+    -ErrorAction Ignore -Force
+Remove-Item `
+    -Path "$CopyDestination\$CopyPattern.pdb" `
+    -ErrorAction Ignore -Force
+Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
+    -Destination "$CopyDestination"
+Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+    Copy -Destination "$CopyDestination"
+
+# Clean up the temporary build directory
+Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
