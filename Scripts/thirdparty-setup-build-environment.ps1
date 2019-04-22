@@ -107,7 +107,7 @@ function GOD-InvokeCmdScript {
     )
     $CmdLine = """$Script"" $args & set"
         & $Env:SystemRoot\system32\cmd.exe /c $CmdLine |
-        Select-String '^([^=]*)=(.*)$' | Foreach-Object {
+        Select-String '^([^=]*)=(.*)$' | ForEach-Object {
         $VarName = $_.Matches[0].Groups[1].Value
         $VarValue = $_.Matches[0].Groups[2].Value
         Set-Item Env:$VarName $VarValue
@@ -127,11 +127,11 @@ function GOD-RestoreEnvironment {
     Compare-Object $OldEnvironment $(GOD-GetEnvironment) `
         -Property Key -PassThru |
     Where-Object { $_.SideIndicator -eq "=>" } |
-    Foreach-Object { Remove-item Env:$($_.Name) }
+    ForEach-Object { Remove-item Env:$($_.Name) }
     Compare-Object $OldEnvironment $(GOD-GetEnvironment) `
         -Property Value -PassThru |
     Where-Object { $_.SideIndicator -eq "<=" } |
-    Foreach-Object { Set-Item Env:$($_.Name) $_.Value }
+    ForEach-Object { Set-Item Env:$($_.Name) $_.Value }
 }
 
 function GOD-ExecuteExternalCommand {

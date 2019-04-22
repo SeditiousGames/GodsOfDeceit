@@ -55,7 +55,7 @@ GOD-DieOnError -Succeeded $ReturnCode `
 
 # First, clean up the old headers
 # Then, copy the new headers to destination
-$Includes | Foreach {
+$Includes | ForEach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyIncludeDirectory\$_" `
         -ErrorAction Ignore -Force -Recurse
     Copy-Item "$SourceDirectory\include\$_" `
