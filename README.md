@@ -77,7 +77,7 @@ Theoretically, it's possible to run Gods of Deceit on the following platforms:
 
 * iOS: Same as Android.
 
-# Third-Party C/C++ Libraries
+## Third-Party C/C++ Libraries
 
 Gods of Deceit relies on various open-source C/C++ libraries including:
 
