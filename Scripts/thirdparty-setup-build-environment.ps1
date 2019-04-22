@@ -362,7 +362,9 @@ function GOD-RunCmakeBuild {
         [Parameter(Mandatory=$True)]
         [String]$VcxprojName,
         [Parameter(Mandatory=$True)]
-        [String]$BuildDirectoryName
+        [String]$BuildDirectoryName,
+        [Parameter(Mandatory=$False)]
+        [String]$CMakeBuildOptions
     )
 
     if ("$Configuration" -ne "Debug" -And "$Configuration" -ne "Release") {
@@ -387,11 +389,21 @@ function GOD-RunCmakeBuild {
         GOD-InvokeCmdScript -Script "$GOD_VcVars64Script"
     }
 
-    & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
-        -A $Platform `
-        -DCMAKE_BUILD_TYPE=$Configuration `
-        -B"$BuildDirectory" `
-        -H"$SourceDirectory"
+    if ($PSBoundParameters.ContainsKey('CMakeBuildOptions')) {
+        & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
+            -A $Platform `
+            -DCMAKE_BUILD_TYPE=$Configuration `
+            $CMakeBuildOptions `
+            -B"$BuildDirectory" `
+            -H"$SourceDirectory"
+    } else {
+        & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
+            -A $Platform `
+            -DCMAKE_BUILD_TYPE=$Configuration `
+            -B"$BuildDirectory" `
+            -H"$SourceDirectory"
+    }
+
     GOD-DieOnError -Succeeded $? `
         -Error "failed to invoke $GOD_CMakeExecutable!"
 
