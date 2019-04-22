@@ -413,7 +413,7 @@ function GOD-RunCmakeBuild {
         -Vcxproj "$Vcxproj" `
         -TargetName "$TargetName"
 
-    & msbuild /t:clean /t:build "$VcxprojName" `
+    & msbuild /t:clean /t:build "$Vcxproj" `
         /property:Configuration=$Configuration `
         /property:Platform=$Platform
     GOD-DieOnError -Succeeded $? `
