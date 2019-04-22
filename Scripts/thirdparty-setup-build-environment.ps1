@@ -43,7 +43,8 @@ New-Variable -Name "GOD_VcVars32Script" `
 New-Variable -Name "GOD_VcVars64Script" `
     -Value "$GOD_VcVarsScriptsBasePath\vcvars64.bat"
 
-New-Variable -Name "GOD_ProjectDirectory" -Value "$PSScriptRoot\.."
+New-Variable -Name "GOD_ProjectDirectory" `
+    -Value (get-item $PSScriptRoot).parent.FullName
 New-Variable -Name "GOD_ThirdPartyDirectory" `
     -Value "$GOD_ProjectDirectory\ThirdParty"
 New-Variable -Name "GOD_ThirdPartyIncludeDirectory" `
