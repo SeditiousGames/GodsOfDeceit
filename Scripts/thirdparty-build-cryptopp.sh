@@ -68,24 +68,18 @@ source "${BUILD_TOOLCHAIN_SETUP}" \
     && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
     && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && rm -rf "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
-    && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
-        do \
-            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
-        done \
-    && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
-        do \
-            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
-        done \
     && mkdir -p "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}" \
     && cp -vr "${SOURCE_DIRECTORY}/"*.h \
         "${THIRDPARTY_INCLUDE_TARGET_DIRECTORY}/" \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
+            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
             cp -vr "${DEBUG_BUILD_DIRECTORY}/${ITEM}" \
                 "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
+            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
             cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
                 "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \

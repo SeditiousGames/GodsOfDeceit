@@ -47,9 +47,6 @@ rm -rf "${SOURCE_DIRECTORY}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
-        done \
-    && for ITEM in "${INCLUDES[@]}"; \
-        do \
             cp -vr "${SOURCE_DIRECTORY}/include/${ITEM}" \
                 "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
         done \

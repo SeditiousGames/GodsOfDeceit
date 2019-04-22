@@ -108,27 +108,18 @@ rm -rf "${ARCHIVE_FILE}" \
     && for ITEM in "${INCLUDES[@]}"; \
         do \
             rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}";\
-        done \
-    && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
-        do \
-            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
-        done \
-    && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
-        do \
-            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
-        done \
-    && for ITEM in "${INCLUDES[@]}"; \
-        do \
             cp -vr "${INNER_SOURCE_DIRECTORY}/${ITEM}" \
                 "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${DEBUG_LIBRARIES[@]}"; \
         do \
+            rm -rf "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
             cp -vr "${DEBUG_BUILD_DIRECTORY}/${ITEM}" \
                 "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/${ITEM}"; \
         done \
     && for ITEM in "${RELEASE_LIBRARIES[@]}"; \
         do \
+            rm -rf "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
             cp -vr "${RELEASE_BUILD_DIRECTORY}/${ITEM}" \
                 "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/${ITEM}"; \
         done \
