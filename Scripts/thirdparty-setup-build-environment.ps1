@@ -160,7 +160,9 @@ function GOD-ApplyBuildSettings {
         [Parameter(Mandatory=$True)]
         [String]$Vcxproj,
         [Parameter(Mandatory=$True)]
-        [String]$TargetName
+        [String]$TargetName,
+        [Parameter(Mandatory=$False)]
+        [String]$LibNamePrefix
     )
 
     if ("$Configuration" -ne "Debug" -And "$Configuration" -ne "Release") {
@@ -256,14 +258,14 @@ function GOD-ApplyBuildSettings {
         $ConditionAttribute.Value = `
             "'`$(Configuration)`|`$(Platform)'=='$Configuration`|$Platform'"
         $TargetNameElement.Attributes.Append($ConditionAttribute)
-        $TextNode = $BuildConfig.CreateTextNode("$TargetName")
+        $TextNode = $BuildConfig.CreateTextNode("$LibNamePrefix$TargetName")
         $TargetNameElement.AppendChild($TextNode)
         $PropertyGroupNoAttribute.AppendChild($TargetNameElement)
 
         $TargetNameNode = $BuildConfig.SelectSingleNode("$XPathTargetName",`
              $Namespace)
     } else {
-        $TargetNameNode."#text" = "$TargetName"
+        $TargetNameNode."#text" = "$LibNamePrefix$TargetName"
     }
 
     $ConfigurationNode = $BuildConfig.SelectSingleNode("$XPathConfiguration", `
@@ -387,7 +389,9 @@ function GOD-RunCmakeBuild {
         [Parameter(Mandatory=$True)]
         [String]$BuildDirectoryName,
         [Parameter(Mandatory=$False)]
-        [String]$CMakeBuildOptions
+        [String]$CMakeBuildOptions,
+        [Parameter(Mandatory=$False)]
+        [String]$LibNamePrefix
     )
 
     if ("$Configuration" -ne "Debug" -And "$Configuration" -ne "Release") {
@@ -422,7 +426,8 @@ function GOD-RunCmakeBuild {
         -Configuration "$Configuration" `
         -Platform "$Platform" `
         -Vcxproj "$Vcxproj" `
-        -TargetName "$TargetName"
+        -TargetName "$TargetName" `
+        -LibNamePrefix "$LibNamePrefix"
 
     [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
         -Executable "msbuild" `
@@ -444,7 +449,9 @@ function GOD-RunMsBuild {
         [Parameter(Mandatory=$True)]
         [String]$SourceDirectory,
         [Parameter(Mandatory=$True)]
-        [String]$VcxprojName
+        [String]$VcxprojName,
+        [Parameter(Mandatory=$False)]
+        [String]$LibNamePrefix
     )
 
     if ("$Configuration" -ne "Debug" -And "$Configuration" -ne "Release") {
@@ -469,7 +476,8 @@ function GOD-RunMsBuild {
         -Configuration "$Configuration" `
         -Platform "$Platform" `
         -Vcxproj "$Vcxproj" `
-        -TargetName "$TargetName"
+        -TargetName "$TargetName" `
+        -LibNamePrefix "$LibNamePrefix"
 
     [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
         -Executable "msbuild" `
