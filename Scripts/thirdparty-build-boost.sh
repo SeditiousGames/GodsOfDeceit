@@ -85,7 +85,7 @@ rm -rf "${SOURCE_DIRECTORY}" \
         --without-mpi \
         --without-python \
         -sZLIB_SOURCE="${ZLIB_SOURCE_DIRECTORY}" \
-        -j 17 \
+        -j $BOOST_BUILD_NUMBER_OF_JOBS \
         install \
     && mkdir -p "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
     && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
