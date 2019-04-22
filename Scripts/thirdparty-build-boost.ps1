@@ -136,7 +136,8 @@ Remove-Item `
     -ErrorAction Ignore -Force
 Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
     -Destination "$CopyDestination"
-Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+Get-ChildItem "$BoostSourceDirectory" `
+    -Recurse -Filter "$CopyPattern.pdb" | `
     Copy -Destination "$CopyDestination"
 
 # First, clean up the old win32 release libraries
@@ -146,13 +147,8 @@ $CopyDestination = "$GOD_ThirdPartyLibWin32ReleaseDirectory"
 Remove-Item `
     -Path "$CopyDestination\$CopyPattern.lib" `
     -ErrorAction Ignore -Force
-Remove-Item `
-    -Path "$CopyDestination\$CopyPattern.pdb" `
-    -ErrorAction Ignore -Force
 Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
     -Destination "$CopyDestination"
-Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
-    Copy -Destination "$CopyDestination"
 
 # First, clean up the old win64 debug libraries
 # Then, copy the new win64 debug libraries to destination
@@ -166,7 +162,8 @@ Remove-Item `
     -ErrorAction Ignore -Force
 Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
     -Destination "$CopyDestination"
-Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
+Get-ChildItem "$BoostSourceDirectory" `
+    -Recurse -Filter "$CopyPattern.pdb" | `
     Copy -Destination "$CopyDestination"
 
 # First, clean up the old win64 release libraries
@@ -176,13 +173,8 @@ $CopyDestination = "$GOD_ThirdPartyLibWin64ReleaseDirectory"
 Remove-Item `
     -Path "$CopyDestination\$CopyPattern.lib" `
     -ErrorAction Ignore -Force
-Remove-Item `
-    -Path "$CopyDestination\$CopyPattern.pdb" `
-    -ErrorAction Ignore -Force
 Copy-Item "$BoostStageLibDirectory\$CopyPattern.lib" `
     -Destination "$CopyDestination"
-Get-ChildItem "$BoostSourceDirectory" -Recurse -Filter "$CopyPattern.pdb" | `
-    Copy -Destination "$CopyDestination"
 
 # Clean up the temporary build directory
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
