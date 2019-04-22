@@ -71,13 +71,92 @@ Intended target platforms for Gods of Deceit are as follows:
 
 Theoretically, it's possible to run Gods of Deceit on the following platforms:
 
-* macOS: Sorry, I don't have any Mac. The only barrier to build it for macOS is the third-party dependencies. If someone with a Mac builds those dependecies -- which is not hard at all -- and modify the build system a bit, it shoud be build and run on any Mac without source code modification. A guide on how to build those dependecies for GNU/Linux resides inside ThirdParty/docs which should be a good starting point for a macOS build.
+* macOS: Sorry, I don't have any Mac. The only barrier to build it for macOS is the third-party dependencies. If someone with a Mac builds those dependencies -- which is not hard at all -- and modify the build system a bit, it shoud be build and run on any Mac without source code modification. A guide on how to build those dependencies for GNU/Linux resides inside ThirdParty/docs which should be a good starting point for a macOS build.
 
 * Android: In addition to cross-compiling the dependencies (I've done this for Android before and it's not that much complex to figure it out; refer to what I said about macOS), at least the input system requires a rewrite to make it work on Android.
 
 * iOS: Same as Android.
 
-# License
+# Third-Party C/C++ Libraries
+
+Gods of Deceit relies on various open-source C/C++ libraries including:
+
+* [Boost C++ Libraries](https://www.boost.org/)
+* [cereal](https://uscilab.github.io/cereal/)
+* [CppDB](http://cppcms.com/sql/cppdb/)
+* [Crypto++](https://www.cryptopp.com/)
+* [fmt](http://fmtlib.net/)
+* [SQLite](https://www.sqlite.org/)
+
+These dependencies are regularly getting updated and being built for Microsoft Windows - using latest supported msvc by Unreal Engine - and GNU/Linux - using the latest bundled LLVM/Clang toolchain - which reside in the ThirdParty submodule.
+
+If you ever need to build these dependencies yourself, it can be done in an automated manner using a set of Bash (for GNU/Linux) and PowerShell scripts.
+
+On Microsoft Windows (32 and 64 bits):
+
+```
+$ cd \path\to\gods\of\deceit\project\directory
+$ .\Scripts\thirdparty-build-boost.ps1
+$ .\Scripts\thirdparty-build-cereal.ps1
+$ .\Scripts\thirdparty-build-cppdb.ps1
+$ .\Scripts\thirdparty-build-cryptopp.ps1
+$ .\Scripts\thirdparty-build-fmt.ps1
+$ .\Scripts\thirdparty-build-sqlite3.ps1
+```
+
+On GNU/Linux (64-bit):
+
+```
+$ cd /path/to/gods/of/deceit/project/directory
+$ bash ./Scripts/thirdparty-build-boost.sh
+$ bash ./Scripts/thirdparty-build-cereal.sh
+$ bash ./Scripts/thirdparty-build-cppdb.sh
+$ bash ./Scripts/thirdparty-build-cryptopp.sh
+$ bash ./Scripts/thirdparty-build-fmt.sh
+$ bash ./Scripts/thirdparty-build-sqlite3.sh
+```
+
+This should automatically downloads, builds, and updates the dependencies according for your chosen platform. Please not that there are building requires various dependencies and manual tweaks inside the build scripts. On Microsoft Windows, this includes [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/overview), [7zip command-line executable](https://www.7-zip.org/), [GitBash for Windows](https://git-scm.com/), [CMake](https://cmake.org/), [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/downloads/). GNU/Linux requires [Bash](https://www.gnu.org/software/bash/), [CMake](https://cmake.org/), [Git](https://git-scm.com/), [Ninja](https://ninja-build.org/), and [UE4 LLVM/Clang bundled toolchain](https://docs.unrealengine.com/en-us/Platforms/Linux/NativeToolchain).
+
+Build tweaks can be done by either modifying the common build scripts <code>Scripts/thirdparty-setup-build-environment.ps1</code> (PowerShell), <code>thirdparty-setup-build-environment.sh</code> (Bash), or the build scripts themselves. e.g.:
+
+```powershell
+# Scripts/thirdparty-setup-build-environment.ps1
+
+New-Variable -Name "GOD_7zExecutable" -Value "C:\Program Files\7-Zip\7z.exe"
+New-Variable -Name "GOD_CMakeExecutable" -Value "C:\CMake\bin\cmake.exe"
+New-Variable -Name "GOD_GitExecutable" -Value "C:\Program Files\Git\bin\git.exe"
+New-Variable -Name "GOD_VisualStudioBasePath" `
+    -Value "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+New-Variable -Name "GOD_CmakeGenerator" -Value "Visual Studio 16 2019"
+New-Variable -Name "GOD_WindowsTargetPlatformVersion" -Value "10.0"
+```
+
+```bash
+# Scripts/thirdparty-setup-build-environment.sh
+
+export GOD_ARCHITECTURE_TRIPLE="x86_64-unknown-linux-gnu"
+export GOD_TOOLCHAIN_ROOT_DIRECTORY="/opt/UnrealEngine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v13_clang-7.0.1-centos7/${GOD_ARCHITECTURE_TRIPLE}"
+export GOD_TOOLCHAIN_BIN_DIRECTORY="${GOD_TOOLCHAIN_ROOT_DIRECTORY}/bin"
+```
+
+```bash
+# Scripts/thirdparty-build-boost.sh
+
+BOOST_GIT_CLONE_URL="https://github.com/boostorg/boost.git"
+BOOST_VERSION_MAJOR=1
+BOOST_VERSION_MINOR=70
+BOOST_VERSION_PATCH=0
+BOOST_GIT_TAG_TO_BUILD="boost-${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}"
+
+ZLIB_GIT_CLONE_URL="https://github.com/madler/zlib.git"
+ZLIB_GIT_TAG_TO_BUILD="v1.2.11"
+
+GIT_CLONE_NUMBER_OF_JOBS=16
+BOOST_BUILD_NUMBER_OF_JOBS=17
+```
+
+## License
 
 MIT License
 
