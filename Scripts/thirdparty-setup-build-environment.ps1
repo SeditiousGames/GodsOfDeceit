@@ -141,8 +141,8 @@ function GOD-ExecuteExternalCommand {
     $Process.StartInfo.Arguments = "$Arguments"
     $Process.StartInfo.RedirectStandardOutput = $False
     $Process.StartInfo.UseShellExecute = $False
-    $Process.Start()
-    $Process.WaitForExit()
+    $Dummy = $Process.Start()
+    $Dummy = $Process.WaitForExit()
 
     if ($Process.ExitCode -eq 0) {
         return $True
