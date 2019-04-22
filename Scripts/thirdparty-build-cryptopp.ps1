@@ -121,7 +121,6 @@ New-Item -Path "$GOD_ThirdPartyIncludeDirectory" `
     -Name "$TargetIncludeDirectoryName" `
     -ItemType "directory"
 Copy-Item "$SourceDirectory\*.h" -Destination "$TargetIncludeDirectory" `
-     -Recurse
 
 # First, clean up the old win32 debug libraries
 # Then, copy the new win32 debug libraries to destination
