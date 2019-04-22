@@ -135,5 +135,3 @@ Copy-Item "$Win64ReleaseBuildDirectory\Release\$Win64ReleaseTargetName.lib" -Des
 
 # Clean up the temporary build directory
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
-
-Set-Location "$GOD_ProjectDirectory"

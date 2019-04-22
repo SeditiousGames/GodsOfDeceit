@@ -59,8 +59,7 @@ function GOD-Fatal() {
     )
 
     Write-Host "[GOD] FATAL: $Error" -ForegroundColor Red
-    
-    Set-Location "$GOD_ProjectDirectory"
+
     Exit
 }
 
@@ -312,7 +311,6 @@ function GOD-RunCmakeBuild {
 
     New-Item -Path "$SourceDirectory" -Name "$BuildDirectoryName" `
         -ItemType "directory"
-    Set-Location "$BuildDirectory"
 
     $EnvironmentCache = GOD-GetEnvironment
 
@@ -325,7 +323,7 @@ function GOD-RunCmakeBuild {
     & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
         -A $Platform `
         -DCMAKE_BUILD_TYPE=$Configuration `
-        ..\
+        "$SourceDirectory"
     GOD-DieOnError -Succeeded $? `
         -Error "failed to invoke $GOD_CMakeExecutable!"
 
