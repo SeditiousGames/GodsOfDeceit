@@ -26,6 +26,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
+New-Variable -Name "GOD_7zExecutable" -Value "C:\Program Files\7-Zip\7z.exe"
 New-Variable -Name "GOD_CMakeExecutable" -Value "C:\CMake\bin\cmake.exe"
 New-Variable -Name "GOD_GitExecutable" -Value "C:\Program Files\Git\bin\git.exe"
 New-Variable -Name "GOD_VisualStudioBasePath" `
