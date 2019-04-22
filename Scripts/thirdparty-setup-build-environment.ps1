@@ -452,7 +452,7 @@ function GOD-RunMsBuild {
     }
 
     if ("$Platform" -ne "Win32" -And "$Platform" -ne "X64") {
-        GOD-Fatal -Error "invalid platform '$Configuration'!"
+        GOD-Fatal -Error "invalid platform '$Platform'!"
     }
 
     $Vcxproj = "$SourceDirectory\$VcxprojName"
