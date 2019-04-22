@@ -389,7 +389,8 @@ function GOD-RunCmakeBuild {
     & "$GOD_CMakeExecutable" -G "$GOD_CmakeGenerator" `
         -A $Platform `
         -DCMAKE_BUILD_TYPE=$Configuration `
-        "$SourceDirectory"
+        -B"$BuildDirectory" `
+        -H"$SourceDirectory"
     GOD-DieOnError -Succeeded $? `
         -Error "failed to invoke $GOD_CMakeExecutable!"
 
