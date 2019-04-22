@@ -153,7 +153,7 @@ GOD-RunCmakeBuild `
 # Then, copy the new headers to destination
 $Includes | Foreach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyIncludeDirectory\$_" `
-        -Force -Recurse
+        -ErrorAction Ignore -Force -Recurse
     Copy-Item "$InnerSourceDirectory\$_" `
         -Destination "$GOD_ThirdPartyIncludeDirectory" -Recurse
 }
@@ -162,7 +162,7 @@ $Includes | Foreach {
 # Then, copy the new win32 debug libraries to destination
 $Win32DebugLibraries | Foreach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin32DebugDirectory\$_" `
-        -Force -Recurse
+        -ErrorAction Ignore -Force -Recurse
     Copy-Item "$Win32DebugBuildDirectory\Debug\$_" `
         -Destination "$GOD_ThirdPartyLibWin32DebugDirectory" -Recurse
 }
@@ -171,7 +171,7 @@ $Win32DebugLibraries | Foreach {
 # Then, copy the new win32 release libraries to destination
 $Win32ReleaseLibraries | Foreach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin32ReleaseDirectory\$_" `
-        -Force -Recurse
+        -ErrorAction Ignore -Force -Recurse
     Copy-Item "$Win32ReleaseBuildDirectory\Release\$_" `
         -Destination "$GOD_ThirdPartyLibWin32ReleaseDirectory" -Recurse
 }
@@ -180,7 +180,7 @@ $Win32ReleaseLibraries | Foreach {
 # Then, copy the new win64 debug libraries to destination
 $Win64DebugLibraries | Foreach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin64DebugDirectory\$_" `
-        -Force -Recurse
+        -ErrorAction Ignore -Force -Recurse
     Copy-Item "$Win64DebugBuildDirectory\Debug\$_" `
         -Destination "$GOD_ThirdPartyLibWin64DebugDirectory" -Recurse
 }
@@ -189,7 +189,7 @@ $Win64DebugLibraries | Foreach {
 # Then, copy the new win64 release libraries to destination
 $Win64ReleaseLibraries | Foreach {
     Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin64ReleaseDirectory\$_" `
-        -Force -Recurse
+        -ErrorAction Ignore -Force -Recurse
     Copy-Item "$Win64ReleaseBuildDirectory\Release\$_" `
         -Destination "$GOD_ThirdPartyLibWin64ReleaseDirectory" -Recurse
 }
