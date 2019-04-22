@@ -78,8 +78,8 @@ New-Variable -Name "Win64ReleaseBuildDirectory" `
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
 
 # Create the temporary build directory
-New-Item -Path "$GOD_TempDirectory" -Name "$SourceDirectoryName"
-    ` -ItemType "directory"
+New-Item -Path "$GOD_TempDirectory" -Name "$SourceDirectoryName" `
+    -ItemType "directory"
 
 # Download the distfile
 Invoke-WebRequest -Uri $SourceArchiveUrl -OutFile "$ArchiveFile"
