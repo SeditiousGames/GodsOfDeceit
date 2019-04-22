@@ -74,6 +74,29 @@ New-Variable -Name "Win64DebugBuildDirectory" `
 New-Variable -Name "Win64ReleaseBuildDirectory" `
     -Value "$InnerSourceDirectory\$Win64ReleaseBuildDirectoryName"
 
+$Includes = ( `
+    "sqlite3.h", `
+    "sqlite3ext.h"
+)
+
+$Win32DebugLibraries = ( `
+    "$Win32DebugTargetName.lib", `
+    "$Win32DebugTargetName.pdb"
+)
+
+$Win32ReleaseLibraries = ( `
+    "$Win32ReleaseTargetName.lib"
+)
+
+$Win64DebugLibraries = ( `
+    "$Win64DebugTargetName.lib", `
+    "$Win64DebugTargetName.pdb"
+)
+
+$Win64ReleaseLibraries = ( `
+    "$Win64ReleaseTargetName.lib"
+)
+
 # Remove the temporary build directory if it does exists already
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
 
@@ -126,31 +149,50 @@ GOD-RunCmakeBuild `
     -VcxprojName "$VcxprojName" `
     -BuildDirectoryName "$Win64ReleaseBuildDirectoryName"
 
-# Copy the headers to ThirdParty/include
-Copy-Item "$InnerSourceDirectory\sqlite3.h" `
-    -Destination "$GOD_ThirdPartyIncludeDirectory"
-Copy-Item "$InnerSourceDirectory\sqlite3ext.h" `
-    -Destination "$GOD_ThirdPartyIncludeDirectory"
+# First, clean up the old headers
+# Then, copy the new headers to destination
+$Includes | Foreach {
+    Remove-Item -LiteralPath "$GOD_ThirdPartyIncludeDirectory\$_" `
+        -Force -Recurse
+    Copy-Item "$InnerSourceDirectory\$_" `
+        -Destination "$GOD_ThirdPartyIncludeDirectory" -Recurse
+}
 
-# Copy the win32 debug libraries to ThirdParty/lib/win32/debug
-Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.lib" `
-    -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
-Copy-Item "$Win32DebugBuildDirectory\Debug\$Win32DebugTargetName.pdb" `
-    -Destination "$GOD_ThirdPartyLibWin32DebugDirectory"
+# First, clean up the old win32 debug libraries
+# Then, copy the new win32 debug libraries to destination
+$Win32DebugLibraries | Foreach {
+    Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin32DebugDirectory\$_" `
+        -Force -Recurse
+    Copy-Item "$Win32DebugBuildDirectory\Debug\$_" `
+        -Destination "$GOD_ThirdPartyLibWin32DebugDirectory" -Recurse
+}
 
-# Copy win32 release libraries to ThirdParty/lib/win32/release
-Copy-Item "$Win32ReleaseBuildDirectory\Release\$Win32ReleaseTargetName.lib" `
-    -Destination "$GOD_ThirdPartyLibWin32ReleaseDirectory"
+# First, clean up the old win32 release libraries
+# Then, copy the new win32 release libraries to destination
+$Win32ReleaseLibraries | Foreach {
+    Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin32ReleaseDirectory\$_" `
+        -Force -Recurse
+    Copy-Item "$Win32ReleaseBuildDirectory\Release\$_" `
+        -Destination "$GOD_ThirdPartyLibWin32ReleaseDirectory" -Recurse
+}
 
-# Copy the win64 debug libraries to ThirdParty/lib/win64/debug
-Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.lib" `
-    -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
-Copy-Item "$Win64DebugBuildDirectory\Debug\$Win64DebugTargetName.pdb" `
-    -Destination "$GOD_ThirdPartyLibWin64DebugDirectory"
+# First, clean up the old win64 debug libraries
+# Then, copy the new win64 debug libraries to destination
+$Win64DebugLibraries | Foreach {
+    Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin64DebugDirectory\$_" `
+        -Force -Recurse
+    Copy-Item "$Win64DebugBuildDirectory\Debug\$_" `
+        -Destination "$GOD_ThirdPartyLibWin64DebugDirectory" -Recurse
+}
 
-# Copy win64 release libraries to ThirdParty/lib/win64/release
-Copy-Item "$Win64ReleaseBuildDirectory\Release\$Win64ReleaseTargetName.lib" 
-    `-Destination "$GOD_ThirdPartyLibWin64ReleaseDirectory"
+# First, clean up the old win64 release libraries
+# Then, copy the new win64 release libraries to destination
+$Win64ReleaseLibraries | Foreach {
+    Remove-Item -LiteralPath "$GOD_ThirdPartyLibWin64ReleaseDirectory\$_" `
+        -Force -Recurse
+    Copy-Item "$Win64ReleaseBuildDirectory\Release\$_" `
+        -Destination "$GOD_ThirdPartyLibWin64ReleaseDirectory" -Recurse
+}
 
 # Clean up the temporary build directory
 Remove-Item -LiteralPath "$SourceDirectory" -ErrorAction Ignore -Force -Recurse
