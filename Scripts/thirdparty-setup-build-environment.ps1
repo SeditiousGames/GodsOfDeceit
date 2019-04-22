@@ -133,7 +133,9 @@ function GOD-ExecuteExternalCommand {
         [Parameter(Mandatory=$True)]
         [String]$Executable,
         [Parameter(Mandatory=$False)]
-        [String]$Arguments
+        [String]$Arguments,
+        [Parameter(Mandatory=$False)]
+        [String]$WorkingDirectory
     )
 
     $Process = New-Object System.Diagnostics.Process
@@ -141,6 +143,7 @@ function GOD-ExecuteExternalCommand {
     $Process.StartInfo.Arguments = "$Arguments"
     $Process.StartInfo.RedirectStandardOutput = $False
     $Process.StartInfo.UseShellExecute = $False
+    $Process.StartInfo.WorkingDirectory = "$WorkingDirectory"
     $Dummy = $Process.Start()
     $Dummy = $Process.WaitForExit()
 
