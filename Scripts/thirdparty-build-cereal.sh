@@ -28,7 +28,6 @@ set -e
 
 GIT_CLONE_URL="https://github.com/USCiLab/cereal.git"
 GIT_TAG_TO_BUILD="v1.2.2"
-SOURCE_DIRECTORY_NAME="god-thirdparty-cereal"
 
 declare -a INCLUDES=( "cereal" )
 
@@ -36,6 +35,7 @@ SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
 BUILD_TOOLCHAIN_SETUP="${SCRIPTS_DIRECTORY}/thirdparty-setup-build-environment.sh"
 source "${BUILD_TOOLCHAIN_SETUP}"
 
+SOURCE_DIRECTORY_NAME="${GOD_THIRDPARTY_BUILD_DIRECTORY_PREFIX}-cereal"
 SOURCE_DIRECTORY="${GOD_TEMP_DIRECTORY}/${SOURCE_DIRECTORY_NAME}"
 
 rm -rf "${SOURCE_DIRECTORY}" \
