@@ -36,12 +36,18 @@ New-Variable -Name "GOD_WindowsTargetPlatformVersion" -Value "10.0"
 
 New-Variable -Name "GOD_VcVarsScriptsBasePath" `
     -Value "$GOD_VisualStudioBasePath\VC\Auxiliary\Build"
-New-Variable -Name "GOD_VcVarsAllScript" `
-    -Value "$GOD_VcVarsScriptsBasePath\vcvarsall.bat"
 New-Variable -Name "GOD_VcVars32Script" `
     -Value "$GOD_VcVarsScriptsBasePath\vcvars32.bat"
 New-Variable -Name "GOD_VcVars64Script" `
     -Value "$GOD_VcVarsScriptsBasePath\vcvars64.bat"
+New-Variable -Name "GOD_VcVarsAllScript" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvarsall.bat"
+New-Variable -Name "GOD_VcVarsAmd64X86Script" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvarsamd64_x86.bat"
+New-Variable -Name "GOD_VcVarsX86Amd64Script" `
+    -Value "$GOD_VcVarsScriptsBasePath\vcvarsx86_amd64.bat"
+
+
 
 New-Variable -Name "GOD_ProjectDirectory" `
     -Value (get-item $PSScriptRoot).parent.FullName
@@ -141,9 +147,9 @@ function GOD-ExecuteExternalCommand {
     $Process = New-Object System.Diagnostics.Process
     $Process.StartInfo.Filename = "$Executable"
     $Process.StartInfo.Arguments = "$Arguments"
+    $Process.StartInfo.WorkingDirectory = "$WorkingDirectory"
     $Process.StartInfo.RedirectStandardOutput = $False
     $Process.StartInfo.UseShellExecute = $False
-    $Process.StartInfo.WorkingDirectory = "$WorkingDirectory"
     $Dummy = $Process.Start()
     $Dummy = $Process.WaitForExit()
 
