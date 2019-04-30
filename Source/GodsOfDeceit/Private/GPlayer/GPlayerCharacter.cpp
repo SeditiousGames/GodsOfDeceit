@@ -102,7 +102,7 @@ AGPlayerCharacter::AGPlayerCharacter(
             Mesh->AnimClass = AnimBlueprint.Object;
         }
 
-        Mesh->SetupAttachment(this->RootComponent);
+        Mesh->SetupAttachment(RootComponent);
         Mesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -150.0f),
                                              FRotator(0.0f, -90.0f, 0.0f));
         Mesh->SetOnlyOwnerSee(false);
