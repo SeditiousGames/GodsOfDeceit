@@ -64,44 +64,44 @@ UGHealthComponent::UGHealthComponent(
         const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
-    this->PrimaryComponentTick.bCanEverTick = true;
+    PrimaryComponentTick.bCanEverTick = true;
 
-    this->SetCanEverAffectNavigation(false);
+    SetCanEverAffectNavigation(false);
 
-    this->Health = 100.0f;
-    this->bHealthRegeneration = false;
+    Health = 100.0f;
+    bHealthRegeneration = false;
 
     AsyncTask(ENamedThreads::GameThread, [&]()
     {
-        this->HealthRegenerationDelay.Initialize(this);
-        this->HealthRegenerationDelay.Recruit = 5.0f;
-        this->HealthRegenerationDelay.Regular = 5.0f;
-        this->HealthRegenerationDelay.Hardened = 5.0f;
-        this->HealthRegenerationDelay.Veteran = 5.0f;
+        HealthRegenerationDelay.Initialize(this);
+        HealthRegenerationDelay.Recruit = 5.0f;
+        HealthRegenerationDelay.Regular = 5.0f;
+        HealthRegenerationDelay.Hardened = 5.0f;
+        HealthRegenerationDelay.Veteran = 5.0f;
 
-        this->HealthRegenerationInterval.Initialize(this);
-        this->HealthRegenerationInterval.Recruit = 0.1f;
-        this->HealthRegenerationInterval.Regular = 0.1f;
-        this->HealthRegenerationInterval.Hardened = 0.1f;
-        this->HealthRegenerationInterval.Veteran = 0.1f;
+        HealthRegenerationInterval.Initialize(this);
+        HealthRegenerationInterval.Recruit = 0.1f;
+        HealthRegenerationInterval.Regular = 0.1f;
+        HealthRegenerationInterval.Hardened = 0.1f;
+        HealthRegenerationInterval.Veteran = 0.1f;
 
-        this->HealthRegenerationPerSecond.Initialize(this);
-        this->HealthRegenerationPerSecond.Recruit = 5.0f;
-        this->HealthRegenerationPerSecond.Regular = 5.0f;
-        this->HealthRegenerationPerSecond.Hardened = 5.0f;
-        this->HealthRegenerationPerSecond.Veteran = 5.0f;
+        HealthRegenerationPerSecond.Initialize(this);
+        HealthRegenerationPerSecond.Recruit = 5.0f;
+        HealthRegenerationPerSecond.Regular = 5.0f;
+        HealthRegenerationPerSecond.Hardened = 5.0f;
+        HealthRegenerationPerSecond.Veteran = 5.0f;
 
-        this->SafeFallingDistance.Initialize(this);
-        this->SafeFallingDistance.Recruit = 300.0f;
-        this->SafeFallingDistance.Regular = 300.0f;
-        this->SafeFallingDistance.Hardened = 300.0f;
-        this->SafeFallingDistance.Veteran = 300.0f;
+        SafeFallingDistance.Initialize(this);
+        SafeFallingDistance.Recruit = 300.0f;
+        SafeFallingDistance.Regular = 300.0f;
+        SafeFallingDistance.Hardened = 300.0f;
+        SafeFallingDistance.Veteran = 300.0f;
 
-        this->FallingDamagePerMeter.Initialize(this);
-        this->FallingDamagePerMeter.Recruit = 30.0f;
-        this->FallingDamagePerMeter.Regular = 30.0f;
-        this->FallingDamagePerMeter.Hardened = 30.0f;
-        this->FallingDamagePerMeter.Veteran = 30.0f;
+        FallingDamagePerMeter.Initialize(this);
+        FallingDamagePerMeter.Recruit = 30.0f;
+        FallingDamagePerMeter.Regular = 30.0f;
+        FallingDamagePerMeter.Hardened = 30.0f;
+        FallingDamagePerMeter.Veteran = 30.0f;
     });
 }
 
