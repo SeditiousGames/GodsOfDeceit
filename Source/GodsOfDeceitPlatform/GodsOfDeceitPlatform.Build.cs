@@ -118,14 +118,12 @@ public class GodsOfDeceitPlatform : ModuleRules
     {
         Utils.Log.Info("Setting up build configuration for '{0}'...", Utils.ModuleName);
 
-        bool bX64 = Utils.BuildPlatform.IsX64();
         bool bDebugBuild = Utils.BuildPlatform.IsDebugBuild();
-        bool bShippingBuild = Utils.BuildPlatform.IsShippingBuild();
 
         Utils.BuildConfiguration.SetPCHUsage(PCHUsageMode.UseExplicitOrSharedPCHs);
         Utils.BuildConfiguration.SetUseRTTI(false);
         Utils.BuildConfiguration.SetEnableExceptions(false);
-        Utils.BuildConfiguration.SetUseAVX(bX64 && !bShippingBuild);
+        Utils.BuildConfiguration.SetUseAVX(true);
         Utils.BuildConfiguration.SetEnableShadowVariableWarnings(true);
         Utils.BuildConfiguration.SetEnableUndefinedIdentifierWarnings(true);
         Utils.BuildConfiguration.SetFasterWithoutUnity(bDebugBuild);
