@@ -97,5 +97,5 @@ const uint8& FGDLV_uint8::Get() const
 
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
-    return this->Dummy;
+    return Dummy;
 }

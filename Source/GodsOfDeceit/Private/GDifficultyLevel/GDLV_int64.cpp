@@ -97,5 +97,5 @@ const int64& FGDLV_int64::Get() const
 
     checkf(false, TEXT("FATAL: the execution flow should never reach here!"));
 
-    return this->Dummy;
+    return Dummy;
 }
