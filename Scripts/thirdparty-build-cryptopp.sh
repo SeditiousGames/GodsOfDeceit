@@ -25,7 +25,7 @@
 
 
 GIT_CLONE_URL="https://github.com/weidai11/cryptopp.git"
-GIT_TAG_TO_BUILD="CRYPTOPP_8_1_0"
+GIT_TAG_TO_BUILD="CRYPTOPP_8_2_0"
 
 TARGET_INCLUDE_DIRECTORY_NAME="cryptopp"
 declare -a DEBUG_LIBRARIES=( "libcryptopp.a" )

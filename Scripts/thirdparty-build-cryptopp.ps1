@@ -28,7 +28,7 @@ $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
 New-Variable -Name "GitCloneUrl" `
     -Value "https://github.com/weidai11/cryptopp.git"
-New-Variable -Name "GitTagToBuild" -Value "CRYPTOPP_8_1_0"
+New-Variable -Name "GitTagToBuild" -Value "CRYPTOPP_8_2_0"
 
 New-Variable -Name "TAG" -Value "cryptlib"
 
