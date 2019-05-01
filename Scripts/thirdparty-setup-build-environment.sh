@@ -29,6 +29,7 @@ set -e
 export GOD_ARCHITECTURE_TRIPLE="x86_64-unknown-linux-gnu"
 export GOD_TOOLCHAIN_ROOT_DIRECTORY="/opt/UnrealEngine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v13_clang-7.0.1-centos7/${GOD_ARCHITECTURE_TRIPLE}"
 export GOD_TOOLCHAIN_BIN_DIRECTORY="${GOD_TOOLCHAIN_ROOT_DIRECTORY}/bin"
+export GOD_LIBCPP_INCLUDE_DIRECTORY="/usr/include/c++/v1"
 
 export GOD_TEMP_DIRECTORY="/tmp"
 export GOD_PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
