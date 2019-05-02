@@ -91,13 +91,13 @@ rm -rf "${SOURCE_DIRECTORY}" \
     && mkdir -p "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
     && mkdir -p "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && rm -rf "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}/${TARGET_INCLUDE_DIRECTORY_NAME}" \
-        "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/"libboost_*-mt-d-x64-*.lib \
-        "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/"libboost_*-mt-x64-*.lib \
+        "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}/"libboost_*-mt-d-x64-*.a \
+        "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}/"libboost_*-mt-x64-*.a \
     && cp -vr \
         "${BOOST_STAGE_INCLUDE_DIRECTORY}/boost-${BOOST_VERSION_MAJOR}_${BOOST_VERSION_MINOR}/${TARGET_INCLUDE_DIRECTORY_NAME}" \
         "${GOD_THIRDPARTY_INCLUDE_DIRECTORY}" \
-    && cp -vr "${BOOST_STAGE_LIB_DIRECTORY}/"libboost_*-mt-d-x64-*.lib \
+    && cp -vr "${BOOST_STAGE_LIB_DIRECTORY}/"libboost_*-mt-d-x64-*.a \
         "${GOD_THIRDPARTY_LIB_DEBUG_DIRECTORY}" \
-    && cp -vr "${BOOST_STAGE_LIB_DIRECTORY}/"libboost_*-mt-x64-*.lib \
+    && cp -vr "${BOOST_STAGE_LIB_DIRECTORY}/"libboost_*-mt-x64-*.a \
         "${GOD_THIRDPARTY_LIB_RELEASE_DIRECTORY}" \
     && rm -rf "${SOURCE_DIRECTORY}"
