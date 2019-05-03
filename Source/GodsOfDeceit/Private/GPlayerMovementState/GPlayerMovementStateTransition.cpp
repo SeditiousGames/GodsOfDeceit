@@ -30,30 +30,30 @@
  *
  * @section DESCRIPTION
  *
- * An interface to be implemented by all the player's aim states.
+ * A struct which defines transition data between movement states.
  */
 
 
-#include "GPlayerCombatState/IGPlayerCombatState.h"
+#include "GPlayerMovementState/GPlayerMovementStateTransition.h"
 #include "GodsOfDeceit.h"
 
-#include <Misc/AssertionMacros.h>
-#include <Misc/CoreMiscDefines.h>
+#include "GPlayerMovementState/GPlayerMovementState.h"
 
-UGPlayerCombatState::UGPlayerCombatState(
-        const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+FGPlayerMovementStateTransition::FGPlayerMovementStateTransition()
+    : To(EGPlayerMovementState::None),
+      BlendTime(0.1f),
+      TransitionAnimationBlendInTime(0.1f),
+      TransitionAnimationBlendOutTime(0.1f)
 {
 
 }
 
-void IGPlayerCombatState::RegisterHandler(
-        const EventHandlerPtr HandlerPointer, const FName& HandlerName,
-        EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
+FGPlayerMovementStateTransition::FGPlayerMovementStateTransition(
+            const EGPlayerMovementState& InTo)
+    : To(InTo),
+      BlendTime(0.1f),
+      TransitionAnimationBlendInTime(0.1f),
+      TransitionAnimationBlendOutTime(0.1f)
 {
-    checkf(HandlerPointer,
-           TEXT("FATAL: combat state event handler pointer is null!"));
 
-    Out_HandlerPointer = HandlerPointer;
-    Out_HandlerName = HandlerName;
 }

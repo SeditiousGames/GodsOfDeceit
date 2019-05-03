@@ -30,30 +30,45 @@
  *
  * @section DESCRIPTION
  *
- * An interface to be implemented by all the player's aim states.
+ * A class to define a character's state animation data
  */
 
 
-#include "GPlayerCombatState/IGPlayerCombatState.h"
-#include "GodsOfDeceit.h"
+#pragma once
 
-#include <Misc/AssertionMacros.h>
-#include <Misc/CoreMiscDefines.h>
+#include <Containers/Array.h>
+#include <UObject/ObjectMacros.h>
 
-UGPlayerCombatState::UGPlayerCombatState(
-        const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+#include "GAnimation/GAnimation.h"
+
+#include "GStateAnimation.generated.h"
+
+USTRUCT(BlueprintInternalUseOnly)
+struct GODSOFDECEIT_API FGStateAnimation
 {
+    GENERATED_USTRUCT_BODY()
 
-}
+protected:
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly, Category = "Animation" )
+    FGAnimation Default;
 
-void IGPlayerCombatState::RegisterHandler(
-        const EventHandlerPtr HandlerPointer, const FName& HandlerName,
-        EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
-{
-    checkf(HandlerPointer,
-           TEXT("FATAL: combat state event handler pointer is null!"));
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly, Category = "Animation" )
+    FGAnimation Exit;
 
-    Out_HandlerPointer = HandlerPointer;
-    Out_HandlerName = HandlerName;
-}
+public:
+    FORCEINLINE FGStateAnimation()
+    {
+
+    }
+
+public:
+    FORCEINLINE const FGAnimation &GetDefault() const
+    {
+        return Default;
+    }
+
+    FORCEINLINE const FGAnimation &GetExit() const
+    {
+        return Exit;
+    }
+};

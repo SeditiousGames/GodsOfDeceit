@@ -30,30 +30,20 @@
  *
  * @section DESCRIPTION
  *
- * An interface to be implemented by all the player's aim states.
+ * A class to define a character's animation data
  */
 
 
-#include "GPlayerCombatState/IGPlayerCombatState.h"
+#include "GAnimation/GAnimation.h"
 #include "GodsOfDeceit.h"
 
-#include <Misc/AssertionMacros.h>
-#include <Misc/CoreMiscDefines.h>
+#include <Animation/AnimationAsset.h>
 
-UGPlayerCombatState::UGPlayerCombatState(
-        const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+FGAnimation::FGAnimation()
+    : Single(nullptr),
+      bLoop(false),
+      PlayRate(1.0f),
+      MontageSectionName(NAME_None)
 {
 
-}
-
-void IGPlayerCombatState::RegisterHandler(
-        const EventHandlerPtr HandlerPointer, const FName& HandlerName,
-        EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
-{
-    checkf(HandlerPointer,
-           TEXT("FATAL: combat state event handler pointer is null!"));
-
-    Out_HandlerPointer = HandlerPointer;
-    Out_HandlerName = HandlerName;
 }

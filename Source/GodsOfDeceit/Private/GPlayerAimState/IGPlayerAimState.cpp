@@ -51,6 +51,9 @@ void IGPlayerAimState::RegisterHandler(
         const EventHandlerPtr HandlerPointer, const FName& HandlerName,
         EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
 {
+    checkf(HandlerPointer,
+           TEXT("FATAL: aim state event handler pointer is null!"));
+
     Out_HandlerPointer = HandlerPointer;
     Out_HandlerName = HandlerName;
 }

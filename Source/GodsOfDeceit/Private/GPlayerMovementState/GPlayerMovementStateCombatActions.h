@@ -30,30 +30,41 @@
  *
  * @section DESCRIPTION
  *
- * An interface to be implemented by all the player's aim states.
+ * A struct to hold a list of allowed combat actions in each movement state.
  */
 
 
-#include "GPlayerCombatState/IGPlayerCombatState.h"
-#include "GodsOfDeceit.h"
+#pragma once
 
-#include <Misc/AssertionMacros.h>
-#include <Misc/CoreMiscDefines.h>
+#include <CoreTypes.h>
+#include <UObject/ObjectMacros.h>
 
-UGPlayerCombatState::UGPlayerCombatState(
-        const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+#include "GPlayerMovementStateCombatActions.generated.h"
+
+USTRUCT(BlueprintInternalUseOnly)
+struct GODSOFDECEIT_API FGPlayerMovementStateCombatActions
 {
+    GENERATED_USTRUCT_BODY()
 
-}
+public:
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanEquip : 1;
 
-void IGPlayerCombatState::RegisterHandler(
-        const EventHandlerPtr HandlerPointer, const FName& HandlerName,
-        EventHandlerPtr& Out_HandlerPointer, FName& Out_HandlerName)
-{
-    checkf(HandlerPointer,
-           TEXT("FATAL: combat state event handler pointer is null!"));
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanFire : 1;
 
-    Out_HandlerPointer = HandlerPointer;
-    Out_HandlerName = HandlerName;
-}
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanMelee : 1;
+
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanReload : 1;
+
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanSwitchWeapon : 1;
+
+    UPROPERTY ( EditDefaultsOnly, BlueprintReadOnly )
+    uint8 bCanThrow : 1;
+
+public:
+    FGPlayerMovementStateCombatActions();
+};

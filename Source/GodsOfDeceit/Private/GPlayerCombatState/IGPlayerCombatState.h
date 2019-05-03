@@ -38,6 +38,7 @@
 
 #include <CoreTypes.h>
 #include <UObject/Interface.h>
+#include <UObject/NameTypes.h>
 #include <UObject/ObjectMacros.h>
 
 #include <GTypes/GGodsOfDeceitTypes.h>

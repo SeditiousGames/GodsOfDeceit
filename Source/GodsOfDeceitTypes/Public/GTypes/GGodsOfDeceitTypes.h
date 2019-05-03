@@ -131,3 +131,81 @@ constexpr uint8 G_PLAYER_COMBAT_STATE_ENUM_COUNT =
         static_cast<uint8>(EGPlayerCombatState::WeaponSwitching)
         - static_cast<uint8>(EGPlayerCombatState::None)
         + 1;
+
+/** Enum that defines all player's movement states. */
+UENUM(BlueprintType)
+enum class EGPlayerMovementState : uint8
+{
+    /**
+     * Uninitialized movement state.
+     *
+     * Note: This has to be defined as the first enum element since the enum
+     * count calculations relies on it.
+     */
+    None                UMETA(DisplayName="None"),
+
+    /** Player is idle while in crouching pose. */
+    Crouching_Idle      UMETA(DisplayName="Crouching_Idle"),
+
+    /** Player is walking in crouching pose. */
+    Crouching_Walking   UMETA(DisplayName="Crouching_Walking"),
+
+    /** Player is dead. */
+    Dead                UMETA(DisplayName="Dead"),
+
+    /** Player is falling down. */
+    Falling             UMETA(DisplayName="Falling"),
+
+    /** Player is not performing a movement action. */
+    Idle                UMETA(DisplayName="Idle"),
+
+    /** Player's movement state machine has been disabled. */
+    Inactive            UMETA(DisplayName="Inactive"),
+
+    /** Player is performing a jump. */
+    Jumping             UMETA(DisplayName="Jumping"),
+
+    /** Player is landing on a ground. */
+    Landing             UMETA(DisplayName="Landing"),
+
+    /** Player is leaping forward. */
+    Leaping             UMETA(DisplayName="Leaping"),
+
+    /** Player is ascending a platform. */
+    PlatformAscending   UMETA(DisplayName="PlatformAscending"),
+
+    /** Player is in free fall. */
+    Plummeting          UMETA(DisplayName="Plummeting"),
+
+    /** Player is crawling. */
+    Prone_Crawling      UMETA(DisplayName="Prone_Crawling"),
+
+    /** Player is idle while in crawling pose. */
+    Prone_Idle          UMETA(DisplayName="Prone_Idle"),
+
+    /** Player is spawning. */
+    Spawning            UMETA(DisplayName="Spawning"),
+
+    /** Player is sprinting. */
+    Sprinting           UMETA(DisplayName="Sprinting"),
+
+    /** Player is performing a vault. */
+    Vaulting            UMETA(DisplayName="Vaulting"),
+
+    /**
+    * Player is walking.
+    *
+    * Note: This has to be defined as the last enum element since the enum
+    * count calculations relies on it.
+    */
+    Walking             UMETA(DisplayName="Walking")
+};
+
+/**
+ * Calculates the number of elements defined by the player's movement state
+ * enum at compile time.
+ */
+constexpr uint8 G_PLAYER_MOVEMENT_STATE_ENUM_COUNT =
+        static_cast<uint8>(EGPlayerMovementState::Walking)
+        - static_cast<uint8>(EGPlayerMovementState::None)
+        + 1;
