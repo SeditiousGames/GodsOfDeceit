@@ -95,6 +95,7 @@ If you ever need to build these dependencies yourself, it can be done in an auto
 On Microsoft Windows (32 and 64 bits):
 
 ```
+$ Set-ExecutionPolicy RemoteSigned
 $ Set-Location \path\to\gods\of\deceit\project\directory
 $ .\Scripts\thirdparty-build-boost.ps1
 $ .\Scripts\thirdparty-build-cereal.ps1
