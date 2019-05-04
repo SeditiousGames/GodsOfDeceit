@@ -61,7 +61,7 @@ set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\build-tools;%PATH%
 set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\platform-tools;%PATH%
 set PATH=%OPT_PATH%\NVPACK\android-sdk-windows\tools;%PATH%
 
-set VS_PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE
+set VS_PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\IDE
 
 set TIMEOUT=%windir%\System32\timeout.exe
 
