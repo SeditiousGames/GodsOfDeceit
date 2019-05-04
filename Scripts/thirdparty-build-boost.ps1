@@ -111,7 +111,7 @@ GOD-DieOnError -Succeeded $ReturnCode `
 # Build Boost C++ Libraries
 [Bool]$ReturnCode = GOD-ExecuteExternalCommand `
     -Executable "$BoostSourceDirectory\b2.exe" `
-    -Arguments "--hash toolset=msvc debug-symbols=on debug-store=database optimization=space address-model=32,64 architecture=x86 threading=multi link=static runtime-link=shared cflags=`"/FS`" cxxflags=`"/std:c++17 /FS`" linkflags=`"/std:c++17 /FS`" pch=off define=BOOST_USE_WINAPI_VERSION=0x0601 --layout=versioned --build-type=minimal --build-dir=`"build`" --prefix=`"$BoostStageDirectory`" --without-mpi --without-python -sZLIB_SOURCE=`"$ZlibSourceDirectory`" -j $BoostBuildNumberOfJobs install" `
+    -Arguments "--hash toolset=msvc debug-store=database address-model=32,64 architecture=x86 threading=multi link=static runtime-link=shared cflags=`"/FS`" cxxflags=`"/std:c++17 /FS`" linkflags=`"/std:c++17 /FS`" pch=off define=BOOST_USE_WINAPI_VERSION=0x0601 --layout=versioned --build-type=minimal --build-dir=`"build`" --prefix=`"$BoostStageDirectory`" --without-mpi --without-python -sZLIB_SOURCE=`"$ZlibSourceDirectory`" -j $BoostBuildNumberOfJobs install" `
     -WorkingDirectory "$BoostSourceDirectory"
 GOD-DieOnError -Succeeded $ReturnCode `
     -Error "failed to build Boost C++ Libraries inside '$BoostSourceDirectory'!"
