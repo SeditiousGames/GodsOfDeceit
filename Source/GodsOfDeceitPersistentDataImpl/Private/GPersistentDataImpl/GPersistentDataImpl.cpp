@@ -44,7 +44,9 @@ THIRD_PARTY_INCLUDES_START
 #include <boost/exception/diagnostic_information.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
+#include <GHacks/GDisable_C4800.h>
 #include <boost/regex.hpp>
+#include <GHacks/GRestore_C4800.h>
 THIRD_PARTY_INCLUDES_END
 #include <GHacks/GRestore_check.h>
 

@@ -50,7 +50,9 @@ THIRD_PARTY_INCLUDES_START
 /// We won't support bzip2 or gzip in the foreseeable future
 //#include <boost/iostreams/filter/bzip2.hpp>
 //#include <boost/iostreams/filter/gzip.hpp>
+#include <GHacks/GDisable_C4706.h>
 #include <boost/iostreams/filter/zlib.hpp>
+#include <GHacks/GRestore_C4706.h>
 #include <boost/iostreams/filtering_streambuf.hpp>
 THIRD_PARTY_INCLUDES_END
 #include <GHacks/GRestore_check.h>
