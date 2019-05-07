@@ -26,16 +26,54 @@
 
 SCRIPTS_DIRECTORY=$(dirname $(realpath "$0"))
 PROJECT_DIRECTORY=`dirname $(dirname $(realpath "$0"))`
-THIRDPARTY_REMOTE_REPOSITORY="git@gitlab.com:Seditious Games Studio/GodsOfDeceit_Content_ThirdParty.git"
-THIRDPARTY_LOCAL_DIRECTORY="${PROJECT_DIRECTORY}/ThirdParty"
-THIRDPARTY_BACKUP_REPOSITORY="/home/mamadou/dev/GodsOfDeceit-bare-repo.git"
-THIRDPARTY_BACKUP_DIRECTORY=$(dirname "${THIRDPARTY_BACKUP_REPOSITORY}")
 
-wget -q --no-check-certificate http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar -O ${SCRIPTS_DIRECTORY}/bfg.jar
+BFG_DOWNLOAD_URL="http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar"
 
-mkdir -p ${THIRDPARTY_BACKUP_DIRECTORY} \
-    && git clone --mirror ${THIRDPARTY_REMOTE_REPOSITORY} ${THIRDPARTY_BACKUP_REPOSITORY} \
-    && java -jar ${SCRIPTS_DIRECTORY}/bfg.jar --strip-blobs-bigger-than 1M --protect-blobs-from master ${THIRDPARTY_LOCAL_DIRECTORY} \
-    && cd ${THIRDPARTY_LOCAL_DIRECTORY} \
-    && git reflog expire --expire=now --all && git gc --prune=now --aggressive \
-    && git push --force --all
+PROJECT_TAG="GodsOfDeceit"
+REMOTE_URL_BASE="git@gitlab.com:SeditiousGames/${PROJECT_TAG}"
+BACKUP_REPOSITORY_BASE="/home/mamadou/git-backup/${PROJECT_TAG}"
+BARE_REPOSITORY_TAG="Bare-Repo"
+TEMP_DIRECTORY=$(mktemp --directory)
+
+function clean() {
+    local tag="${1}"
+    local strip_blobs_bigger_than="${2}"
+    local protect_blobs_from="${3}"
+
+    local local_repository="${TEMP_DIRECTORY}/${PROJECT_TAG}_${tag}"
+    local remote_repository="${REMOTE_URL_BASE}_${tag}.git"
+    local backup_repository="${BACKUP_REPOSITORY_BASE}-${tag}-${BARE_REPOSITORY_TAG}.git"
+    local backup_directory=$(dirname "${backup_repository}")
+
+    mkdir -p "${backup_directory}" \
+        && git clone --mirror ${remote_repository} "${backup_repository}" --jobs 8 \
+        && git clone ${remote_repository} "${local_repository}" --jobs 8 \
+        && cd "${local_repository}" \
+        && \
+            for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master ` ; \
+            do \
+                git branch --track ${branch#remotes/origin/} ${branch}; \
+            done \
+        && java -jar ${TEMP_DIRECTORY}/bfg.jar \
+            --strip-blobs-bigger-than ${strip_blobs_bigger_than} \
+            --protect-blobs-from ${protect_blobs_from} "${local_repository}" \
+        && git reflog expire --expire=now --all && git gc --prune=now --aggressive \
+        && git push --force --all
+}
+
+function downloadBfg() {
+    wget -q --no-check-certificate ${BFG_DOWNLOAD_URL} -O "${TEMP_DIRECTORY}/bfg.jar"
+
+    local rc=$?
+    if [[ ${rc} -ne 0 ]] ;
+    then
+        exit 1
+    fi
+}
+
+mkdir -p "${TEMP_DIRECTORY}"
+trap "{ rm -rf ${TEMP_DIRECTORY}; }" EXIT
+
+downloadBfg
+
+clean "ThirdParty" "1K" "master"
